@@ -2,11 +2,12 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = {
-  context: path.join(__dirname, '/src'),
+  context: __dirname + "/src",
   entry: path.resolve(path.join(__dirname, 'server', 'index.js')),
 
   output: {
-    filename: path.join(__dirname, 'server', 'server.bundle.js')
+    path: path.join(__dirname,  "server"),
+    filename: 'server.bundle.js'
   },
 
   target: 'node',

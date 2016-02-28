@@ -6,7 +6,7 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:dev": "webpack-dev-server --hot",
-    "start:prod": "npm run build && node server/server.build.js",
+    "start:prod": "npm run build && node server/server.bundle.js",
     "build:client": "webpack",
     "build:server": "webpack --config webpack.server.config.js",
     "build": "npm run build:client && npm run build:server"
@@ -51,8 +51,9 @@
   },
   "devDependencies": {
     "css-loader": "^0.23.1",
-    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
+    "gulp": "^3.9.1",
+    "gulp-debug": "^2.1.2",
     "node-sass": "^3.4.2",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",

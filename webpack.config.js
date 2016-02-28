@@ -3,14 +3,14 @@ var webpack = require('webpack');
 var path = require('path');
 
 var config = {
-  context: path.join(__dirname, "/public"),
+  context: path.join(__dirname, "src"),
   devtool: debug ? "inline-sourcemap" : null,
   devServer: {
     contentBase: "src/",
     inline: true,
     historyApiFallback: true
   },
-  entry: "../src/js/index.js",
+  entry: "./js/index.js",
   resolve: { alias: {} },
   module: {
     noParse: [],
@@ -42,12 +42,11 @@ var config = {
     ]
   },
   output: {
-    // path: __dirname + "/src/",
-    path: 'src',
+    path: 'public',
     filename: "bundle.min.js"
   },
-  // plugins: debug ? [] : [
-  plugins: [
+  plugins: debug ? [] : [
+  // plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
