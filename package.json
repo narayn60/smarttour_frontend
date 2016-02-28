@@ -9,7 +9,7 @@
     "start:prod": "npm run build && node server/server.bundle.js",
     "build:client": "webpack",
     "build:server": "webpack --config webpack.server.config.js",
-    "build": "npm run build:client && npm run build:server"
+    "build": "gulp && npm run build:client && npm run build:server"
   },
   "author": "Andrew Stuart",
   "license": "ISC",
@@ -34,6 +34,7 @@
     "fs": "0.0.2",
     "geolocation": "^0.2.0",
     "if-env": "^1.0.0",
+    "jquery": "^2.2.1",
     "leaflet": "^0.7.7",
     "leaflet.locatecontrol": "^0.48.0",
     "lodash": "^4.5.1",

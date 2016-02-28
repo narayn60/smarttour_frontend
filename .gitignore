@@ -7,3 +7,4 @@ src/*.woff
 public/*
 .jshintrc
 .tern-port
+server/server.bundle.js

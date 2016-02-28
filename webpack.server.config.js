@@ -32,9 +32,18 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react'],
+          plugins: ['react-html-attrs', 'transform-class-properties']
         }
-      }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css'
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style!css!sass'
+      },
     ]
   }
 
