@@ -3,6 +3,7 @@ import TourStore from '../../stores/TourStore';
 import TourActions from '../../actions/TourActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Tour from '../sub/Tour';
+import { Link } from 'react-router'
 
 export default class TourContainer extends React.Component {
 
@@ -41,8 +42,9 @@ export default class TourContainer extends React.Component {
     TourActions.fetchTours();
   }
 
+
   render() {
-    const ToursComponent = this.state.tours.map((title, i) => <Tour key={i} title={title}/>);
+    const ToursComponent = this.state.tours.map((tour, i) => <Tour key={i} title={tour.title} owner={tour.userId} id={tour.id}/>);
 
     return (
       <div class="row">

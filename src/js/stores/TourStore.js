@@ -25,6 +25,17 @@ class TourStore {
   onToursFailed(errorMessage) {
     this.errorMessage = errorMessage;
   }
+
+  getStore(title) {
+    var { tours } = this.getState();
+    for (var i = 0; i < tours.length; i += 1) {
+      if (tours[i].title === title) {
+        return tours[i];
+      }
+    }
+    return null;
+  }
+
 }
 
 export default alt.createStore(TourStore, 'TourStore');

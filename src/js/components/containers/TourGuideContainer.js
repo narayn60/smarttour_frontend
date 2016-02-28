@@ -43,7 +43,7 @@ export default class TourGuideContainer extends React.Component {
   }
 
   render() {
-    const GuidesComponent = this.state.guides.map((guide, i) => <TourGuide key={i} name={guide.name} bio={guide.bio} photo={guide.photo}/>);
+    const GuidesComponent = this.state.guides.map((guide, i) => <TourGuide key={i} name={guide.name} bio={guide.bio} photo={guide.photo} id={guide.id}/>);
 
     return (
       <div class="row">
