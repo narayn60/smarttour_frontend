@@ -4,3 +4,4 @@ src/*.svg
 src/*.ttf
 src/*.eot
 src/*.woff
+public/bundle.min.js
