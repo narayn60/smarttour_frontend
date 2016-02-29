@@ -303,7 +303,7 @@ section h3.section-subheading {
 #portfolio .portfolio-item .portfolio-link {
     display: block;
     position: relative;
-    max-width: 400px;
+    max-width: 225px;
     margin: 0 auto
 }
 #portfolio .portfolio-item .portfolio-link .portfolio-hover {
@@ -337,7 +337,7 @@ section h3.section-subheading {
     margin: 0
 }
 #portfolio .portfolio-item .portfolio-caption {
-    max-width: 400px;
+    max-width: 225px;
     margin: 0 auto;
     background-color: #fff;
     text-align: center;

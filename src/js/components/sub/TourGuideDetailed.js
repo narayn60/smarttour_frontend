@@ -49,12 +49,9 @@ export default class TourGuideDetailed extends React.Component {
                             <Col md={6} class="no-pad">
                                 <div class="user-pad">
                                     <h3>{ guide.name }</h3>
-                                    <h4 class="white"><i class="fa fa-check-circle-o"></i> { guide.address.city }</h4>
-                                    <h4 class="redHue"><i class="fa fa-twutter"></i>{ guide.username }</h4>
-                                    <Button class="subscribeButton btn-labeled btn-info" href="#">
-                                        <span class="btn-label"><i class="fa fa-plus"></i></span>
-                                        Subscribe
-                                    </Button>
+                                    <h4 class="white"><i class="fa fa-user"></i> { guide.username } </h4>
+                                    <h4 class="white"><i class="fa fa-envelope-o"></i> {guide.email } </h4>
+                                    <h4 class="white"><i class="fa fa-building"></i> { guide.address.city } </h4>
                                 </div>
                             </Col>
                             <div class="col-md-6 no-pad">

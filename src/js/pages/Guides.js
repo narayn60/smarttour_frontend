@@ -5,12 +5,11 @@ export default class Guides extends React.Component {
 
   render() {
     return (
-      <div>
+      <section id="portfolio" class="bg-light-gray">
         <div class="container">
           <TourGuideContainer />
         </div>
-      </div>
+      </section>
     );
   }
 }
-

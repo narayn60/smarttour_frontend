@@ -46,10 +46,16 @@ export default class TourGuideContainer extends React.Component {
     const GuidesComponent = this.state.guides.map((guide, i) => <TourGuide key={i} name={guide.name} bio={guide.bio} photo={guide.photo} id={guide.id}/>);
 
     return (
-      <div class="row">
-        <button onClick={this.reloadGuides.bind(this)}>Reload Guides</button>
-        <button onClick={this.createGuide.bind(this)}>Create Guide</button>
+      <div>
+        <div class="row text-center">
+          <button onClick={this.reloadGuides.bind(this)}>Reload Guides</button>
+          <button onClick={this.createGuide.bind(this)}>Create Guide</button>
+          <h2 class="section-heading">Guides</h2>
+          <h3 class="section-subheading">Explore</h3>
+        </div>
+        <div class="row">
           {GuidesComponent}
+        </div>
       </div>
     );
   }
