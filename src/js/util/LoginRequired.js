@@ -18,25 +18,6 @@ class LoginRequired extends React.Component {
   static getPropsFromStores() {
     return AuthStore.getState();
   }
-
-  redirect() {
-    console.log(this.context.router);
-    if (!AuthStore.loggedIn()){
-      this.context.router.replace({
-        pathname: '/login',
-        state: { nextPathname: this.nextState.location.pathname }
-      });
-    }
-  }
-
-}
-
-
-export default function LoginRedirect(nextState, replace) {
-  console.log("Hi");
-  lr = React.createFactory(LoginRequired(nextState, replace));
-  console.log("Hi");
-  lr.redirect();
 }
 
 export default connectToStores(LoginRequired);

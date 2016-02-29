@@ -2,13 +2,11 @@ import alt from '../alt';
 import AuthActions from '../actions/AuthActions';
 
 class AuthStore {
-  consructor() {
+  constructor() {
     this.bindActions(AuthActions);
-  }
-
-  loggedIn() {
-    // helper
-    return false;
+    this.state = {
+      authenticated: true
+    };
   }
 }
 

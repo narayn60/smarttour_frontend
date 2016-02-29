@@ -3,23 +3,28 @@ import { Navbar, NavItem, NavDropdown, MenuItem, Nav, Button } from "react-boots
 import { LinkContainer } from "react-router-bootstrap";
 import { IndexLink, Link } from "react-router";
 import { NavHeaderLink } from "../sub/NavLink";
+import AuthStore from 'AuthStore';
+
 
 export default class NavHeader extends React.Component {
   constructor() {
     super();
-    // this.state = {
-    //     collapsed: true
-    // };
-    this.navLinks = [
+    this.links = [
       {link: '/about', title: 'About'},
-      // {link: '/repos', title: 'Repos'},
-      {link: '/browse', title: 'Browse'},
-      {link: '/tourcreator', title: 'Tour Creation'},
-      {link: '/createtour', title: 'Create Tour'},
-      {link: '/guides', title: 'Guides'},
       {link: '/login', title: 'Login'},
-      {link: '/register', title: 'Register'},
-    ].map((links, i) => <NavHeaderLink key={i} path={links.link} name={links.title}/>);
+      {link: '/register', title: 'Register'}
+    ];
+    console.log(AuthStore.getState().authenticated);
+    if (AuthStore.getState().authenticated) {
+      this.links.push(
+        {link: '/about', title: 'About'},
+        {link: '/browse', title: 'Browse'},
+        {link: '/tourcreator', title: 'Tour Creation'},
+        {link: '/createtour', title: 'Create Tour'},
+        {link: '/guides', title: 'Guides'}
+      );
+    };
+    this.navLinks = this.links.map((links, i) => <NavHeaderLink key={i} path={links.link} name={links.title}/>);
   }
 
 

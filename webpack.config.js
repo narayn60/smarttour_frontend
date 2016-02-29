@@ -2,6 +2,7 @@ var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var store_base = "src/js/stores/";
 
 var config = {
   context: path.join(__dirname, "src"),
@@ -12,7 +13,15 @@ var config = {
     historyApiFallback: true
   },
   entry: "./js/index.js",
-  resolve: { alias: {} },
+  resolve: {
+    root: path.resolve(__dirname),
+    alias: {
+      AuthStore: store_base + 'AuthStore',
+      GuideStore: store_base + 'GuideStore',
+      TourStore: store_base + 'TourStore'
+    },
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
     noParse: [],
     loaders: [

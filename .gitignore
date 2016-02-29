@@ -8,3 +8,4 @@ public/*
 .jshintrc
 .tern-port
 server/server.bundle.js
+npm-debug.log

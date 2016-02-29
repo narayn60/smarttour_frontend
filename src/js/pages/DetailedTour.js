@@ -1,6 +1,6 @@
 import alt from '../alt';
 import React from "react";
-import TourStore from '../stores/TourStore';
+import TourStore from 'TourStore';
 
 export default class DetailedTour extends React.Component {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import TourStore from '../../stores/TourStore';
+import TourStore from 'TourStore';
 import TourActions from '../../actions/TourActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Tour from '../sub/Tour';
