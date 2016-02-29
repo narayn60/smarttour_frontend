@@ -19,14 +19,18 @@ export default class LeafMap extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Component loaded");
-    this.init('map');
+    if (process.env.BROWSER) {
+      require('leaflet');
+      this.init('map');
+    }
   }
 
 
   componentWillUnmount() {
-    this.map.off('click', this.onMapClick); 
-    this.map = null;
+    if (process.env.BROWSER) {
+      this.map.off('click', this.onMapClick); 
+      this.map = null;
+    }
   }
 
   init(id) {

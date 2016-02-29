@@ -4,3 +4,7 @@ src/*.svg
 src/*.ttf
 src/*.eot
 src/*.woff
+public/*
+.jshintrc
+.tern-port
+server/server.bundle.js
