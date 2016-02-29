@@ -37,15 +37,14 @@ function renderPage(appHtml) {
     <head>
     <meta charset=utf-8/>
     <title>My First React Router App</title>
-    <link href="css/bundle.min.css" rel="stylesheet">
+    <link href="css/vendor.min.css" rel="stylesheet">
+    <link href="css/bundle.css" rel="stylesheet">
     <link href="fonts/fonts.css" rel="stylesheet">
     </head>
     <body>
     <div id=app>${appHtml}</div>
     </body>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="bundle.min.js"></script>
-    <script src="js/pagebundle.min.js"></script>
     </html>
   `
 };

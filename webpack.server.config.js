@@ -1,14 +1,11 @@
 var fs = require('fs');
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
 
 module.exports = {
-  context: __dirname + "/src",
+  context: path.join(__dirname, "src"),
   entry: path.resolve(path.join(__dirname, 'server', 'index.js')),
-
-  output: {
-    path: path.join(__dirname,  "server"),
-    filename: 'server.bundle.js'
-  },
 
   target: 'node',
 
@@ -32,19 +29,27 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react'],
-          plugins: ['react-html-attrs', 'transform-class-properties']
+          presets: ['react', 'es2015', 'stage-0'],
+          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy', 'lodash']
         }
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css'
+        loader: ExtractTextPlugin.extract('css')
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!sass'
+        loader: ExtractTextPlugin.extract('css!sass')
       },
     ]
-  }
-
+  },
+  output: {
+    path: path.join(__dirname,  "server"),
+    filename: 'server.bundle.js'
+  },
+  plugins: [
+    new ExtractTextPlugin( path.join("../", "public", "css", "bundle.css"), {
+      allChunks: true
+    })
+  ]
 }

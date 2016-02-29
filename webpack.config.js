@@ -1,12 +1,13 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
   context: path.join(__dirname, "src"),
   devtool: debug ? "inline-sourcemap" : null,
   devServer: {
-    contentBase: "src/",
+    contentBase: "public/",
     inline: true,
     historyApiFallback: true
   },
@@ -16,7 +17,8 @@ var config = {
     noParse: [],
     loaders: [
       {
-        test: /\.jsx?$/,
+        // test: /\.jsx?$/,
+        test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
@@ -30,7 +32,8 @@ var config = {
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!sass'
+        loader: 'style-loader!css!sass'
+        // loader: ExtractTextPlugin.extract('css!sass')
       },
       { test: /\.(woff|woff2)$/,  loader: "url-loader?limit=10000&mimetype=application/font-woff" },
       { test: /\.ttf$/,    loader: "file-loader" },
@@ -44,8 +47,8 @@ var config = {
     path: 'public',
     filename: "bundle.min.js"
   },
-  plugins: debug ? [] : [
-  // plugins: [
+  // plugins: debug ? [] : [
+  plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -53,7 +56,17 @@ var config = {
       mangle: false,
       sourcemap: false
     }),
-  ],
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    }),
+    new ExtractTextPlugin( "css/bundle.css", {
+      allChunks: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env.BROWSER' : true
+    })
+  ]
 };
 
 module.exports = config;

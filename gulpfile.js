@@ -50,7 +50,7 @@ gulp.task('js-fef', function() {
 gulp.task('bundle-css', function() {
   return gulp.src(css_list)
     .pipe(gp_minifyCss())
-    .pipe(gp_concat('bundle.min.css'))
+    .pipe(gp_concat('vendor.min.css'))
     .pipe(gulp.dest('public/css/'));
 });
 
