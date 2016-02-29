@@ -1,13 +1,13 @@
 import React from 'react';
-import { combineReducers, createStore } from 'redux';
-import { Provider } from 'react-redux';
-import { createModelReducer } from 'react-redux-form';
+// import { combineReducers, createStore } from 'redux';
+// import { Provider } from 'react-redux';
+// import { createModelReducer } from 'react-redux-form';
 
 import CreateTourForm from '../components/sub/CreateTourForm';
 
-const store = createStore(combineReducers({
-  tour: createModelReducer('tour')
-}));
+// const store = createStore(combineReducers({
+//   tour: createModelReducer('tour')
+// }));
 
 export default class CreateTour extends React.Component {
 
@@ -24,9 +24,6 @@ export default class CreateTour extends React.Component {
 		            </div>
 		            <div class="row">
 		                <div class="col-lg-12">
-						    <Provider store={ store }>
-						      <CreateTourForm />
-						    </Provider>
 				             {this.props.children}
 				    	</div>
 				    </div>
@@ -35,3 +32,7 @@ export default class CreateTour extends React.Component {
 	      );
 	}
 }
+
+// <Provider store={ store }>
+//   <CreateTourForm />
+// </Provider>

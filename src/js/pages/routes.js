@@ -12,22 +12,21 @@ import TourMap from './TourMap';
 import CreateTour from './CreateTour';
 import DetailedTour from './DetailedTour';
 import DetailedGuide from './DetailedGuide';
+import LoginRedirect from '../util/LoginRequired';
 
 module.exports = (
   <Route path="/" component={App}>
     <IndexRoute component={Home}/>
     <Route path="/register" component={Register}/>
-    <Route handler={Login} path="/login" component={Login}/>
+    <Route path="/login" component={Login}/>
 
-    <Route handler={LoginRequired}>
-      <Route path="/about" component={About}/>
-      <Route path="/browse" component={Browse}/>
-      <Route path="/browse/tours/:id" component={DetailedTour}/>
-      <Route path='/guides' component={Guides}/>
-      <Route path="/guides/:id" component={DetailedGuide}/>
-      <Route path='/tourcreator' component={TourMap}/>
-      <Route path='/createtour' component={CreateTour}/>
-    </Route>
+    <Route path="/about" component={About} onEnter={LoginRedirect}/>
+    <Route path="/browse" component={Browse}/>
+    <Route path="/browse/tours/:id" component={DetailedTour}/>
+    <Route path='/guides' component={Guides}/>
+    <Route path="/guides/:id" component={DetailedGuide}/>
+    <Route path='/tourcreator' component={TourMap}/>
+    <Route path='/createtour' component={CreateTour}/>
 
   </Route>
 );

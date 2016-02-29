@@ -5,8 +5,7 @@ class GuideActions {
   constructor() {
     var dummy_photo = "img/team/3.jpg";
     this.state = {
-      guides: [
-      ]
+      guides: []
     };
   }
 

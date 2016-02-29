@@ -1,18 +1,42 @@
 import React from "react";
 import Router from "react-router";
+import connectToStores from 'alt-utils/lib/connectToStores';
+import AuthStore from "../stores/AuthStore";
 
-import AuthStore from "../stores/AuthStore.js";
+class LoginRequired extends React.Component {
 
-export default class LoginRequired extends React.Component {
+  constructor(nextState, replace) {
+    super();
+    this.nextState = nextState;
+    this.replace = replace;
+  }
 
-  static willTransitionTo(transition, params, query)  {
+  static getStores() {
+    return [AuthStore];
+  }
+
+  static getPropsFromStores() {
+    return AuthStore.getState();
+  }
+
+  redirect() {
+    console.log(this.context.router);
     if (!AuthStore.loggedIn()){
-      // go over to the login page
-      transition.redirect('/login', null, { redirect: transition.path });
+      this.context.router.replace({
+        pathname: '/login',
+        state: { nextPathname: this.nextState.location.pathname }
+      });
     }
   }
 
-  render() {
-    <Router.RouteHandler/>
-  }
 }
+
+
+export default function LoginRedirect(nextState, replace) {
+  console.log("Hi");
+  lr = React.createFactory(LoginRequired(nextState, replace));
+  console.log("Hi");
+  lr.redirect();
+}
+
+export default connectToStores(LoginRequired);

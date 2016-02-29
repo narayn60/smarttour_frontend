@@ -3,7 +3,7 @@ import TourStore from '../../stores/TourStore';
 import TourActions from '../../actions/TourActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Tour from '../sub/Tour';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 
 export default class TourContainer extends React.Component {
 
