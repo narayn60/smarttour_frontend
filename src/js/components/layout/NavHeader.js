@@ -17,7 +17,6 @@ export default class NavHeader extends React.Component {
     console.log(AuthStore.getState().authenticated);
     if (AuthStore.getState().authenticated) {
       this.links.push(
-        {link: '/about', title: 'About'},
         {link: '/browse', title: 'Browse'},
         {link: '/tourcreator', title: 'Tour Creation'},
         {link: '/createtour', title: 'Create Tour'},

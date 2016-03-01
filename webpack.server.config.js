@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
+var store_base = "src/js/stores/";
 
 module.exports = {
   context: path.join(__dirname, "src"),
@@ -20,6 +21,16 @@ module.exports = {
   node: {
     __filename: true,
     __dirname: true
+  },
+
+  resolve: {
+    root: path.resolve(__dirname),
+    alias: {
+      AuthStore: store_base + 'AuthStore',
+      GuideStore: store_base + 'GuideStore',
+      TourStore: store_base + 'TourStore'
+    },
+    extensions: ['', '.js', '.jsx']
   },
 
   module: {
@@ -48,6 +59,8 @@ module.exports = {
     filename: 'server.bundle.js'
   },
   plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new ExtractTextPlugin( path.join("../", "public", "css", "bundle.css"), {
       allChunks: true
     })

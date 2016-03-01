@@ -6,9 +6,20 @@
         <link href="css/vendor.min.css" rel="stylesheet">
         <link href="css/bundle.css" rel="stylesheet">
         <link href="fonts/fonts.css" rel="stylesheet">
+        <style type="text/css" >
+         .js #fouc { display: none; }
+        </style>
+        <script type="text/javascript">
+         document.documentElement.className = 'js';
+        </script>
     </head>
     <body>
-        <div id=app></div>
+        <div id="fouc">
+            <div id=app></div>
+        </div>
     </body>
     <script src="bundle.min.js"></script>
+    <script type="text/javascript">
+     document.getElementById("fouc").style.display="block";
+    </script>
 </html>

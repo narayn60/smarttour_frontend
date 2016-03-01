@@ -34,17 +34,28 @@ function renderPage(appHtml) {
   return `
     <!DOCTYPE html>
     <html>
-    <head>
-    <meta charset=utf-8/>
-    <title>My First React Router App</title>
-    <link href="css/vendor.min.css" rel="stylesheet">
-    <link href="css/bundle.css" rel="stylesheet">
-    <link href="fonts/fonts.css" rel="stylesheet">
-    </head>
-    <body>
-    <div id=app>${appHtml}</div>
-    </body>
-    <script src="bundle.min.js"></script>
+        <head>
+            <meta charset=utf-8/>
+            <title>My First React Router App</title>
+            <link href="css/vendor.min.css" rel="stylesheet">
+            <link href="css/bundle.css" rel="stylesheet">
+            <link href="fonts/fonts.css" rel="stylesheet">
+            <style type="text/css" >
+            .js #fouc { display: none; }
+            </style>
+            <script type="text/javascript">
+            document.documentElement.className = 'js';
+            </script>
+        </head>
+        <body>
+            <div id="fouc">
+                <div id=app></div>
+            </div>
+        </body>
+        <script src="bundle.min.js"></script>
+        <script type="text/javascript">
+        document.getElementById("fouc").style.display="block";
+        </script>
     </html>
   `
 };
