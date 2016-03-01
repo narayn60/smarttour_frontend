@@ -14,8 +14,9 @@ export default class NavHeader extends React.Component {
       {link: '/login', title: 'Login'},
       {link: '/register', title: 'Register'}
     ];
-    console.log(AuthStore.getState().authenticated);
-    if (AuthStore.getState().authenticated) {
+    console.log(AuthStore.isLoggedIn());
+    console.log(AuthStore.getPersonName());
+    if (AuthStore.isLoggedIn()) {
       this.links.push(
         {link: '/browse', title: 'Browse'},
         {link: '/tourcreator', title: 'Tour Creation'},

@@ -2,7 +2,7 @@ var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var store_base = "src/js/stores/";
+var aliases = require('./webpack_conf/resolve_alias');
 
 var config = {
   context: path.join(__dirname, "src"),
@@ -15,11 +15,7 @@ var config = {
   entry: "./js/index.js",
   resolve: {
     root: path.resolve(__dirname),
-    alias: {
-      AuthStore: store_base + 'AuthStore',
-      GuideStore: store_base + 'GuideStore',
-      TourStore: store_base + 'TourStore'
-    },
+    alias: aliases,
     extensions: ['', '.js', '.jsx']
   },
   module: {

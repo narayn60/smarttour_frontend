@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
-var store_base = "src/js/stores/";
+var aliases = require('./webpack_conf/resolve_alias');
 
 module.exports = {
   context: path.join(__dirname, "src"),
@@ -25,11 +25,7 @@ module.exports = {
 
   resolve: {
     root: path.resolve(__dirname),
-    alias: {
-      AuthStore: store_base + 'AuthStore',
-      GuideStore: store_base + 'GuideStore',
-      TourStore: store_base + 'TourStore'
-    },
+    alias: aliases,
     extensions: ['', '.js', '.jsx']
   },
 

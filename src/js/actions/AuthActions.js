@@ -1,15 +1,15 @@
 import alt from '../alt';
-import AuthSource from '../sources/AuthSource';
+// import AuthSource from 'AuthSource';
 
 class AuthActions {
   constructor() {
-    this.stores = {
-      AuthSource: new AuthSource()
-    };
-    this.state = {
-      authenticated: false
-    };
-    this.generateActions('login', 'logout');
+    // this.stores = {
+    //   AuthSource: new AuthSource()
+    // };
+    // this.state = {
+    //   authenticated: false
+    // };
+    this.generateActions('login');
   }
 
 }
