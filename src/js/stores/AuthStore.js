@@ -8,7 +8,7 @@ class AuthStore {
     this.user= {
       id: null,
       token: null,
-      personname: null,
+      name: null,
       logo: null,
       provider: null
     };
@@ -17,7 +17,7 @@ class AuthStore {
       isLoggedIn: this.isLoggedIn,
       getUser: this.getUser,
       getUid: this.getUid,
-      getPersonName: this.getPersonName
+      getName: this.getName
     });
   }
 
@@ -46,9 +46,9 @@ class AuthStore {
     return st.id;
   }
 
-  getPersonName() {
+  getName() {
     const st = this.getState().user;
-    return st.personname;
+    return st.name;
   }
 }
 

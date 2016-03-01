@@ -15,6 +15,7 @@ export default class NavHeader extends React.Component {
       {link: '/register', title: 'Register'}
     ];
     console.log("User is " + AuthStore.isLoggedIn());
+    console.log(AuthStore.getName());
     if (AuthStore.isLoggedIn()) {
       this.links.push(
         {link: '/browse', title: 'Browse'},
@@ -49,6 +50,7 @@ export default class NavHeader extends React.Component {
             {this.navLinks}
           </ul>
         </div>
+        {AuthStore.getName()}
       </Navbar>
     );
   }
