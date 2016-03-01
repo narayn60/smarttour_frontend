@@ -6,7 +6,7 @@ var aliases = require('./webpack_conf/resolve_alias');
 
 module.exports = {
   context: path.join(__dirname, "src"),
-  entry: path.resolve(path.join(__dirname, 'server', 'index.js')),
+  entry: ["babel-polyfill", path.resolve(path.join(__dirname, 'server', 'index.js'))],
 
   target: 'node',
 

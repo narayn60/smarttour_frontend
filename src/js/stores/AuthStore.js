@@ -22,6 +22,8 @@ class AuthStore {
   }
 
   onLogin(info) {
+    console.log("Hello from authactions");
+    console.log(info);
     this.user = info;
   }
 

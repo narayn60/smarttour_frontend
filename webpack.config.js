@@ -12,7 +12,7 @@ var config = {
     inline: true,
     historyApiFallback: true
   },
-  entry: "./js/index.js",
+  entry: ["babel-polyfill", "./js/index.js"],
   resolve: {
     root: path.resolve(__dirname),
     alias: aliases,

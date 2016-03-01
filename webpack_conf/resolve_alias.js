@@ -1,6 +1,7 @@
-var store_base = "src/js/stores/";
-var action_base = "src/js/actions/";
-var source_base = "src/js/sources/";
+var js_base = "src/js/";
+var store_base = js_base + "stores/";
+var action_base = js_base + "actions/";
+var source_base = js_base + "sources/";
 
 module.exports = {
   AuthStore: store_base + 'AuthStore',
@@ -11,5 +12,6 @@ module.exports = {
   GuideActions: action_base + "GuideActions",
   AuthSource: source_base + "AuthSource",
   GuideSource: source_base + "GuideSource",
-  TourSource: source_base + "TourSource"
+  TourSource: source_base + "TourSource",
+  alt_base: js_base + "alt"
 }

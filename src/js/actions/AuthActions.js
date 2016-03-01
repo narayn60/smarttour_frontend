@@ -3,12 +3,6 @@ import alt from '../alt';
 
 class AuthActions {
   constructor() {
-    // this.stores = {
-    //   AuthSource: new AuthSource()
-    // };
-    // this.state = {
-    //   authenticated: false
-    // };
     this.generateActions('login');
   }
 

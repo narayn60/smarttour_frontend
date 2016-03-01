@@ -16,7 +16,7 @@ import AuthStore from 'AuthStore';
 
 function LoginRedirect(nextState, replace) {
   if (!AuthStore.isLoggedIn()) {
-      replace({
+    replace({
         pathname: '/login',
         state: { nextPathname: nextState.location.pathname }
       });
