@@ -117,8 +117,10 @@ server.get('/auth/google/callback',
 // close session
 //
 server.get('/logout', (req, res) => {
-  res.clearCookie('user');
-  return res.redirect('/');
+  req.session.destroy( (err) => {
+    res.clearCookie('user'); // TODO: Should this be in a callback?
+    return res.redirect('/');
+  });
 });
 
 //

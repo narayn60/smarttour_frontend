@@ -10,3 +10,4 @@ app/.tern-port
 app/server/server.bundle.js
 app/npm-debug.log
 nginx/certs/nginx.*
+app/server/.tern-port
