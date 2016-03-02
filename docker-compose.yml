@@ -2,8 +2,8 @@ web:
   build: ./app
   volumes:
     - "./app:/src/app"
-  ports:
-    - "3030:3000"
+  # ports:
+  #   - "3030:3000"
   command: npm run start:prod
 
 nginx:
@@ -11,6 +11,7 @@ nginx:
   build: ./nginx/
   ports:
     - "80:80"
+    - "443:443"
   volumes:
     - /www/public
   volumes_from:
