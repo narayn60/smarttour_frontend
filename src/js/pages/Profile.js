@@ -1,5 +1,9 @@
 import React from 'react';
 import { Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
+import TourStore from 'TourStore';
+import TourActions from '../actions/TourActions';
+import connectToStores from 'alt-utils/lib/connectToStores';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 export default class Profile extends React.Component {
 
@@ -8,12 +12,31 @@ export default class Profile extends React.Component {
   		id: 1,
   		name: 'George Nash',
   		photo: 'img/team/3.jpg',
+  		tours: [
+	  		{
+	  			name: 'Banksy',
+	  			id: 1,
+	  		},
+	  		{
+	  			name: 'Pubs',
+	  			id: 2,
+	  		},
+	  		{
+	  			name: 'History',
+	  			id: 3,
+	  		},
+  		],
   	})
   }
 
   render() {
 
-  	var user = this.currentUser()
+  	var user = this.currentUser();
+    const MyTours = user.tours.map((tour) => 
+    	<Link to={`/tourdesign/${tour.id}`}>
+    		<ListGroupItem> {tour.name} </ListGroupItem> 
+    	</Link>
+    );
 
     return (
       <section id="portfolio" class="bg-light-gray">
@@ -29,10 +52,8 @@ export default class Profile extends React.Component {
         	</Row>
         	<Row>
         		<h3> My tours </h3>
-        		  <ListGroup>
-				    <ListGroupItem>Banksy</ListGroupItem>
-				    <ListGroupItem>Pub Tours</ListGroupItem>
-				    <ListGroupItem>Museums</ListGroupItem>
+        		   <ListGroup>
+				   		{MyTours}
 				  </ListGroup>
         	</Row>
         </div>

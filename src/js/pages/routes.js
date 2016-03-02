@@ -14,6 +14,7 @@ import DetailedTour from './DetailedTour';
 import DetailedGuide from './DetailedGuide';
 import AuthStore from 'AuthStore';
 import Profile from './Profile';
+import TourDesign from './TourDesign';
 
 function LoginRedirect(nextState, replace) {
   if (!AuthStore.getState().authenticated) {
@@ -39,6 +40,7 @@ module.exports = (
         <Route path='/tourcreator' component={TourMap}/>
         <Route path='/createtour' component={CreateTour}/>
         <Route path='/profile' component={Profile}/>
+        <Route path='/tourdesign/:id' component={TourDesign}/>
     </Route>
   </Route>
 );
