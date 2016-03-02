@@ -20,7 +20,8 @@ export default class NavHeader extends React.Component {
         {link: '/browse', title: 'Browse'},
         {link: '/tourcreator', title: 'Tour Creation'},
         {link: '/createtour', title: 'Create Tour'},
-        {link: '/guides', title: 'Guides'}
+        {link: '/guides', title: 'Guides'},
+        {link: '/profile', title: 'Profile'},
       );
     };
     this.navLinks = this.links.map((links, i) => <NavHeaderLink key={i} path={links.link} name={links.title}/>);
