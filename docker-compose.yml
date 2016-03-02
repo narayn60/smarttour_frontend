@@ -1,0 +1,6 @@
+web:
+  build: .
+  dockerfile: Dockerfile
+  command: npm run start:prod
+  ports:
+    - "8080:8080"

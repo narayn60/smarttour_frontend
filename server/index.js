@@ -35,8 +35,7 @@ server.use(compression());
 // auth_setup(server);
 
 server.use(cookieParser('secret'));
-server.use(expressSession());
-// server.use(expressSession({
+server.use(expressSession()); // server.use(expressSession({
 //   // secret: serverConfig.crypto,
 //   secret: "dkshljfhs", //TODO change this soon
 //   cookie: { secure: false },
