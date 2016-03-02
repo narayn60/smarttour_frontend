@@ -1,6 +1,20 @@
 web:
-  build: .
-  dockerfile: Dockerfile
-  command: npm run start:prod
+  build: ./app
+  volumes:
+    - "./app:/src/app"
   ports:
-    - "8080:8080"
+    - "3030:3000"
+  command: npm run start:prod
+
+nginx:
+  restart: always
+  build: ./nginx/
+  ports:
+    - "80:80"
+  volumes:
+    - /www/public
+  volumes_from:
+    - web
+  links:
+    - web:web
+

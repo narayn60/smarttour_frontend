@@ -9,8 +9,8 @@
     "start:prod": "npm run build && node server/server.bundle.js",
     "build:client": "webpack",
     "build:server": "webpack --config webpack.server.config.js",
-    "build": "npm run gulp && npm run build:client && npm run build:server",
-    "gulp": "rm -rf public && gulp"
+    "build": "npm run gulp_task && npm run build:client && npm run build:server",
+    "gulp_task": "rm -rf public && gulp"
   },
   "author": "Andrew Stuart",
   "license": "ISC",

@@ -176,7 +176,7 @@ function renderPage(serverHtml) {
   `;
 };
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
   console.log('Example server listening on port ' + PORT);
