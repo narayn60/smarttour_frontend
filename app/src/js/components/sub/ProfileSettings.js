@@ -24,6 +24,7 @@ export default class ProfileSettings extends React.Component {
     // const userName = "Andrew Stuart";
     // const userEmail = "narayn60@gmail.com";
     const dropdownTitle = "Hi, " + userName.split(" ", 2)[0];
+    const gravatarSize = 100;
 
 
 
@@ -32,7 +33,7 @@ export default class ProfileSettings extends React.Component {
         <MenuItem eventKey={this.props.dropIndex + 0.1} class="navbar-login">
           <Row>
             <p class="text-center">
-              <Gravatar email={userEmail} size="100" https />
+              <Gravatar email={userEmail} size={gravatarSize} https />
             </p>
           </Row>
           <Row>
