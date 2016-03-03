@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "gulp && webpack-dev-server --hot",
+    "start:dev": "./node_modules/gulp/bin/gulp.js && webpack-dev-server --hot",
     "start:prod": "npm run build && node server/server.bundle.js",
     "build:client": "webpack",
     "build:server": "webpack --config webpack.server.config.js",
     "build": "npm run gulp_task && npm run build:client && npm run build:server",
-    "gulp_task": "rm -rf public && gulp"
+    "gulp_task": "rm -rf public && ./node_modules/gulp/bin/gulp.js"
   },
   "author": "Andrew Stuart",
   "license": "ISC",

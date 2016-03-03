@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, NavItem, NavDropdown, Dropdown, MenuItem, Nav, Button, Glyphicon } from 'react-bootstrap';
+import { Navbar, NavItem, NavDropdown, Dropdown, MenuItem, Nav, Button, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { IndexLink, Link } from 'react-router';
 import { NavHeaderLink } from '../sub/NavLink';
@@ -55,20 +55,20 @@ export default class NavHeader extends React.Component {
             <NavDropdown eventkey={dropdownIndex} title="HI" id="basic-nav-dropdown">
               <MenuItem eventKey={dropdownIndex + 0.1}>
                 <div class="navbar-login">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <p class="text-center">
-                        <span class="glyphicon glyphicon-user icon-size"></span>
-                      </p>
-                    </div>
-                    <div class="col-lg-8">
+                  <Row>
+                    <p class="text-center">
+                      <span class="glyphicon glyphicon-user icon-size"></span>
+                    </p>
+                  </Row>
+                  <Row>
+                    <Col xs={6} md={4}>
                       <p class="text-left"><strong>Salman Khan</strong></p>
                       <p class="text-left small">crazytodevelop@@gmail.com</p>
                       <p class="text-left">
                         <a href="#" class="btn btn-primary btn-block btn-sm">Profile</a>
                       </p>
-                    </div>
-                  </div>
+                    </Col>
+                  </Row>
                 </div>
               </MenuItem>
               <MenuItem eventKey={dropdownIndex + 0.2} href="#">
@@ -84,3 +84,32 @@ export default class NavHeader extends React.Component {
     );
   }
 }
+
+//                     <div class="col-lg-4">
+//                       <p class="text-center">
+//                         <span class="glyphicon glyphicon-user icon-size"></span>
+//                       </p>
+//                     </div>
+//                     <div class="col-lg-8">
+//                       <p class="text-left"><strong>Salman Khan</strong></p>
+//                       <p class="text-left small">crazytodevelop@@gmail.com</p>
+//                       <p class="text-left">
+//                         <a href="#" class="btn btn-primary btn-block btn-sm">Profile</a>
+//                       </p>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </MenuItem>
+//               <MenuItem eventKey={dropdownIndex + 0.2} href="#">
+//                 Account Settings
+//                 <span class="glyphicon glyphicon-cog pull-right"></span>
+//               </MenuItem>
+//             </NavDropdown>
+//             {userName}
+//             {userGravatar}
+//           </Nav>
+//         </Navbar.Collapse>
+//       </Navbar>
+//     );
+//   }
+// }
