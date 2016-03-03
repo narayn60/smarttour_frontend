@@ -20,10 +20,9 @@ export default class TourContainer extends React.Component {
     return TourStore.getState();
   }
 
-  componentDidMount() {
+  componentWillMount() {
     TourStore.listen(this.onChange.bind(this));
     TourActions.fetchTours();
-
   }
 
   componentWillUnmount() {

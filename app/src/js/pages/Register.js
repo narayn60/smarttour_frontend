@@ -11,8 +11,8 @@ export default class Register extends React.Component {
   	}
 
 	  register(e) {
-    	console.log('register with user: ' + this.state.user)
-		  console.log('with password ' + this.state.password)
+    	console.log('register with user: ' + this.state.user);
+		  console.log('with password ' + this.state.password);
   	}
 
     changeUsername(e) {

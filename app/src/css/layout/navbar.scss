@@ -20,7 +20,7 @@
 }
 
 .navbar-default {
-  background-color: #222;
+  background-color: $color_baltic_sea_approx;
   border-color: transparent;
   .navbar-brand {
     color: $highlight-color;
@@ -56,7 +56,7 @@
   }
   .navbar-nav > .active > a {
     border-radius: 0;
-    color: #555;
+    color: $highlight-color;
     background-color: $highlight-color;
     &:hover, &:focus {
       color: #555;
@@ -67,7 +67,7 @@
 
 @media (min-width: 768px) {
   .navbar-default {
-    background-color: transparent;
+    background-color: $color_baltic_sea_approx;
     padding: 25px 0;
     transition: padding .3s;
     border: 0;

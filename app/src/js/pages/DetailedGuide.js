@@ -1,6 +1,6 @@
 import React from "react";
 import TourGuideDetailed from "../components/sub/TourGuideDetailed";
-import GuideStore from "../stores/GuideStore";
+import GuideStore from "GuideStore";
 
 export default class DetailedGuide extends React.Component {
 

@@ -1,5 +1,4 @@
-import alt from '../alt';
-// import AuthSource from 'AuthSource';
+import alt from 'alt_base';
 
 class AuthActions {
   constructor() {

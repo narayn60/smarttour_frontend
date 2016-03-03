@@ -1,5 +1,5 @@
-import alt from '../alt';
-import GuideSource from '../sources/GuideSource';
+import alt from 'alt_base';
+import GuideSource from 'GuideSource';
 
 class GuideActions {
   constructor() {

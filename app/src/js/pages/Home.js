@@ -1,6 +1,6 @@
 // modules/Home.js
 import React from 'react';
-import { Navbar, NavItem, NavDropdown, MenuItem, Nav, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 export default class Home extends React.Component {
     render() {

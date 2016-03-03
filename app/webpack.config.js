@@ -1,7 +1,7 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+// var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var aliases = require('./webpack_conf/resolve_alias');
 var autoprefixer = require('autoprefixer');
 var precss = require('precss');
@@ -69,9 +69,9 @@ var config = {
       $: "jquery",
       jQuery: "jquery"
     }),
-    new ExtractTextPlugin( "css/bundle.css", {
-      allChunks: true
-    }),
+    // new ExtractTextPlugin( "css/bundle.css", {
+    //   allChunks: true
+    // }),
     new webpack.DefinePlugin({
       'process.env.BROWSER' : true
     })

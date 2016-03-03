@@ -1,6 +1,6 @@
 import React from 'react';
-import AuthStore from '../../stores/AuthStore';
-import AuthActions from '../../actions/AuthActions';
+import AuthStore from 'AuthStore';
+import AuthActions from 'AuthActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import { form, Button, Input } from "react-bootstrap";
 

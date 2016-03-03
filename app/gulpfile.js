@@ -26,7 +26,6 @@ var gp_googleWebFonts = require('gulp-google-webfonts');
 var css_locations = {};
 css_locations.bootstrap = "./node_modules/bootstrap/dist/css/bootstrap.min.css";
 css_locations.fontaweseome = "./node_modules/font-awesome/css/font-awesome.min.css";
-// css_locations.agency = "./src/css/agency.css";
 var css_list = _.values(css_locations);
 
 gulp.task('copy', function() {

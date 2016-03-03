@@ -1,6 +1,5 @@
 // modules/App.js
 import React from 'react';
-import 'base_css';
 import { Link } from "react-router";
 
 // Page components

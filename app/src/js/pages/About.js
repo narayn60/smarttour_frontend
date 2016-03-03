@@ -1,7 +1,5 @@
 // modules/About.js
 import React from 'react';
-// import NavLink from './NavLink';
-// import '../../css/index.scss';
 import { Link } from "react-router";
 import Service from '../components/sub/Service';
 

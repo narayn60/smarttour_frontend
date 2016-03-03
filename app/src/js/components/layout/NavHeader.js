@@ -5,6 +5,7 @@ import { IndexLink, Link } from 'react-router';
 import { NavHeaderLink } from '../sub/NavLink';
 import AuthStore from 'AuthStore';
 import ProfileSettings from '../sub/ProfileSettings';
+import '../../../css/layout/navbar.scss';
 
 export default class NavHeader extends React.Component {
   constructor() {
@@ -39,13 +40,14 @@ export default class NavHeader extends React.Component {
 
     return (
 
-      <Navbar staticTop class="navbar-default">
+      <Navbar staticTop>
         <Navbar.Header>
           <LinkContainer to={{ pathname: '/'}}>
             <Navbar.Brand>
               Jaffna Tour
             </Navbar.Brand>
           </LinkContainer>
+          <Navbar.Toggle />
         </Navbar.Header>
 
         <Navbar.Collapse>

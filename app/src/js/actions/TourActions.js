@@ -1,5 +1,5 @@
-import alt from '../alt';
-import TourSource from '../sources/TourSource';
+import alt from 'alt_base';
+import TourSource from 'TourSource';
 
 class TourActions {
   constructor() {

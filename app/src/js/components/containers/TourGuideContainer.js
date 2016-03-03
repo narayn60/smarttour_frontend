@@ -1,6 +1,6 @@
 import React from 'react';
 import GuideStore from 'GuideStore';
-import GuideActions from '../../actions/GuideActions';
+import GuideActions from 'GuideActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import TourGuide from '../sub/TourGuide';
 
