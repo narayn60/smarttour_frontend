@@ -1,9 +1,11 @@
-import React from "react";
-import { Navbar, NavItem, NavDropdown, MenuItem, Nav, Button } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import { IndexLink, Link } from "react-router";
-import { NavHeaderLink } from "../sub/NavLink";
+import React from 'react';
+import { Navbar, NavItem, NavDropdown, Dropdown, MenuItem, Nav, Button, Glyphicon } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { IndexLink, Link } from 'react-router';
+import { NavHeaderLink } from '../sub/NavLink';
 import AuthStore from 'AuthStore';
+import Gravatar from 'react-gravatar';
+import '../../../css/navbar.scss';
 
 
 export default class NavHeader extends React.Component {
@@ -14,8 +16,6 @@ export default class NavHeader extends React.Component {
       {link: '/login', title: 'Login'},
       {link: '/register', title: 'Register'}
     ];
-    console.log("User is " + AuthStore.isLoggedIn());
-    console.log(AuthStore.getName());
     if (AuthStore.isLoggedIn()) {
       this.links.push(
         {link: '/browse', title: 'Browse'},
@@ -29,15 +29,17 @@ export default class NavHeader extends React.Component {
 
 
   render() {
+
+    const userName = AuthStore.isLoggedIn() ? AuthStore.getName() : "";
+    const userGravatar = AuthStore.isLoggedIn() ? <Gravatar https email={AuthStore.getEmail()} /> : "";
+    const dropdownIndex = this.navLinks.length + 1;
+
+    let preventDefault = e => e.preventDefault();
+
     return (
+
       <Navbar staticTop class="navbar-default">
         <Navbar.Header>
-          <Button class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </Button>
           <LinkContainer to={{ pathname: '/'}}>
             <Navbar.Brand>
               Jaffna Tour
@@ -45,14 +47,40 @@ export default class NavHeader extends React.Component {
           </LinkContainer>
         </Navbar.Header>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
+        <Navbar.Collapse>
+          <Nav pullRight>
             {this.navLinks}
-          </ul>
-        </div>
-        {AuthStore.getName()}
+
+
+            <NavDropdown eventkey={dropdownIndex} title="HI" id="basic-nav-dropdown">
+              <MenuItem eventKey={dropdownIndex + 0.1}>
+                <div class="navbar-login">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <p class="text-center">
+                        <span class="glyphicon glyphicon-user icon-size"></span>
+                      </p>
+                    </div>
+                    <div class="col-lg-8">
+                      <p class="text-left"><strong>Salman Khan</strong></p>
+                      <p class="text-left small">crazytodevelop@@gmail.com</p>
+                      <p class="text-left">
+                        <a href="#" class="btn btn-primary btn-block btn-sm">Profile</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </MenuItem>
+              <MenuItem eventKey={dropdownIndex + 0.2} href="#">
+                Account Settings
+                <span class="glyphicon glyphicon-cog pull-right"></span>
+              </MenuItem>
+            </NavDropdown>
+            {userName}
+            {userGravatar}
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
     );
   }
 }
-

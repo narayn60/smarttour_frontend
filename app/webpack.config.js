@@ -3,6 +3,8 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var aliases = require('./webpack_conf/resolve_alias');
+var autoprefixer = require('autoprefixer');
+var precss = require('precss');
 
 var config = {
   context: path.join(__dirname, "src"),
@@ -33,12 +35,11 @@ var config = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css'
+        loader: 'style!css!postcss-loader'
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css!sass'
-        // loader: ExtractTextPlugin.extract('css!sass')
+        loader: 'style!css!postcss-loader!sass'
       },
       { test: /\.(woff|woff2)$/,  loader: "url-loader?limit=10000&mimetype=application/font-woff" },
       { test: /\.ttf$/,    loader: "file-loader" },
@@ -47,6 +48,9 @@ var config = {
       {test: /\.png$/, loader: "url-loader", query: { mimetype: "image/png" }
       }
     ]
+  },
+  postcss: function() {
+    return [autoprefixer, precss];
   },
   output: {
     path: 'public',

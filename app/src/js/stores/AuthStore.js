@@ -10,20 +10,21 @@ class AuthStore {
       token: null,
       name: null,
       logo: null,
-      provider: null
+      provider: null,
+      email: null
     };
 
     this.exportPublicMethods({
       isLoggedIn: this.isLoggedIn,
       getUser: this.getUser,
       getUid: this.getUid,
-      getName: this.getName
+      getName: this.getName,
+      getEmail: this.getEmail
     });
   }
 
   onLogin(info) {
-    console.log("Hello from authactions");
-    console.log(info);
+    // console.log(info);
     this.user = info;
   }
 
@@ -49,6 +50,11 @@ class AuthStore {
   getName() {
     const st = this.getState().user;
     return st.name;
+  }
+
+  getEmail() {
+    const st = this.getState().user;
+    return st.email;
   }
 }
 

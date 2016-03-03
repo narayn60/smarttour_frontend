@@ -1,6 +1,7 @@
 // modules/App.js
 import React from 'react';
 import '../../css/index.scss';
+import '../../css/agency.scss';
 import { Link } from "react-router";
 
 // Page components

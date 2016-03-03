@@ -1,7 +1,7 @@
 // modules/NavLink.js
 import React from 'react';
 import { Link } from 'react-router';
-import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from "react-bootstrap";
+import { NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 export class NavLink extends React.Component {

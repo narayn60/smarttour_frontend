@@ -26,7 +26,7 @@ var gp_googleWebFonts = require('gulp-google-webfonts');
 var css_locations = {};
 css_locations.bootstrap = "./node_modules/bootstrap/dist/css/bootstrap.min.css";
 css_locations.fontaweseome = "./node_modules/font-awesome/css/font-awesome.min.css";
-css_locations.agency = "./src/css/agency.css";
+// css_locations.agency = "./src/css/agency.css";
 var css_list = _.values(css_locations);
 
 gulp.task('copy', function() {
@@ -36,16 +36,16 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('public/img/'));
 });
 
-gulp.task('js-fef', function() {
-  return gulp.src('./src/js/design_js/**')
-    .pipe(gp_sourcemaps.init())
-    .pipe(gp_concat('concat.js'))
-    .pipe(gulp.dest('public/js/'))
-    .pipe(gp_rename('pagebundle.min.js'))
-    .pipe(gp_uglify())
-    .pipe(gp_sourcemaps.write('./'))
-    .pipe(gulp.dest('public/js/'));
-});
+// gulp.task('js-fef', function() {
+//   return gulp.src('./src/js/design_js/**')
+//     .pipe(gp_sourcemaps.init())
+//     .pipe(gp_concat('concat.js'))
+//     .pipe(gulp.dest('public/js/'))
+//     .pipe(gp_rename('pagebundle.min.js'))
+//     .pipe(gp_uglify())
+//     .pipe(gp_sourcemaps.write('./'))
+//     .pipe(gulp.dest('public/js/'));
+// });
 
 gulp.task('bundle-css', function() {
   return gulp.src(css_list)
@@ -62,4 +62,4 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('public/fonts'));
 });
 
-gulp.task('default', ['copy', 'fonts', 'bundle-css', 'js-fef']);
+gulp.task('default', ['copy', 'fonts', 'bundle-css']);

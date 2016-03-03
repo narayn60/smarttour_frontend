@@ -51,6 +51,7 @@ const getInfoFromUser = function setupUserInfo(user) {
     name: user.displayName,
     logo: '',
     token: user.token,
+    email: user.emails[0].value
   };
   /* eslint-enable prefer-const */
 
@@ -106,7 +107,13 @@ const socialUserRedirect = (req, res) => {
 
 // GET /auth/google
 server.get('/auth/google',
-           passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+           passport.authenticate('google', {
+             scope: [
+               'https://www.googleapis.com/auth/plus.login',
+               'https://www.googleapis.com/auth/userinfo.email'
+             ]
+           })
+          );
 
 server.get('/auth/google/callback',
            passport.authenticate('google'),
