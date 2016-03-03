@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default class GuideSource {
   fetch() {
-    var root = 'http://jsonplaceholder.typicode.com';
+    var root = 'https://jsonplaceholder.typicode.com';
     return axios(root + '/users')
       .then((users) => {
         return users.data;
