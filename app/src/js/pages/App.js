@@ -14,8 +14,7 @@ export default class App extends React.Component {
             <div>
               <NavHeader/>
                 {this.props.children}
-                <div id="push"></div>
-              <Footer />
+              <Footer/>
             </div>
         );
     }

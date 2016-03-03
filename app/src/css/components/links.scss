@@ -1,0 +1,13 @@
+@import '../variables';
+
+a {
+  outline: 0;
+  &:hover, &:focus, &:active, &.active {
+    outline: 0;
+  }
+  color: $highlight-color;
+  &:hover, &:focus, &:active, &.active {
+    /* color: #fec503; */
+    color: #000;
+  }
+}

@@ -1,7 +1,13 @@
 @import '../variables';
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
   overflow-x: hidden;
   font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
   webkit-tap-highlight-color: $highlight-color;
+  margin: 0 0 150px;
 }
