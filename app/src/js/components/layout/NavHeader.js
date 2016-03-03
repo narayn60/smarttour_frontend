@@ -5,8 +5,6 @@ import { IndexLink, Link } from 'react-router';
 import { NavHeaderLink } from '../sub/NavLink';
 import AuthStore from 'AuthStore';
 import ProfileSettings from '../sub/ProfileSettings';
-import '../../../css/navbar.scss';
-
 
 export default class NavHeader extends React.Component {
   constructor() {

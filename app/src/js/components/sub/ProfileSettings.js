@@ -2,7 +2,6 @@ import React from "react";
 import { NavDropdown, MenuItem, Row } from 'react-bootstrap';
 import AuthStore from 'AuthStore';
 import Gravatar from 'react-gravatar';
-import '../../../css/navbar.scss';
 
 
 export default class ProfileSettings extends React.Component {
@@ -52,5 +51,3 @@ export default class ProfileSettings extends React.Component {
     );
   }
 }
-
-  // <span class="glyphicon glyphicon-user icon-size"></span>

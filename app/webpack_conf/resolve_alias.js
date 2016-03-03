@@ -13,5 +13,6 @@ module.exports = {
   AuthSource: source_base + "AuthSource",
   GuideSource: source_base + "GuideSource",
   TourSource: source_base + "TourSource",
-  alt_base: js_base + "alt"
+  alt_base: js_base + "alt",
+  base_css: "src/css/base.scss"
 }

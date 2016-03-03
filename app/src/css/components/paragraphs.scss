@@ -1,0 +1,9 @@
+@import '../variables';
+
+p {
+  font-size: 14px;
+  line-height: 1.75;
+  &.large {
+    font-size: 16px;
+  }
+}

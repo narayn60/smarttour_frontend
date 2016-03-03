@@ -1,0 +1,89 @@
+@import '../variables';
+
+.navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.icon-size
+{
+    font-size: 87px;
+}
+
+.navbar-default {
+  background-color: #222;
+  border-color: transparent;
+  .navbar-brand {
+    color: $highlight-color;
+    font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+    &:hover, &:focus, &:active, &.active {
+      /* color: #fec503; */
+      color: #777;
+    }
+  }
+  .navbar-collapse {
+    border-color: rgba(255, 255, 255, 0.02);
+  }
+  .navbar-toggle {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+    .icon-bar {
+      background-color: #fff;
+    }
+    &:hover, &:focus {
+      background-color: $highlight-color;
+    }
+  }
+  .nav li a {
+    font-family: $font-stack;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #777;
+    &:hover, &:focus {
+      color: $highlight-color;
+      outline: 0;
+    }
+  }
+  .navbar-nav > .active > a {
+    border-radius: 0;
+    color: #555;
+    background-color: $highlight-color;
+    &:hover, &:focus {
+      color: #555;
+      background-color: #555;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-default {
+    background-color: transparent;
+    padding: 25px 0;
+    transition: padding .3s;
+    border: 0;
+    .navbar-brand {
+      font-size: 2em;
+      transition: all 0.3s;
+    }
+    .navbar-nav > .active > a {
+      border-radius: 3px;
+    }
+    &.navbar-shrink {
+      background-color: #222;
+      padding: 10px 0;
+      .navbar-brand {
+        font-size: 1.5em;
+      }
+    }
+  }
+}

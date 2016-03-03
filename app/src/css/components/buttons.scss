@@ -1,0 +1,200 @@
+@import '../variables';
+
+.btn {
+  &:focus, &:active, &.active, &:active:focus {
+    outline: 0;
+  }
+}
+
+.btn-primary {
+  color: #000;
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+  font-family: $font-stack;
+  text-transform: uppercase;
+  font-weight: 700;
+  &:hover, &:focus, &:active, &.active {
+    color: #fff;
+    background-color: #fec503;
+    border-color: #f6bf01;
+  }
+}
+
+.open .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #fec503;
+  border-color: #f6bf01;
+}
+
+.btn-primary {
+  &:active, &.active {
+    background-image: none;
+  }
+}
+
+.open .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+
+.btn-primary {
+  &.disabled, &[disabled] {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+  }
+}
+
+fieldset[disabled] .btn-primary {
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+}
+
+.btn-primary {
+  &.disabled:hover, &[disabled]:hover {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+  }
+}
+
+fieldset[disabled] .btn-primary:hover {
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+}
+
+.btn-primary {
+  &.disabled:focus, &[disabled]:focus {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+  }
+}
+
+fieldset[disabled] .btn-primary:focus {
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+}
+
+.btn-primary {
+  &.disabled:active, &[disabled]:active {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+  }
+}
+
+fieldset[disabled] .btn-primary:active {
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+}
+
+.btn-primary {
+  &.disabled.active, &[disabled].active {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+  }
+}
+
+fieldset[disabled] .btn-primary.active {
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+}
+
+.btn-primary .badge {
+  color: $highlight-color;
+  background-color: #fff;
+}
+
+.btn-xl {
+  color: #fff;
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+  font-family: $font-stack;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 3px;
+  font-size: 18px;
+  padding: 20px 40px;
+  &:hover, &:focus, &:active, &.active {
+    color: #fff;
+    background-color: #fec503;
+    border-color: #f6bf01;
+  }
+}
+
+.open .dropdown-toggle.btn-xl {
+  color: #fff;
+  background-color: #fec503;
+  border-color: #f6bf01;
+}
+
+.btn-xl {
+  &:active, &.active {
+    background-image: none;
+  }
+}
+
+.open .dropdown-toggle.btn-xl {
+  background-image: none;
+}
+
+.btn-xl {
+  &.disabled, &[disabled] {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+  }
+}
+
+fieldset[disabled] .btn-xl {
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+}
+
+.btn-xl {
+  &.disabled:hover, &[disabled]:hover {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+  }
+}
+
+fieldset[disabled] .btn-xl:hover {
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+}
+
+.btn-xl {
+  &.disabled:focus, &[disabled]:focus {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+  }
+}
+
+fieldset[disabled] .btn-xl:focus {
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+}
+
+.btn-xl {
+  &.disabled:active, &[disabled]:active {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+  }
+}
+
+fieldset[disabled] .btn-xl:active {
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+}
+
+.btn-xl {
+  &.disabled.active, &[disabled].active {
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+  }
+}
+
+fieldset[disabled] .btn-xl.active {
+  background-color: $highlight-color;
+  border-color: $highlight-color;
+}
+
+.btn-xl .badge {
+  color: $highlight-color;
+  background-color: #fff;
+}

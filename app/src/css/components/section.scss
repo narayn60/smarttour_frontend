@@ -1,0 +1,59 @@
+@import '../variables';
+
+section {
+  padding: 100px 0;
+  h2.section-heading {
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  h3.section-subheading {
+    font-size: 16px;
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: none;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 75px;
+  }
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 150px 0;
+  }
+}
+
+section#contact {
+  background-color: #222;
+  background-image: url(../img/map-image.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  .section-heading {
+    color: #fff;
+  }
+  .form-group {
+    margin-bottom: 25px;
+    input, textarea {
+      padding: 20px;
+    }
+    input.form-control {
+      height: auto;
+    }
+    textarea.form-control {
+      height: 236px;
+    }
+  }
+  .form-control:focus {
+    border-color: $highlight-color;
+    box-shadow: none;
+  }
+  &::placeholder{
+    font-family: $font-stack;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #bbb;
+  }
+  .text-danger {
+    color: #e74c3c;
+  }
+}
