@@ -19,14 +19,8 @@ export default class Footer extends React.Component {
             <a href="#">Blog</a>
             ·
             <a href="#">Pricing</a>
-            ·
-            <a href="#">About</a>
-            ·
-            <a href="#">Faq</a>
-            ·
-            <a href="#">Contact</a>
           </p>
-          <p>Company Name &copy; 2015</p>
+          <p>Jaffna &copy; 2016</p>
 			  </div>
 
 		  </footer>

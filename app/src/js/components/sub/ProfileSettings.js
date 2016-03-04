@@ -7,10 +7,10 @@ import Gravatar from 'react-gravatar';
 export default class ProfileSettings extends React.Component {
 
   render() {
-    const glyph_classes = 'glyphicon pull-right ';
+    const glyph_classes = 'fa pull-right ';
     const accountOptions = [
-      {text: 'Account Settings', glyph: glyph_classes + 'glyphicon-cog', href: '#'},
-      {text: 'Logout', glyph: glyph_classes + 'glyphicon-log-out', href: '/logout'}
+      {text: 'Account Settings', glyph: glyph_classes + 'fa-cog', href: '#'},
+      {text: 'Logout', glyph: glyph_classes + 'fa-sign-out', href: '/logout'}
     ].map((links, i) =>
           <MenuItem eventKey={this.props.dropIndex + (0.1 * (i + 2))} href={links.href}>
           {links.text} 
