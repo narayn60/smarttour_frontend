@@ -1,6 +1,7 @@
 import alt from '../alt';
 import React from "react";
 import TourStore from 'TourStore';
+import TourDetailed from "../components/sub/TourDetailed";
 
 export default class DetailedTour extends React.Component {
 
@@ -18,11 +19,11 @@ export default class DetailedTour extends React.Component {
 
   render() {
     var tour = this.state.tours.tours.find(this.findTour);
+    const DetailedTourPage = <TourDetailed tour = {tour}/>;
+
     return (
         <div>
-            <h3>Title:  { tour.title }</h3>
-            <h4>Created by: { tour.userId }</h4>
-            <h4>Tour ID: { tour.id }</h4> 
+          {DetailedTourPage}
         </div>
     );
   }
