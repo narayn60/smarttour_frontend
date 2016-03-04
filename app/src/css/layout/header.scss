@@ -1,11 +1,20 @@
 @import '../variables';
 
-.background-content:before {
+.header_1:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    display: block;
+    background-image: url(/img/header-bg-2.jpg);
     filter: blur(5px);
 }
 
 .header_1 {
-    background-image: url(/img/header-bg-2.jpg);
+    left: 0;
+    right: 0;
+    z-index: 0;
 }
 
 .header_2 {

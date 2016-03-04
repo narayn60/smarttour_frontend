@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 export default class Home extends React.Component {
   render() {
     return (
-      <div class="background-content">
+      <div>
         <header class="header_1">
           <div class="container">
             <div class="intro-text">
