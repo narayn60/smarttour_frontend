@@ -20,8 +20,10 @@ export default class LoginContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <a class="btn btn-large btn-info" href="/auth/google">Login with Google</a>
+      <div className="login-button">
+        <a class="btn btn-large btn-info" href="/auth/google">
+        <i class="fa fa-google-plus"></i> Login with Google
+      </a>
       </div>
     )
   }
