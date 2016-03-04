@@ -58,5 +58,3 @@ export default class TourDesign extends React.Component {
         );
     }
 }
-
-// <LeafMap />

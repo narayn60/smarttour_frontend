@@ -1,0 +1,116 @@
+//colors
+$color_lochmara_approx: #007fbd;
+$color_deep_cerulean_approx: #0077b2;
+$color_malibu_65_approx: rgba(97, 203, 255, 0.65);
+$white: #fff;
+$seashell: #f1f1f1;
+$white_80: rgba(255, 255, 255, 0.8);
+$gray: #808080;
+$color_silver_chalice_approx: #adadad;
+$color_mine_shaft_approx: #333;
+$color_royal_blue_approx: #3d5de0;
+
+//fonts
+$font_0: Helvetica Neue;
+$font_1: Helvetica;
+$font_2: Arial;
+$font_3: sans-serif;
+
+//urls
+$url_0: url(http://data2.whicdn.com/images/139218968/large.jpg);
+
+.well {
+	margin-top: -20px;
+	background-color: $color_lochmara_approx;
+	border: 2px solid $color_deep_cerulean_approx;
+	text-align: center;
+	cursor: pointer;
+	font-size: 25px;
+	padding: 15px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 0 !important;
+	&:hover {
+		margin-top: -20px;
+		background-color: $color_deep_cerulean_approx;
+		border: 2px solid $color_deep_cerulean_approx;
+		text-align: center;
+		cursor: pointer;
+		font-size: 25px;
+		padding: 15px;
+		//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+		border-radius: 0 !important;
+		border-bottom: 2px solid $color_malibu_65_approx;
+	}
+}
+/* body { */
+/* 	font-family: $font_0, $font_1, $font_2, $font_3; */
+/* 	font-size: 14px; */
+/* 	line-height: 1.42857143; */
+/* 	color: $white; */
+/* 	background-color: $seashell; */
+/* } */
+.bg_blur {
+	background-image: $url_0;
+	height: 300px;
+	background-size: cover;
+}
+.follow_btn {
+	text-decoration: none;
+	position: absolute;
+	left: 35%;
+	top: 42.5%;
+	width: 35%;
+	height: 15%;
+	background-color: $color_lochmara_approx;
+	padding: 10px;
+	padding-top: 6px;
+	color: $white;
+	text-align: center;
+	font-size: 20px;
+	border: 4px solid $color_lochmara_approx;
+	&:hover {
+		text-decoration: none;
+		position: absolute;
+		left: 35%;
+		top: 42.5%;
+		width: 35%;
+		height: 15%;
+		background-color: $color_lochmara_approx;
+		padding: 10px;
+		padding-top: 6px;
+		color: $white;
+		text-align: center;
+		font-size: 20px;
+		border: 4px solid $white_80;
+	}
+}
+.header_profile {
+	color: $gray;
+	margin-left: 10%;
+	margin-top: 70px;
+}
+.picture {
+	height: 150px;
+	width: 150px;
+	position: absolute;
+	top: 75px;
+	left: -75px;
+}
+.picture_mob {
+	position: absolute;
+	width: 35%;
+	left: 35%;
+	bottom: 70%;
+}
+.btn-style {
+	color: $white;
+/* 	background-color: $color_lochmara_approx; */
+/* 	border-color: $color_silver_chalice_approx; */
+/* 	width: 33.3%; */
+/* 	&:hover { */
+/* 		color: $color_mine_shaft_approx; */
+/* 		background-color: $color_royal_blue_approx; */
+/* 		border-color: $color_silver_chalice_approx; */
+/* 		width: 33.3%; */
+	}
+/* } */

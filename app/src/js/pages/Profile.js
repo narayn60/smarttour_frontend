@@ -1,67 +1,80 @@
 import React from 'react';
-import { Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Row, Col, Image, Button, Collapse, Well, ListGroup, ListGroupItem } from "react-bootstrap";
 import TourStore from 'TourStore';
 import TourActions from 'TourActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import { Router, Route, Link, browserHistory } from 'react-router';
+import AuthStore from 'AuthStore';
+import Gravatar from 'react-gravatar';
+import { Table } from 'reactable';
 
 export default class Profile extends React.Component {
 
-  currentUser() {
-  	return ({ 
-  		id: 1,
-  		name: 'George Nash',
-  		photo: 'img/team/3.jpg',
-  		tours: [
-	  		{
-	  			name: 'Banksy',
-	  			id: 1,
-	  		},
-	  		{
-	  			name: 'Pubs',
-	  			id: 2,
-	  		},
-	  		{
-	  			name: 'History',
-	  			id: 3,
-	  		},
-  		],
-  	})
+  constructor() {
+    super();
+    this.tours = [
+      {Name: 'Banksy', id: 1, Subscribers: 450},
+      {Name: 'Pubs', id: 2, Subscribers: 3200},
+      {Name: 'History', id: 3, Subscribers: 21}
+    ];
+    this.filterColumns = [
+      'Name'
+    ];
+    this.user = {
+      followers: 340,
+      created_tours: 4
+    }
   }
 
   render() {
 
-  	var user = this.currentUser();
-    const MyTours = user.tours.map((tour) => 
-    	<Link to={`/mytours/${tour.id}`}>
-    		<ListGroupItem> {tour.name} </ListGroupItem> 
-    	</Link>
-    );
+    const userEmail = AuthStore.getEmail();
+    const userName = AuthStore.getName().split(" ", 2)[0];
+    const gravatarSize = 200;
+
+    var profileStyle = {
+      marginTop: '20px',
+      marginBottom: '20px'
+    };
 
     return (
-      <section id="portfolio" class="bg-light-gray">
-        <div class="container">
-        	<Row>
-        		<h2> Welcome, { user.name } </h2>
-        	</Row>
-        	<Row>
-        		<h3> Personal info </h3>
-        		<p> Number of followers: 500 </p>
-        		<p> Number of tours: 10 </p>
-        		<Image src= {user.photo}/>
-        	</Row>
-        	<Row>
-        		<h3> My tours </h3>
-        		   <ListGroup>
-                <Link to={`/mytours/1`}>
-                <ListGroupItem> Hello </ListGroupItem> 
-                </Link>
-				  </ListGroup>
-        	</Row>
-        </div>
-      </section>
+      <div class="container" style={profileStyle}>
+        <Row class="panel">
+          <Col xs={4} class="bg_blur"></Col>
+          <Col xs={12} md={8}>
+            <Gravatar email={userEmail} size={gravatarSize} https class="img-thumbnail picture hidden-xs"/>
+            <Gravatar email={userEmail} size={gravatarSize} https class="img-thumbnail visible-xs picture_mob"/>
+            <div class="header_profile">
+              <h1>Welcome, { userName }</h1>
+              <h4></h4>
+              <span>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</span>
+            </div>
+          </Col>
+        </Row>   
+
+        <Row class="nav">    
+          <Col md={4}></Col>
+          <Col xs={12} md={8}>
+            <Col xs={4} md={4} class="well"><i class="fa fa-user fa-lg"></i> {this.user.followers} Followers </Col>
+            <Col xs={4} md={4} class="well"><i class="fa fa-map fa-lg"></i> My Tours</Col>
+            <Col xs={4} md={4} class="well"><i class="fa fa-thumbs-o-up fa-lg"></i> 16</Col>
+          </Col>
+        </Row>
+
+        <Row>
+          <Table className="table"
+                 data={this.tours}
+                 itemsPerPage={10}
+                 pageButtonLimit={5}
+                 sortable={true}
+                 filterable={this.filterColumns}
+                 deafultSortDescending/>
+
+        </Row>
+      </div>
     );
+
   }
 }
 
-// {MyTours}
