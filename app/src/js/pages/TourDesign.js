@@ -54,8 +54,9 @@ export default class TourDesign extends React.Component {
         				<LeafMap points={points}/>
         			</Col>
         		</Row>
-            <LeafMap />
            </div>
         );
     }
 }
+
+// <LeafMap />

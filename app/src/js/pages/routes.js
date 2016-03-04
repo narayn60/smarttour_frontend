@@ -40,7 +40,7 @@ module.exports = (
         <Route path='/tourcreator' component={TourMap}/>
         <Route path='/createtour' component={CreateTour}/>
         <Route path='/profile' component={Profile}/>
-        <Route path='/tourdesign/:id' component={TourDesign}/>
+        <Route path='/mytours/:id' component={TourDesign}/>
     </Route>
   </Route>
 );

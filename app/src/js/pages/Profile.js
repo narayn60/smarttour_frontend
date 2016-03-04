@@ -33,7 +33,7 @@ export default class Profile extends React.Component {
 
   	var user = this.currentUser();
     const MyTours = user.tours.map((tour) => 
-    	<Link to={`/tourdesign/${tour.id}`}>
+    	<Link to={`/mytours/${tour.id}`}>
     		<ListGroupItem> {tour.name} </ListGroupItem> 
     	</Link>
     );
@@ -53,7 +53,9 @@ export default class Profile extends React.Component {
         	<Row>
         		<h3> My tours </h3>
         		   <ListGroup>
-				   		{MyTours}
+                <Link to={`/mytours/1`}>
+                <ListGroupItem> Hello </ListGroupItem> 
+                </Link>
 				  </ListGroup>
         	</Row>
         </div>
@@ -61,3 +63,5 @@ export default class Profile extends React.Component {
     );
   }
 }
+
+// {MyTours}
