@@ -56,11 +56,11 @@
   }
   .navbar-nav > .active > a {
     border-radius: 0;
-    color: $highlight-color;
+    color: $color_baltic_sea_approx;
     background-color: $highlight-color;
     &:hover, &:focus {
-      color: #555;
-      background-color: #555;
+      color: $white;
+      background-color: $color_baltic_sea_approx;
     }
   }
 }

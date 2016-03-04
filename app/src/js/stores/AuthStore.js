@@ -14,6 +14,15 @@ class AuthStore {
       email: null
     };
 
+    // this.user= {
+    //   id: 1,
+    //   token: 1,
+    //   name: 'Andrew Stuart',
+    //   logo: null,
+    //   provider: 'google',
+    //   email: 'narayn60@gmail.com'
+    // };
+
     this.exportPublicMethods({
       isLoggedIn: this.isLoggedIn,
       getUser: this.getUser,
