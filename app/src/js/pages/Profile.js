@@ -6,20 +6,14 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import AuthStore from 'AuthStore';
 import Gravatar from 'react-gravatar';
-import { Table } from 'reactable';
+import TourTable from '../components/sub/TourTable';
 
 export default class Profile extends React.Component {
 
   constructor() {
     super();
-    this.tours = [
-      {Name: 'Banksy', id: 1, Subscribers: 450},
-      {Name: 'Pubs', id: 2, Subscribers: 3200},
-      {Name: 'History', id: 3, Subscribers: 21}
-    ];
-    this.filterColumns = [
-      'Name'
-    ];
+    // this.filterColumns = ['Name'
+    // ];
     this.user = {
       followers: 340,
       created_tours: 4
@@ -63,13 +57,7 @@ export default class Profile extends React.Component {
         </Row>
 
         <Row>
-          <Table className="table"
-                 data={this.tours}
-                 itemsPerPage={10}
-                 pageButtonLimit={5}
-                 sortable={true}
-                 filterable={this.filterColumns}
-                 deafultSortDescending/>
+          <TourTable />
 
         </Row>
       </div>
@@ -77,4 +65,3 @@ export default class Profile extends React.Component {
 
   }
 }
-

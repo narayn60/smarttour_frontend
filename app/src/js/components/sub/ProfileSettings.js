@@ -20,8 +20,6 @@ export default class ProfileSettings extends React.Component {
 
     const userName = AuthStore.getName();
     const userEmail = AuthStore.getEmail();
-    // const userName = "Andrew Stuart";
-    // const userEmail = "narayn60@gmail.com";
     const dropdownTitle = "Hi, " + userName.split(" ", 2)[0];
     const gravatarSize = 100;
 
