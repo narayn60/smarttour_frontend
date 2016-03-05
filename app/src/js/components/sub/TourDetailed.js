@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
 import { Router, Route, Link, browserHistory } from 'react-router';
-import JsonTable from 'react-json-table';
+import LeafMap from '../leaflet/LeafMap';
 
 export default class TourDetailed extends React.Component {
 
@@ -21,7 +21,8 @@ export default class TourDetailed extends React.Component {
     return (
         <div>
             <div class="container">
-                <Row class="square">
+                <h3 class="text-center"> {tour.title} </h3>
+                <Row class="square tour-box">
                     <Col md={8} mdOffset={2} class="user-details">
                         <Row class="coralbg white">
                             <Col md={6} class="no-pad">
@@ -52,18 +53,30 @@ export default class TourDetailed extends React.Component {
                         </Row>
                     </Col>
                 </Row>
+                <Row class="overview">
+                    <Col md={8} mdOffset={2} class="text-center tour-about">
+                        <h3> About </h3>
+                        <span>I am a bio. Look at me. I am describing the tour. 
+                        Ooooh a bio. I am a bio. Look at me. I am describing the tour. 
+                        Ooooh a bio. I am a bio. Look at me. I am describing the tour. 
+                        Ooooh a bio.</span>
+                    </Col>
+                </Row>
+                <Row class="text-center">
+                    <Button bsStyle="success" bsSize="large" class="tourButton" onClick={ ()=> this.setState({ open: !this.state.open })}>
+                              Download
+                    </Button>
+                    <Collapse in={this.state.open}>
+                      <div>
+                        <Well>
+                            <Image src="../../img/portfolio/qr.png" rounded/>
+                        </Well>
+                      </div>
+                    </Collapse>
+                </Row>    
                 <Row class="tourTable">
                     <Col md={8} mdOffset={2} class="text-center"> 
-                        <Button bsStyle="success" bsSize="large" class="tourButton" onClick={ ()=> this.setState({ open: !this.state.open })}>
-                          See Locations
-                        </Button>
-                        <Collapse in={this.state.open}>
-                          <div>
-                            <Well>
-                              <JsonTable rows={ fake_points } />
-                            </Well>
-                          </div>
-                        </Collapse>
+                        <LeafMap/>
                     </Col>
                 </Row>
             </div>

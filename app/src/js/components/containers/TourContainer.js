@@ -4,6 +4,8 @@ import TourActions from '../../actions/TourActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Tour from '../sub/Tour';
 import { Link } from 'react-router';
+import { Row, Col } from "react-bootstrap";
+
 
 export default class TourContainer extends React.Component {
 
@@ -43,13 +45,17 @@ export default class TourContainer extends React.Component {
 
 
   render() {
-    const ToursComponent = this.state.tours.map((tour, i) => <Tour key={i} title={tour.title} owner={tour.userId} id={tour.id}/>);
+    const ToursComponent = this.state.tours.map((tour, i) => <Tour key={i} tour={tour}/>);
 
     return (
-      <div class="row">
-        <button onClick={this.createTour.bind(this)}>Click Me</button>
-        <button onClick={this.fetchTours.bind(this)}>Reload</button>
-        {ToursComponent}
+      <div>
+        <Row class="text-center">
+          <h2 class="section-heading"> Browse all tours </h2>
+          <h3 class="section-subheading"> Revolutionize the novel </h3>
+        </Row>
+        <Row>
+          {ToursComponent}
+        </Row>
       </div>
     );
   }

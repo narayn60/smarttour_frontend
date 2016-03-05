@@ -3,6 +3,7 @@ import GuideStore from 'GuideStore';
 import GuideActions from 'GuideActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import TourGuide from '../sub/TourGuide';
+import { Row, Col } from "react-bootstrap";
 
 export default class TourGuideContainer extends React.Component {
 
@@ -47,15 +48,13 @@ export default class TourGuideContainer extends React.Component {
 
     return (
       <div>
-        <div class="row text-center">
-          <button onClick={this.reloadGuides.bind(this)}>Reload Guides</button>
-          <button onClick={this.createGuide.bind(this)}>Create Guide</button>
+        <Row class="text-center">
           <h2 class="section-heading">Guides</h2>
           <h3 class="section-subheading">Explore</h3>
-        </div>
-        <div class="row">
+        </Row>
+        <Row>
           {GuidesComponent}
-        </div>
+        </Row>
       </div>
     );
   }

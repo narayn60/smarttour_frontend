@@ -41,7 +41,9 @@
 }
 
 .tourButton {
-	padding-bottom: 20px;
+	padding-bottom: 10px;
+  padding-top: 10px;
+  margin-top: 10px;
 }
 
 /* -- The "User's Menu Container" specific elements. Custom container for the snippet -- */
@@ -158,6 +160,11 @@ div.user-menu div.user-menu-content:not(.active){
 .user-details {
     background: #eee;
     min-height: 333px;
+}
+
+.tour-about {
+    background: #eee;
+    min-height: 100px;
 }
 
 .user-image {
