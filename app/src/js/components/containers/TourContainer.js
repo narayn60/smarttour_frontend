@@ -1,6 +1,6 @@
 import React from 'react';
 import TourStore from 'TourStore';
-import TourActions from '../../actions/TourActions';
+import TourActions from 'TourActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Tour from '../sub/Tour';
 import { Link } from 'react-router';

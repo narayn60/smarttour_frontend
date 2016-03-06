@@ -1,9 +1,9 @@
 import alt from 'alt_base';
-import TourActions from 'TourActions';
+import UserTourActions from 'UserTourActions';
 
-class TourStore {
+class UserTourStore {
   constructor() {
-    this.bindActions(TourActions);
+    this.bindActions(UserTourActions);
     this.errorMessage = null;
     this.state = {
       tours: []
@@ -28,4 +28,4 @@ class TourStore {
 
 }
 
-export default alt.createStore(TourStore, 'TourStore');
+export default alt.createStore(UserTourStore, 'UserTourStore');

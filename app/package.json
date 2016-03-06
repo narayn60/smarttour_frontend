@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "./node_modules/gulp/bin/gulp.js && webpack-dev-server --hot",
+    "start:dev": "npm run gulp_task && webpack-dev-server --hot",
     "start:prod": "npm run build && node server/server.bundle.js",
     "build:client": "webpack",
     "build:server": "webpack --config webpack.server.config.js",
     "build": "npm run gulp_task && npm run build:client && npm run build:server",
-    "gulp_task": "pwd && rm -rf public && ./node_modules/gulp/bin/gulp.js"
+    "gulp_task": "rm -rf public && ./node_modules/gulp/bin/gulp.js"
   },
   "author": "Andrew Stuart",
   "license": "ISC",
@@ -42,7 +42,6 @@
     "font-awesome": "^4.5.0",
     "fs": "0.0.2",
     "geolocation": "^0.2.0",
-    "griddle-react": "^0.3.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-debug": "^2.1.2",
@@ -64,6 +63,7 @@
     "precss": "^1.4.0",
     "react": "^0.14.7",
     "react-bootstrap": "^0.28.3",
+    "react-bootstrap-table": "^1.5.4",
     "react-dom": "^0.14.7",
     "react-gravatar": "^2.3.1",
     "react-json-table": "0.0.3",
@@ -74,6 +74,7 @@
     "redux": "^3.3.1",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
+    "underscore": "^1.8.3",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"

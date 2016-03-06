@@ -1,13 +1,13 @@
 import alt from 'alt_base';
-import TourSource from 'TourSource';
+import UserTourSource from 'UserTourSource';
 
-class TourActions {
+class UserTourActions {
   constructor() {
     this.state = {
       tours: []
     };
     this.stores = {
-      TourSource: new TourSource()
+      UserTourSource: new UserTourSource()
     };
     this.generateActions('updateTours');
   }
@@ -15,7 +15,7 @@ class TourActions {
   fetchTours() {
     return (dispatch) => {
       dispatch();
-      this.stores.TourSource.fetch()
+      this.stores.UserTourSource.fetch()
         .then((tours) => {
           this.updateTours(tours);
         })
@@ -31,4 +31,4 @@ class TourActions {
 
 }
 
-export default alt.createActions(TourActions);
+export default alt.createActions(UserTourActions);
