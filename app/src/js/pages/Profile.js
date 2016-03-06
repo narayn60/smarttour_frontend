@@ -18,6 +18,14 @@ export default class Profile extends React.Component {
       followers: 340,
       created_tours: 4
     };
+    this.state = {
+      followSection: false
+    };
+  }
+
+  onClick() {
+    this.setState({followSection: true});
+    console.log(this.state.followSection);
   }
 
   render() {
@@ -25,6 +33,9 @@ export default class Profile extends React.Component {
     const userEmail = AuthStore.getEmail();
     const userName = AuthStore.getName().split(" ", 2)[0];
     const gravatarSize = 200;
+
+    const TourTableComponent = this.state.followSection ? <TourTable /> : "";
+    // const TourTable = this.state.followSection ? "HELLO" : "";
 
     var profileStyle = {
       marginTop: '20px',
@@ -50,15 +61,16 @@ export default class Profile extends React.Component {
         <Row class="nav">    
           <Col md={4}></Col>
           <Col xs={12} md={8}>
-            <Col xs={4} md={4} class="well"><i class="fa fa-user fa-lg"></i> {this.user.followers} Followers </Col>
+            <Col xs={4} md={4} onClick={this.onClick.bind(this)} class="well">
+                <i class="fa fa-user fa-lg"></i> {this.user.followers} Followers
+            </Col>
             <Col xs={4} md={4} class="well"><i class="fa fa-map fa-lg"></i> My Tours</Col>
             <Col xs={4} md={4} class="well"><i class="fa fa-thumbs-o-up fa-lg"></i> 16</Col>
           </Col>
         </Row>
 
         <Row>
-          <TourTable />
-
+          {TourTableComponent}
         </Row>
       </div>
     );
