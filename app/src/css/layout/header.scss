@@ -16,6 +16,9 @@
     z-index:1;
     filter: blur(3px);	
     height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
 
 .content{
@@ -40,7 +43,7 @@ header {
     text-align: center;
     color: #fff;
     .intro-text {
-        padding-top: 100px;
+        padding-top: 10px;
         padding-bottom: 50px;
         .intro-lead-in {
             font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
