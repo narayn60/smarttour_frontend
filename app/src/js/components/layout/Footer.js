@@ -14,11 +14,11 @@ export default class Footer extends React.Component {
 
         <div class="footer-left">
           <p class="footer-links">
-            <a href="/">Home</a>
+            <a href="/">HOME</a>
             ·
-            <a href="/about">About</a>
+            <a href="/about">ABOUT</a>
             ·
-            <a href="#">Contact Us</a>
+            <a href="#">CONTACT US</a>
           </p>
           <p>Jaffna &copy; 2016</p>
 			  </div>
