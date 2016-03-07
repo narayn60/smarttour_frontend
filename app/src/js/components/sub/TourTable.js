@@ -51,7 +51,7 @@ export default class TourTable extends React.Component {
     };
 
     return (
-      <BootstrapTable data={this.state.tours} options={options} striped={true} hover={true} pagination={true} search={true}>
+        <BootstrapTable data={this.state.tours} options={options} hover={true} pagination={true} search={true}>
         <TableHeaderColumn dataField="img_url" width="120px" dataFormat={this.imageFormatter} dataAlign="center">Icon</TableHeaderColumn>
         <TableHeaderColumn dataField="name" isKey={true} dataAlign="center" dataSort={true}>Tour Name</TableHeaderColumn>
         <TableHeaderColumn dataField="subscribers" dataAlign="center" dataSort={true}>Subscribers</TableHeaderColumn>

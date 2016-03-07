@@ -1,5 +1,4 @@
 import React from 'react';
-// import '../../css/leaflet.scss';
 import LeafMap from '../components/leaflet/LeafMap';
 import { Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
 import EditTourForm from '../components/sub/EditTourForm';
@@ -35,19 +34,21 @@ export default class TourDesign extends React.Component {
     
   }
 
+
   onClick(index) {
     const newSelected = this.state.currentlySelected === index ? -1 : index;
     this.setState({currentlySelected: newSelected});
   }
 
+
   render() {
 
     const Locations = this.state.points.map((point, i) => 
-                                <tr onClick={() => this.onClick(i)}>
-                                 <td>{i}</td>
-                                 <td>{point.name}</td>
-                                 </tr> 
-                                );
+                                            <tr onClick={() => this.onClick(i)}>
+                                            <td>{i}</td>
+                                            <td>{point.name}</td>
+                                            </tr> 
+                                           );
 
     const currentlySelected = this.state.currentlySelected;
     const TourEdit = currentlySelected === -1 ? "" : <EditTourForm values={this.state.points[currentlySelected]} />;
@@ -57,7 +58,7 @@ export default class TourDesign extends React.Component {
         <h3> ID: { this.props.params.id } </h3>
         <Row>
           <Col md={3}>
-            <Table striped bordered condensed hover>
+            <Table bordered condensed hover>
               <thead>
                 <tr>
                   <th>#</th>

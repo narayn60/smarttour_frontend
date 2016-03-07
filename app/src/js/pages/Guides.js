@@ -5,7 +5,7 @@ export default class Guides extends React.Component {
 
   render() {
     return (
-      <section id="portfolio" class="bg-light-gray">
+      <section id="portfolio">
         <div class="container">
           <TourGuideContainer />
         </div>

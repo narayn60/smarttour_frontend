@@ -6,7 +6,7 @@ export default class Browse extends React.Component {
   render() {
 
     return (
-      <section id="portfolio" class="bg-light-gray">
+      <section id="portfolio">
         <div class="container">
           <TourContainer />
         </div>
