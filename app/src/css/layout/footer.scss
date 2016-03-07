@@ -50,13 +50,15 @@ footer {
 		color: $white;
 		font-size: 14px;
 		margin: 0;
+    text-transform: capitalize;
 	}
 	p.footer-links {
+		color: $white;
 		font-size: 15px;
 		font-weight: bold;
-		color: $white;
 		margin: 0 0 10px;
 		padding: 0;
+    text-transform: uppercase;
 		a {
 			display: inline-block;
 			line-height: 1.8;
