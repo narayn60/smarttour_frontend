@@ -6,24 +6,24 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import AuthStore from 'AuthStore';
 import Gravatar from 'react-gravatar';
-import { Table } from 'reactable';
+import TourTable from '../components/sub/TourTable';
 
 export default class Profile extends React.Component {
 
   constructor() {
     super();
-    this.tours = [
-      {Name: 'Banksy', id: 1, Subscribers: 450},
-      {Name: 'Pubs', id: 2, Subscribers: 3200},
-      {Name: 'History', id: 3, Subscribers: 21}
-    ];
-    this.filterColumns = [
-      'Name'
-    ];
     this.user = {
       followers: 340,
       created_tours: 4
-    }
+    };
+    this.state = {
+      chosenSection: 0
+    };
+  }
+
+  onClick(selected) {
+    var newChosenSection = selected === this.state.chosenSection ? 0 : selected;
+    this.setState({chosenSection: newChosenSection});
   }
 
   render() {
@@ -31,6 +31,9 @@ export default class Profile extends React.Component {
     const userEmail = AuthStore.getEmail();
     const userName = AuthStore.getName().split(" ", 2)[0];
     const gravatarSize = 200;
+
+    const OptionalComponents = ["", <TourTable />, "Hello", "Aweseome"];
+    const TourTableComponent = OptionalComponents[this.state.chosenSection];
 
     var profileStyle = {
       marginTop: '20px',
@@ -56,25 +59,19 @@ export default class Profile extends React.Component {
         <Row class="nav">    
           <Col md={4}></Col>
           <Col xs={12} md={8}>
-            <Col xs={4} md={4} class="well"><i class="fa fa-user fa-lg"></i> {this.user.followers} Followers </Col>
-            <Col xs={4} md={4} class="well"><i class="fa fa-map fa-lg"></i> My Tours</Col>
-            <Col xs={4} md={4} class="well"><i class="fa fa-thumbs-o-up fa-lg"></i> 16</Col>
+            <Col xs={4} md={4} onClick={() => this.onClick(1)} class="well">
+                <i class="fa fa-user fa-lg"></i> {this.user.followers} Followers
+            </Col>
+            <Col xs={4} md={4} onClick={() => this.onClick(2)} class="well"><i class="fa fa-map fa-lg"></i> My Tours</Col>
+            <Col xs={4} md={4} onClick={() => this.onClick(3)}class="well"><i class="fa fa-thumbs-o-up fa-lg"></i> 16</Col>
           </Col>
         </Row>
 
         <Row>
-          <Table className="table"
-                 data={this.tours}
-                 itemsPerPage={10}
-                 pageButtonLimit={5}
-                 sortable={true}
-                 filterable={this.filterColumns}
-                 deafultSortDescending/>
-
+          {TourTableComponent}
         </Row>
       </div>
     );
 
   }
 }
-

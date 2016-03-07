@@ -18,7 +18,7 @@ export default class Footer extends React.Component {
             ·
             <a href="/about">About</a>
             ·
-            <a href="#">Contact Us</a>
+            <a href="#">Contact us</a>
           </p>
           <p>Jaffna &copy; 2016</p>
 			  </div>

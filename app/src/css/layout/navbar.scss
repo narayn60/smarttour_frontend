@@ -24,16 +24,15 @@
   border-color: transparent;
   margin-bottom: 0px;
   .navbar-brand {
-    color: $highlight-color;
-    font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
-    &:hover, &:focus, &:active, &.active {
-      /* color: #fec503; */
-      color: #777;
+    color: $white;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive;
+    &:hover {
+        color: $white;
     }
   }
-  .navbar-collapse {
-    border-color: rgba(255, 255, 255, 0.02);
-  }
+  /* .navbar-collapse { */
+  /*   border-color: rgba(255, 255, 255, 0.02); */
+  /* } */
   .navbar-toggle {
     background-color: $highlight-color;
     border-color: $highlight-color;
@@ -41,7 +40,7 @@
       background-color: #fff;
     }
     &:hover, &:focus {
-      background-color: $highlight-color;
+      background-color: $white;
     }
   }
   .nav li a {
@@ -49,16 +48,16 @@
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 1px;
-    color: #777;
+    color: $navbar-option;
     &:hover, &:focus {
-      color: $highlight-color;
+      color: $white;
       outline: 0;
     }
   }
   .navbar-nav > .active > a {
     border-radius: 0;
-    color: $color_baltic_sea_approx;
-    background-color: $highlight-color;
+    color: $white;
+    background-color: $color_baltic_sea_approx;
     &:hover, &:focus {
       color: $white;
       background-color: $color_baltic_sea_approx;

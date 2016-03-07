@@ -43,7 +43,7 @@ export default class NavHeader extends React.Component {
         <Navbar.Header>
           <LinkContainer to={{ pathname: '/'}}>
             <Navbar.Brand>
-              Jaffna Tour
+              <b>JAFFNA TOUR</b>
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />

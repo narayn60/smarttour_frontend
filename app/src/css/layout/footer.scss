@@ -18,7 +18,7 @@ footer {
 	}
 }
 .footer-distributed {
-	background-color: $color_baltic_sea_approx;
+	background-color: $footer_color;
 	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
 	box-shadow: 0 1px 1px 0 $black_12;
 	//Instead of the line below you could use @include box-sizing($bs)
@@ -47,16 +47,18 @@ footer {
 		}
 	}
 	.footer-left p {
-		color: $color_mountain_mist_approx;
+		color: $white;
 		font-size: 14px;
 		margin: 0;
+    text-transform: capitalize;
 	}
 	p.footer-links {
-		font-size: 18px;
-		font-weight: bold;
 		color: $white;
+		font-size: 15px;
+		font-weight: bold;
 		margin: 0 0 10px;
 		padding: 0;
+    text-transform: uppercase;
 		a {
 			display: inline-block;
 			line-height: 1.8;
