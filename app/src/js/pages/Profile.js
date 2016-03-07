@@ -32,7 +32,7 @@ export default class Profile extends React.Component {
     const userName = AuthStore.getName().split(" ", 2)[0];
     const gravatarSize = 200;
 
-    const OptionalComponents = ["", <TourTable />, "Hello", "Aweseome"];
+    const OptionalComponents = ["", "TODO: Followers will go here", <TourTable />, "TODO: Placeholder"];
     const TourTableComponent = OptionalComponents[this.state.chosenSection];
 
     var profileStyle = {

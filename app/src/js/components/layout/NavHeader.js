@@ -34,14 +34,12 @@ export default class NavHeader extends React.Component {
     const dropdownIndex = this.navLinks.length + 2;
     const userProfileSettings = AuthStore.isLoggedIn() ? <ProfileSettings dropIndex={dropdownIndex} /> : "";
 
-    // let preventDefault = e => e.preventDefault();
-
-
+    //TODO: Fix reason that title is not going back to home page
     return (
 
       <Navbar staticTop>
         <Navbar.Header>
-          <LinkContainer to={{ pathname: '/'}}>
+          <LinkContainer to={{ pathname: '/'}}> 
             <Navbar.Brand>
               <b>JAFFNA TOUR</b>
             </Navbar.Brand>

@@ -57,6 +57,7 @@ export default class LeafMap extends React.Component {
     // Map config
     L.control.zoom({ position: "bottomleft"}).addTo(map);
     L.control.scale({ position: "bottomleft"}).addTo(map);
+    L.Icon.Default.imagePath = '../../../img/leaflet/';
 
     // set our state to include the tile layer
     this.state.tileLayer = L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map);

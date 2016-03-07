@@ -55,6 +55,7 @@ export default class TourTable extends React.Component {
         <TableHeaderColumn dataField="img_url" width="120px" dataFormat={this.imageFormatter} dataAlign="center">Icon</TableHeaderColumn>
         <TableHeaderColumn dataField="name" isKey={true} dataAlign="center" dataSort={true}>Tour Name</TableHeaderColumn>
         <TableHeaderColumn dataField="subscribers" dataAlign="center" dataSort={true}>Subscribers</TableHeaderColumn>
+        <TableHeaderColumn dataField="rating" dataAlign="center" dataSort={true}>Rating</TableHeaderColumn>
       </BootstrapTable>
 
     );

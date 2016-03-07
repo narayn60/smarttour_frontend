@@ -6,17 +6,20 @@ export default class UserTourSource {
       "name": 'Banksy',
       "id": 1,
       "subscribers": 450,
-      "img_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Shop_Until_You_Drop_by_Banksy.JPG"
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Shop_Until_You_Drop_by_Banksy.JPG",
+      "rating": 4
     }, {
       "name": 'Pubs',
       "id": 2,
       "subscribers": 3200,
-      "img_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Shop_Until_You_Drop_by_Banksy.JPG"
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Shop_Until_You_Drop_by_Banksy.JPG",
+      "rating": 3.5
     }, {
       "name": 'History',
       "id": 3,
       "subscribers": 21,
-      "img_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Shop_Until_You_Drop_by_Banksy.JPG"
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Shop_Until_You_Drop_by_Banksy.JPG",
+      "rating": 3
     }];
 
     // TODO: Change this to real request
