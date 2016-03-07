@@ -34,7 +34,15 @@ export default class EditTourForm extends React.Component {
 
     const options = {
       template: formLayout,
-      disabled: true
+      fields: {
+        name: {
+          disabled: true
+        },
+        data: {
+          label: "Information",
+          type: 'textarea'
+        }
+      }
     };
 
     return(
