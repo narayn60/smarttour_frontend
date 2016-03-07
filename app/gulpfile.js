@@ -26,8 +26,9 @@ var gp_googleWebFonts = require('gulp-google-webfonts');
 var css_locations = {};
 css_locations.bootstrap = "./node_modules/bootstrap/dist/css/bootstrap.min.css";
 css_locations.fontaweseome = "./node_modules/font-awesome/css/font-awesome.min.css";
-css_locations.griddle = "./node_modules/griddle-react/";
 css_locations.bootstrap_table = "./node_modules/react-bootstrap-table/css/react-bootstrap-table-all.min.css";
+css_locations.dropzone_file = "./node_modules/react-dropzone-component/styles/filepicker.css";
+css_locations.dropzone_min = "./node_modules/dropzone/dist/min/dropzone.min.css";
 var css_list = _.values(css_locations);
 
 gulp.task('copy', function() {
