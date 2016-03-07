@@ -12,7 +12,7 @@ export default class ProfileSettings extends React.Component {
       {text: 'Account Settings', glyph: glyph_classes + 'fa-cog', href: '#'},
       {text: 'Logout', glyph: glyph_classes + 'fa-sign-out', href: '/logout'}
     ].map((links, i) =>
-          <MenuItem eventKey={this.props.dropIndex + (0.1 * (i + 2))} href={links.href}>
+          <MenuItem key={i} eventKey={this.props.dropIndex + (0.1 * (i + 2))} href={links.href}>
           {links.text} 
           <span class={links.glyph}></span>
           </MenuItem>
