@@ -21,7 +21,7 @@ export default class TourTable extends React.Component {
   static getPropsFromStores() {
     return UserTourStore.getState();
   }
-
+  
   componentWillMount() {
     UserTourStore.listen(this.onChange.bind(this));
     UserTourActions.fetchTours();

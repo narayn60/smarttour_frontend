@@ -12,8 +12,6 @@ export default class Profile extends React.Component {
 
   constructor() {
     super();
-    // this.filterColumns = ['Name'
-    // ];
     this.user = {
       followers: 340,
       created_tours: 4
@@ -35,7 +33,6 @@ export default class Profile extends React.Component {
     const gravatarSize = 200;
 
     const TourTableComponent = this.state.followSection ? <TourTable /> : "";
-    // const TourTable = this.state.followSection ? "HELLO" : "";
 
     var profileStyle = {
       marginTop: '20px',
