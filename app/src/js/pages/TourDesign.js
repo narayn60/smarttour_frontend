@@ -2,6 +2,7 @@ import React from 'react';
 import LeafMap from '../components/leaflet/LeafMap';
 import { Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
 import EditTourForm from '../components/sub/EditTourForm';
+import classNames from 'classnames';
 
 
 export default class TourDesign extends React.Component {
@@ -40,15 +41,28 @@ export default class TourDesign extends React.Component {
     this.setState({currentlySelected: newSelected});
   }
 
-
   render() {
 
-    const Locations = this.state.points.map((point, i) => 
-                                            <tr class="table-element" onClick={() => this.onClick(i)}>
-                                            <td>{i}</td>
-                                            <td>{point.name}</td>
-                                            </tr> 
-                                           );
+    const eArr = this.state.points.entries();
+
+
+    // const Locations = this.state.points.map((point, i) => 
+    //                                         return (
+    //                                             <tr class="table-element" onClick={() => this.onClick(i)}> <td>{i}</td>
+    //                                             <td>{point.name}</td>
+    //                                             </tr> 
+    //                                         );
+    //                                        );
+    const Locations = this.state.points.map(function(point, i) {
+      const classes = classNames( "table-element", {
+        'selected': (this.state.currentlySelected === i)
+      });
+      return (
+          <tr class={classes} onClick={() => this.onClick(i)}> <td>{i}</td>
+          <td>{point.name}</td>
+          </tr> 
+      );
+    }.bind(this));
 
     const currentlySelected = this.state.currentlySelected;
     const TourEdit = currentlySelected === -1 ? "" : <EditTourForm values={this.state.points[currentlySelected]} />;

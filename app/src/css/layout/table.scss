@@ -6,10 +6,14 @@ table {
 }
 
 .table-element {
-    &:hover,
-    &:active {
+    &:hover {
         background-color: $background_red !important;
         color: $white;
     }
     
+}
+
+.selected {
+    background-color: $background_red !important;
+    color: $white;
 }
