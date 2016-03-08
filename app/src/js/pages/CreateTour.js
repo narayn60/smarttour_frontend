@@ -66,7 +66,6 @@ export default class CreateTour extends React.Component {
         <Row>
           <Col md={4} mdOffset={4}>
             <h2 class="section-heading text-center"> Create a tour </h2>
-            <h3 class="section-subheading text-center"> Complete the form </h3>
             <span class="progress-step">Step {this.state.step}</span>
             <progress class="progress" style={style}></progress>
           </Col>

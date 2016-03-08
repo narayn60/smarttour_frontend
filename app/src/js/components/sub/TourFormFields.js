@@ -36,8 +36,8 @@ export default class TourFormFields extends React.Component{
 			     	{genreComponent}
 			     </Input>
 				 <Input type="textarea" label="Bio" defaultValue={this.props.fieldValues.bio} onChange={this.handleChange.bind(this, 'bio')}/>
-				 <Input type="file" label="Picture" onChange={this.handleChange.bind(this, 'picture')}/>
-				 <Button bsStyle="primary" onClick={this.saveAndContinue.bind(this)}>Save and Continue</Button>
+				 <Input type="file" label="Profile Picture" onChange={this.handleChange.bind(this, 'picture')}/>
+				 <Button bsStyle="primary text-center" onClick={this.saveAndContinue.bind(this)}>Save and Continue</Button>
 			 </form>
  		)
 	}
