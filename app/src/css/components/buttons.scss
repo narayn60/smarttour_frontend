@@ -14,14 +14,14 @@
   text-transform: uppercase;
   font-weight: 700;
   &:hover, &:focus, &:active, &.active {
-    color: #fff;
+    color: $white;
     background-color: #fec503;
     border-color: #f6bf01;
   }
 }
 
 .open .dropdown-toggle.btn-primary {
-  color: #fff;
+  color: $white;
   background-color: #fec503;
   border-color: #f6bf01;
 }
