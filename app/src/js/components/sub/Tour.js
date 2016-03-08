@@ -5,6 +5,7 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 export default class Tour extends React.Component {
 
   render() {
+    console.log(this.props.tour)
     const { title, userId, id } = this.props.tour;
 
     return (
