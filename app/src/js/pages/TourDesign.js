@@ -44,7 +44,7 @@ export default class TourDesign extends React.Component {
   render() {
 
     const Locations = this.state.points.map((point, i) => 
-                                            <tr onClick={() => this.onClick(i)}>
+                                            <tr class="table-element" onClick={() => this.onClick(i)}>
                                             <td>{i}</td>
                                             <td>{point.name}</td>
                                             </tr> 

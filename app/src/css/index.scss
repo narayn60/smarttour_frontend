@@ -1,151 +1,160 @@
+@import './variables';
+
+//colors
+$color_seance_approx: purple;
+$color_malibu_approx: #80bfff;
+$color_geraldine_approx: #ff8080;
+$color_radical_red_approx: #fa396f;
+$color_turquoise_approx: #46d8d2;
+$black_17_5: rgba(0, 0, 0, 0.175);
+$color_stack_approx: #8b8b8b;
+$mine_shaft: #323232;
+$color_gallery_approx: #eee;
+$black_15: rgba(0,0,0,0.15);
+$color_turquoise_44_approx: rgba(70, 216, 210, 0.44);
+
 .active {
-    color: purple;
+    color: $color_seance_approx;
 }
 
-:local(.navbarDefault) {
-    background-color: #ffff;
-    border-color: transparent
+.square {
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0!important;
 }
 
-.square, .btn {
-    border-radius: 0px!important;
+.btn {
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 0!important;
 }
 
-/* -- color classes -- */
 .coralbg {
-    background-color: #80bfff;
-} 
+    background-color: $color_malibu_approx;
+}
 
 .redHue {
-	color: #ff8080;
+    color: $color_geraldine_approx;
 }
 
 .coral {
-    color: #FA396f;
+    color: $color_radical_red_approx;
 }
 
 .turqbg {
-    background-color: #46D8D2;
+    background-color: $color_turquoise_approx;
 }
 
 .turq {
-    color: #46D8D2;
+    color: $color_turquoise_approx;
 }
 
 .white {
-    color: #fff!important;
+    color: $white!important;
 }
 
 .tourTable {
-	padding-top: 20px;
+    padding-top: 20px;
 }
 
 .tourButton {
-	padding-bottom: 10px;
-  padding-top: 10px;
-  margin-top: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
 }
 
-/* -- The "User's Menu Container" specific elements. Custom container for the snippet -- */
-div.user-menu-container {
-  z-index: 10;
-  background-color: #fff;
-  margin-top: 20px;
-  background-clip: padding-box;
-  opacity: 0.97;
-  filter: alpha(opacity=97);
-  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+div {
+    &.user-menu-container {
+        z-index: 10;
+        background-color: $white;
+        margin-top: 20px;
+        //Instead of the line below you could use @include background-clip($clip)
+        background-clip: padding-box;
+        opacity: 0.97;
+        filter: alpha(opacity=97);
+        //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: 0 1px 6px $black_17_5;
+        .btn-lg {
+            padding: 0 12px;
+        }
+        h4 {
+            font-weight: 300;
+            color: $color_stack_approx;
+        }
+        a {
+            //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+            transition: 1s ease;
+        }
+        .btn {
+            //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+            transition: 1s ease;
+        }
+        .thumbnail {
+            width: 100%;
+            min-height: 200px;
+            padding: 0;
+            //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+            border-radius: 0;
+            border: 0!important;
+        }
+        .btn-group-vertical {
+            display: block;
+            > a {
+                padding: 20px 25px;
+                background-color: $color_turquoise_approx;
+                color: $white;
+                border-color: $white;
+            }
+        }
+    }
+    &.user-menu-btns {
+        padding-right: 0;
+        padding-left: 0;
+        padding-bottom: 0;
+        div.btn-group-vertical > a.active:after {
+            content: '';
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            margin-top: -13px;
+            border-left: 0;
+            border-bottom: 13px solid transparent;
+            border-top: 13px solid transparent;
+            border-left: 10px solid $color_turquoise_approx;
+        }
+    }
+    &.user-menu-content {
+        color: $mine_shaft;
+    }
+    &.btn-group-vertical > a {
+        &:hover {
+            color: $white;
+            border-color: $white;
+        }
+        &.active {
+            background: $color_radical_red_approx;
+            //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: none;
+            color: $white;
+        }
+    }
+    &.user-menu div.user-menu-content:not(.active) {
+        display: none;
+    }
 }
 
-div.user-menu-container .btn-lg {
-    padding: 0px 12px;
+.btn-label {
+    position: relative;
+    left: -12px;
+    display: inline-block;
+    padding: 6px 12px;
+    background: $black_15;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 3px 0 0 3px;
 }
 
-div.user-menu-container h4 {
-    font-weight: 300;
-    color: #8b8b8b;
-}
-
-div.user-menu-container a, div.user-menu-container .btn  {
-    transition: 1s ease;
-}
-
-div.user-menu-container .thumbnail {
-   width:100%;
-   min-height:200px;
-   border: 0px!important;
-   padding: 0px;
-   border-radius: 0;
-   border: 0px!important;
-}
-
-/* -- Vertical Button Group -- */
-div.user-menu-container .btn-group-vertical {
-    display: block;
-}
-
-div.user-menu-container .btn-group-vertical>a {
-    padding: 20px 25px;
-    background-color: #46D8D2;
-    color: white;
-    border-color: #fff;
-}
-
-div.btn-group-vertical>a:hover {
-    color: white;
-    border-color: white;
-}
-
-div.btn-group-vertical>a.active {
-    background: #FA396F;
-    box-shadow: none;
-    color: white;
-}
-/* -- Individual button styles of vertical btn group -- */
-div.user-menu-btns {
-    padding-right: 0;
-    padding-left: 0;
+.btn-labeled {
+    padding-top: 0;
     padding-bottom: 0;
 }
-
-div.user-menu-btns div.btn-group-vertical>a.active:after{
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  margin-top: -13px;
-  border-left: 0;
-  border-bottom: 13px solid transparent;
-  border-top: 13px solid transparent;
-  border-left: 10px solid #46D8D2;
-}
-/* -- The main tab & content styling of the vertical buttons info-- */
-div.user-menu-content {
-    color: #323232;
-}
-
-ul.user-menu-list {
-    list-style: none;
-    margin-top: 20px;
-    margin-bottom: 0;
-    padding: 10px;
-    border: 1px solid #eee;
-}
-ul.user-menu-list>li {
-    padding-bottom: 8px;
-    text-align: center;
-}
-
-div.user-menu div.user-menu-content:not(.active){
-  display: none;
-}
-
-/* -- The btn stylings for the btn icons -- */
-.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
-.btn-labeled {padding-top: 0;padding-bottom: 0;}
-
-/* -- Custom classes for the snippet, won't effect any existing bootstrap classes of your site, but can be reused. -- */
 
 .user-pad {
     padding: 20px 25px;
@@ -158,85 +167,101 @@ div.user-menu div.user-menu-content:not(.active){
 }
 
 .user-details {
-    background: #eee;
+    background: $color_gallery_approx;
     min-height: 333px;
 }
 
 .tour-about {
-    background: #eee;
+    background: $color_gallery_approx;
     min-height: 100px;
 }
 
 .user-image {
-  overflow:hidden;
-  float:right;
+    overflow: hidden;
+    float: right;
 }
 
-.overview h3 {
-    font-weight: 300;
-    margin-top: 15px;
-    margin: 10px 0 0 0;
-}
-
-.overview h4 {
-    font-weight: bold!important;
-    font-size: 40px;
-    margin-top: 0;
+.overview {
+    h3 {
+        font-weight: 300;
+        margin-top: 15px;
+        margin: 10px 0 0;
+    }
+    h4 {
+        font-weight: bold!important;
+        font-size: 40px;
+        margin-top: 0;
+    }
 }
 
 .view {
-    position:relative;
-    overflow:hidden;
+    position: relative;
+    overflow: hidden;
     margin-top: 10px;
+    p {
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
 }
 
-.view p {
-    margin-top: 20px;
-    margin-bottom: 0;
-}
- 
 .caption {
-    position:absolute;
-    top:0;
-    right:0;
-    background: rgba(70, 216, 210, 0.44);
-    width:100%;
-    height:100%;
-    padding:2%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: $color_turquoise_44_approx;
+    width: 100%;
+    height: 100%;
+    padding: 2%;
     display: none;
-    text-align:center;
-    color:#fff !important;
-    z-index:2;
-}
-
-.caption a {
-    padding-right: 10px;
-    color: #fff;
+    text-align: center;
+    color: $white !important;
+    z-index: 2;
+    a {
+        padding-right: 10px;
+        color: $white;
+    }
 }
 
 .info {
     display: block;
     padding: 10px;
-    background: #eee;
+    background: $color_gallery_approx;
     text-transform: uppercase;
     font-weight: 300;
-    text-align: right;
-}
-
-.info p, .stats p {
-    margin-bottom: 0;
+	  text-align: right;
+	  p {
+		    margin-bottom: 0;
+	  }
 }
 
 .stats {
-    display: block;
-    padding: 10px;
-    color: white;
+	  display: block;
+	  padding: 10px;
+	  color: $white;
+	  p {
+		    margin-bottom: 0;
+	  }
 }
 
 .share-links {
-    border: 1px solid #eee;
-    padding: 15px;
-    margin-top: 15px;
+	  border: 1px solid $color_gallery_approx;
+	  padding: 15px;
+	  margin-top: 15px;
 }
 
+:local(.navbarDefault) {
+	  background-color: $white;
+	  border-color: transparent;
+}
 
+ul.user-menu-list {
+	  list-style: none;
+	  margin-top: 20px;
+	  margin-bottom: 0;
+	  padding: 10px;
+	  border: 1px solid $color_gallery_approx;
+	  > li {
+		    padding-bottom: 8px;
+		    text-align: center;
+	  }
+}

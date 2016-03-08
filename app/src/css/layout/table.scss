@@ -2,4 +2,14 @@
 
 table {
     background-color: $white;
+
+}
+
+.table-element {
+    &:hover,
+    &:active {
+        background-color: $background_red !important;
+        color: $white;
+    }
+    
 }

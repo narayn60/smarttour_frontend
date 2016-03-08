@@ -19,12 +19,12 @@ export default class EditTourForm extends React.Component {
       return (
         <div>
           <Row>
-            <Col xs={6} md={6}>
+            <Col md={6}>
               <div>{locals.inputs.name}</div>
               <div>{locals.inputs.long}</div>
               <div>{locals.inputs.lat}</div>
             </Col>
-            <Col xs={6} md={6}>
+            <Col md={6}>
               <div>{locals.inputs.data}</div>
             </Col>
           </Row>
@@ -55,7 +55,7 @@ export default class EditTourForm extends React.Component {
           <t.form.Form class="edit-form" ref="form" type={FormSchema} value={this.props.values} options={options} />
           <Row>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="submit" class="btn btn-primary center-block">Save</button>
             </div>
           </Row>
         </form>
