@@ -40,7 +40,10 @@ export default class EditTourForm extends React.Component {
         },
         data: {
           label: "Information",
-          type: 'textarea'
+          type: 'textarea',
+          attrs: {
+            className: 'edit-form-textarea'
+          }
         }
       }
     };
@@ -49,7 +52,7 @@ export default class EditTourForm extends React.Component {
       <div>
         <h1>Information</h1>
         <form>
-          <t.form.Form ref="form" type={FormSchema} value={this.props.values} options={options} />
+          <t.form.Form class="edit-form" ref="form" type={FormSchema} value={this.props.values} options={options} />
           <Row>
             <div class="form-group">
               <button type="submit" class="btn btn-primary">Save</button>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import AuthStore from 'AuthStore';
 import { Row, Col, form, Input, Button } from "react-bootstrap";
 
@@ -9,8 +9,8 @@ export default class TourFormGuideFields extends React.Component {
     const userName = AuthStore.getName().split(" ", 2)[0];
     this.state = {
       owner: userName,
-      points: props.points,
-    }
+      points: props.points
+    };
   }
 
   handleChange(name, e) {
@@ -28,12 +28,12 @@ export default class TourFormGuideFields extends React.Component {
           <Button class="pull-left" onClick={this.props.previousStep}>Back</Button>
           <Button bsStyle="primary" class="pull-right" onClick={this.nextStep.bind(this)}>Save &amp; Continue</Button>
         </form>
-      )
+    );
   }
 
   nextStep() {
-    var data = this.state
-    this.props.saveValues(data)
-    this.props.nextStep()
+    var data = this.state;
+    this.props.saveValues(data);
+    this.props.nextStep();
   }
 }
