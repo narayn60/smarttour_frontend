@@ -1,6 +1,6 @@
 import React from 'react';
 import LeafMap from '../components/leaflet/LeafMap';
-import { Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Nav, NavItem, MenuItem, Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
 import EditTourForm from '../components/sub/EditTourForm';
 import classNames from 'classnames';
 import MapActions from 'MapActions';
@@ -13,6 +13,7 @@ export default class TourDesign extends React.Component {
   constructor() {
     super();
     this.state = MapStore.getState();
+    this.state.subselected = 0;
   }
 
   static getStores() {
@@ -36,11 +37,18 @@ export default class TourDesign extends React.Component {
   }
 
   onClick(index) {
-    console.log("OnClick");
-    const newSelected = MapStore.getSelected() === index ? null : index;
-    console.log("OnClick2");
-    MapActions.selected(newSelected);
-    console.log("Action clicked");
+    if (MapStore.getSelected() === index) {
+      MapActions.selected(null);
+      this.setState({subselected: 0});
+    } else {
+      MapActions.selected(index);
+    }
+    // const newSelected = MapStore.getSelected() === index ? null : index;
+    // MapActions.selected(newSelected);
+  }
+
+  handleSelect(selectedKey) {
+    this.setState({subselected: selectedKey});
   }
 
   render() {
@@ -50,14 +58,29 @@ export default class TourDesign extends React.Component {
         'selected': (MapStore.getSelected() === i)
       });
       return (
-          <tr class={classes} onClick={() => this.onClick(i)}> <td>{i}</td>
+        <tr class={classes} onClick={() => this.onClick(i)}> <td>{i}</td>
           <td>{point.name}</td>
-          </tr> 
+        </tr> 
       );
     });
 
     const currentlySelected = MapStore.getSelected();
-    const TourEdit = currentlySelected === null ? "" : <EditTourForm values={this.state.points[currentlySelected]} />;
+
+    const EditSelection = currentlySelected === null ? "" : (
+       <Nav bsStyle="tabs" activeKey={this.state.subselected} onSelect={this.handleSelect.bind(this)}>
+          <NavItem eventKey={0} title="Information">Information</NavItem>
+          <NavItem eventKey={1} title="Photos">Photos</NavItem>
+          <NavItem eventKey={2}>NavItem 3 content</NavItem>
+        </Nav>
+    );
+
+    const sections = [
+        <EditTourForm values={this.state.points[currentlySelected]} />,
+        "Temp for photos",
+        "Temp for something"
+    ];
+
+    const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
 
     return (
       <div class="container">
@@ -81,6 +104,7 @@ export default class TourDesign extends React.Component {
           </Col>
         </Row>
         <Row>
+          { EditSelection }
           { TourEdit }
         </Row>
       </div>

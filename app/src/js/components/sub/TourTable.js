@@ -14,7 +14,7 @@ export default class TourTable extends React.Component {
     this.state = UserTourStore.getState();
   }
 
-  static getStore() {
+  static getStores() {
     return [UserTourStore];
   }
 
@@ -61,3 +61,5 @@ export default class TourTable extends React.Component {
     );
   }
 }
+
+export default connectToStores(TourTable);

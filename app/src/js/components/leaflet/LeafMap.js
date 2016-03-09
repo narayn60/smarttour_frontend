@@ -78,6 +78,12 @@ export default class LeafMap extends React.Component {
     this.state.tileLayer = L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map);
 
     this.setState({tileLayer: this.state.tileLayer});
+
+    if (this.state.points.length >= 0) {
+      let point = this.state.points[0];
+      this.map.panTo([point.lat, point.long]);
+    }
+
     // map.on('click', this.markerAnnounce.bind(this));
   }
 
