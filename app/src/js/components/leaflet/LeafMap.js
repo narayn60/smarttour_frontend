@@ -1,12 +1,12 @@
-// js/components/leaflet/LeafMap.js
 import React from 'react';
 import config from './config'; 
+import MapStore from 'MapStore';
 
 
 export default class LeafMap extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.pointList = [];
     this.map = {};
     this.state = {
@@ -15,29 +15,22 @@ export default class LeafMap extends React.Component {
       geojson: null,
       filter: '*',
       numEntrances: null,
+      points: this.props.points
     };
   }
 
+  // Needs to be because leaflet needs to render first
   componentDidMount() {
     if (process.env.BROWSER) {
       require('leaflet');
       this.init('map');
+      this.loadInitialPoints();
+      // if (this.state.selected !== -1) {
+      //   console.log("Should pan");
+      //   let point = this.state.points[this.state.selected];
+      //   this.map.panTo([point.lat, point.long]);
+      // }
     }
-    var points = [
-      {
-        long: -2.6183652319014072,
-        lat: 51.453766227989604
-      },
-      {
-        long: -2.6171636022627354,
-        lat: 51.45420747748235
-      },
-      {
-        long: -2.616101447492838,
-        lat: 51.45366594341915
-      },
-    ];
-    // this.loadInitialPoints(points);
   }
 
   componentWillUnmount() {
@@ -47,10 +40,14 @@ export default class LeafMap extends React.Component {
     }
   }
 
+  // componentWillReceiveProps() {
+    
+  // }
+
   init(id) {
     // this function creates the Leaflet map object and is called after the Map component mounts
     var map = this.map = L.map(id, config.params)
-                          .locate({setView: true, maxZoom: 17});
+          .locate({setView: true, maxZoom: 17});
     var pointList = this.pointList;
     var latestPolyLine; //store the latest polyline so we can delete the previous layer when new added
 
@@ -62,51 +59,38 @@ export default class LeafMap extends React.Component {
     // set our state to include the tile layer
     this.state.tileLayer = L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map);
 
-    this.setState({
-      tileLayer: this.state.tileLayer
-    });
-    map.on('click', this.markerAnnounce.bind(this));
+    this.setState({tileLayer: this.state.tileLayer});
+    // map.on('click', this.markerAnnounce.bind(this));
   }
 
-  loadInitialPoints(points) {
-    for (let point of points) {
-      var marker = L.marker([point.long, point.lat]).addTo(this.map);
-      this.map.panTo(new L.LatLng(point.long, point.lat));
-    }
+  loadInitialPoints() {
+    this.state.points.map((point) =>
+                          L.marker([point.lat, point.long]).addTo(this.map));
   }
 
-  markerAnnounce(e) {
-    this.createPolyLine(e),
-    // this.onMapClick(e),
-    this.dropMarker(e)
-  }
+  // markerAnnounce(e) {
+  //   this.createPolyLine(e);
+  //   this.dropMarker(e);
+  // }
 
-  createPolyLine(e) {
-    if (this.pointList.length !== 0) {
-      this.map.removeLayer(this.latestPolyLine);
-    }
-    this.pointList.push(e.latlng);
-    var firstpolyline = new L.Polyline(this.pointList, {
-      color: 'red',
-      weight: 3,
-      opacity: 0.5,
-      smoothFactor: 1
-    });
-    firstpolyline.addTo(this.map);
-    this.latestPolyLine = firstpolyline;
-  }
+  // createPolyLine(e) {
+  //   if (this.pointList.length !== 0) {
+  //     this.map.removeLayer(this.latestPolyLine);
+  //   }
+  //   this.pointList.push(e.latlng);
+  //   var firstpolyline = new L.Polyline(this.pointList, {
+  //     color: 'red',
+  //     weight: 3,
+  //     opacity: 0.5,
+  //     smoothFactor: 1
+  //   });
+  //   firstpolyline.addTo(this.map);
+  //   this.latestPolyLine = firstpolyline;
+  // }
 
-  onMapClick(e) {
-    L.popup()
-      .setLatLng(e.latlng)
-      .setContent("You clicked the map at " + e.latlng.toString())
-      .openOn(this.map);
-  }
-
-  dropMarker(e) {
-    console.log(this.pointList);
-    L.marker(e.latlng).addTo(this.map);
-  }
+  // dropMarker(e) {
+  //   L.marker(e.latlng).addTo(this.map);
+  // }
 
   render() {
     return (

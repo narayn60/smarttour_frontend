@@ -3,69 +3,58 @@ import LeafMap from '../components/leaflet/LeafMap';
 import { Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
 import EditTourForm from '../components/sub/EditTourForm';
 import classNames from 'classnames';
+import MapActions from 'MapActions';
+import MapStore from 'MapStore';
+import connectToStores from 'alt-utils/lib/connectToStores';
 
 
 export default class TourDesign extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-      currentlySelected: -1,
-      points: [
-        {
-          long: -2.6183652319014072,
-          lat: 51.453766227989604,
-          name: 'MVB',
-          data: 'The university building'
-        },
-        {
-          long: -2.6171636022627354,
-          lat: 51.45420747748235,
-          name: 'Banksy',
-          data: 'A famous Street Artists'
-        },
-        {
-          long: -2.616101447492838,
-          lat: 51.45366594341915,
-          name: 'Queens',
-          data: 'The university engineering building'
-        },
-      ]
-    };
-    
+    this.state = MapStore.getState();
   }
 
+  static getStores() {
+    return [MapStore];
+  }
+
+  static getPropsFromStores() {
+    return MapStore.getState();
+  }
+
+  componentWillMount() {
+    MapStore.listen(this.onChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    MapStore.unlisten(this.onChange.bind(this));
+  }
+
+  onChange(state) {
+    this.setState(state);
+  }
 
   onClick(index) {
-    const newSelected = this.state.currentlySelected === index ? -1 : index;
-    this.setState({currentlySelected: newSelected});
+    const newSelected = MapStore.getSelected() === index ? null : index;
+    MapActions.selected(newSelected);
   }
 
   render() {
 
-    const eArr = this.state.points.entries();
-
-
-    // const Locations = this.state.points.map((point, i) => 
-    //                                         return (
-    //                                             <tr class="table-element" onClick={() => this.onClick(i)}> <td>{i}</td>
-    //                                             <td>{point.name}</td>
-    //                                             </tr> 
-    //                                         );
-    //                                        );
-    const Locations = this.state.points.map(function(point, i) {
+    const Locations = this.state.points.map((point, i) => {
       const classes = classNames( "table-element", {
-        'selected': (this.state.currentlySelected === i)
+        'selected': (MapStore.getSelected() === i)
       });
       return (
           <tr class={classes} onClick={() => this.onClick(i)}> <td>{i}</td>
           <td>{point.name}</td>
           </tr> 
       );
-    }.bind(this));
+    });
 
-    const currentlySelected = this.state.currentlySelected;
-    const TourEdit = currentlySelected === -1 ? "" : <EditTourForm values={this.state.points[currentlySelected]} />;
+    const currentlySelected = MapStore.getSelected();
+    const TourEdit = currentlySelected === null ? "" : <EditTourForm values={this.state.points[currentlySelected]} />;
 
     return (
       <div class="container">
@@ -95,3 +84,5 @@ export default class TourDesign extends React.Component {
     );
   }
 }
+
+export default connectToStores(TourDesign);

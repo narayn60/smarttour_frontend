@@ -159,7 +159,7 @@ function renderPage(serverHtml) {
     <html>
         <head>
             <meta charset=utf-8/>
-            <title>My First React Router App</title>
+            <title>Jaffna Tour</title>
             <link href="css/vendor.min.css" rel="stylesheet">
             <link href="css/bundle.css" rel="stylesheet">
             <link href="fonts/fonts.css" rel="stylesheet">

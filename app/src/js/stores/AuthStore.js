@@ -1,4 +1,4 @@
-import alt from '../alt';
+import alt from 'alt_base';
 import AuthActions from 'AuthActions';
 
 class AuthStore {

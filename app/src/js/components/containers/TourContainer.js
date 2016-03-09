@@ -12,7 +12,7 @@ export default class TourContainer extends React.Component {
   constructor() {
     super();
     this.state = TourStore.getState();
-    this.state = {'searchString': ''}
+    this.state = {'searchString': ''}; //TODO: Why initialised twice?
     this.filterByName = this.filterByName.bind(this);
   }
 
@@ -47,7 +47,7 @@ export default class TourContainer extends React.Component {
 
   filterTours(filter) {
     //TODO...filter tours
-    console.log('filter by ' + filter)
+    console.log('filter by ' + filter);
   }
 
   filterByName(tour) {
@@ -64,12 +64,12 @@ export default class TourContainer extends React.Component {
 
   render() {
     //TODO get from source
-    var genres = ['Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different']
-    const genreComponent = genres.map((genre, i) => <MenuItem eventKey={i} key={i} onClick={this.filterTours.bind(this, genre)}>{genre}</MenuItem>)
+    var genres = ['Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different'];
+    const genreComponent = genres.map((genre, i) => <MenuItem eventKey={i} key={i} onClick={this.filterTours.bind(this, genre)}>{genre}</MenuItem>);
 
     var ToursComponent = this.state.tours.map((tour, i) => <Tour key={i} tour={tour}/>);
     var searchString = this.state.searchString.trim().toLowerCase();
-    var filteredTours = []
+    var filteredTours = [];
 
     if(searchString.length > 0) {
       filteredTours = this.state.tours.filter(this.filterByName);
