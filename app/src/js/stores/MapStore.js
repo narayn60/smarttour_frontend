@@ -39,6 +39,7 @@ class MapStore {
   }
 
   getSelected() {
+    console.log("getSelected");
     return this.getState().selected;
   }
 }

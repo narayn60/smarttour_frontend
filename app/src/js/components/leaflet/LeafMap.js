@@ -1,7 +1,7 @@
 import React from 'react';
 import config from './config'; 
 import MapStore from 'MapStore';
-
+import connectToStores from 'alt-utils/lib/connectToStores';
 
 export default class LeafMap extends React.Component {
 
@@ -15,8 +15,21 @@ export default class LeafMap extends React.Component {
       geojson: null,
       filter: '*',
       numEntrances: null,
-      points: this.props.points
+      points: this.props.points,
+      selected: null
     };
+  }
+
+  static getStores() {
+    return [MapStore];
+  }
+
+  static getPropsFromStores() {
+    return MapStore.getState();
+  }
+
+  componentWillMount() {
+    MapStore.listen(this.onChange.bind(this));
   }
 
   // Needs to be because leaflet needs to render first
@@ -25,11 +38,6 @@ export default class LeafMap extends React.Component {
       require('leaflet');
       this.init('map');
       this.loadInitialPoints();
-      // if (this.state.selected !== -1) {
-      //   console.log("Should pan");
-      //   let point = this.state.points[this.state.selected];
-      //   this.map.panTo([point.lat, point.long]);
-      // }
     }
   }
 
@@ -38,11 +46,21 @@ export default class LeafMap extends React.Component {
       this.map.off('click', this.onMapClick); 
       this.map = null;
     }
+    MapStore.unlisten(this.onChange.bind(this));
   }
 
-  // componentWillReceiveProps() {
-    
-  // }
+  onChange(state) {
+    this.setState(state);
+  }
+
+  // Pan to the selected point
+  panToPoint() {
+    if (this.state.selected !== null) {
+      let point = this.state.points[this.state.selected];
+      this.map.panTo([point.lat, point.long]);
+    }
+  }
+
 
   init(id) {
     // this function creates the Leaflet map object and is called after the Map component mounts
@@ -93,8 +111,13 @@ export default class LeafMap extends React.Component {
   // }
 
   render() {
+
+    this.panToPoint();
+
     return (
         <div id='map'></div>
     );
   }
 }
+
+export default connectToStores(LeafMap);

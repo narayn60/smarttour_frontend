@@ -36,8 +36,11 @@ export default class TourDesign extends React.Component {
   }
 
   onClick(index) {
+    console.log("OnClick");
     const newSelected = MapStore.getSelected() === index ? null : index;
+    console.log("OnClick2");
     MapActions.selected(newSelected);
+    console.log("Action clicked");
   }
 
   render() {
@@ -74,7 +77,7 @@ export default class TourDesign extends React.Component {
             </Table>
           </Col>
           <Col md={8} mdOffset={1}>
-            <LeafMap points={this.state.points}/>
+            <LeafMap points={this.state.points} />
           </Col>
         </Row>
         <Row>
