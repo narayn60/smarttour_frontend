@@ -3,13 +3,15 @@ import GuideStore from 'GuideStore';
 import GuideActions from 'GuideActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import TourGuide from '../sub/TourGuide';
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button, DropdownButton, MenuItem } from "react-bootstrap";
 
 export default class TourGuideContainer extends React.Component {
 
   constructor() {
     super();
     this.state = GuideStore.getState();
+    this.state = {'searchString': ''}
+    this.filterByName = this.filterByName.bind(this);
     }
 
   static getStores() {
@@ -43,14 +45,55 @@ export default class TourGuideContainer extends React.Component {
     GuideActions.updateGuide(guide);
   }
 
+  filterGuides(filter) {
+    console.log('filter by ' + filter)
+  }
+
+  filterByName(guide) {
+    if (guide.name.toLowerCase().match( this.state.searchString )) {
+      return true;
+    }
+    return false;
+  }
+
+  handleSearchChange(e) {
+    this.setState({searchString: e.target.value.toLowerCase()});
+  }
+
+
   render() {
-    const GuidesComponent = this.state.guides.map((guide, i) => <TourGuide key={i} name={guide.name} bio={guide.bio} photo={guide.photo} id={guide.id}/>);
+    
+    //Search
+    var genres = ['Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different']
+    const genreComponent = genres.map((genre, i) => <MenuItem eventKey={i} key={i} onClick={this.filterByName.bind(this, genre)}>{genre}</MenuItem>)
+
+    var GuidesComponent = this.state.guides.map((guide, i) => <TourGuide key={i} guide={guide}/>);
+    var searchString = this.state.searchString.trim().toLowerCase();
+    var filteredGuides = []
+
+    if(searchString.length > 0) {
+      filteredGuides = this.state.guides.filter(this.filterByName);
+      GuidesComponent = filteredGuides.map((guide, i) => <TourGuide key={i} guide={guide}/>);
+    }
+
 
     return (
       <div>
         <Row class="text-center">
           <h2 class="section-heading">Guides</h2>
           <h3 class="section-subheading">Explore</h3>
+        </Row>
+        <Row>
+          <input class="searchTour" type="text" value={this.state.searchString} onChange={this.handleSearchChange.bind(this)} placeholder="search" />
+        </Row>
+        <Row>
+          <Col md={4} mdOffset={4} class="text-center search-button-group">
+            <Button bsStyle="primary" onClick={this.filterByName.bind(this, 'popular')}> Popular </Button>
+            <Button bsStyle="primary" onClick={this.filterByName.bind(this, 'recent')}> Recent </Button>
+            <DropdownButton bsStyle="primary" title="Genre" id="bg-nested-dropdown">
+              {genreComponent}
+            </DropdownButton>
+          </Col>
         </Row>
         <Row>
           {GuidesComponent}

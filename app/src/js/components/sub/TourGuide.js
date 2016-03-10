@@ -5,7 +5,7 @@ import { Row, Col, Image } from "react-bootstrap";
 
 export default class Guide extends React.Component {
   render() {
-    const { name, photo, bio, id } = this.props;
+    const { name, photo, bio, id } = this.props.guide;
     var dummy_photo = "img/team/3.jpg";
 
     return (
