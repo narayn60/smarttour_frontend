@@ -43,6 +43,7 @@ export default class TourGuideDetailed extends React.Component {
     return (
         <div>
             <div class="container">
+                <h3 class="text-center"> {guide.name} </h3>
                 <Row class="square">
                     <Col md={8} mdOffset={2} class="user-details">
                         <Row class="coralbg white">
@@ -81,8 +82,7 @@ export default class TourGuideDetailed extends React.Component {
                         </Button>
                         <Collapse in={this.state.open}>
                           <div>
-                            <Well>
-                              <JsonTable rows={ fake_tours } />
+                            <Well class="collapsing-well">
                             </Well>
                           </div>
                         </Collapse>

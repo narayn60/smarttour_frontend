@@ -1,13 +1,13 @@
 .searchTour {
     text-align: center;
     font: inherit;
-    border: 6px solid #a3d8d6;
+    border: 6px solid $background_blue;
     padding: 13px 12px;
     font-size: 15px;
     box-shadow: 0 1px 1px #DDD;
     width: 384px;
     outline: none;
     display: block;
-    color: #7B8585;
+    color: #background_blue;
     margin: 0 auto 20px;
 }

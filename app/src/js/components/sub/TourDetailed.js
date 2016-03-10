@@ -87,7 +87,7 @@ export default class TourDetailed extends React.Component {
                     </Button>
                     <Collapse in={this.state.open}>
                       <div>
-                        <Well>
+                        <Well class="collapsing-well">
                             <Image src="../../img/portfolio/qr.png" rounded/>
                         </Well>
                       </div>
