@@ -54,7 +54,11 @@ export default class LeafMap extends React.Component {
 
   init(id) {
     // this function creates the Leaflet map object and is called after the Map component mounts
-    var map = this.map = L.map(id, config.params).locate({setView: true, maxZoom: 17});
+    let point = this.state.points[0];
+    // this.map.panTo([point.lat, point.long]);
+    var map = this.map = L.map(id, config.params).setView([point.lat,  point.long], 17);
+    this.props.updateState(0);
+    // var map = this.map = L.map(id, config.params).locate({setView: true, maxZoom: 17});
     // var pointList = this.pointList;
     var latestPolyLine; //store the latest polyline so we can delete the previous layer when new added
 
