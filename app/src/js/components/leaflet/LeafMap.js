@@ -1,14 +1,16 @@
 import React from 'react';
 import config from './config'; 
 import MapStore from 'MapStore';
+import MapActions from 'MapActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 
 export default class LeafMap extends React.Component {
 
   constructor(props) {
     super(props);
-    this.pointList = [];
+    // this.pointList = [];
     this.map = {};
+    this.marker_click = false;
     this.state = {
       tileLayer : null,
       geojsonLayer: null,
@@ -45,6 +47,7 @@ export default class LeafMap extends React.Component {
     if (process.env.BROWSER) {
       this.map.off('click', this.onMapClick); 
       this.map = null;
+      //TODO: Unbing markers
     }
     MapStore.unlisten(this.onChange.bind(this));
   }
@@ -64,9 +67,8 @@ export default class LeafMap extends React.Component {
 
   init(id) {
     // this function creates the Leaflet map object and is called after the Map component mounts
-    var map = this.map = L.map(id, config.params)
-          .locate({setView: true, maxZoom: 17});
-    var pointList = this.pointList;
+    var map = this.map = L.map(id, config.params).locate({setView: true, maxZoom: 17});
+    // var pointList = this.pointList;
     var latestPolyLine; //store the latest polyline so we can delete the previous layer when new added
 
     // Map config
@@ -76,7 +78,6 @@ export default class LeafMap extends React.Component {
 
     // set our state to include the tile layer
     this.state.tileLayer = L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map);
-
     this.setState({tileLayer: this.state.tileLayer});
 
     if (this.state.points.length >= 0) {
@@ -87,9 +88,20 @@ export default class LeafMap extends React.Component {
     // map.on('click', this.markerAnnounce.bind(this));
   }
 
+  selectMarker(e) {
+    MapActions.selected(e.target.marker_index);
+    this.map.panTo(e.latlng);
+    this.marker_click = true;
+  }
+
   loadInitialPoints() {
-    this.state.points.map((point) =>
-                          L.marker([point.lat, point.long]).addTo(this.map));
+    this.state.points.map((point, i) => {
+      const marker = L.marker([point.lat, point.long]);
+      marker.marker_index = i;
+      marker.on('click', this.selectMarker.bind(this));
+      marker.addTo(this.map);
+      return marker;
+    });
   }
 
   // markerAnnounce(e) {
@@ -118,7 +130,13 @@ export default class LeafMap extends React.Component {
 
   render() {
 
-    this.panToPoint();
+    // Weird issue where won't pan on marker click 
+    if (!this.marker_click) {
+      this.panToPoint();
+    } else {
+      console.log(this.marker_click);
+      this.marker_click = false;
+    }
 
     return (
         <div id='map'></div>

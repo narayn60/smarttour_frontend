@@ -33,7 +33,7 @@ class AuthStore {
   }
 
   onLogin(info) {
-    // console.log(info);
+    console.log(info);
     this.user = info;
   }
 
