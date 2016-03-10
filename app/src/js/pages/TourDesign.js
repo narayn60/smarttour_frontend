@@ -14,6 +14,7 @@ export default class TourDesign extends React.Component {
     super();
     this.state = MapStore.getState();
     this.state.subselected = 0;
+    this.state.selected = null;
   }
 
   static getStores() {
@@ -37,11 +38,14 @@ export default class TourDesign extends React.Component {
   }
 
   onClick(index) {
-    if (MapStore.getSelected() === index) {
-      MapActions.selected(null);
+    // if (MapStore.getSelected() === index) {
+    if (this.state.selected === index) {
+      // MapActions.selected(null);
+      this.setState({selected: null});
       this.setState({subselected: 0});
     } else {
-      MapActions.selected(index);
+      // MapActions.selected(index);
+      this.setState({selected: index});
     }
     // const newSelected = MapStore.getSelected() === index ? null : index;
     // MapActions.selected(newSelected);
@@ -51,11 +55,18 @@ export default class TourDesign extends React.Component {
     this.setState({subselected: selectedKey});
   }
 
+  selected(index) {
+    console.log("Parent updated state");
+    this.setState({selected: index});
+  }
+
   render() {
+
+    console.log(this.state.selected);
 
     const Locations = this.state.points.map((point, i) => {
       const classes = classNames( "table-element", {
-        'selected': (MapStore.getSelected() === i)
+        'selected': (this.state.selected === i)
       });
       return (
         <tr class={classes} onClick={() => this.onClick(i)}> <td>{i}</td>
@@ -64,7 +75,7 @@ export default class TourDesign extends React.Component {
       );
     });
 
-    const currentlySelected = MapStore.getSelected();
+    const currentlySelected = this.state.selected;
 
     const EditSelection = currentlySelected === null ? "" : (
        <Nav bsStyle="tabs" activeKey={this.state.subselected} onSelect={this.handleSelect.bind(this)}>
@@ -100,7 +111,7 @@ export default class TourDesign extends React.Component {
             </Table>
           </Col>
           <Col md={8} mdOffset={1}>
-            <LeafMap points={this.state.points} />
+            <LeafMap points={this.state.points} updateState={this.selected.bind(this)} selectedindex={this.state.selected}/>
           </Col>
         </Row>
         <Row>

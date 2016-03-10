@@ -17,8 +17,8 @@ export default class LeafMap extends React.Component {
       geojson: null,
       filter: '*',
       numEntrances: null,
-      points: this.props.points,
-      selected: null
+      points: this.props.points
+      // selected: null
     };
   }
 
@@ -32,6 +32,12 @@ export default class LeafMap extends React.Component {
 
   componentWillMount() {
     MapStore.listen(this.onChange.bind(this));
+  }
+
+  componentWillReceiveProps() {
+    console.log("Received props");
+    console.log(this.props.selectedindex);
+    this.panToPoint();
   }
 
   // Needs to be because leaflet needs to render first
@@ -52,14 +58,29 @@ export default class LeafMap extends React.Component {
     MapStore.unlisten(this.onChange.bind(this));
   }
 
+  componentDidUpdate() {
+    // Weird issue where won't pan on marker click 
+    console.log("Component updated");
+    if (!this.marker_click) {
+      console.log("Should pan");
+      this.panToPoint();
+    } else {
+      console.log("Marker_click is true");
+      this.marker_click = false;
+    }
+  }
+
+  component
+
   onChange(state) {
     this.setState(state);
   }
 
   // Pan to the selected point
   panToPoint() {
-    if (this.state.selected !== null) {
-      let point = this.state.points[this.state.selected];
+    console.log(this.props.selectedindex);
+    if (this.props.selectedindex !== null) {
+      let point = this.state.points[this.props.selectedindex];
       this.map.panTo([point.lat, point.long]);
     }
   }
@@ -80,18 +101,19 @@ export default class LeafMap extends React.Component {
     this.state.tileLayer = L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map);
     this.setState({tileLayer: this.state.tileLayer});
 
-    if (this.state.points.length >= 0) {
-      let point = this.state.points[0];
-      this.map.panTo([point.lat, point.long]);
-    }
+    // if (this.state.points.length >= 0) {
+    //   let point = this.state.points[0];
+    //   this.map.panTo([point.lat, point.long]);
+    // }
 
     // map.on('click', this.markerAnnounce.bind(this));
   }
 
   selectMarker(e) {
-    MapActions.selected(e.target.marker_index);
     this.map.panTo(e.latlng);
-    this.marker_click = true;
+    this.props.updateState(e.target.marker_index);
+    // MapActions.selected(e.target.marker_index);
+    // this.props.mapaction(e.target.marker_index).bind(this);
   }
 
   loadInitialPoints() {
@@ -130,13 +152,6 @@ export default class LeafMap extends React.Component {
 
   render() {
 
-    // Weird issue where won't pan on marker click 
-    if (!this.marker_click) {
-      this.panToPoint();
-    } else {
-      console.log(this.marker_click);
-      this.marker_click = false;
-    }
 
     return (
         <div id='map'></div>

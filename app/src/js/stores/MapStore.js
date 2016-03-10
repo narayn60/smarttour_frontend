@@ -1,9 +1,9 @@
 import alt from 'alt_base';
-import MapActions from 'MapActions';
+// import MapActions from 'MapActions';
 
 class MapStore {
   constructor() {
-    this.bindActions(MapActions);
+    // this.bindActions(MapActions);
     this.state = {
       selected: null,
       points: [
@@ -28,20 +28,20 @@ class MapStore {
       ]
     };
 
-    this.exportPublicMethods({
-      getSelected: this.getSelected
-    });
+    // this.exportPublicMethods({
+    //   getSelected: this.getSelected
+    // });
   }
 
-  onSelected(index) {
-    this.setState({selected: index});
-    // this.state.selected = selected;
-  }
+  // onSelected(index) {
+  //   this.setState({selected: index});
+  //   // this.state.selected = selected;
+  // }
 
-  getSelected() {
-    console.log("getSelected");
-    return this.getState().selected;
-  }
+  // getSelected() {
+  //   console.log("getSelected");
+  //   return this.getState().selected;
+  // }
 }
 
 export default alt.createStore(MapStore, 'MapStore');
