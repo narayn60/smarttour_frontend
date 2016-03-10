@@ -1,16 +1,12 @@
 import React from 'react';
 import config from './config'; 
-import MapStore from 'MapStore';
-import MapActions from 'MapActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 
 export default class LeafMap extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.pointList = [];
     this.map = {};
-    this.marker_click = false;
     this.state = {
       tileLayer : null,
       geojsonLayer: null,
@@ -18,25 +14,11 @@ export default class LeafMap extends React.Component {
       filter: '*',
       numEntrances: null,
       points: this.props.points
-      // selected: null
     };
   }
 
-  static getStores() {
-    return [MapStore];
-  }
-
-  static getPropsFromStores() {
-    return MapStore.getState();
-  }
-
-  componentWillMount() {
-    MapStore.listen(this.onChange.bind(this));
-  }
-
+  // panToPoint() called twice because of issues with Leaflet
   componentWillReceiveProps() {
-    console.log("Received props");
-    console.log(this.props.selectedindex);
     this.panToPoint();
   }
 
@@ -55,30 +37,14 @@ export default class LeafMap extends React.Component {
       this.map = null;
       //TODO: Unbing markers
     }
-    MapStore.unlisten(this.onChange.bind(this));
   }
 
   componentDidUpdate() {
-    // Weird issue where won't pan on marker click 
-    console.log("Component updated");
-    if (!this.marker_click) {
-      console.log("Should pan");
-      this.panToPoint();
-    } else {
-      console.log("Marker_click is true");
-      this.marker_click = false;
-    }
-  }
-
-  component
-
-  onChange(state) {
-    this.setState(state);
+    this.panToPoint();
   }
 
   // Pan to the selected point
   panToPoint() {
-    console.log(this.props.selectedindex);
     if (this.props.selectedindex !== null) {
       let point = this.state.points[this.props.selectedindex];
       this.map.panTo([point.lat, point.long]);
@@ -112,8 +78,6 @@ export default class LeafMap extends React.Component {
   selectMarker(e) {
     this.map.panTo(e.latlng);
     this.props.updateState(e.target.marker_index);
-    // MapActions.selected(e.target.marker_index);
-    // this.props.mapaction(e.target.marker_index).bind(this);
   }
 
   loadInitialPoints() {
@@ -152,11 +116,8 @@ export default class LeafMap extends React.Component {
 
   render() {
 
-
     return (
         <div id='map'></div>
     );
   }
 }
-
-export default connectToStores(LeafMap);

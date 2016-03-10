@@ -38,17 +38,12 @@ export default class TourDesign extends React.Component {
   }
 
   onClick(index) {
-    // if (MapStore.getSelected() === index) {
     if (this.state.selected === index) {
-      // MapActions.selected(null);
       this.setState({selected: null});
       this.setState({subselected: 0});
     } else {
-      // MapActions.selected(index);
       this.setState({selected: index});
     }
-    // const newSelected = MapStore.getSelected() === index ? null : index;
-    // MapActions.selected(newSelected);
   }
 
   handleSelect(selectedKey) {
@@ -56,13 +51,10 @@ export default class TourDesign extends React.Component {
   }
 
   selected(index) {
-    console.log("Parent updated state");
     this.setState({selected: index});
   }
 
   render() {
-
-    console.log(this.state.selected);
 
     const Locations = this.state.points.map((point, i) => {
       const classes = classNames( "table-element", {
