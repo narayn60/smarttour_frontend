@@ -1,3 +1,4 @@
+//TODO: Mark for deletion
 import React from 'react';
 // import '../../css/leaflet.scss';
 import LeafMap from '../components/leaflet/LeafMap';

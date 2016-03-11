@@ -1,10 +1,8 @@
 @import '../variables';
 
 //colors
-$button_background: #6ed3cf;
 $button_border: #6ed3ea;
 $color_malibu_65_approx: rgba(97, 203, 255, 0.65);
-$white: #fff;
 $seashell: #f1f1f1;
 $white_80: rgba(255, 255, 255, 0.8);
 $gray: #808080;
@@ -53,7 +51,7 @@ $url_0: url(http://data2.whicdn.com/images/139218968/large.jpg);
 	top: 42.5%;
 	width: 35%;
 	height: 15%;
-	background-color: $button_background;
+	background-color: $background_blue;
 	padding: 10px;
 	padding-top: 6px;
 	color: $white;
@@ -67,7 +65,7 @@ $url_0: url(http://data2.whicdn.com/images/139218968/large.jpg);
 		top: 42.5%;
 		width: 35%;
 		height: 15%;
-		background-color: $button_background;
+		background-color: $background_blue;
 		padding: 10px;
 		padding-top: 6px;
 		color: $white;

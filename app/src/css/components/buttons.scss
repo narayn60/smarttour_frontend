@@ -19,15 +19,15 @@ ul.dropdown-menu {
   font-weight: 700;
   &:hover, &:focus, &:active, &.active {
     color: $white;
-    background-color: #fec503;
-    border-color: #f6bf01;
+    background-color: $background_red;
+    border-color: $background_red;
   }
 }
 
 .open .dropdown-toggle.btn-primary {
   color: $white;
-  background-color: #fec503;
-  border-color: #f6bf01;
+  background-color: $background_red;
+  border-color: $background_red;
 }
 
 .btn-primary {
@@ -102,11 +102,11 @@ fieldset[disabled] .btn-primary.active {
 
 .btn-primary .badge {
   color: $highlight-color;
-  background-color: #fff;
+  background-color: $white;
 }
 
 .btn-xl {
-  color: #fff;
+  color: $white;
   background-color: $highlight-color;
   border-color: $highlight-color;
   font-family: $font-stack;
@@ -116,16 +116,16 @@ fieldset[disabled] .btn-primary.active {
   font-size: 18px;
   padding: 20px 40px;
   &:hover, &:focus, &:active, &.active {
-    color: #fff;
-    background-color: #fec503;
-    border-color: #f6bf01;
+    color: $white;
+    background-color: $background_red;
+    border-color: $background_red;
   }
 }
 
 .open .dropdown-toggle.btn-xl {
-  color: #fff;
-  background-color: #fec503;
-  border-color: #f6bf01;
+  color: $white;
+  background-color: $background_red;
+  border-color: $background_red;
 }
 
 .btn-xl {
@@ -200,7 +200,7 @@ fieldset[disabled] .btn-xl.active {
 
 .btn-xl .badge {
   color: $highlight-color;
-  background-color: #fff;
+  background-color: $white;
 }
 
 .search-button-group {

@@ -13,7 +13,6 @@ export default class Guide extends React.Component {
             <Link to={`/guides/${id}`} class="portfolio-link"> 
                 <div class="team-member portfolio-hover" >
                     <div class="portfolio-hover-content">
-                        <i class="fa fa-plus fa-3x"></i>
                     </div>
                 </div>
                 <Image src={ dummy_photo } rounded class="img-responsive" alt=""/>

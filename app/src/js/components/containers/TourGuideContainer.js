@@ -10,7 +10,7 @@ export default class TourGuideContainer extends React.Component {
   constructor() {
     super();
     this.state = GuideStore.getState();
-    this.state = {'searchString': ''}
+    this.state = {'searchString': ''};
     this.filterByName = this.filterByName.bind(this);
     }
 
@@ -46,7 +46,7 @@ export default class TourGuideContainer extends React.Component {
   }
 
   filterGuides(filter) {
-    console.log('filter by ' + filter)
+    console.log('filter by ' + filter);
   }
 
   filterByName(guide) {
@@ -64,12 +64,12 @@ export default class TourGuideContainer extends React.Component {
   render() {
     
     //Search
-    var genres = ['Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different']
-    const genreComponent = genres.map((genre, i) => <MenuItem eventKey={i} key={i} onClick={this.filterByName.bind(this, genre)}>{genre}</MenuItem>)
+    var genres = ['Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different'];
+    const genreComponent = genres.map((genre, i) => <MenuItem eventKey={i} key={i} onClick={this.filterByName.bind(this, genre)}>{genre}</MenuItem>);
 
     var GuidesComponent = this.state.guides.map((guide, i) => <TourGuide key={i} guide={guide}/>);
     var searchString = this.state.searchString.trim().toLowerCase();
-    var filteredGuides = []
+    var filteredGuides = [];
 
     if(searchString.length > 0) {
       filteredGuides = this.state.guides.filter(this.filterByName);

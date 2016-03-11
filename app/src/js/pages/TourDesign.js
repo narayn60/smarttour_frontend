@@ -39,12 +39,7 @@ export default class TourDesign extends React.Component {
   }
 
   onClick(index) {
-    if (this.state.selected === index) {
-      this.setState({selected: null});
-      this.setState({subselected: 0});
-    } else {
-      this.setState({selected: index});
-    }
+    this.setState({selected: index});
   }
 
   handleSelect(selectedKey) {

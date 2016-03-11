@@ -13,7 +13,7 @@ export default class NavHeader extends React.Component {
     if (AuthStore.isLoggedIn()) {
       this.links = [
         {link: '/browse', title: 'Browse'},
-        {link: '/tourcreator', title: 'Tour Creation'},
+        // {link: '/tourcreator', title: 'Tour Creation'},
         {link: '/createtour', title: 'Create Tour'},
         {link: '/guides', title: 'Guides'},
         {link: '/profile', title: 'Profile'}

@@ -37,7 +37,6 @@ module.exports = (
         <Route path="/browse/tours/:id" component={DetailedTour}/>
         <Route path='/guides' component={Guides}/>
         <Route path="/guides/:id" component={DetailedGuide}/>
-        <Route path='/tourcreator' component={TourMap}/>
         <Route path='/createtour' component={CreateTour}/>
         <Route path='/profile' component={Profile}/>
         <Route path='/mytours/:id' component={TourDesign}/>
@@ -46,3 +45,5 @@ module.exports = (
 );
 
 
+
+  // <Route path='/tourcreator' component={TourMap}/>
