@@ -31,3 +31,7 @@ export default class LoginContainer extends React.Component {
 
 // export default connectToStores(LoginContainer);
 
+
+  // <div className="login-button">
+  // <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  // </div>

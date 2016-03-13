@@ -110,7 +110,8 @@ server.get('/auth/google',
            passport.authenticate('google', {
              scope: [
                'https://www.googleapis.com/auth/plus.login',
-               'https://www.googleapis.com/auth/userinfo.email'
+               'https://www.googleapis.com/auth/userinfo.email',
+               'openid'
              ]
            })
           );

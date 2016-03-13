@@ -5,23 +5,23 @@ class AuthStore {
   constructor() {
     this.bindActions(AuthActions);
 
-    // this.user= {
-    //   id: null,
-    //   token: null,
-    //   name: null,
-    //   logo: null,
-    //   provider: null,
-    //   email: null
-    // };
-
     this.user= {
-      id: 1,
-      token: 1,
-      name: 'Andrew Stuart',
+      id: null,
+      token: null,
+      name: null,
       logo: null,
-      provider: 'google',
-      email: 'narayn60@gmail.com'
+      provider: null,
+      email: null
     };
+
+    // this.user= {
+    //   id: 1,
+    //   token: 1,
+    //   name: 'Andrew Stuart',
+    //   logo: null,
+    //   provider: 'google',
+    //   email: 'narayn60@gmail.com'
+    // };
 
     this.exportPublicMethods({
       isLoggedIn: this.isLoggedIn,
