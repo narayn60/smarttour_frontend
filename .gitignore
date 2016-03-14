@@ -13,3 +13,4 @@ nginx/certs/nginx.*
 app/server/.tern-port
 */**/.tern-port
 npm-debug.log
+TAGS

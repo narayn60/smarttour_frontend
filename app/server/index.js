@@ -50,6 +50,7 @@ const getInfoFromUser = function setupUserInfo(user) {
     provider: user.provider,
     name: user.displayName,
     logo: '',
+    id_token: user.id_token,
     token: user.token,
     email: user.emails[0].value
   };
@@ -83,8 +84,9 @@ passport.use(new passportGoogle.OAuth2Strategy({
   clientID: authConfig.googleAuth.clientID,
   clientSecret: authConfig.googleAuth.clientSecret,
   callbackURL: authConfig.googleAuth.callbackURL
-}, (accessToken, refreshToken, profile, done) => {
-  const result = Object.assign(profile, { token: accessToken });
+}, (accessToken, refreshToken, X, profile, done) => {
+  const result = Object.assign(profile, { id_token: X.id_token,
+                                          token: accessToken });
   return done(null, getInfoFromUser(result));
 }));
 
