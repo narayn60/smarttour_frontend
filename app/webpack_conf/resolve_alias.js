@@ -14,6 +14,7 @@ module.exports = {
   UserTourActions: action_base + "UserTourActions",
   MapActions: action_base + "MapActions",
   GuideActions: action_base + "GuideActions",
+  FormActions: action_base + "FormActions",
   AuthSource: source_base + "AuthSource",
   GuideSource: source_base + "GuideSource",
   TourSource: source_base + "TourSource",

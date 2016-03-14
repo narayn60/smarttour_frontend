@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col, form, Button, Input } from "react-bootstrap";
 import t from 'tcomb-form';
 import TourFormSuccess from './TourFormSuccess';
+import FormActions from 'FormActions';
 
 const Positive = t.refinement(t.Number, (n) => n >= 1); //TODO: Set maximum number
 
@@ -41,7 +42,7 @@ export default class CreateTourForm extends React.Component {
         success: true,
         values: value
       });
-      console.log(value);
+      FormActions.createTour(value);
     }
   }
   
