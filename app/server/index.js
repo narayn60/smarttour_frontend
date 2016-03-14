@@ -94,7 +94,7 @@ passport.use(new passportGoogle.OAuth2Strategy({
 // place in config etc.
 // const routeToLogin = '/login';
 //
-const routeToPrivate = '/about';
+const routeToPrivate = '/profile';
 
 //
 // redirect users and setup cookie

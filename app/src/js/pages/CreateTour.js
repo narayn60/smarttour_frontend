@@ -3,6 +3,7 @@ import TourFormFields from '../components/sub/TourFormFields';
 import TourFormGuideFields from '../components/sub/TourFormGuideFields';
 import TourFormConfirmation from '../components/sub/TourFormConfirmation';
 import TourFormSuccess from '../components/sub/TourFormSuccess';
+import CreateTourForm from '../components/sub/CreateTourForm';
 import { Row, Col, Input, Button } from "react-bootstrap";
 
 export default class CreateTour extends React.Component {
@@ -59,24 +60,26 @@ export default class CreateTour extends React.Component {
   };
 
   render() {	
-    var style = { width : (this.state.step / 4 * 100) + '%' };
+    // var style = { width : (this.state.step / 4 * 100) + '%' };
 
     return(
       <div>
-        <Row>
-          <Col md={4} mdOffset={4}>
-            <h2 class="section-heading text-center"> Create a tour </h2>
-            <span class="progress-step">Step {this.state.step}</span>
-            <progress class="progress" style={style}></progress>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={4} mdOffset={4}>
-            {this.currentStep()}
-          </Col>
-        </Row>
+        <CreateTourForm />
 		  </div>
     );
   }
 }
 
+
+//   <Row>
+//   <Col md={4} mdOffset={4}>
+//   <h2 class="section-heading text-center"> Create a tour </h2>
+//   <span class="progress-step">Step {this.state.step}</span>
+//   <progress class="progress" style={style}></progress>
+//   </Col>
+//   </Row>
+//   <Row>
+//   <Col md={4} mdOffset={4}>
+//   {this.currentStep()}
+// </Col>
+//   </Row>

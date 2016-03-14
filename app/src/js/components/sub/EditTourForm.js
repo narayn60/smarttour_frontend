@@ -6,12 +6,19 @@ import { Row, Col } from 'react-bootstrap';
 const FormSchema = t.struct({
   name: t.String,
   data: t.String,
-  long: t.String,
-  lat: t.String
+  long: t.Number,
+  lat: t.Number
 });
 
 export default class EditTourForm extends React.Component {
 
+  onSubmit(e) {
+    e.preventDefault();
+    const value = this.refs.form.getValue();
+    if (value) {
+      console.log(value);
+    }
+  }
 
   render() {
 
@@ -36,7 +43,7 @@ export default class EditTourForm extends React.Component {
       template: formLayout,
       fields: {
         name: {
-          disabled: true
+          disabled: false
         },
         data: {
           label: "Information",
@@ -51,7 +58,7 @@ export default class EditTourForm extends React.Component {
     return(
       <div>
         <h1>Information</h1>
-        <form>
+        <form onSubmit={this.onSubmit.bind(this)}>
           <t.form.Form class="edit-form" ref="form" type={FormSchema} value={this.props.values} options={options} />
           <Row>
             <div class="form-group">
@@ -65,3 +72,4 @@ export default class EditTourForm extends React.Component {
     );
   }
 }
+
