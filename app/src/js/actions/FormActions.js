@@ -1,5 +1,6 @@
 import alt from 'alt_base';
 import axios from 'axios';
+import AuthStore from 'AuthStore';
 
 class FormActions {
   constructor() {
@@ -10,7 +11,9 @@ class FormActions {
     return (dispatch) => {
       dispatch();
       console.log(values);
-      axios.post('/user', {})
+      const url = "https://localhost/auth/" + AuthStore.getUid() + "/tours/";
+      axios.post(url, values)
+      // axios.post('/user', {})
         .then(function (response) {
           console.log(response);
         })

@@ -5,7 +5,7 @@ import { Row, Col, Image } from "react-bootstrap";
 
 export default class Guide extends React.Component {
   render() {
-    const { name, photo, bio, id } = this.props.guide;
+    const { username, id } = this.props.guide;
     var dummy_photo = "img/team/3.jpg";
 
     return (
@@ -18,7 +18,7 @@ export default class Guide extends React.Component {
                 <Image src={ dummy_photo } rounded class="img-responsive" alt=""/>
             </Link>
             <div class="portfolio-caption">
-                <h4>{ name }</h4>
+                <h4>{ username }</h4>
                 <p class="text-muted">{ id }</p>
             </div>
         </div>

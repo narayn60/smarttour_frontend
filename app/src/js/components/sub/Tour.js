@@ -5,7 +5,7 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 export default class Tour extends React.Component {
 
   render() {
-    const { title, userId, id } = this.props.tour;
+    const { name, owner, id } = this.props.tour;
 
     return (
         <div class="col-md-4 col-sm-6 portfolio-item">
@@ -18,8 +18,8 @@ export default class Tour extends React.Component {
                     <img src="img/portfolio/roundicons.png" class="img-responsive" alt=""/>
             </Link>
             <div class="portfolio-caption">
-                <h4>{ title }</h4>
-                <p class="text-muted">{ userId }</p>
+                <h4>{ name }</h4>
+                <p class="text-muted">{ owner }</p>
             </div>
         </div>
     );

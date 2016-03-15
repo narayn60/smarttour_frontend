@@ -1,9 +1,10 @@
 import axios from 'axios';
+import AuthStore from 'AuthStore';
 
 export default class GuideSource {
   fetch() {
-    var root = 'https://jsonplaceholder.typicode.com';
-    return axios(root + '/users')
+    var url = 'https://localhost/auth/' + AuthStore.getUid() + '/guides/';
+    return axios(url)
       .then((users) => {
         return users.data;
       })

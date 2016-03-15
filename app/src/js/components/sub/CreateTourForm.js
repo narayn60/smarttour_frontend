@@ -3,6 +3,7 @@ import { Row, Col, form, Button, Input } from "react-bootstrap";
 import t from 'tcomb-form';
 import TourFormSuccess from './TourFormSuccess';
 import FormActions from 'FormActions';
+import AuthStore from 'AuthStore';
 
 const Positive = t.refinement(t.Number, (n) => n >= 1); //TODO: Set maximum number
 
@@ -20,8 +21,9 @@ const FormSchema = t.struct({
   name: t.String,
   genre: Genres,
   bio: t.String,
-  owner: t.maybe(t.String),
+  // owner: t.maybe(t.String),
   locations: Positive
+  // email: t.String
 });
 
 
@@ -31,6 +33,9 @@ export default class CreateTourForm extends React.Component {
     super();
     this.state = {
       success: false
+      // value: {
+      //   email: AuthStore.getEmail()
+      // }
     };
   }
 
@@ -57,7 +62,7 @@ export default class CreateTourForm extends React.Component {
               <div>{locals.inputs.name}</div>
               <div>{locals.inputs.genre}</div>
               <div>{locals.inputs.bio}</div>
-              <div>{locals.inputs.owner}</div>
+              // <div>{locals.inputs.email}</div>
               <div>{locals.inputs.locations}</div>
             </Col>
           </Row>
@@ -68,12 +73,15 @@ export default class CreateTourForm extends React.Component {
     const options = {
       template: formLayout,
       fields: {
-        owner: {
-          disabled: true
-        },
+        // owner: {
+        //   disabled: true
+        // },
         locations: {
           error: "Field needs to be a number greater than 1"
         }
+        // email: {
+        //   disabled: true
+        // }
       }
     };
 
@@ -83,10 +91,10 @@ export default class CreateTourForm extends React.Component {
 
       <div>
         <form onSubmit={this.onSubmit.bind(this)}>
-          <t.form.Form class="edit-form" ref="form" type={FormSchema} options={options}/>
+          <t.form.Form class="edit-form" ref="form" type={FormSchema} value={this.state.value} options={options}/>
           <Row>
             <div class="form-group">
-              <Button type="submit" bsStyle="primary center-block">Submit</Button>
+              <Button type="submit" bsStyle="primary" class="center-block">Submit</Button>
             </div>
           </Row>
           <Row>
