@@ -23,7 +23,9 @@ class GuideStore {
   }
 
   handleGuidesFailed(errorMessage) {
+    console.log("Guides failed");
     this.state.errorMessage = errorMessage;
+    console.log(errorMessage);
   }
 }
 

@@ -15,12 +15,13 @@ class GuideActions {
       var gs = new GuideSource();
       gs.fetch()
         .then((guides) => {
+          console.log("guides", guides);
           this.updateGuide(guides);
         })
         .catch((errorMessage) => {
-          this.guidesFailed(errorMessage)
+          this.guidesFailed(errorMessage);
         });
-      }
+    };
     }
 
   guidesFailed(errorMessage) {

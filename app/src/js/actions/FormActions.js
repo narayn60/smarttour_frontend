@@ -11,7 +11,7 @@ class FormActions {
     return (dispatch) => {
       dispatch();
       console.log(values);
-      const url = "https://localhost/auth/" + AuthStore.getUid() + "/tours/";
+      const url = "https://tourbackend.jaffnalab.com/auth/" + AuthStore.getUid() + "/tours/";
       axios.post(url, values)
       // axios.post('/user', {})
         .then(function (response) {

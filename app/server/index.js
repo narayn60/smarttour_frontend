@@ -56,9 +56,9 @@ const getInfoFromUser = function setupUserInfo(user) {
   };
   /* eslint-enable prefer-const */
 
-  if (typeof user.photos !== 'undefined') {
-    info.logo = user.photos[0].value || '';
-  }
+  // if (typeof user.photos !== 'undefined') {
+  //   info.logo = user.photos[0].value || '';
+  // }
 
   return info;
 };
