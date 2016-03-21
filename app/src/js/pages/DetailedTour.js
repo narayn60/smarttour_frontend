@@ -1,4 +1,4 @@
-import alt from '../alt';
+import alt from 'alt_base';
 import React from "react";
 import TourStore from 'TourStore';
 import TourDetailed from "../components/sub/TourDetailed";

@@ -4,6 +4,7 @@ var action_base = js_base + "actions/";
 var source_base = js_base + "sources/";
 
 module.exports = {
+  Global:  js_base + 'Global',
   AuthStore: store_base + 'AuthStore',
   GuideStore: store_base + 'GuideStore',
   TourStore: store_base + 'TourStore',

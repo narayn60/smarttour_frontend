@@ -1,6 +1,7 @@
 import alt from 'alt_base';
 import axios from 'axios';
 import AuthStore from 'AuthStore';
+import Global from 'Global';
 
 class FormActions {
   constructor() {
@@ -11,14 +12,13 @@ class FormActions {
     return (dispatch) => {
       dispatch();
       console.log(values);
-      const url = "https://tourbackend.jaffnalab.com/auth/" + AuthStore.getUid() + "/tours/";
+      const url = Global.backend_url + AuthStore.getUid() + "/tours/";
       axios.post(url, values)
-      // axios.post('/user', {})
         .then(function (response) {
           console.log(response);
         })
-        .catch(function (response) {
-          console.log(response);
+        .catch(function (error) {
+          throw error;
         });
     };
   }

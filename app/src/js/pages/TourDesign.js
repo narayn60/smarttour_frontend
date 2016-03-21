@@ -76,33 +76,33 @@ export default class TourDesign extends React.Component {
     
     const PHOTO_SET = [
       {
-        src: 'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg',
+        src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
         width: 960,
         height: 960,
         aspectRatio: 1.5,
         lightboxImage:{
-          src: 'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg',
+          src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
           srcset: [
-            'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg 1024w',
-            'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg 800w',
-            'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg 500w',
-            'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg 320w',
+            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 1024w',
+            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 800w',
+            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 500w',
+            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 320w',
           ],
           caption: "Toronto"
         }
       },
       {
-        src: 'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg',
+        src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
         width: 960,
         height: 960,
         aspectRatio: 1.5,
         lightboxImage:{
-          src: 'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg',
+          src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
           srcset: [
-            'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg 1024w',
-            'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg 800w',
-            'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg 500w',
-            'http://www.seetorontonow.com/wp-content/uploads/2016/01/toronto-buildings-colourful-evening.jpg 320w',
+            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 1024w',
+            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 800w',
+            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 500w',
+            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 320w',
           ]
         }
       },

@@ -1,19 +1,20 @@
 import axios from 'axios';
+import Global from 'Global';
 import AuthStore from 'AuthStore';
 
 export default class GuideSource {
 
   constructor() {
-    this.axios = axios.create({
-      baseURL: 'https://tourbackend.jaffnalab.com/auth/' + AuthStore.getUid()
-    });
+    // this.axios = axios.create({
+    //   baseURL: Global.backend_url + AuthStore.getUid()
+    // });
   }
 
 
   fetch() {
-    return this.axios.get('/guides/')
+    // return this.axios.get('/guides/')
+    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/')
       .then((users) => {
-        console.log("users", users);
         return users.data;
       })
       .catch((error) => {

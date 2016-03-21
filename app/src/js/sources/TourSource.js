@@ -1,18 +1,18 @@
 import axios from 'axios';
+import Global from 'Global';
 import AuthStore from 'AuthStore';
 
 export default class TourSource {
 
   constructor() {
-    this.axios = axios.create({
-      baseURL: 'https://tourbackend.jaffnalab.com/auth/' + AuthStore.getUid()
-    });
+      /* this.axios = axios.create({
+         baseURL: Global.backend_url + AuthStore.getUid()
+         }); */
   }
 
   fetch() {
-    return this.axios.get('/tours/')
+    return axios.get(Global.backend_url + AuthStore.getUid() + '/tours/')
       .then((tours) => {
-        console.log(tours.data);
         return tours.data;
       })
       .catch((error) => {
