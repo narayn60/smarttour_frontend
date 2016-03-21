@@ -8,15 +8,18 @@ import MapActions from 'MapActions';
 import MapStore from 'MapStore';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Gallery from 'react-photo-gallery';
+import UserTourStore from 'UserTourStore';
 
 
 export default class TourDesign extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = MapStore.getState();
     this.state.subselected = 0;
     this.state.selected = null;
+    this.state.tour = UserTourStore.tourInfo(this.props.params.id);
+    console.log(this.state.tour);
   }
 
   static getStores() {
@@ -86,7 +89,7 @@ export default class TourDesign extends React.Component {
 
     return (
       <div class="container">
-        <h3> ID: { this.props.params.id } </h3>
+        <h3> { this.state.tour.name } </h3>
         <Row>
           <Col md={3}>
             <Table bordered condensed hover>
@@ -109,9 +112,6 @@ export default class TourDesign extends React.Component {
           { EditSelection }
           { TourEdit }
         </Row>
-        {/* <Row>
-        <PhotoItem source="http://www.vancitybuzz.com/wp-content/uploads/2014/03/nobodylikesyou-580x500.jpg" />
-        </Row> */}
       </div>
     );
   }

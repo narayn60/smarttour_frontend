@@ -59,7 +59,6 @@ export default class LeafMap extends React.Component {
     // this function creates the Leaflet map object and is called after the Map component mounts
     var map;
     if (this.state.points.length > 0) {
-      console.log("Init");
       let point = this.state.points[0];
       map = this.map = L.map(id, config.params).setView([point.lat,  point.long], 17);
       this.props.updateState(0);

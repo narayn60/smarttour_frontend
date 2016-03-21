@@ -40,7 +40,7 @@ export default class TourTable extends React.Component {
   }
 
   rowClick(row) {
-    browserHistory.push('/mytours/' + row.id);
+    browserHistory.push('/mytours/' + (row.id - 1));
   }
 
   render() {
