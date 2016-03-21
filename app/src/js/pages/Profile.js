@@ -17,7 +17,7 @@ export default class Profile extends React.Component {
       created_tours: 4
     };
     this.state = {
-      chosenSection: 1
+      chosenSection: 0
     };
   }
 

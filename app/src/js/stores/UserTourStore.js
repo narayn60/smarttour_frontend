@@ -15,8 +15,6 @@ class UserTourStore {
   }
 
   tourInfo(id) {
-    console.log(id);
-    console.log(this.getState().tours[id]);
     return this.getState().tours[id];
   }
 
