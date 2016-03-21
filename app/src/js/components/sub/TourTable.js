@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { browserHistory } from 'react-router';
 import TableImage from './TableImage';

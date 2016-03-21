@@ -2,6 +2,7 @@ import React from 'react';
 import LeafMap from '../components/leaflet/LeafMap';
 import { Nav, NavItem, MenuItem, Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
 import EditTourForm from '../components/sub/EditTourForm';
+import PhotoItem from '../components/sub/PhotoItem';
 import classNames from 'classnames';
 import MapActions from 'MapActions';
 import MapStore from 'MapStore';
@@ -74,58 +75,10 @@ export default class TourDesign extends React.Component {
     );
 
     
-    const PHOTO_SET = [
-      {
-        src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-        width: 960,
-        height: 960,
-        aspectRatio: 1.5,
-        lightboxImage:{
-          src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-          srcset: [
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 1024w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 800w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 500w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 320w',
-          ],
-          caption: "Toronto"
-        }
-      },
-      {
-        src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-        width: 960,
-        height: 960,
-        aspectRatio: 1.5,
-        lightboxImage:{
-          src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-          srcset: [
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 1024w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 800w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 500w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 320w',
-          ]
-        }
-      },
-      {
-        src: 'http://example.com/example/img2_small.jpg',
-        width: 600,
-        height: 600,
-        aspectRatio: 1,
-        lightboxImage:{
-          src: 'http://example.com/example/img2_large.jpg',
-          srcset: [
-            'http://example.com/example/img2_1024.jpg 1024w',
-            'http://example.com/example/img2_800.jpg 800w',
-            'http://example.com/example/img2_500.jpg 500w',
-            'http://example.com/example/img2_320.jpg 320w',
-          ]
-        }
-      }
-    ];
 
     const sections = [
-        <EditTourForm values={this.state.points[currentlySelected]} />,
-      <Gallery photos={PHOTO_SET} />,
+      <EditTourForm values={this.state.points[currentlySelected]} />,
+      <PhotoItem />,
       "Temp for something"
     ];
 
@@ -156,6 +109,9 @@ export default class TourDesign extends React.Component {
           { EditSelection }
           { TourEdit }
         </Row>
+        {/* <Row>
+        <PhotoItem source="http://www.vancitybuzz.com/wp-content/uploads/2014/03/nobodylikesyou-580x500.jpg" />
+        </Row> */}
       </div>
     );
   }
