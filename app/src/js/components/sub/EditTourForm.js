@@ -9,7 +9,7 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 
 const FormSchema = t.struct({
   name: t.String,
-  data: t.String,
+  // data: t.String,
   longitude: t.Number,
   latitude: t.Number
 });
@@ -70,27 +70,27 @@ export default class EditTourForm extends React.Component {
               <div>{locals.inputs.longitude}</div>
               <div>{locals.inputs.latitude}</div>
             </Col>
-            <Col md={6}>
-              <div>{locals.inputs.data}</div>
-            </Col>
           </Row>
         </div>
       );
     };
+    // <Col md={6}>
+    //   <div>{locals.inputs.data}</div>
+    // </Col>
 
     const options = {
       template: formLayout,
       fields: {
         name: {
           disabled: false
-        },
-        data: {
-          label: "Information",
-          type: 'textarea',
-          attrs: {
-            className: 'edit-form-textarea'
-          }
         }
+        // data: {
+        //   label: "Information",
+        //   type: 'textarea',
+        //   attrs: {
+        //     className: 'edit-form-textarea'
+        //   }
+        // }
       }
     };
 

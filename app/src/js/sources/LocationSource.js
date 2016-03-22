@@ -12,7 +12,7 @@ export default class LocationSource {
                 });
   }
 
-  /* fetch(tour_id) {
+  /* fetch_locations(tour_id) {
      var mockData = [
      {
      longitude: -2.602986,

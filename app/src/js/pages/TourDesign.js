@@ -40,6 +40,7 @@ export default class TourDesign extends React.Component {
   }
 
   onChange(state) {
+    console.log("Chang detected");
     this.setState(state);
   }
 

@@ -55,6 +55,7 @@ export default class LeafMap extends React.Component {
 
   // Pan to the selected point
   panToPoint() {
+    this.map.invalidateSize();
     if (this.props.selectedindex !== null) {
       let point = this.props.points[this.props.selectedindex];
       this.map.panTo([point.latitude, point.longitude]);
