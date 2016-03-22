@@ -21,7 +21,7 @@ class MapStore {
     this.state.locations = [];
   }
 
-  onLocationsFailed() {
+  onLocationsFailed(errorMessage) {
     this.errorMessage = errorMessage;
   }
 

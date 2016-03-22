@@ -20,6 +20,7 @@ export default class LeafMap extends React.Component {
 
   // panToPoint() called twice because of issues with Leaflet
   componentWillReceiveProps() {
+    console.log("First call", this.props.points);
     if (this.firstcall && this.props.points.length > 0) {
       let point = this.props.points[0];
       this.map.setView([point.latitude,  point.longitude], 17);

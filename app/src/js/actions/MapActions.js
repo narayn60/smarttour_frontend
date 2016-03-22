@@ -1,5 +1,5 @@
 import alt from 'alt_base';
-import MapSource from 'MapSource';
+import LocationSource from 'LocationSource';
 
 class MapActions {
   constructor() {
@@ -7,7 +7,7 @@ class MapActions {
       locations: []
     };
     this.stores = {
-      MapSource: new MapSource()
+      LocationSource: new LocationSource()
     };
     this.generateActions('updateLocations');
   }
@@ -15,14 +15,13 @@ class MapActions {
   fetchLocations(tour_id) {
     return (dispatch) => {
       dispatch();
-      this.stores.MapSource.fetch(tour_id)
+      this.stores.LocationSource.fetch_locations(tour_id)
           .then((locations) => {
-            console.log("Locations", locations);
             this.updateLocations(locations);
           })
           .catch((errorMessage) => {
             /* console.log(errorMessage); */
-            this.toursFailed(errorMessage);
+            this.locationsFailed(errorMessage);
           });
     };
   }
