@@ -6,8 +6,8 @@ import { Row, Col } from 'react-bootstrap';
 const FormSchema = t.struct({
   name: t.String,
   data: t.String,
-  long: t.Number,
-  lat: t.Number
+  longitude: t.Number,
+  latitude: t.Number
 });
 
 export default class EditTourForm extends React.Component {
@@ -28,8 +28,8 @@ export default class EditTourForm extends React.Component {
           <Row>
             <Col md={6}>
               <div>{locals.inputs.name}</div>
-              <div>{locals.inputs.long}</div>
-              <div>{locals.inputs.lat}</div>
+              <div>{locals.inputs.longitude}</div>
+              <div>{locals.inputs.latitude}</div>
             </Col>
             <Col md={6}>
               <div>{locals.inputs.data}</div>

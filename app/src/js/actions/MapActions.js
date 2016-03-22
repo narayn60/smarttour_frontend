@@ -17,7 +17,7 @@ class MapActions {
       dispatch();
       this.stores.MapSource.fetch(tour_id)
           .then((locations) => {
-            /* console.log("Locations", locations); */
+            console.log("Locations", locations);
             this.updateLocations(locations);
           })
           .catch((errorMessage) => {

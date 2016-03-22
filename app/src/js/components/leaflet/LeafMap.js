@@ -22,7 +22,7 @@ export default class LeafMap extends React.Component {
   componentWillReceiveProps() {
     if (this.firstcall && this.props.points.length > 0) {
       let point = this.props.points[0];
-      this.map.setView([point.lat,  point.long], 17);
+      this.map.setView([point.latitude,  point.longitude], 17);
       this.props.updateState(0);
       this.firstcall = false;
       this.loadInitialPoints();
@@ -56,7 +56,7 @@ export default class LeafMap extends React.Component {
   panToPoint() {
     if (this.props.selectedindex !== null) {
       let point = this.props.points[this.props.selectedindex];
-      this.map.panTo([point.lat, point.long]);
+      this.map.panTo([point.latitude, point.longitude]);
     }
   }
 
@@ -85,7 +85,7 @@ export default class LeafMap extends React.Component {
 
   loadInitialPoints() {
     this.markers = this.props.points.map((point, i) => {
-      const marker = L.marker([point.lat, point.long]);
+      const marker = L.marker([point.latitude, point.longitude]);
       marker.marker_index = i;
       marker.on('click', this.selectMarker.bind(this));
       marker.addTo(this.map);
