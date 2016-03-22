@@ -8,11 +8,13 @@ export default class ProfileSettings extends React.Component {
 
   render() {
     const glyph_classes = 'fa pull-right ';
+    //TODO: Hook up the settings
     const accountOptions = [
       {text: 'Account Settings', glyph: glyph_classes + 'fa-cog', href: '#'},
+      {text: 'My Tours', glyph: glyph_classes + 'fa-map', href: '#'}, 
       {text: 'Logout', glyph: glyph_classes + 'fa-sign-out', href: '/logout'}
     ].map((links, i) =>
-          <MenuItem key={i} eventKey={this.props.dropIndex + (0.1 * (i + 2))} href={links.href}>
+          <MenuItem class="profile-dropdown" key={i} eventKey={this.props.dropIndex + (0.1 * (i + 2))} href={links.href}>
           {links.text} 
           <span class={links.glyph}></span>
           </MenuItem>
@@ -26,7 +28,7 @@ export default class ProfileSettings extends React.Component {
 
 
     return (
-      <NavDropdown eventkey={this.props.dropIndex} title={dropdownTitle} id="basic-nav-drop down">
+      <NavDropdown class="profile-dropdown" eventkey={this.props.dropIndex} title={dropdownTitle} id="basic-nav-drop down">
         <MenuItem eventKey={this.props.dropIndex + 0.1} class="navbar-login">
           <Row>
             <p class="text-center">

@@ -12,10 +12,10 @@ class MapActions {
     this.generateActions('updateLocations');
   }
 
-  fetchLocations() {
+  fetchLocations(tour_id) {
     return (dispatch) => {
       dispatch();
-      this.stores.MapSource.fetch()
+      this.stores.MapSource.fetch(tour_id)
           .then((locations) => {
             /* console.log("Locations", locations); */
             this.updateLocations(locations);

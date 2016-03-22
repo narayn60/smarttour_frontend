@@ -4,22 +4,29 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 
 export default class LeafMap extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.map = {};
     this.state = {
       tileLayer : null,
       geojsonLayer: null,
       geojson: null,
       filter: '*',
-      numEntrances: null,
-      points: this.props.points
+      numEntrances: null
     };
     this.markers = null;
+    this.firstcall = true;
   }
 
   // panToPoint() called twice because of issues with Leaflet
   componentWillReceiveProps() {
+    if (this.firstcall && this.props.points.length > 0) {
+      let point = this.props.points[0];
+      this.map.setView([point.lat,  point.long], 17);
+      this.props.updateState(0);
+      this.firstcall = false;
+      this.loadInitialPoints();
+    }
     this.panToPoint();
   }
 
@@ -28,7 +35,6 @@ export default class LeafMap extends React.Component {
     if (process.env.BROWSER) {
       require('leaflet');
       this.init('map');
-      this.loadInitialPoints();
     }
   }
 
@@ -49,7 +55,7 @@ export default class LeafMap extends React.Component {
   // Pan to the selected point
   panToPoint() {
     if (this.props.selectedindex !== null) {
-      let point = this.state.points[this.props.selectedindex];
+      let point = this.props.points[this.props.selectedindex];
       this.map.panTo([point.lat, point.long]);
     }
   }
@@ -57,14 +63,7 @@ export default class LeafMap extends React.Component {
 
   init(id) {
     // this function creates the Leaflet map object and is called after the Map component mounts
-    var map;
-    if (this.state.points.length > 0) {
-      let point = this.state.points[0];
-      map = this.map = L.map(id, config.params).setView([point.lat,  point.long], 17);
-      this.props.updateState(0);
-    } else {
-      map = this.map = L.map(id, config.params).locate({setView: true, maxZoom: 17});
-    }
+    let map = this.map = L.map(id, config.params).locate({setView: true, maxZoom: 17});
     var latestPolyLine; //store the latest polyline so we can delete the previous layer when new added
 
     // Map config
@@ -85,7 +84,7 @@ export default class LeafMap extends React.Component {
   }
 
   loadInitialPoints() {
-    this.markers = this.state.points.map((point, i) => {
+    this.markers = this.props.points.map((point, i) => {
       const marker = L.marker([point.lat, point.long]);
       marker.marker_index = i;
       marker.on('click', this.selectMarker.bind(this));

@@ -1,5 +1,15 @@
 @import '../variables';
 
+.profile-dropdown {
+  color: black;
+  a {
+    &:hover, &:focus {
+               color: black !important;
+               outline: 0;
+             }
+  }
+}
+
 .navbar-login
 {
     width: 305px;

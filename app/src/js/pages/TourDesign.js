@@ -19,7 +19,6 @@ export default class TourDesign extends React.Component {
     this.state.subselected = 0;
     this.state.selected = null;
     this.state.tour = UserTourStore.tourInfo(this.props.params.id);
-    console.log(this.state.tour);
   }
 
   static getStores() {
@@ -32,6 +31,8 @@ export default class TourDesign extends React.Component {
 
   componentWillMount() {
     MapStore.listen(this.onChange.bind(this));
+    console.log("Tour id", this.state.tour.id);
+    MapActions.fetchLocations(this.state.tour.id);
   }
 
   componentWillUnmount() {
@@ -56,7 +57,9 @@ export default class TourDesign extends React.Component {
 
   render() {
 
-    const Locations = this.state.points.map((point, i) => {
+    console.log("TourDesign", this.state.locations);
+
+    const Locations = this.state.locations.map((point, i) => {
       const classes = classNames( "table-element", {
         'selected': (this.state.selected === i)
       });
@@ -80,7 +83,7 @@ export default class TourDesign extends React.Component {
     
 
     const sections = [
-      <EditTourForm values={this.state.points[currentlySelected]} />,
+      <EditTourForm values={this.state.locations[currentlySelected]} />,
       <PhotoItem />,
       "Temp for something"
     ];
@@ -105,7 +108,7 @@ export default class TourDesign extends React.Component {
             </Table>
           </Col>
           <Col md={8} mdOffset={1}>
-            <LeafMap points={this.state.points} updateState={this.selected.bind(this)} selectedindex={this.state.selected}/>
+            <LeafMap points={this.state.locations} updateState={this.selected.bind(this)} selectedindex={this.state.selected}/>
           </Col>
         </Row>
         <Row>

@@ -5,26 +5,26 @@ class AuthStore {
   constructor() {
     this.bindActions(AuthActions);
 
-    this.user= {
-      id: null,
-      id_token: null,
-      token: null,
-      name: null,
-      logo: null,
-      provider: null,
-      email: null
-    };
-
-
     // this.user= {
-    //   id: 1,
-    //   id_token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjZlMDhiMGI1YmYwODMyMTY0Y2Y3ZTNhMGRmMDAyMDE0YzZmNjU3MzAifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhdF9oYXNoIjoickN1dHdWZHQxSDhqQ3IyWDdXaHU3QSIsImF1ZCI6IjM5NzgyMTI1NDE4OS1taHR2azZnbDZrbW1xZWV2bmhzazJuMXMyazd2N24zdC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNTYzMjM4NDA5MjY5OTg3ODAxMyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiIzOTc4MjEyNTQxODktbWh0dms2Z2w2a21tcWVldm5oc2sybjFzMms3djduM3QuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJlbWFpbCI6Im5hcmF5bjYwQGdtYWlsLmNvbSIsImlhdCI6MTQ1ODU4Mzg1MiwiZXhwIjoxNDU4NTg3NDUyfQ.CW9l74haDBm_PuLqool2UkOAxiA22BYDIA4aAMv3IvvF3Egx5V8Rj0Jt0Fbeqy8pnSS2RmDEKFcPT7sPiW2TF05vtyA140PdAObjT1NtnnRE7voUnS929NHeS2F4N1FF3TqlbA734mtiwVpDVgWPKTPoM4hGOHDffLK171n1TfO2URI0KN43noMBeKsS81Ic9tCjH_U4x8zFRi7Qp4ss8FFMU58bx8k3auzIbRFfEmsysV43dyOLO64HtL_PB6gMRuRcxGWD2wqfeoD7K7txYKMa9tvfp_khMXOFKdyPpuYJfFuyUpjOze9PiF2DsKJ2ZASXMk8hvoiFhoqKFHqo1Q',
-    //   token: 1,
-    //   name: 'Andrew Stuart',
+    //   id: null,
+    //   id_token: null,
+    //   token: null,
+    //   name: null,
     //   logo: null,
-    //   provider: 'google',
-    //   email: 'narayn60@gmail.com'
+    //   provider: null,
+    //   email: null
     // };
+
+
+    this.user= {
+      id: 1,
+    id_token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImMxYTk5OWU2OTYyZGFmZjgxYzg1NWQ3MTRkYzEyYTdkOTMzYjI5MWQifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhdF9oYXNoIjoiXzVmV1d1dmZ2ckdOVTVrc0dDZG03QSIsImF1ZCI6IjM5NzgyMTI1NDE4OS1taHR2azZnbDZrbW1xZWV2bmhzazJuMXMyazd2N24zdC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNTYzMjM4NDA5MjY5OTg3ODAxMyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiIzOTc4MjEyNTQxODktbWh0dms2Z2w2a21tcWVldm5oc2sybjFzMms3djduM3QuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJlbWFpbCI6Im5hcmF5bjYwQGdtYWlsLmNvbSIsImlhdCI6MTQ1ODY1NjIxNCwiZXhwIjoxNDU4NjU5ODE0LCJuYW1lIjoiQW5kcmV3IFN0dWFydCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vLWtacTd6NTRLWDcwL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUZrL09FeUFkWi1lMTRFL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJBbmRyZXciLCJmYW1pbHlfbmFtZSI6IlN0dWFydCIsImxvY2FsZSI6ImVuLUdCIn0.rldpjekpCq4oI-kHdyR0NPug3dywoTNtNVkTt62LMMBootuJOcUP_M-ihJbHCTcrsrI824wnJa-8Y6TtZfvh02DdDtQXsvixZy6ZYaSV6YH0NF4bFy8Sj48BPTfXCD7azfcqEmq--Q-q5bmmp55rI-mw2JRSgS5p9rw_9SaKpwtg0-rc8gixsXqgBXWt2qln_j2zRmHjLfyHO_9Cc1EDda8DHlEZ6VWek4y-Yrnkw0l4xhlxGE_TLmxrZO1GzLwhwmCCIqjNq3hqpeDcqfUvovg8ZToZOlR0JEKRyLlm7A0gAMiD2GXOzUFY0ZMd9oQQtUBzQH8MEIK_kKx1R5yVdQ',
+      token: 1,
+      name: 'Andrew Stuart',
+      logo: null,
+      provider: 'google',
+      email: 'narayn60@gmail.com'
+    };
 
     this.exportPublicMethods({
       isLoggedIn: this.isLoggedIn,
