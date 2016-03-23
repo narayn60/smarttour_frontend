@@ -14,9 +14,7 @@ export default class TourGuideDetailed extends React.Component {
    constructor(props) {
     super(props);
     this.state = PersonalTourStore.getState();
-    console.log(this.props.guide)
     this.state.guide_id = this.props.guide.id
-    console.log(this.state.guide_id)
   }
 
   static getStores() {
@@ -43,7 +41,7 @@ export default class TourGuideDetailed extends React.Component {
   render() {
     var guide = this.props.guide;
     var dummy_photo = "../img/team/3.jpg";
-    console.log(this.state.tours)
+    const tourComponent = this.state.tours.map((tour, i) => <tr key={i}><td>{tour.name}</td><td>{tour.bio}</td><td>{tour.genre}</td></tr>);
 
     return (
       <div>
@@ -87,8 +85,18 @@ export default class TourGuideDetailed extends React.Component {
               </Button>
               <Collapse in={this.state.open}>
                 <div>
-                  <Well class="collapsing-well">
-                  </Well>
+                   <Table striped bordered condensed hover class="guideTours">
+                    <thead>
+                      <tr>
+                        <th>Tour Name</th>
+                        <th>Bio</th>
+                        <th>Genre</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {tourComponent}
+                    </tbody>
+                    </Table>
                 </div>
               </Collapse>
             </Col>
