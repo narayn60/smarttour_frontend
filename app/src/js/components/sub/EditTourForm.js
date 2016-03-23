@@ -16,40 +16,41 @@ const FormSchema = t.struct({
 
 export default class EditTourForm extends React.Component {
 
-  /* constructor(props) {
-     super(props);
-     this.state = NotesStore.getState();
-     this.state.values = this.props.values;
-     }
+  constructor(props) {
+    super(props);
+    this.state = {};
+    /* this.state = NotesStore.getState(); */
+    /* this.state.values = this.props.values; */
+  }
 
-     static getStores() {
-     return [NotesStore];
-     }
+  static getStores() {
+    return [NotesStore];
+  }
 
-     static getPropsFromStores() {
-     return NotesStore.getState();
-     }
+  static getPropsFromStores() {
+    return NotesStore.getState();
+  }
 
-     componentWillMount() {
-     NotesStore.listen(this.onChange.bind(this));
-     NotesActions.fetchNotes(this.props.values.id);
-     }
+  componentWillMount() {
+    NotesStore.listen(this.onChange.bind(this));
+    NotesActions.fetchNotes(this.props.values.id);
+  }
 
-     componentWillUnmount() {
-     NotesStore.unlisten(this.onChange.bind(this));
-     }
+  componentWillUnmount() {
+    NotesStore.unlisten(this.onChange.bind(this));
+  }
 
-     onChange(state) {
-     this.setState(state);
-     }
+  onChange(state) {
+    this.setState(state);
+  }
 
-     componentWillReceiveProps() {
+  /* componentWillReceiveProps() {
+     console.log("Received props", this.props.values);
      this.setState({
      values: this.props.values
      });
      /* NotesActions.fetchNotes(this.props.values.id); */
-  /* } */
-  /* */
+//}
 
   onSubmit(e) {
     e.preventDefault();
@@ -114,5 +115,5 @@ export default class EditTourForm extends React.Component {
 }
 
 
-/* export default connectToStores(EditTourForm);
- */
+export default connectToStores(EditTourForm);
+

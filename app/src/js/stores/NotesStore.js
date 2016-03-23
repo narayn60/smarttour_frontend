@@ -14,14 +14,16 @@ class NotesStore {
 
   onUpdateNotes(note) {
     //TODO: Push the new updated location
+    console.log("Received updated notes");
     this.setState({ notes: this.state.notes.concat(note)});
   }
 
-  onFetchLocations() {
+  onFetchNotes() {
+    console.log("Received fetch notes");
     this.state.notes = [];
   }
 
-  onLocationsFailed(errorMessage) {
+  onNotesFailed(errorMessage) {
     this.errorMessage = errorMessage;
   }
 

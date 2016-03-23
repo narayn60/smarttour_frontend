@@ -40,7 +40,7 @@ export default class TourDesign extends React.Component {
   }
 
   onChange(state) {
-    console.log("Chang detected");
+    console.log("TourDesign Change detected");
     this.setState(state);
   }
 
@@ -72,6 +72,8 @@ export default class TourDesign extends React.Component {
     });
 
     const currentlySelected = this.state.selected;
+
+    console.log("currentlySelected", currentlySelected);
 
     const EditSelection = currentlySelected === null ? "" : (
       <Nav bsStyle="tabs" activeKey={this.state.subselected} onSelect={this.handleSelect.bind(this)}>
