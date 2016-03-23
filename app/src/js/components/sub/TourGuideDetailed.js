@@ -1,18 +1,49 @@
 import React from "react";
+import PersonalTourStore from 'PersonalTourStore';
+import PersonalTourActions from 'PersonalTourActions';
+import connectToStores from 'alt-utils/lib/connectToStores';
+
 import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
 import { Router, Route, Link, browserHistory } from 'react-router';
 import JsonTable from 'react-json-table';
 
+
+
 export default class TourGuideDetailed extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {};
+   constructor(props) {
+    super(props);
+    this.state = PersonalTourStore.getState();
+    console.log(this.props.guide)
+    this.state.guide_id = this.props.guide.id
+    console.log(this.state.guide_id)
+  }
+
+  static getStores() {
+    return [PersonalTourStore];
+  }
+
+  static getPropsFromStores() {
+    return PersonalTourStore.getState();
+  }
+
+  componentWillMount() {
+    PersonalTourStore.listen(this.onChange.bind(this));
+    PersonalTourActions.fetchTours(this.state.guide_id);
+  }
+
+  componentWillUnmount() {
+    PersonalTourStore.unlisten(this.onChange.bind(this));
+  }
+
+  onChange(state) {
+    this.setState(state);
   }
 
   render() {
     var guide = this.props.guide;
     var dummy_photo = "../img/team/3.jpg";
+    console.log(this.state.tours)
 
     return (
       <div>
@@ -67,3 +98,5 @@ export default class TourGuideDetailed extends React.Component {
     );
   }
 }
+
+export default connectToStores(TourGuideDetailed);
