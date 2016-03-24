@@ -2,7 +2,9 @@ import React from 'react';
 import { Row, Col, form, Button, Input } from "react-bootstrap";
 import t from 'tcomb-form';
 import TourFormSuccess from './TourFormSuccess';
+import connectToStores from 'alt-utils/lib/connectToStores';
 import FormActions from 'FormActions';
+import FormStore from 'FormStore';
 import AuthStore from 'AuthStore';
 
 const Positive = t.refinement(t.Number, (n) => n >= 1); //TODO: Set maximum number
@@ -22,7 +24,7 @@ const FormSchema = t.struct({
   genre: Genres,
   bio: t.String,
   // owner: t.maybe(t.String),
-  locations: Positive
+  points: Positive
   // email: t.String
 });
 
@@ -37,6 +39,33 @@ export default class CreateTourForm extends React.Component {
       //   email: AuthStore.getEmail()
       // }
     };
+    this.state = FormStore.getState();
+
+  }
+
+  static getStores() {
+    return [FormStore];
+  }
+
+  static getPropsFromStores() {
+    return FormStore.getState();
+  }
+
+  onChange(state) {
+    this.setState(state);
+    if (state.tour_id != null) {
+      console.log('ID of new tour is: ' + state.tour_id)
+      this.state.success = true
+    }
+  }
+
+
+  componentWillMount() {
+    FormStore.listen(this.onChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    FormStore.unlisten(this.onChange.bind(this));
   }
 
   onSubmit(e) {
@@ -44,7 +73,7 @@ export default class CreateTourForm extends React.Component {
     const value = this.refs.form.getValue();
     if (value) {
       this.setState({
-        success: true,
+        // success: true,
         values: value
       });
       FormActions.createTour(value);
@@ -63,7 +92,7 @@ export default class CreateTourForm extends React.Component {
               <div>{locals.inputs.genre}</div>
               <div>{locals.inputs.bio}</div>
               // <div>{locals.inputs.email}</div>
-              <div>{locals.inputs.locations}</div>
+              <div>{locals.inputs.points}</div>
             </Col>
           </Row>
         </div>
@@ -76,7 +105,7 @@ export default class CreateTourForm extends React.Component {
         // owner: {
         //   disabled: true
         // },
-        locations: {
+        points: {
           error: "Field needs to be a number greater than 1"
         }
         // email: {
@@ -85,7 +114,7 @@ export default class CreateTourForm extends React.Component {
       }
     };
 
-    const completed = this.state.success ? <TourFormSuccess fieldValues={this.state.values}/> : "";
+    const completed = this.state.success ? <TourFormSuccess fieldValues={this.state.values} newTourID={this.state.tour_id}/> : "";
 
     return (
 
@@ -106,6 +135,9 @@ export default class CreateTourForm extends React.Component {
     );
   }
 }
+
+export default connectToStores(CreateTourForm);
+
 
 // const selector = (state) => ({ tour: state.tour });
 

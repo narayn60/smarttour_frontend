@@ -2,26 +2,35 @@ import alt from 'alt_base';
 import axios from 'axios';
 import AuthStore from 'AuthStore';
 import Global from 'Global';
+import FormSource from 'FormSource';
+
 
 class FormActions {
   constructor() {
-    this.state = {};
-  }
+      this.state = {
+      tour_id: []
+    };
+    this.stores = {
+      FormSource: new FormSource()
+    };
+  }  
 
   createTour(values) {
+    console.log(values)
     return (dispatch) => {
       dispatch();
-      console.log(values);
-      const url = Global.backend_url + AuthStore.getUid() + "/tours/";
-      axios.post(url, values)
-        .then((response) => response.data) //If this isn't correct change it to (response) => response
-        // .then(function (response) {
-        //   console.log(response);
-        // })
-        .catch(function (error) {
-          throw error;
+      this.stores.FormSource.save(values)
+        .then((id) => {
+          this.updateId(id);
+        })
+        .catch((errorMessage) => {
+          console.log('error: ' + errorMessage)
         });
     };
+  }
+
+  updateId(id) {
+    return id;
   }
 }
 

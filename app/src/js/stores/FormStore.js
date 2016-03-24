@@ -18,10 +18,13 @@ class FormStore {
   }
 
   onCreateTour(id) {
-    // console.log(id)
     this.setState({
       tour_id: id //if this doesn't work log the id input and extract the relevant object
     });
+  }
+
+  onUpdateId(id) {
+    this.state.tour_id = id
   }
 
   getTourId() {

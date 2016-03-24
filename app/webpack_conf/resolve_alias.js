@@ -11,6 +11,8 @@ module.exports = {
   TourStore: store_base + 'TourStore',
   UserTourStore: store_base + 'UserTourStore',
   PersonalTourStore: store_base + 'PersonalTourStore',
+  FormStore: store_base + 'FormStore',
+  FormStore: store_base + 'FormStore',
   MapStore: store_base + 'MapStore',
   NotesStore: store_base + 'NotesStore',
   FormStore: store_base + 'FormStore',
@@ -31,7 +33,8 @@ module.exports = {
   UserTourSource: source_base + "UserTourSource",
   PersonalTourSource: source_base + "PersonalTourSource",
   NotesSource: source_base + "NotesSource",
+  FormSource: source_base + 'FormSource',
 
-  alt_base: js_base + "alt",
+  alt_base: js_base + 'alt',
   base_css: "src/css/base.scss"
 }

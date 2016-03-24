@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col, Button, Well, Collapse } from "react-bootstrap";
+import ImageLoad from './ImageLoad';
 
 export default class TourFormSuccess extends React.Component {
 
@@ -8,8 +9,9 @@ export default class TourFormSuccess extends React.Component {
     this.state = {};
   }
 
-  
   render() {
+    var qr_path = "/tours/" + this.props.newTourID + "/qrcode_grid/"
+
     return (
       <div>
         <Col md={4} mdOffset={4}>
@@ -20,9 +22,7 @@ export default class TourFormSuccess extends React.Component {
             </Button>
             <Collapse in={this.state.open}>
               <div>
-                <Well>
-                  Generate some QR codes.
-                </Well>
+                  <ImageLoad path={qr_path} />
               </div>
             </Collapse>
           </Row>
