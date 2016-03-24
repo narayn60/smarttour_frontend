@@ -8,6 +8,14 @@ class UserTourStore {
     this.state = {
       tours: []
     };
+
+    this.exportPublicMethods({
+      tourInfo: this.tourInfo
+    });
+  }
+
+  tourInfo(id) {
+    return this.getState().tours[id];
   }
 
   onUpdateTours(tour) {

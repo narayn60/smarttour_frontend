@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { browserHistory } from 'react-router';
 import TableImage from './TableImage';
@@ -40,7 +40,7 @@ export default class TourTable extends React.Component {
   }
 
   rowClick(row) {
-    browserHistory.push('/mytours/' + row.id);
+    browserHistory.push('/mytours/' + (row.id - 1));
   }
 
   render() {
@@ -51,11 +51,11 @@ export default class TourTable extends React.Component {
     };
 
     return (
-        <BootstrapTable data={this.state.tours} options={options} hover={true} pagination={true} search={true}>
+      <BootstrapTable data={this.state.tours} options={options} hover={true} pagination={true} search={true}>
         <TableHeaderColumn dataField="img_url" width="120px" dataFormat={this.imageFormatter} dataAlign="center">Icon</TableHeaderColumn>
         <TableHeaderColumn dataField="name" isKey={true} dataAlign="center" dataSort={true}>Tour Name</TableHeaderColumn>
-        <TableHeaderColumn dataField="subscribers" dataAlign="center" dataSort={true}>Subscribers</TableHeaderColumn>
-        <TableHeaderColumn dataField="rating" dataAlign="center" dataSort={true}>Rating</TableHeaderColumn>
+        <TableHeaderColumn dataField="followers" dataAlign="center" dataSort={true}>Subscribers</TableHeaderColumn>
+        <TableHeaderColumn dataField="points" dataAlign="center" dataSort={true}>Rating</TableHeaderColumn>
       </BootstrapTable>
 
     );
@@ -63,3 +63,4 @@ export default class TourTable extends React.Component {
 }
 
 export default connectToStores(TourTable);
+

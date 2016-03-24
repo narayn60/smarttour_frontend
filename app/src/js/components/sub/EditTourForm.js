@@ -6,11 +6,16 @@ import { Row, Col } from 'react-bootstrap';
 const FormSchema = t.struct({
   name: t.String,
   data: t.String,
-  long: t.Number,
-  lat: t.Number
+  longitude: t.Number,
+  latitude: t.Number
 });
 
 export default class EditTourForm extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   onSubmit(e) {
     e.preventDefault();
@@ -28,8 +33,8 @@ export default class EditTourForm extends React.Component {
           <Row>
             <Col md={6}>
               <div>{locals.inputs.name}</div>
-              <div>{locals.inputs.long}</div>
-              <div>{locals.inputs.lat}</div>
+              <div>{locals.inputs.longitude}</div>
+              <div>{locals.inputs.latitude}</div>
             </Col>
             <Col md={6}>
               <div>{locals.inputs.data}</div>
@@ -55,11 +60,14 @@ export default class EditTourForm extends React.Component {
       }
     };
 
+    let values = this.props.values;
+    values.data = this.props.notes.length === 1 ? this.props.notes[0].note : "";
+
     return(
       <div>
         <h1>Information</h1>
         <form onSubmit={this.onSubmit.bind(this)}>
-          <t.form.Form class="edit-form" ref="form" type={FormSchema} value={this.props.values} options={options} />
+          <t.form.Form class="edit-form" ref="form" type={FormSchema} value={values} options={options} />
           <Row>
             <div class="form-group">
               <button type="submit" class="btn btn-primary center-block">Save</button>
@@ -68,8 +76,6 @@ export default class EditTourForm extends React.Component {
         </form>
         <DropZone />
       </div>
-
     );
   }
 }
-

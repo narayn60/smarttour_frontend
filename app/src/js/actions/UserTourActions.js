@@ -17,9 +17,11 @@ class UserTourActions {
       dispatch();
       this.stores.UserTourSource.fetch()
         .then((tours) => {
+          console.log("Tours", tours);
           this.updateTours(tours);
         })
         .catch((errorMessage) => {
+          console.log(errorMessage);
           this.toursFailed(errorMessage);
         });
     };

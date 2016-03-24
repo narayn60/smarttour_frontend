@@ -1,7 +1,6 @@
 import React from "react";
 import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
 import { Router, Route, Link, browserHistory } from 'react-router';
-import LeafMap from '../leaflet/LeafMap';
 
 export default class TourDetailed extends React.Component {
 

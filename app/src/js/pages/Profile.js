@@ -22,8 +22,7 @@ export default class Profile extends React.Component {
   }
 
   onClick(selected) {
-    var newChosenSection = selected === this.state.chosenSection ? 0 : selected;
-    this.setState({chosenSection: newChosenSection});
+    this.setState({chosenSection: selected});
   }
 
   render() {
@@ -32,7 +31,7 @@ export default class Profile extends React.Component {
     const userName = AuthStore.getName().split(" ", 2)[0];
     const gravatarSize = 200;
 
-    const OptionalComponents = ["", "TODO: Followers will go here", <TourTable />, "TODO: Placeholder"];
+    const OptionalComponents = ["TODO: Followers will go here", <TourTable />, "TODO: Placeholder"];
     const TourTableComponent = OptionalComponents[this.state.chosenSection];
 
     var profileStyle = {
@@ -59,11 +58,11 @@ export default class Profile extends React.Component {
         <Row class="nav">    
           <Col md={4}></Col>
           <Col xs={12} md={8}>
-            <Col xs={4} md={4} onClick={() => this.onClick(1)} class="well">
+            <Col xs={4} md={4} onClick={() => this.onClick(0)} class="well">
                 <i class="fa fa-user fa-lg"></i> {this.user.followers} Followers
             </Col>
-            <Col xs={4} md={4} onClick={() => this.onClick(2)} class="well"><i class="fa fa-map fa-lg"></i> My Tours</Col>
-            <Col xs={4} md={4} onClick={() => this.onClick(3)}class="well"><i class="fa fa-thumbs-o-up fa-lg"></i> 16</Col>
+            <Col xs={4} md={4} onClick={() => this.onClick(1)} class="well"><i class="fa fa-map fa-lg"></i> My Tours</Col>
+            <Col xs={4} md={4} onClick={() => this.onClick(2)}class="well"><i class="fa fa-thumbs-o-up fa-lg"></i> 16</Col>
           </Col>
         </Row>
 

@@ -1,65 +1,87 @@
 import React from 'react';
-import LeafMap from '../components/leaflet/LeafMap';
 import { Nav, NavItem, MenuItem, Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
 import EditTourForm from '../components/sub/EditTourForm';
+import PhotoItem from '../components/sub/PhotoItem';
 import classNames from 'classnames';
+
 import MapActions from 'MapActions';
 import MapStore from 'MapStore';
+import NotesActions from 'NotesActions';
+import NotesStore from 'NotesStore';
+
 import connectToStores from 'alt-utils/lib/connectToStores';
+
 import Gallery from 'react-photo-gallery';
+import UserTourStore from 'UserTourStore';
+
+import TourMap from '../components/gmaps/TourMap';
 
 
 export default class TourDesign extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = MapStore.getState();
     this.state.subselected = 0;
-    this.state.selected = null;
+    this.state.selected = null; //Currently selected map point
+    this.state.tour = UserTourStore.tourInfo(this.props.params.id);
   }
 
   static getStores() {
-    return [MapStore];
+    return [NotesStore, MapStore];
   }
 
   static getPropsFromStores() {
-    return MapStore.getState();
+    return {
+      ...MapStore.getState(),
+      ...NotesStore.getState()
+    }
   }
 
   componentWillMount() {
     MapStore.listen(this.onChange.bind(this));
+    NotesStore.listen(this.onChange.bind(this));
+    MapActions.fetchLocations(this.state.tour.id);
   }
 
   componentWillUnmount() {
     MapStore.unlisten(this.onChange.bind(this));
+    NotesStore.unlisten(this.onChange.bind(this));
   }
 
   onChange(state) {
     this.setState(state);
   }
 
-  onClick(index) {
+  handleClick(index) {
+    console.log("Handle click callled", index);
     this.setState({selected: index});
+    NotesActions.fetchNotes(this.state.locations[index].id);
   }
 
   handleSelect(selectedKey) {
     this.setState({subselected: selectedKey});
   }
 
-  selected(index) {
-    this.setState({selected: index});
-  }
-
   render() {
 
-    const Locations = this.state.points.map((point, i) => {
+    // Account for case where no locations have been created
+    if (this.state.locations.length === 0) {
+      return (
+        <div>
+          No Locations Created for tour
+        </div>
+      );
+    }
+
+    const Locations = this.state.locations.map((point, i) => {
       const classes = classNames( "table-element", {
         'selected': (this.state.selected === i)
       });
       return (
-        <tr class={classes} onClick={() => this.onClick(i)}> <td>{i}</td>
+        <tr class={classes} onClick={() => this.handleClick(i)}> <td>{i}</td>
           <td>{point.name}</td>
-        </tr> 
+        </tr>
       );
     });
 
@@ -73,59 +95,9 @@ export default class TourDesign extends React.Component {
       </Nav>
     );
 
-    
-    const PHOTO_SET = [
-      {
-        src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-        width: 960,
-        height: 960,
-        aspectRatio: 1.5,
-        lightboxImage:{
-          src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-          srcset: [
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 1024w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 800w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 500w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 320w',
-          ],
-          caption: "Toronto"
-        }
-      },
-      {
-        src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-        width: 960,
-        height: 960,
-        aspectRatio: 1.5,
-        lightboxImage:{
-          src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-          srcset: [
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 1024w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 800w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 500w',
-            'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 320w',
-          ]
-        }
-      },
-      {
-        src: 'http://example.com/example/img2_small.jpg',
-        width: 600,
-        height: 600,
-        aspectRatio: 1,
-        lightboxImage:{
-          src: 'http://example.com/example/img2_large.jpg',
-          srcset: [
-            'http://example.com/example/img2_1024.jpg 1024w',
-            'http://example.com/example/img2_800.jpg 800w',
-            'http://example.com/example/img2_500.jpg 500w',
-            'http://example.com/example/img2_320.jpg 320w',
-          ]
-        }
-      }
-    ];
-
     const sections = [
-        <EditTourForm values={this.state.points[currentlySelected]} />,
-      <Gallery photos={PHOTO_SET} />,
+      <EditTourForm values={this.state.locations[currentlySelected]} notes={this.state.notes}/>,
+      <PhotoItem />,
       "Temp for something"
     ];
 
@@ -133,7 +105,7 @@ export default class TourDesign extends React.Component {
 
     return (
       <div class="container">
-        <h3> ID: { this.props.params.id } </h3>
+        <h3> { this.state.tour.name } </h3>
         <Row>
           <Col md={3}>
             <Table bordered condensed hover>
@@ -148,8 +120,11 @@ export default class TourDesign extends React.Component {
               </tbody>
             </Table>
           </Col>
-          <Col md={8} mdOffset={1}>
-            <LeafMap points={this.state.points} updateState={this.selected.bind(this)} selectedindex={this.state.selected}/>
+          <Col md={8} mdOffset={1} style={{height: "400px", width: "80%"}}>
+            <TourMap
+              handleClick={this.handleClick.bind(this)}
+              locations={this.props.locations}
+              selected={this.state.selected}/>
           </Col>
         </Row>
         <Row>
@@ -162,3 +137,4 @@ export default class TourDesign extends React.Component {
 }
 
 export default connectToStores(TourDesign);
+

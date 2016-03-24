@@ -33,6 +33,8 @@ server.use(compression());
 
 // Setup passport and authentication
 // auth_setup(server);
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; //TODO: Make sure this is only development
+
 
 server.use(cookieParser('secret'));
 server.use(expressSession()); // server.use(expressSession({
@@ -113,6 +115,7 @@ server.get('/auth/google',
              scope: [
                'https://www.googleapis.com/auth/plus.login',
                'https://www.googleapis.com/auth/userinfo.email',
+               'https://www.googleapis.com/auth/userinfo.profile',
                'openid'
              ]
            })
