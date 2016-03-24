@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import routes from './pages/routes';
-import 'leaflet/dist/leaflet.css';
 import 'base_css';
 import jquery from 'jquery';
 import Iso from 'iso';

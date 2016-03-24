@@ -1,14 +1,20 @@
 import React from 'react';
-import LeafMap from '../components/leaflet/LeafMap';
 import { Nav, NavItem, MenuItem, Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
 import EditTourForm from '../components/sub/EditTourForm';
 import PhotoItem from '../components/sub/PhotoItem';
 import classNames from 'classnames';
+
 import MapActions from 'MapActions';
 import MapStore from 'MapStore';
+import NotesActions from 'NotesActions';
+import NotesStore from 'NotesStore';
+
 import connectToStores from 'alt-utils/lib/connectToStores';
+
 import Gallery from 'react-photo-gallery';
 import UserTourStore from 'UserTourStore';
+
+import TourMap from '../components/gmaps/TourMap';
 
 
 export default class TourDesign extends React.Component {
@@ -17,63 +23,69 @@ export default class TourDesign extends React.Component {
     super(props);
     this.state = MapStore.getState();
     this.state.subselected = 0;
-    this.state.selected = null;
+    this.state.selected = null; //Currently selected map point
     this.state.tour = UserTourStore.tourInfo(this.props.params.id);
   }
 
   static getStores() {
-    return [MapStore];
+    return [NotesStore, MapStore];
   }
 
   static getPropsFromStores() {
-    return MapStore.getState();
+    return {
+      ...MapStore.getState(),
+      ...NotesStore.getState()
+    }
   }
 
   componentWillMount() {
     MapStore.listen(this.onChange.bind(this));
-    console.log("Tour id", this.state.tour.id);
+    NotesStore.listen(this.onChange.bind(this));
     MapActions.fetchLocations(this.state.tour.id);
   }
 
   componentWillUnmount() {
     MapStore.unlisten(this.onChange.bind(this));
+    NotesStore.unlisten(this.onChange.bind(this));
   }
 
   onChange(state) {
-    console.log("TourDesign Change detected");
     this.setState(state);
   }
 
-  onClick(index) {
+  handleClick(index) {
+    console.log("Handle click callled", index);
     this.setState({selected: index});
+    NotesActions.fetchNotes(this.state.locations[index].id);
   }
 
   handleSelect(selectedKey) {
     this.setState({subselected: selectedKey});
   }
 
-  selected(index) {
-    this.setState({selected: index});
-  }
-
   render() {
 
-    console.log("TourDesign", this.state.locations);
+    // Account for case where no locations have been created
+    if (this.state.locations.length === 0) {
+      return (
+        <div>
+          No Locations Created for tour
+        </div>
+      );
+    }
 
     const Locations = this.state.locations.map((point, i) => {
       const classes = classNames( "table-element", {
         'selected': (this.state.selected === i)
       });
       return (
-        <tr class={classes} onClick={() => this.onClick(i)}> <td>{i}</td>
+        <tr class={classes} onClick={() => this.handleClick(i)}> <td>{i}</td>
           <td>{point.name}</td>
-        </tr> 
+        </tr>
       );
     });
 
     const currentlySelected = this.state.selected;
-
-    console.log("currentlySelected", currentlySelected);
 
     const EditSelection = currentlySelected === null ? "" : (
       <Nav bsStyle="tabs" activeKey={this.state.subselected} onSelect={this.handleSelect.bind(this)}>
@@ -83,10 +95,8 @@ export default class TourDesign extends React.Component {
       </Nav>
     );
 
-    
-
     const sections = [
-      <EditTourForm values={this.state.locations[currentlySelected]} />,
+      <EditTourForm values={this.state.locations[currentlySelected]} notes={this.state.notes}/>,
       <PhotoItem />,
       "Temp for something"
     ];
@@ -110,8 +120,11 @@ export default class TourDesign extends React.Component {
               </tbody>
             </Table>
           </Col>
-          <Col md={8} mdOffset={1}>
-            <LeafMap points={this.state.locations} updateState={this.selected.bind(this)} selectedindex={this.state.selected}/>
+          <Col md={8} mdOffset={1} style={{height: "400px", width: "80%"}}>
+            <TourMap
+              handleClick={this.handleClick.bind(this)}
+              locations={this.props.locations}
+              selected={this.state.selected}/>
           </Col>
         </Row>
         <Row>
@@ -124,3 +137,4 @@ export default class TourDesign extends React.Component {
 }
 
 export default connectToStores(TourDesign);
+

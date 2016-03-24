@@ -8,7 +8,6 @@ import Register from './Register';
 import Browse from './Browse';
 import Tour from './Tour';
 import Guides from './Guides';
-import TourMap from './TourMap';
 import CreateTour from './CreateTour';
 import DetailedTour from './DetailedTour';
 import DetailedGuide from './DetailedGuide';
@@ -46,4 +45,3 @@ module.exports = (
 
 
 
-  // <Route path='/tourcreator' component={TourMap}/>
