@@ -14,9 +14,10 @@ class FormActions {
       console.log(values);
       const url = Global.backend_url + AuthStore.getUid() + "/tours/";
       axios.post(url, values)
-        .then(function (response) {
-          console.log(response);
-        })
+        .then((response) => response.data) //If this isn't correct change it to (response) => response
+        // .then(function (response) {
+        //   console.log(response);
+        // })
         .catch(function (error) {
           throw error;
         });

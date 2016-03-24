@@ -13,6 +13,7 @@ module.exports = {
   PersonalTourStore: store_base + 'PersonalTourStore',
   MapStore: store_base + 'MapStore',
   NotesStore: store_base + 'NotesStore',
+  FormStore: store_base + 'FormStore',
 
   AuthActions: action_base + "AuthActions",
   TourActions: action_base + "TourActions",
