@@ -16,12 +16,20 @@ class FormActions {
       axios.post(url, values)
         .then(function (response) {
           console.log(response);
+          console.log(response.data.id)
+          // updateTourId(response.data.id);
+          return response.data.id
         })
         .catch(function (error) {
           throw error;
         });
     };
   }
+
+  updateTourId(id) {
+    return (id);
+  }
+
 }
 
 export default alt.createActions(FormActions);

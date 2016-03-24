@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
 import { Router, Route, Link, browserHistory } from 'react-router';
 import LeafMap from '../leaflet/LeafMap';
+import ImageLoad from './ImageLoad';
 
 export default class TourDetailed extends React.Component {
 
@@ -13,6 +14,7 @@ export default class TourDetailed extends React.Component {
   render() {
     var tour = this.props.tour;
     var dummy_photo = "../../img/team/3.jpg";
+    var qr_path = "/tours/" + tour.id + "/qrcode_profile/"
 
     return (
       <div>
@@ -62,7 +64,7 @@ export default class TourDetailed extends React.Component {
             <Collapse in={this.state.open}>
               <div>
                 <Well class="collapsing-well">
-                  <Image src="../../img/portfolio/qr.png" rounded/>
+                  <ImageLoad path={qr_path} />
                 </Well>
               </div>
             </Collapse>
