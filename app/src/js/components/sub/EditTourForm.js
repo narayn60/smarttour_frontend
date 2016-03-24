@@ -61,6 +61,7 @@ export default class EditTourForm extends React.Component {
     };
 
     let values = this.props.values;
+    console.log("Values are", values);
     values.data = this.props.notes.length === 1 ? this.props.notes[0].note : "";
 
     return(
@@ -74,7 +75,7 @@ export default class EditTourForm extends React.Component {
             </div>
           </Row>
         </form>
-        <DropZone />
+        <DropZone location_id={this.props.values['id']}/>
       </div>
     );
   }

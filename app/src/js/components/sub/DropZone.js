@@ -1,6 +1,10 @@
 import React from 'react';
 import DropzoneComponent from 'react-dropzone-component';
 import ReactDOMServer from 'react-dom/server';
+import Global from 'Global';
+import AuthStore from 'AuthStore';
+import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
+import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
 
 //TODO: Change to actually upload files
 export default class DropZone extends React.Component {
@@ -8,24 +12,15 @@ export default class DropZone extends React.Component {
   render() {
 
     var djsConfig = {
-      previewTemplate: ReactDOMServer.renderToStaticMarkup(
-        <div className="dz-preview dz-file-preview">
-          <div className="dz-details">
-            <div className="dz-filename"><span data-dz-name></span></div>
-            <img data-dz-thumbnail />
-          </div>
-          <div className="dz-progress"><span className="dz-upload" data-dz-uploadprogress></span></div>
-          <div className="dz-success-mark"><span>✔</span></div>
-          <div className="dz-error-mark"><span>✘</span></div>
-          <div className="dz-error-message"><span data-dz-errormessage></span></div>
-        </div>
-      )
+      paramName: 'photo',
+      addRemoveLinks: true,
+      acceptedFiles: "image/jpeg,image/png,image/gif"
     };
 
     var componentConfig = {
       iconFiletypes: ['.jpg', '.png', '.gif'],
       showFiletypeIcon: true,
-      postUrl: './uploadHandler'
+      postUrl: Global.backend_url + AuthStore.getUid() + '/locations/' + this.props.location_id + '/photos/'
     };
 
     var callbackArray = [
@@ -41,6 +36,11 @@ export default class DropZone extends React.Component {
       console.log('I\'m a simple callback');
     };
 
+    var removeFile = function () {
+      //TODO: Need to be able to actually remove file on backend
+      alert("Delted file");
+    }
+
     var eventHandlers = {
       // This one receives the dropzone object as the first parameter
       // and can be used to additional work with the dropzone.js
@@ -54,8 +54,8 @@ export default class DropZone extends React.Component {
       dragover: null,
       dragleave: null,
       // All of these receive the file as first parameter:
-      addedfile: simpleCallBack,
-      removedfile: null,
+      addedfile: null,
+      removedfile: removeFile,
       thumbnail: null,
       error: null,
       processing: null,

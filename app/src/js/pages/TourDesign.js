@@ -104,10 +104,18 @@ export default class TourDesign extends React.Component {
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
 
     return (
-      <div class="container">
-        <h3> { this.state.tour.name } </h3>
-        <Row>
-          <Col md={3}>
+      <div>
+        <div class="container">
+          <h3> { this.state.tour.name } </h3>
+        </div>
+        <div style={{height: '400px', position: 'relative', overflow: 'hidden'}}>
+          <div style={{position: 'absolute', left: 0, top: 0, width: '62%', height: '100%'}}>
+            <TourMap
+              handleClick={this.handleClick.bind(this)}
+              locations={this.props.locations}
+              selected={this.state.selected}/>
+          </div>
+          <div style={{position: 'absolute', right: 0, top: 0, width: '38%', height: '100%'}}>
             <Table bordered condensed hover>
               <thead>
                 <tr>
@@ -119,18 +127,14 @@ export default class TourDesign extends React.Component {
                 {Locations}
               </tbody>
             </Table>
-          </Col>
-          <Col md={8} mdOffset={1} style={{height: "400px", width: "80%"}}>
-            <TourMap
-              handleClick={this.handleClick.bind(this)}
-              locations={this.props.locations}
-              selected={this.state.selected}/>
-          </Col>
-        </Row>
-        <Row>
-          { EditSelection }
-          { TourEdit }
-        </Row>
+          </div>
+        </div>
+        <div class="container">
+          <Row>
+            { EditSelection }
+            { TourEdit }
+          </Row>
+        </div>
       </div>
     );
   }
@@ -138,3 +142,38 @@ export default class TourDesign extends React.Component {
 
 export default connectToStores(TourDesign);
 
+
+/* <div class="container">
+   <h3> { this.state.tour.name } </h3>
+   <Row>
+   <Col md={3}>
+   <Table bordered condensed hover>
+   <thead>
+   <tr>
+   <th>#</th>
+   <th>Name</th>
+   </tr>
+   </thead>
+   <tbody>
+   {Locations}
+   </tbody>
+   </Table>
+   </Col>
+   <Col md={8} mdOffset={1} style={{height: "400px", width: "80%"}}>
+   <div style={{height: '100%', position: 'relative', overflow: 'hidden'}}>
+   <div style={{position: 'absolute', left: 0, top: 0, width: '38%', height: '100%'}}>
+   </div>
+   <div style={{position: 'absolute', right: 0, top: 0, width: '62%', height: '100%'}}>
+   <TourMap
+   handleClick={this.handleClick.bind(this)}
+   locations={this.props.locations}
+   selected={this.state.selected}/>
+   </div>
+   </div>
+   </Col>
+   </Row>
+   <Row>
+   { EditSelection }
+   { TourEdit }
+   </Row>
+   </div> */
