@@ -20,9 +20,6 @@ export default class EditTourForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const value = this.refs.form.getValue();
-    if (value) {
-      console.log(value);
-    }
   }
 
   render() {
@@ -61,7 +58,6 @@ export default class EditTourForm extends React.Component {
     };
 
     let values = this.props.values;
-    console.log("Values are", values);
     values.data = this.props.notes.length === 1 ? this.props.notes[0].note : "";
 
     return(

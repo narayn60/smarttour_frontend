@@ -8,45 +8,16 @@ import {
 } from 'react-bootstrap';
 import Gallery from 'react-photo-gallery';
 
+//TODO: GET RID OF THESE TWO, SHOULD BE ABLE TO POINT DIRECTLY AT SOURCE!!!
+import Global from 'Global';
+import AuthStore from 'AuthStore';
+
 export default class PhotoItem extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      gallery_selected: true,
-      photo_set: [
-        {
-          src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-          width: 960,
-          height: 960,
-          aspectRatio: 1.5,
-          lightboxImage:{
-            src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-            srcset: [
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 1024w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 800w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 500w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 320w',
-            ],
-            caption: "Toronto"
-          }
-        },
-        {
-          src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-          width: 960,
-          height: 960,
-          aspectRatio: 1.5,
-          lightboxImage:{
-            src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-            srcset: [
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 1024w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 800w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 500w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 320w',
-            ]
-          }
-        },
-      ]
+      gallery_selected: true
     };
   }
 
@@ -58,7 +29,27 @@ export default class PhotoItem extends React.Component {
 
   render() {
 
-    const photos = this.state.photo_set.map((point) => (
+    const photo_set = this.props.photos.map((photo) => {
+      const src = Global.backend_url + AuthStore.getUid() + "/" + photo.photo_path_s3;
+      return ({
+        src: src,
+        width: 960,
+        height: 960,
+        aspectRatio: 1.5,
+        lightboxImage: {
+          src: src,
+          srcset: [
+            src + ' 1024w',
+            src + ' 800w',
+            src + ' 500w',
+            src + ' 320w',
+          ],
+          caption: photo.caption
+        }
+      });
+    });
+
+    const photos = photo_set.map((point) => (
       <Row>
         <Col md={3}>
           <Image class="tour-pic" src={point.src} rounded />
@@ -69,7 +60,7 @@ export default class PhotoItem extends React.Component {
       </Row>
     ));
 
-    const selectedComponent = this.state.gallery_selected ? <Gallery photos={this.state.photo_set} /> : (
+    const selectedComponent = this.state.gallery_selected ? <Gallery photos={photo_set} /> : (
       <Grid>
         {photos}
       </Grid> );

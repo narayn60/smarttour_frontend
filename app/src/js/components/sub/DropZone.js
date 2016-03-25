@@ -38,8 +38,8 @@ export default class DropZone extends React.Component {
 
     var removeFile = function () {
       //TODO: Need to be able to actually remove file on backend
-      alert("Delted file");
-    }
+      // alert("Delted file");
+    };
 
     var eventHandlers = {
       // This one receives the dropzone object as the first parameter

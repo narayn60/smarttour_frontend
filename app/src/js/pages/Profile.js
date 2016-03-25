@@ -7,6 +7,7 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 import AuthStore from 'AuthStore';
 import Gravatar from 'react-gravatar';
 import TourTable from '../components/sub/TourTable';
+import SortableTable from '../components/sub/SortableTable';
 
 export default class Profile extends React.Component {
 
@@ -59,7 +60,7 @@ export default class Profile extends React.Component {
           <Col md={4}></Col>
           <Col xs={12} md={8}>
             <Col xs={4} md={4} onClick={() => this.onClick(0)} class="well">
-                <i class="fa fa-user fa-lg"></i> {this.user.followers} Followers
+              <i class="fa fa-user fa-lg"></i> {this.user.followers} Followers
             </Col>
             <Col xs={4} md={4} onClick={() => this.onClick(1)} class="well"><i class="fa fa-map fa-lg"></i> My Tours</Col>
             <Col xs={4} md={4} onClick={() => this.onClick(2)}class="well"><i class="fa fa-thumbs-o-up fa-lg"></i> 16</Col>
