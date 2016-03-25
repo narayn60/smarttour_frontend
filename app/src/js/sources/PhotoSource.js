@@ -28,7 +28,7 @@ export default class PhotoSource {
        resolve(mockData);
        }, 250);
        }); */
-    return axios.get(Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + "/photos/")
+    return axios.get(Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/photos/')
                 .then((photos) => photos.data)
                 .catch((error) => {
                   throw error;
@@ -36,4 +36,15 @@ export default class PhotoSource {
 
   } 
 
+  update_caption(location_id, photo_id, new_caption) {
+    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/photos/' + photo_id + '/';
+    return axios.patch(url, {caption: new_caption})
+      .then((response) => {
+        console.log("Caption response", response); //TODO Remove
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }

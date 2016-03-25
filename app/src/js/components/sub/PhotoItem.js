@@ -10,6 +10,7 @@ import Gallery from 'react-photo-gallery';
 import Global from 'Global';
 import AuthStore from 'AuthStore';
 import t from 'tcomb-form';
+import PhotoActions from 'PhotoActions';
 
 const FormSchema = t.struct({
   caption: t.String
@@ -37,12 +38,9 @@ export default class PhotoItem extends React.Component {
 
   __onSubmit(i, event) {
     event.preventDefault();
-    console.log("Value received", i);
     const value = this.refs["form" + i].getValue();
-    if (value) {
-      console.log("Caption value is", value);
-    }
-    console.log("Props", this.props.photos[i]);
+    const photo_info = this.props.photos[i];
+    PhotoActions.update_caption(photo_info.location, photo_info.id, value.caption);
   }
 
   render() {
@@ -84,16 +82,20 @@ export default class PhotoItem extends React.Component {
       template: formLayout
     };
 
+    const buttonSwitchText = this.state.gallery_selected ? "Edit Photos" : "View Gallery";
 
-    const photos = photo_set.map((point, i) => {
+
+    console.log("Photo props", this.props.photos);
+    const photos = this.props.photos.map((photo, i) => {
       const ref = "form" + i;
+      const src = Global.backend_url + AuthStore.getUid() + "/" + photo.photo_path_s3;
       return (
         <Row>
           <Col md={3}>
-            <Image class="tour-pic" src={point.src} rounded />
+            <Image class="tour-pic" src={src} rounded />
           </Col>
           <form onSubmit={this.__onSubmit.bind(this, i)}>
-            <t.form.Form class="edit-form" ref={ref} type={FormSchema} value={point.lightboxImage.caption} options={options}/>
+            <t.form.Form class="edit-form" ref={ref} type={FormSchema} value={photo} options={options}/>
           </form>
         </Row>
       );
@@ -108,7 +110,7 @@ export default class PhotoItem extends React.Component {
 
     return (
       <div>
-        <Button bsStyle="primary" onClick={this.__onClick.bind(this)}> Edit Photos </Button>
+        <Button bsStyle="primary" onClick={this.__onClick.bind(this)}>{buttonSwitchText}</Button>
         {selectedComponent}
       </div>
     );

@@ -20,7 +20,6 @@ class NotesStore {
   }
 
   onUpdateBio(new_bio) {
-    console.log("onUpdateBio", new_bio);
     this.setState({ bio: new_bio });
   }
 

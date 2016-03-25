@@ -12,13 +12,26 @@ class PhotoActions {
     this.generateActions('updatePhotos');
   }
 
-  fetchPhotos(tour_id) {
+  fetchPhotos(location_id) {
     return (dispatch) => {
       dispatch();
-      this.stores.PhotoSource.fetch_photos(tour_id)
+      this.stores.PhotoSource.fetch_photos(location_id)
           .then((photos) => {
             console.log("Photos are", photos);
             this.updatePhotos(photos);
+          })
+          .catch((errorMessage) => {
+            this.photosFailed(errorMessage);
+          });
+    };
+  }
+
+  update_caption(location_id, photo_id, caption) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.PhotoSource.update_caption(location_id, photo_id, caption)
+          .then((response) => {
+            this.fetchPhotos(location_id); //TODO: Change this to stop stuttering, need to update to keep consistent state
           })
           .catch((errorMessage) => {
             this.photosFailed(errorMessage);
