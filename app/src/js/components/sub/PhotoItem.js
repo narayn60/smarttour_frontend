@@ -8,6 +8,10 @@ import {
 } from 'react-bootstrap';
 import Gallery from 'react-photo-gallery';
 
+//TODO: GET RID OF THESE TWO, SHOULD BE ABLE TO POINT DIRECTLY AT SOURCE!!!
+import Global from 'Global';
+import AuthStore from 'AuthStore';
+
 export default class PhotoItem extends React.Component {
 
   constructor() {
@@ -25,24 +29,25 @@ export default class PhotoItem extends React.Component {
 
   render() {
 
-    const photo_set = this.props.photos.map((photo) => (
-      {
-        src: photo.src,
+    const photo_set = this.props.photos.map((photo) => {
+      const src = Global.backend_url + AuthStore.getUid() + "/" + photo.photo_path_s3;
+      return ({
+        src: src,
         width: 960,
         height: 960,
         aspectRatio: 1.5,
         lightboxImage: {
-          src: photo.src,
+          src: src,
           srcset: [
-            photo.src + ' 1024w',
-            photo.src + ' 800w',
-            photo.src + ' 500w',
-            photo.src + ' 320w',
+            src + ' 1024w',
+            src + ' 800w',
+            src + ' 500w',
+            src + ' 320w',
           ],
           caption: photo.caption
         }
-      }
-    ));
+      });
+    });
 
     const photos = photo_set.map((point) => (
       <Row>
