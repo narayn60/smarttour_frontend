@@ -12,9 +12,9 @@ class PhotoStore {
 
   }
 
-  onUpdatePhotos(location) {
+  onUpdatePhotos(photo) {
     //TODO: Push the new updated location
-    this.setState({ photos: this.state.photos.concat(location)});
+    this.setState({ photos: this.state.photos.concat(photo)});
   }
 
   onFetchPhotos() {

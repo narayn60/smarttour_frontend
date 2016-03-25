@@ -42,6 +42,7 @@ export default class PhotoItem extends React.Component {
     if (value) {
       console.log("Caption value is", value);
     }
+    console.log("Props", this.props.photos[i]);
   }
 
   render() {

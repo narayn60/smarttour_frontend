@@ -3,9 +3,14 @@ import t from 'tcomb-form';
 import DropZone from './DropZone';
 import { Row, Col } from 'react-bootstrap';
 
+// TODO: Change this to flux
+import Global from 'Global';
+import AuthStore from 'AuthStore';
+import axios from 'axios';
+
 const FormSchema = t.struct({
   name: t.String,
-  data: t.String,
+  note: t.String,
   longitude: t.Number,
   latitude: t.Number
 });
@@ -19,7 +24,19 @@ export default class EditTourForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const value = this.refs.form.getValue();
+    const formValue = this.refs.form.getValue();
+    const location_id = this.props.values.id;
+    let update_value = {
+      note: formValue.note
+    };
+    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/';
+    axios.patch(url, update_value)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 
   render() {
@@ -34,7 +51,7 @@ export default class EditTourForm extends React.Component {
               <div>{locals.inputs.latitude}</div>
             </Col>
             <Col md={6}>
-              <div>{locals.inputs.data}</div>
+              <div>{locals.inputs.note}</div>
             </Col>
           </Row>
         </div>
@@ -45,9 +62,15 @@ export default class EditTourForm extends React.Component {
       template: formLayout,
       fields: {
         name: {
-          disabled: false
+          disabled: true
         },
-        data: {
+        longitude: {
+          disabled: true
+        },
+        latitude: {
+          disabled: true
+        },
+        note: {
           label: "Information",
           type: 'textarea',
           attrs: {
@@ -58,7 +81,6 @@ export default class EditTourForm extends React.Component {
     };
 
     let values = this.props.values;
-    values.data = this.props.notes.length === 1 ? this.props.notes[0].note : "";
 
     return(
       <div>
@@ -67,7 +89,7 @@ export default class EditTourForm extends React.Component {
           <t.form.Form class="edit-form" ref="form" type={FormSchema} value={values} options={options} />
           <Row>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary center-block">Save</button>
+              <button type="submit" class="btn btn-primary center-block">Update Tour</button>
             </div>
           </Row>
         </form>
