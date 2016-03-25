@@ -13,40 +13,7 @@ export default class PhotoItem extends React.Component {
   constructor() {
     super();
     this.state = {
-      gallery_selected: true,
-      photo_set: [
-        {
-          src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-          width: 960,
-          height: 960,
-          aspectRatio: 1.5,
-          lightboxImage:{
-            src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-            srcset: [
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 1024w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 800w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 500w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 320w',
-            ],
-            caption: "Toronto"
-          }
-        },
-        {
-          src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-          width: 960,
-          height: 960,
-          aspectRatio: 1.5,
-          lightboxImage:{
-            src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-            srcset: [
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 1024w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 800w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 500w',
-              'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg 320w',
-            ]
-          }
-        },
-      ]
+      gallery_selected: true
     };
   }
 
@@ -58,7 +25,26 @@ export default class PhotoItem extends React.Component {
 
   render() {
 
-    const photos = this.state.photo_set.map((point) => (
+    const photo_set = this.props.photos.map((photo) => (
+      {
+        src: photo.src,
+        width: 960,
+        height: 960,
+        aspectRatio: 1.5,
+        lightboxImage: {
+          src: photo.src,
+          srcset: [
+            photo.src + ' 1024w',
+            photo.src + ' 800w',
+            photo.src + ' 500w',
+            photo.src + ' 320w',
+          ],
+          caption: photo.caption
+        }
+      }
+    ));
+
+    const photos = photo_set.map((point) => (
       <Row>
         <Col md={3}>
           <Image class="tour-pic" src={point.src} rounded />
@@ -69,7 +55,7 @@ export default class PhotoItem extends React.Component {
       </Row>
     ));
 
-    const selectedComponent = this.state.gallery_selected ? <Gallery photos={this.state.photo_set} /> : (
+    const selectedComponent = this.state.gallery_selected ? <Gallery photos={photo_set} /> : (
       <Grid>
         {photos}
       </Grid> );

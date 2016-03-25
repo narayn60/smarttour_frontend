@@ -13,18 +13,20 @@ module.exports = {
   PersonalTourStore: store_base + 'PersonalTourStore',
   FormStore: store_base + 'FormStore',
   FormStore: store_base + 'FormStore',
-  MapStore: store_base + 'MapStore',
+  LocationStore: store_base + 'LocationStore',
   NotesStore: store_base + 'NotesStore',
   FormStore: store_base + 'FormStore',
+  PhotoStore: store_base + 'PhotoStore',
 
   AuthActions: action_base + "AuthActions",
   TourActions: action_base + "TourActions",
   UserTourActions: action_base + "UserTourActions",
   PersonalTourActions: action_base + "PersonalTourActions",
-  MapActions: action_base + "MapActions",
+  LocationActions: action_base + "LocationActions",
   GuideActions: action_base + "GuideActions",
   FormActions: action_base + "FormActions",
   NotesActions: action_base + "NotesActions",
+  PhotoActions: action_base + "PhotoActions",
 
   AuthSource: source_base + "AuthSource",
   GuideSource: source_base + "GuideSource",
@@ -34,6 +36,7 @@ module.exports = {
   PersonalTourSource: source_base + "PersonalTourSource",
   NotesSource: source_base + "NotesSource",
   FormSource: source_base + 'FormSource',
+  PhotoSource: source_base + 'PhotoSource',
 
   alt_base: js_base + 'alt',
   base_css: "src/css/base.scss"

@@ -1,9 +1,9 @@
 import alt from 'alt_base';
-import MapActions from 'MapActions';
+import LocationActions from 'LocationActions';
 
-class MapStore {
+class LocationStore {
   constructor() {
-    this.bindActions(MapActions);
+    this.bindActions(LocationActions);
     this.errorMessage = null;
 
     this.state ={
@@ -27,4 +27,4 @@ class MapStore {
 
 }
 
-export default alt.createStore(MapStore, 'MapStore');
+export default alt.createStore(LocationStore, 'LocationStore');

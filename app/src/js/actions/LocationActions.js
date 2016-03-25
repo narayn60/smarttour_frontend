@@ -1,7 +1,7 @@
 import alt from 'alt_base';
 import LocationSource from 'LocationSource';
 
-class MapActions {
+class LocationActions {
   constructor() {
     this.state = {
       locations: []
@@ -32,4 +32,4 @@ class MapActions {
 
 }
 
-export default alt.createActions(MapActions);
+export default alt.createActions(LocationActions);

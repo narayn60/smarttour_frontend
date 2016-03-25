@@ -4,10 +4,12 @@ import EditTourForm from '../components/sub/EditTourForm';
 import PhotoItem from '../components/sub/PhotoItem';
 import classNames from 'classnames';
 
-import MapActions from 'MapActions';
-import MapStore from 'MapStore';
+import LocationActions from 'LocationActions';
+import LocationStore from 'LocationStore';
 import NotesActions from 'NotesActions';
 import NotesStore from 'NotesStore';
+import PhotoActions from 'PhotoActions';
+import PhotoStore from 'PhotoStore';
 
 import connectToStores from 'alt-utils/lib/connectToStores';
 
@@ -22,32 +24,35 @@ export default class TourDesign extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = MapStore.getState();
+    this.state = LocationStore.getState();
     this.state.subselected = 0;
     this.state.selected = null; //Currently selected map point
     this.state.tour = UserTourStore.tourInfo(this.props.params.id);
   }
 
   static getStores() {
-    return [NotesStore, MapStore];
+    return [NotesStore, LocationStore, PhotoStore];
   }
 
   static getPropsFromStores() {
     return {
-      ...MapStore.getState(),
-      ...NotesStore.getState()
+      ...LocationStore.getState(),
+      ...NotesStore.getState(),
+      ...PhotoStore.getState()
     }
   }
 
   componentWillMount() {
-    MapStore.listen(this.onChange.bind(this));
+    LocationStore.listen(this.onChange.bind(this));
     NotesStore.listen(this.onChange.bind(this));
-    MapActions.fetchLocations(this.state.tour.id);
+    PhotoStore.listen(this.onChange.bind(this));
+    LocationActions.fetchLocations(this.state.tour.id);
   }
 
   componentWillUnmount() {
-    MapStore.unlisten(this.onChange.bind(this));
+    LocationStore.unlisten(this.onChange.bind(this));
     NotesStore.unlisten(this.onChange.bind(this));
+    PhotoStore.unlisten(this.onChange.bind(this));
   }
 
   onChange(state) {
@@ -57,6 +62,7 @@ export default class TourDesign extends React.Component {
   handleClick(index) {
     this.setState({selected: index});
     NotesActions.fetchNotes(this.state.locations[index].id);
+    PhotoActions.fetchPhotos(this.state.locations[index].id);
   }
 
   handleSelect(selectedKey) {
@@ -108,7 +114,7 @@ export default class TourDesign extends React.Component {
 
     const sections = [
       <EditTourForm values={this.state.locations[currentlySelected]} notes={this.state.notes}/>,
-      <PhotoItem />,
+      <PhotoItem photos={this.state.photos}/>,
       "Temp for something"
     ];
 
