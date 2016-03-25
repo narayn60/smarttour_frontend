@@ -10,7 +10,7 @@ export default class TourFormSuccess extends React.Component {
   }
 
   render() {
-    var qr_path = "/tours/" + this.props.newTourID + "/qrcode_grid/"
+    var qr_path = "/media/tours/" + this.props.newTourID + "/qrcode_grid/"
 
     return (
       <div>
