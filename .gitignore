@@ -5,8 +5,7 @@ app/src/*.ttf
 app/src/*.eot
 app/src/*.woff
 app/public/*
-app/.jshintrc
-app/.tern-port
+app/.jshintrc app/.tern-port
 app/server/server.bundle.js
 app/npm-debug.log
 nginx/certs/nginx.*
@@ -14,4 +13,3 @@ app/server/.tern-port
 */**/.tern-port
 npm-debug.log
 TAGS
-*.org

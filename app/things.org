@@ -1,0 +1,10 @@
+*** TODO Redesign the website
+*** TODO Ability to edit photos
+*** TODO Hook up to backend
+*** TODO Gallery vs edit mode
+*** TODO Followers page
+*** TODO All users to switch tour positions around
+*** TODO Get tour photos down and also edit them
+*** TODO Delete images related to tour
+*** TODO Delete point as well as data attatched to a point
+*** TODO Immediately show photo once uploaded
