@@ -5,20 +5,20 @@ class AuthStore {
   constructor() {
     this.bindActions(AuthActions);
 
-    /* this.user= {
-       id: null,
-       id_token: null,
-       token: null,
-       name: null,
-       logo: null,
-       provider: null,
-       email: null
-       };
-     */
+    // this.user= {
+    //    id: null,
+    //    id_token: null,
+    //    token: null,
+    //    name: null,
+    //    logo: null,
+    //    provider: null,
+    //    email: null
+    //    };
+
 
     this.user= {
       id: 1,
-      id_token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjBhZjE1MjA0Njk4OTM2MGYxZGNjN2JmOGY4MzI4MDE2YWIzOTU1NTUifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhdF9oYXNoIjoiU0Y0a2ZtZHN2dFZidG1fX1hqNUxFUSIsImF1ZCI6IjM5NzgyMTI1NDE4OS1taHR2azZnbDZrbW1xZWV2bmhzazJuMXMyazd2N24zdC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNTYzMjM4NDA5MjY5OTg3ODAxMyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiIzOTc4MjEyNTQxODktbWh0dms2Z2w2a21tcWVldm5oc2sybjFzMms3djduM3QuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJlbWFpbCI6Im5hcmF5bjYwQGdtYWlsLmNvbSIsImlhdCI6MTQ1ODg1NTg5MywiZXhwIjoxNDU4ODU5NDkzLCJuYW1lIjoiQW5kcmV3IFN0dWFydCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vLWtacTd6NTRLWDcwL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUZrL09FeUFkWi1lMTRFL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJBbmRyZXciLCJmYW1pbHlfbmFtZSI6IlN0dWFydCIsImxvY2FsZSI6ImVuLUdCIn0.BEEvv9gJo9C7eKVJ3zrph8cd6hnP3Dp71fZlrcT5Kdm_GuEoytb6pfBAAlUC-uLKME7KQJi-hII4McRdU6rLRtmM3p0t8TTH8eH3iWbtg-sHUaDM8ndaj4ve8Vtbcl_xpp7Wsz59n2_w2LmbPNfofGFCD_uGc5nbbNHlEIOETmX_CmZ5kNaie4CdFO7n7_vlYqVz_B5MM4t8YyBFg0Y3fyypILYUfPXigPPnccZ6Dru2tGoM2-yc-rmbgw9tsRW3xcOslGUVnd-nhbxdg0_Z4f3ulhYxqFYBIpiGkiCvvFiazBOGG6z7NTMj8oPBQHmMa2IsdBAWEfYxhe8lrd8W9A',
+      id_token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImM4ZjM3ZDcwMzcxNTg3ZDJhYWFlM2JiZmY2MjRjYzg2NWVmMTA1NzUifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhdF9oYXNoIjoiem1rRUhLeGJlMkVfN2UtZ1p1LTBYQSIsImF1ZCI6IjM5NzgyMTI1NDE4OS1taHR2azZnbDZrbW1xZWV2bmhzazJuMXMyazd2N24zdC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNTYzMjM4NDA5MjY5OTg3ODAxMyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiIzOTc4MjEyNTQxODktbWh0dms2Z2w2a21tcWVldm5oc2sybjFzMms3djduM3QuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJlbWFpbCI6Im5hcmF5bjYwQGdtYWlsLmNvbSIsImlhdCI6MTQ1ODkwMzk4OSwiZXhwIjoxNDU4OTA3NTg5LCJuYW1lIjoiQW5kcmV3IFN0dWFydCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vLWtacTd6NTRLWDcwL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUZrL09FeUFkWi1lMTRFL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJBbmRyZXciLCJmYW1pbHlfbmFtZSI6IlN0dWFydCIsImxvY2FsZSI6ImVuLUdCIn0.G9o5VpEZmyNp1wV4B0J3ixtCLnMBmYUtDsNQ_CPi7e6AH6nknwQGkgDpDhbiuELuFwzam5LKAL-S1TUUyALXJCZ3uhKuzFXKE6jw9a7Uk9r3lb423s1Me20gyqNww_kd8BqqsaLmrukAyPElOI-BvGRDwX7s6a1oaEb17EU0T2ktJnEf0dI5WZnPYvgN92lXr-8XoUH_6AOCqgAyzkYZi0O3ExSiZH1TKPbrrW7jz3lWYk_My5u0JULeP4WSF99Bjh3U_osbgKXf7X_JYILLTsNAEaG9UxemNWoy8LVNPxZrQ7LtuYIeJgQeqt2F5giMwY2OU1apVR70gK4eRbN8XQ',
       token: 1,
       name: 'Andrew Stuart',
       logo: null,

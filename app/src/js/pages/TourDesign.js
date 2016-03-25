@@ -64,9 +64,10 @@ export default class TourDesign extends React.Component {
   }
 
   saveOrder() {
+    //TODO: Make it so it extracts the relevant tour id so we can re-order the tour on the server
     var result = [].map.call(
       document.getElementsByClassName('location-name'),
-      ((currentValue, index, collection) => currentValue.textContent)
+      ((currentValue, index, collection) => currentValue.id) //textContent for inner text
     );
     console.log(result);
   }
@@ -74,9 +75,10 @@ export default class TourDesign extends React.Component {
   render() {
 
     // Account for case where no locations have been created
+    // TODO: Make this page a lot nicer than it currently is
     if (this.state.locations.length === 0) {
       return (
-        <div>
+        <div class="container">
           No Locations Created for tour
         </div>
       );
@@ -89,7 +91,7 @@ export default class TourDesign extends React.Component {
       return (
         <tr class={classes} onClick={() => this.handleClick(i)}>
           <td>{i}</td>
-          <td class="location-name">{point.name}</td>
+          <td class="location-name" id={point.id} >{point.name}</td>
         </tr>
       );
     });
