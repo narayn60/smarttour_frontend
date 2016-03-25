@@ -7,7 +7,9 @@ class NotesStore {
     this.errorMessage = null;
 
     this.state ={
-      notes: []
+      bio: "",
+      notes: [],
+      note_response: null
     };
 
   }
@@ -17,7 +19,21 @@ class NotesStore {
     this.setState({ notes: this.state.notes.concat(note)});
   }
 
+  onUpdateBio(new_bio) {
+    console.log("onUpdateBio", new_bio);
+    this.setState({ bio: new_bio });
+  }
+
+  onPatchBio(id) {
+    console.log("Update note", id);
+    this.setState(id);
+    // this.setState({
+    //   note_response: id
+    // });
+  }
+
   onFetchNotes() {
+    console.log("Fetch notes called");
     this.state.notes = [];
   }
 

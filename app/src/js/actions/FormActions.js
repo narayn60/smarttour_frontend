@@ -16,7 +16,7 @@ class FormActions {
   }  
 
   createTour(values) {
-    console.log(values)
+    console.log(values);
     return (dispatch) => {
       dispatch();
       this.stores.FormSource.save(values)
@@ -24,13 +24,17 @@ class FormActions {
           this.updateId(id);
         })
         .catch((errorMessage) => {
-          console.log('error: ' + errorMessage)
+          console.log('error: ' + errorMessage);
         });
     };
   }
 
   updateId(id) {
     return id;
+  }
+
+  formFailed(errorMessage) {
+    return errorMessage;
   }
 }
 

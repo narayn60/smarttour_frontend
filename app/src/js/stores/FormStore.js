@@ -12,9 +12,9 @@ class FormStore {
       tour_id: null
     };
 
-    this.exportPublicMethods({
-      getTourId: this.getTourId
-    });
+    // this.exportPublicMethods({
+    //   getTourId: this.getTourId
+    // });
   }
 
   onCreateTour(id) {
@@ -23,13 +23,14 @@ class FormStore {
     });
   }
 
+
   onUpdateId(id) {
-    this.state.tour_id = id
+    this.state.tour_id = id;
   }
 
-  getTourId() {
-    return this.state.tour_id;
-  }
+  // getTourId() {
+  //   return this.state.tour_id;
+  // }
 
 }
 

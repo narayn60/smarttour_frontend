@@ -2,15 +2,11 @@ import React from 'react';
 import t from 'tcomb-form';
 import DropZone from './DropZone';
 import { Row, Col } from 'react-bootstrap';
-
-// TODO: Change this to flux
-import Global from 'Global';
-import AuthStore from 'AuthStore';
-import axios from 'axios';
+import NotesActions from 'NotesActions';
 
 const FormSchema = t.struct({
   name: t.String,
-  note: t.String,
+  bio: t.String,
   longitude: t.Number,
   latitude: t.Number
 });
@@ -27,16 +23,9 @@ export default class EditTourForm extends React.Component {
     const formValue = this.refs.form.getValue();
     const location_id = this.props.values.id;
     let update_value = {
-      note: formValue.note
+      note: formValue.bio
     };
-    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/';
-    axios.patch(url, update_value)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        throw error;
-      });
+    NotesActions.patchBio(update_value, location_id);
   }
 
   render() {
@@ -51,9 +40,8 @@ export default class EditTourForm extends React.Component {
               <div>{locals.inputs.latitude}</div>
             </Col>
             <Col md={6}>
-              <div>{locals.inputs.note}</div>
-            </Col>
-          </Row>
+              <div>{locals.inputs.bio}</div>
+            </Col> </Row>
         </div>
       );
     };
@@ -70,7 +58,7 @@ export default class EditTourForm extends React.Component {
         latitude: {
           disabled: true
         },
-        note: {
+        bio: {
           label: "Information",
           type: 'textarea',
           attrs: {
@@ -80,7 +68,8 @@ export default class EditTourForm extends React.Component {
       }
     };
 
-    let values = this.props.values;
+    // let values = this.props.values + this.props.location_info;
+    const values = Object.assign(this.props.values, this.props.location_info);
 
     return(
       <div>

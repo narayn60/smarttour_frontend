@@ -39,7 +39,7 @@ export default class TourDesign extends React.Component {
       ...LocationStore.getState(),
       ...NotesStore.getState(),
       ...PhotoStore.getState()
-    }
+    };
   }
 
   componentWillMount() {
@@ -75,10 +75,13 @@ export default class TourDesign extends React.Component {
       document.getElementsByClassName('location-name'),
       ((currentValue, index, collection) => currentValue.id) //textContent for inner text
     );
-    console.log(result);
   }
 
   render() {
+
+    const location_info = {
+      bio: this.state.bio
+    };
 
     // Account for case where no locations have been created
     // TODO: Make this page a lot nicer than it currently is
@@ -113,7 +116,7 @@ export default class TourDesign extends React.Component {
     );
 
     const sections = [
-      <EditTourForm values={this.state.locations[currentlySelected]} notes={this.state.notes}/>,
+        <EditTourForm values={this.state.locations[currentlySelected]} location_info={location_info} />,
       <PhotoItem photos={this.state.photos}/>,
       "Temp for something"
     ];

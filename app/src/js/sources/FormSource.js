@@ -4,19 +4,17 @@ import AuthStore from 'AuthStore';
 
 export default class FormSource {
 
-  constructor() {
-  }
-
   save(values) {
   	const url = Global.backend_url + AuthStore.getUid() + "/tours/";
     return axios.post(url, values)
 	    .then((response) => {
-	      return response.data.id
+	      return response.data.id;
 	    })
 	    .catch((error) => {
 	      throw error;
 	    });
 	}
+
 }
 
 
