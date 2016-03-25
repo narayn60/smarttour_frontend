@@ -54,8 +54,10 @@ export default class CreateTourForm extends React.Component {
   onChange(state) {
     this.setState(state);
     if (state.tour_id != null) {
-      console.log('ID of new tour is: ' + state.tour_id)
-      this.state.success = true
+      console.log('ID of new tour is: ' + state.tour_id);
+      this.setState({
+        success: true
+      });
     }
   }
 
@@ -81,7 +83,7 @@ export default class CreateTourForm extends React.Component {
   }
   
   render() {
-    let { tour } = this.props;
+    // let { tour } = this.props;
 
     const formLayout = (locals) => {
       return (
@@ -91,7 +93,6 @@ export default class CreateTourForm extends React.Component {
               <div>{locals.inputs.name}</div>
               <div>{locals.inputs.genre}</div>
               <div>{locals.inputs.bio}</div>
-              // <div>{locals.inputs.email}</div>
               <div>{locals.inputs.points}</div>
             </Col>
           </Row>

@@ -7,10 +7,13 @@ import {
   Input
 } from 'react-bootstrap';
 import Gallery from 'react-photo-gallery';
-
-//TODO: GET RID OF THESE TWO, SHOULD BE ABLE TO POINT DIRECTLY AT SOURCE!!!
 import Global from 'Global';
 import AuthStore from 'AuthStore';
+import t from 'tcomb-form';
+
+const FormSchema = t.struct({
+  caption: t.String
+});
 
 export default class PhotoItem extends React.Component {
 
@@ -21,10 +24,24 @@ export default class PhotoItem extends React.Component {
     };
   }
 
-  onClick() {
+  __onClick() {
     this.setState({
       gallery_selected: !this.state.gallery_selected
     });
+  }
+
+  __addCaption(e) {
+    e.preventDefault();
+    alert("Form submitted");
+  }
+
+  __onSubmit(i, event) {
+    event.preventDefault();
+    console.log("Value received", i);
+    const value = this.refs["form" + i].getValue();
+    if (value) {
+      console.log("Caption value is", value);
+    }
   }
 
   render() {
@@ -49,26 +66,48 @@ export default class PhotoItem extends React.Component {
       });
     });
 
-    const photos = photo_set.map((point) => (
-      <Row>
-        <Col md={3}>
-          <Image class="tour-pic" src={point.src} rounded />
-        </Col>
-        <Col md={9}>
-          <Input type="textarea" label="Caption" value={point.lightboxImage.caption}/>
-        </Col>
-      </Row>
-    ));
+    const formLayout = (locals) => {
+      return (
+        <div>
+          <Col md={7}>
+            <div>{locals.inputs.caption}</div>
+          </Col>
+          <Col md={2}>
+            <Button type="submit" bsStyle="primary">Submit</Button>
+          </Col>
+        </div>
+      );
+    };
+
+    const options = {
+      template: formLayout
+    };
+
+
+    const photos = photo_set.map((point, i) => {
+      const ref = "form" + i;
+      return (
+        <Row>
+          <Col md={3}>
+            <Image class="tour-pic" src={point.src} rounded />
+          </Col>
+          <form onSubmit={this.__onSubmit.bind(this, i)}>
+            <t.form.Form class="edit-form" ref={ref} type={FormSchema} value={point.lightboxImage.caption} options={options}/>
+          </form>
+        </Row>
+      );
+    }
+    );
 
     const selectedComponent = this.state.gallery_selected ? <Gallery photos={photo_set} /> : (
       <Grid>
         {photos}
-      </Grid> );
-
+      </Grid>
+    );
 
     return (
       <div>
-        <Button bsStyle="primary" onClick={this.onClick.bind(this)}> Edit Photos </Button>
+        <Button bsStyle="primary" onClick={this.__onClick.bind(this)}> Edit Photos </Button>
         {selectedComponent}
       </div>
     );
@@ -76,3 +115,11 @@ export default class PhotoItem extends React.Component {
 
 }
 
+
+/* <Col md={9}>
+
+   <form action={this.addCaption.bind(this)}>
+   <Input type="textarea" label="Caption" value={point.lightboxImage.caption}/>
+   <Button type="submit" value="Update Caption"></Button>
+   </form>
+   </Col> */
