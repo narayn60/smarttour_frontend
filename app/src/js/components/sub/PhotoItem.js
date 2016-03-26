@@ -20,10 +20,17 @@ export default class PhotoItem extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log("Photo Item created");
     this.state = {
       gallery_selected: true,
       photos: props.photos
     };
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      photos: this.props.photos
+    });
   }
 
   __onClick() {
@@ -43,8 +50,7 @@ export default class PhotoItem extends React.Component {
     if (answer) {
       const value = this.refs["form" + i].getValue();
       const photo_info = this.state.photos[i];
-      console.log("Should print table info", photo_info);
-      PhotoActions.update_caption(photo_info.location, photo_info.id, value.caption);
+      PhotoActions.updateCaption(photo_info.location, photo_info.id, value.caption);
     } else {
       this.setState({
         photos: this.props.photos
@@ -56,12 +62,15 @@ export default class PhotoItem extends React.Component {
     const answer = confirm("Delete photo");
     if (answer) {
       const photo_info = this.state.photos[i];
+      PhotoActions.deletePhoto(this.props.location_info.id, photo_info.id);
     }
   }
 
   render() {
 
-    const photo_set = this.state.photos.map((photo) => {
+    console.log("PhotoItem rerendered");
+
+    const photo_set = this.props.photos.map((photo) => {
       const src = Global.backend_url + AuthStore.getUid() + "/" + photo.photo_path_s3;
       return ({
         src: src,

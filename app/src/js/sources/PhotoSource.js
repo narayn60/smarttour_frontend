@@ -47,4 +47,17 @@ export default class PhotoSource {
         throw error;
       });
   }
+
+  delete_photo(location_id, photo_id) {
+    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/photos/' + photo_id + '/';
+    return axios.delete(url)
+      .then((response) => {
+        console.log("Succesfully deleted photo");
+        return response;
+      })
+      .catch((error) => {
+        console.log(error);
+        throw error;
+      });
+  }
 }

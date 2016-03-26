@@ -26,7 +26,7 @@ class PhotoActions {
     };
   }
 
-  update_caption(location_id, photo_id, caption) {
+  updateCaption(location_id, photo_id, caption) {
     return (dispatch) => {
       dispatch();
       this.stores.PhotoSource.update_caption(location_id, photo_id, caption)
@@ -36,6 +36,20 @@ class PhotoActions {
           .catch((errorMessage) => {
             this.photosFailed(errorMessage);
           });
+    };
+  }
+
+  deletePhoto(location_id, photo_id) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.PhotoSource.delete_photo(location_id, photo_id)
+        .then((response) => {
+          console.log("Should fetch photos");
+          this.fetchPhotos(location_id);
+        })
+        .catch((errorMessage) => {
+          this.photosFailed(errorMessage);
+        });
     };
   }
 

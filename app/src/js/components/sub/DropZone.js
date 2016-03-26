@@ -5,11 +5,13 @@ import Global from 'Global';
 import AuthStore from 'AuthStore';
 import '../../../../node_modules/react-dropzone-component/styles/filepicker.css';
 import '../../../../node_modules/dropzone/dist/min/dropzone.min.css';
+import PhotoActions from 'PhotoActions';
 
-//TODO: Change to actually upload files
 export default class DropZone extends React.Component {
 
   render() {
+
+    let location_id = this.props.location_id;
 
     var djsConfig = {
       paramName: 'photo',
@@ -20,25 +22,16 @@ export default class DropZone extends React.Component {
     var componentConfig = {
       iconFiletypes: ['.jpg', '.png', '.gif'],
       showFiletypeIcon: true,
-      postUrl: Global.backend_url + AuthStore.getUid() + '/locations/' + this.props.location_id + '/photos/'
-    };
-
-    var callbackArray = [
-      function () {
-        console.log('Look Ma, I\'m a callback in an array!');
-      },
-      function () {
-        console.log('Wooooow!');
-      }
-    ];
-
-    var simpleCallBack = function () {
-      console.log('I\'m a simple callback');
+      postUrl: Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/photos/'
     };
 
     var removeFile = function () {
       //TODO: Need to be able to actually remove file on backend
       // alert("Delted file");
+    };
+
+    var uploadedFile = function () {
+      PhotoActions.fetchPhotos(location_id);
     };
 
     var eventHandlers = {
@@ -47,7 +40,7 @@ export default class DropZone extends React.Component {
       // object
       init: null,
       // All of these receive the event as first parameter:
-      drop: callbackArray,
+      drop: null,
       dragstart: null,
       dragend: null,
       dragenter: null,
@@ -62,7 +55,7 @@ export default class DropZone extends React.Component {
       uploadprogress: null,
       sending: null,
       success: null,
-      complete: null,
+      complete: uploadedFile,
       canceled: null,
       maxfilesreached: null,
       maxfilesexceeded: null,
@@ -81,11 +74,9 @@ export default class DropZone extends React.Component {
     };
 
     return (
-      <DropzoneComponent config={componentConfig}
-                         eventHandlers={eventHandlers}
-                         djsConfig={djsConfig} />,
+        <DropzoneComponent config={componentConfig}
+      eventHandlers={eventHandlers}
+      djsConfig={djsConfig} />,
     );
   }
-
-  
 }

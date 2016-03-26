@@ -59,13 +59,13 @@ export default class TourDesign extends React.Component {
     this.setState(state);
   }
 
-  handleClick(index) {
+  __handleClick(index) {
     this.setState({selected: index});
     NotesActions.fetchNotes(this.state.locations[index].id);
     PhotoActions.fetchPhotos(this.state.locations[index].id);
   }
 
-  handleSelect(selectedKey) {
+  __handleSelect(selectedKey) {
     this.setState({subselected: selectedKey});
   }
 
@@ -78,6 +78,9 @@ export default class TourDesign extends React.Component {
   }
 
   render() {
+
+    console.log("Should re-render");
+    console.table(this.state.photos);
 
     const location_info = {
       bio: this.state.bio
@@ -98,7 +101,7 @@ export default class TourDesign extends React.Component {
         'selected': (this.state.selected === i)
       });
       return (
-        <tr class={classes} onClick={() => this.handleClick(i)}>
+        <tr class={classes} onClick={() => this.__handleClick(i)}>
           <td>{i}</td>
           <td class="location-name" id={point.id} >{point.name}</td>
         </tr>
@@ -108,7 +111,7 @@ export default class TourDesign extends React.Component {
     const currentlySelected = this.state.selected;
 
     const EditSelection = currentlySelected === null ? "" : (
-      <Nav bsStyle="tabs" activeKey={this.state.subselected} onSelect={this.handleSelect.bind(this)}>
+      <Nav bsStyle="tabs" activeKey={this.state.subselected} onSelect={this.__handleSelect.bind(this)}>
         <NavItem eventKey={0} title="Information">Information</NavItem>
         <NavItem eventKey={1} title="Photos">Photos</NavItem>
         <NavItem eventKey={2}>NavItem 3 content</NavItem>
@@ -117,7 +120,7 @@ export default class TourDesign extends React.Component {
 
     const sections = [
         <EditTourForm values={this.state.locations[currentlySelected]} location_info={location_info} />,
-        <PhotoItem photos={this.state.photos} location_info={location_info}/>,
+        <PhotoItem photos={this.state.photos} location_info={this.state.locations[currentlySelected]}/>,
       "Temp for something"
     ];
 
@@ -133,7 +136,7 @@ export default class TourDesign extends React.Component {
         <div style={{height: '400px', position: 'relative', overflow: 'hidden'}}>
           <div style={{position: 'absolute', left: 0, top: 0, width: '62%', height: '100%'}}>
             <TourMap
-              handleClick={this.handleClick.bind(this)}
+              handleClick={this.__handleClick.bind(this)}
               locations={this.props.locations}
               selected={this.state.selected}/>
           </div>
