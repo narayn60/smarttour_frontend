@@ -20,7 +20,6 @@ export default class PhotoItem extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("Photo Item created");
     this.state = {
       gallery_selected: true,
       photos: props.photos
@@ -37,11 +36,6 @@ export default class PhotoItem extends React.Component {
     this.setState({
       gallery_selected: !this.state.gallery_selected
     });
-  }
-
-  __addCaption(e) {
-    e.preventDefault();
-    alert("Form submitted");
   }
 
   __onSubmit(i, event) {
@@ -68,7 +62,13 @@ export default class PhotoItem extends React.Component {
 
   render() {
 
-    console.log("PhotoItem rerendered");
+    if ( this.props.photos.length === 0 ) {
+      return (
+        <div>
+          No Photos
+        </div>
+      )
+    }
 
     const photo_set = this.props.photos.map((photo) => {
       const src = Global.backend_url + AuthStore.getUid() + "/" + photo.photo_path_s3;
@@ -144,12 +144,3 @@ export default class PhotoItem extends React.Component {
   }
 
 }
-
-
-/* <Col md={9}>
-
-   <form action={this.addCaption.bind(this)}>
-   <Input type="textarea" label="Caption" value={point.lightboxImage.caption}/>
-   <Button type="submit" value="Update Caption"></Button>
-   </form>
-   </Col> */

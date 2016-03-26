@@ -79,9 +79,6 @@ export default class TourDesign extends React.Component {
 
   render() {
 
-    console.log("Should re-render");
-    console.table(this.state.photos);
-
     const location_info = {
       bio: this.state.bio
     };
