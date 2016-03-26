@@ -24,7 +24,6 @@ class NotesStore {
   }
 
   onPatchBio(id) {
-    console.log("Update note", id);
     this.setState(id);
     // this.setState({
     //   note_response: id
@@ -32,7 +31,6 @@ class NotesStore {
   }
 
   onFetchNotes() {
-    console.log("Fetch notes called");
     this.state.notes = [];
   }
 

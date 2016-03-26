@@ -18,10 +18,11 @@ const FormSchema = t.struct({
 
 export default class PhotoItem extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      gallery_selected: true
+      gallery_selected: true,
+      photos: props.photos
     };
   }
 
@@ -38,14 +39,29 @@ export default class PhotoItem extends React.Component {
 
   __onSubmit(i, event) {
     event.preventDefault();
-    const value = this.refs["form" + i].getValue();
-    const photo_info = this.props.photos[i];
-    PhotoActions.update_caption(photo_info.location, photo_info.id, value.caption);
+    const answer = confirm("Update data");
+    if (answer) {
+      const value = this.refs["form" + i].getValue();
+      const photo_info = this.state.photos[i];
+      console.log("Should print table info", photo_info);
+      PhotoActions.update_caption(photo_info.location, photo_info.id, value.caption);
+    } else {
+      this.setState({
+        photos: this.props.photos
+      });
+    }
+  }
+
+  __onDelete(i) {
+    const answer = confirm("Delete photo");
+    if (answer) {
+      const photo_info = this.state.photos[i];
+    }
   }
 
   render() {
 
-    const photo_set = this.props.photos.map((photo) => {
+    const photo_set = this.state.photos.map((photo) => {
       const src = Global.backend_url + AuthStore.getUid() + "/" + photo.photo_path_s3;
       return ({
         src: src,
@@ -71,7 +87,7 @@ export default class PhotoItem extends React.Component {
           <Col md={7}>
             <div>{locals.inputs.caption}</div>
           </Col>
-          <Col md={2}>
+          <Col md={1}>
             <Button type="submit" bsStyle="primary">Submit</Button>
           </Col>
         </div>
@@ -85,8 +101,7 @@ export default class PhotoItem extends React.Component {
     const buttonSwitchText = this.state.gallery_selected ? "Edit Photos" : "View Gallery";
 
 
-    console.log("Photo props", this.props.photos);
-    const photos = this.props.photos.map((photo, i) => {
+    const photos = this.state.photos.map((photo, i) => {
       const ref = "form" + i;
       const src = Global.backend_url + AuthStore.getUid() + "/" + photo.photo_path_s3;
       return (
@@ -97,6 +112,9 @@ export default class PhotoItem extends React.Component {
           <form onSubmit={this.__onSubmit.bind(this, i)}>
             <t.form.Form class="edit-form" ref={ref} type={FormSchema} value={photo} options={options}/>
           </form>
+          <Col md={1}>
+            <Button onClick={() => this.__onDelete(i)} bsStyle="primary">Delete</Button>
+          </Col>
         </Row>
       );
     }

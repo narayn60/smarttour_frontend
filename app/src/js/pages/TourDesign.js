@@ -79,8 +79,6 @@ export default class TourDesign extends React.Component {
 
   render() {
 
-    console.log("TourDesign state", this.state);
-
     const location_info = {
       bio: this.state.bio
     };
@@ -119,7 +117,7 @@ export default class TourDesign extends React.Component {
 
     const sections = [
         <EditTourForm values={this.state.locations[currentlySelected]} location_info={location_info} />,
-      <PhotoItem photos={this.state.photos}/>,
+        <PhotoItem photos={this.state.photos} location_info={location_info}/>,
       "Temp for something"
     ];
 
