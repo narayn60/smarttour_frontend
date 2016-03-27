@@ -71,7 +71,10 @@ export default class Profile extends React.Component {
           {TourTableComponent}
         </Row>
       </div>
+
+      
     );
 
   }
 }
+

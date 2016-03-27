@@ -3,26 +3,27 @@ import GuideActions from '../actions/GuideActions';
 
 class GuideStore {
   constructor() {
-    this.bindListeners({
-      handleUpdateGuide: GuideActions.updateGuide,
-      handleFetchGuides: GuideActions.fetchGuides,
-      handleGuidesFailed: GuideActions.guidesFailed
-    });
+    // this.bindListeners({
+    //   handleUpdateGuide: GuideActions.updateGuide,
+    //   handleFetchGuides: GuideActions.fetchGuides,
+    //   handleGuidesFailed: GuideActions.guidesFailed
+    // });
+    this.bindActions(GuideActions);
 
     this.state = {
       guides: []
     };
   }
 
-  handleUpdateGuide(guide) {
+  onUpdateGuide(guide) {
     this.setState({ guides: this.state.guides.concat(guide) });
   }
 
-  handleFetchGuides(guides) {
+  onFetchGuides(guides) {
     this.setState({ guides: [] });
   }
 
-  handleGuidesFailed(errorMessage) {
+  onGuidesFailed(errorMessage) {
     console.log("Guides failed");
     this.state.errorMessage = errorMessage;
     console.log(errorMessage);

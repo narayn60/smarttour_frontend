@@ -6,15 +6,16 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
 import { Router, Route, Link, browserHistory } from 'react-router';
 import JsonTable from 'react-json-table';
+import Gravatar from 'react-gravatar';
 
 
 
 export default class TourGuideDetailed extends React.Component {
 
-   constructor(props) {
+  constructor(props) {
     super(props);
     this.state = PersonalTourStore.getState();
-    this.state.guide_id = this.props.guide.id
+    this.state.guide_id = props.guide.id;
   }
 
   static getStores() {
@@ -40,8 +41,9 @@ export default class TourGuideDetailed extends React.Component {
 
   render() {
     var guide = this.props.guide;
-    var dummy_photo = "../img/team/3.jpg";
     const tourComponent = this.state.tours.map((tour, i) => <tr key={i}><td>{tour.name}</td><td>{tour.bio}</td><td>{tour.genre}</td></tr>);
+    console.log("SSTATE", this.state);
+    const gravatarSize = 225;
 
     return (
       <div>
@@ -59,7 +61,7 @@ export default class TourGuideDetailed extends React.Component {
                   </div>
                 </Col>
                 <div class="col-md-6 no-pad">
-                  <Image src={dummy_photo} rounded/>
+                  <Gravatar email={guide.email} size={gravatarSize} https />
                 </div>
               </Row>
               <Row class="overview">
@@ -85,7 +87,7 @@ export default class TourGuideDetailed extends React.Component {
               </Button>
               <Collapse in={this.state.open}>
                 <div>
-                   <Table striped bordered condensed hover class="guideTours">
+                  <Table striped bordered condensed hover class="guideTours">
                     <thead>
                       <tr>
                         <th>Tour Name</th>
@@ -96,7 +98,7 @@ export default class TourGuideDetailed extends React.Component {
                     <tbody>
                       {tourComponent}
                     </tbody>
-                    </Table>
+                  </Table>
                 </div>
               </Collapse>
             </Col>

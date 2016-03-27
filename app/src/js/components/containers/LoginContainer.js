@@ -22,8 +22,8 @@ export default class LoginContainer extends React.Component {
     return (
       <div className="login-button">
         <a class="btn btn-large btn-info" href="/auth/google">
-        <i class="fa fa-google-plus"></i> Login with Google
-      </a>
+          <i class="fa fa-google-plus"></i> Login with Google
+        </a>
       </div>
     )
   }
@@ -32,6 +32,6 @@ export default class LoginContainer extends React.Component {
 // export default connectToStores(LoginContainer);
 
 
-  // <div className="login-button">
-  // <div class="g-signin2" data-onsuccess="onSignIn"></div>
-  // </div>
+// <div className="login-button">
+// <div class="g-signin2" data-onsuccess="onSignIn"></div>
+// </div>
