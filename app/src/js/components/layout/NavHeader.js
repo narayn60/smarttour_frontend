@@ -34,7 +34,6 @@ export default class NavHeader extends React.Component {
     const dropdownIndex = this.navLinks.length + 2;
     const userProfileSettings = AuthStore.isLoggedIn() ? <ProfileSettings dropIndex={dropdownIndex} /> : "";
 
-    //TODO: Fix reason that title is not going back to home page
     return (
 
       <Navbar staticTop>

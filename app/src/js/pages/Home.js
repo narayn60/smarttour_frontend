@@ -1,6 +1,6 @@
 // modules/Home.js
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Row } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 
@@ -14,10 +14,15 @@ export default class Home extends React.Component {
           <header>
             <div class="content container">
               <div class="intro-text">
-                <div class="intro-lead-in">Jaffna Tours</div>
-                <Link to="/browse">
-                  <Button class="page-scroll btn btn-xl">Take a tour</Button>
-                </Link>
+                <Row>
+                  <img class="intro-lead-in" src="/img/logos/logo.png"/>
+                  <h3> Rediscover your world </h3>
+                </Row>
+                <Row>
+                  <Link class="intro-photo" to="/browse">
+                    <Button class="btn btn-xl">Sign Up</Button>
+                  </Link>
+                </Row>
               </div>
             </div>
           </header>
@@ -26,3 +31,5 @@ export default class Home extends React.Component {
     );
   }
 }
+
+{/* <div class="intro-lead-in">Jaffna Tours</div> */}

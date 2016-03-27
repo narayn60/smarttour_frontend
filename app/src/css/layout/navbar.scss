@@ -33,6 +33,11 @@
   background-color: $color_baltic_sea_approx;
   border-color: transparent;
   margin-bottom: 0px;
+  height: auto;
+  min-height: 50px;
+  /* .container { */
+  /*   height: inherit; */
+  /* } */
   .navbar-brand {
     color: $white;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive;
@@ -42,7 +47,7 @@
     }
   }
   /* .navbar-collapse { */
-  /*   border-color: rgba(255, 255, 255, 0.02); */
+  /*   border-color: rgba(255, 255, 255, 0.02); * pullLeft>
   /* } */
   .navbar-toggle {
     background-color: $highlight-color;
@@ -60,6 +65,7 @@
     font-weight: 400;
     letter-spacing: 1px;
     color: $navbar-option;
+    vertical-align: middle;
     &:hover, &:focus {
       color: $white;
       outline: 0;
@@ -76,10 +82,10 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-default {
     background-color: $color_baltic_sea_approx;
-    padding: 25px 0;
+    padding: 0px 0;
     transition: padding .3s;
     border: 0;
     .navbar-brand {

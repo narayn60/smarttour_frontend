@@ -14,7 +14,7 @@ export class NavHeaderLink extends React.Component {
   render() {
     return (
         <LinkContainer to={{ pathname: this.props.path}}>
-        <NavItem class="page-scroll" eventKey={this.props.key}>{this.props.name}</NavItem>
+        <NavItem eventKey={this.props.key}>{this.props.name}</NavItem>
         </LinkContainer>
     );
   }
