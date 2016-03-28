@@ -18,7 +18,7 @@ export default class Home extends React.Component {
                   <img class="intro-lead-in" src="/img/logos/logo.png"/>
                   <h3>Discover the world</h3>
                 </Row>
-                <Row>
+                <Row class="home-button">
                   <Link class="intro-photo" to="/browse">
                     <Button class="btn btn-xl">Sign Up</Button>
                   </Link>
@@ -37,7 +37,7 @@ export default class Home extends React.Component {
                     Experience touring as it was meant to be.
                   </h3>
                 </Row>
-                <Row>
+                <Row class="home-button">
                   <Link class="intro-photo" to="/about">
                     <Button class="btn btn-xl">Find out more</Button>
                   </Link>
