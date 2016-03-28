@@ -7,9 +7,9 @@ export default class Footer extends React.Component {
     return (
       <footer class="footer-distributed">
         <div class="footer-right">
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-github"></i></a>
+          <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+          <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+          <a href="#"><i class="fa fa-github fa-2x"></i></a>
         </div>
 
         <div class="footer-left">
