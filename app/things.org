@@ -1,14 +1,54 @@
+* Frontend Tasks
+
+** Major Aims
 *** TODO Redesign the website
+*** TODO Hook up to backend
+
+** New pages
+*** TODO Create Followers page
+
+** Profile Page
+*** TODO Followers
+*** TODO Allow users to switch tour positions around
+**** Users can switch but need to hook up backend, there is some code which will get the list order 
+out. One way to do this would be to add the listid to the element and then extract that on the 
+re-order. This can then be sent to the backend via flux and then reget the locations to update
+the ordering. Should only re-order after clicking a confirm button
+*** TODO Delete point as well as data attatched to a point
+*** TODO QR code of each specific location
+**** In the point list table there should be an option to re-download the specified qr code
+*** TODO Blank out location if it has been reported that the QR code doesn't exist
+*** TODO Ability to upload audio to a location
+**** Maybe able to do this through the dropzone component
+*** TODO Hook up the relevant notes at that location
+**** Ability to delete irrevelant notes
 *** DONE Ability to edit photos
 CLOSED: [2016-03-26 Sat 19:43]
-*** TODO Hook up to backend
 *** DONE Gallery vs edit mode
 CLOSED: [2016-03-26 Sat 19:43]
-*** TODO Followers page
-*** TODO All users to switch tour positions around
 *** DONE Get tour photos down and also edit them
 CLOSED: [2016-03-26 Sat 19:43]
-*** TODO Delete images related to tour
-*** TODO Delete point as well as data attatched to a point
-*** TODO Immediately show photo once uploaded
-*** TODO QR code of each specific location
+*** DONE Delete images related to tour
+CLOSED: [2016-03-28 Mon 13:02]
+*** DONE Immediately show photo once uploaded
+CLOSED: [2016-03-28 Mon 13:06]
+
+
+** Detailed Tour Page
+*** TODO Show mini map of the points on the tour
+*** TODO Average time to carry out tour
+**** Non-essential but would be nice
+*** TODO Average reviews of the tour, what some people have said about the tour
+
+** Browse Tours Page
+*** TODO Change from small widgets to page wide widgets with a bit more information
+**** This means that there would be one tour per line but would be a brief description,
+review and average time for example
+
+
+* Backend Tasks
+
+** Major Tasks
+*** TODO Make sure endpoints send information to the actual api
+*** TODO Store some information on the api rather than the backend
+*** TODO Store related points from the tour to the api

@@ -8,7 +8,7 @@
 
 .background-image{
     position:absolute;
-    left:-15px;
+    left:0px;
     right:-15px;
     top:0px;
     bottom:-15px;
@@ -17,6 +17,7 @@
     /* filter: blur(1px) grayscale(10%); */
     filter: contrast(0.35) blur(0.5px);
     height: 100%;
+    width: 100%;
 }
 
 .content{
