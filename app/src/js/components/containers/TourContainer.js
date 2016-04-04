@@ -95,6 +95,7 @@ export default class TourContainer extends React.Component {
             </DropdownButton>
           </Col>
         </Row>
+
         <Row>
           {ToursComponent}
         </Row>
