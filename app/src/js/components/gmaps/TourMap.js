@@ -23,7 +23,7 @@ export default class TourMap extends React.Component {
     var mapCenter = this.props.center;
     var point;
     const markers = this.props.locations.map((point, i) =>
-      <MyGreatPlace onClick={() => this.props.handleClick(i)} lat={point.latitude} lng={point.longitude} text={point.name} />
+      <MyGreatPlace onClick={() => this.props.handleClick(i)} lat={point.latitude} lng={point.longitude} text={point.name} key={i} />
     );
 
     if (pntSelected !== null) {
