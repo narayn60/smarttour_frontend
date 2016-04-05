@@ -91,9 +91,7 @@ export default class TourContainer extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col md={8} mdOffset={2}>
-            <TourNavBar />
-          </Col>
+            <TourNavBar tours={this.state.tours}/>
         </Row>
         <Row>
           {ToursComponent}
