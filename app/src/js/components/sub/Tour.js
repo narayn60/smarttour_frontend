@@ -16,7 +16,16 @@ export default class Tour extends React.Component {
             <Link to={`/browse/tours/${id}`} class="portfolio-link"> 
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
-                            <i class="fa fa-plus fa-3x"></i>
+                            <Row>
+                                <Col md={6} class="tour-hover-content">
+                                    <i class="fa fa-plus fa-2x"></i>
+                                    <p> Explore </p>
+                                </Col>
+                                <Col md={6} class="tour-hover-content">
+                                    <i class="fa fa-arrow-down fa-2x"></i>
+                                    <p> Download </p>
+                                </Col>
+                            </Row>
                         </div>
                     </div>
                     <img src="img/portfolio/roundicons.png" class="img-responsive" alt=""/>

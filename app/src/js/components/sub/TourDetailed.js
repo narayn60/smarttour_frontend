@@ -19,13 +19,12 @@ export default class TourDetailed extends React.Component {
     return (
       <div>
         <div class="container">
-          <h3 class="text-center"> {tour.name} </h3>
           <Row class="square tour-box">
             <Col md={8} mdOffset={2} class="user-details">
               <Row class="coralbg white">
                 <Col md={6} class="no-pad">
                   <div class="user-pad">
-                    <h3> Entertainment </h3>
+                    <h3> { tour.title } </h3>
                     <h4 class="white"><i class="fa fa-user"></i> { guide.full_name } </h4>
                     <h4 class="white"><i class="fa fa-envelope-o"></i> {guide.email } </h4>
                     <h4 class="white"><i class="fa fa-building"></i> { guide.username } </h4>

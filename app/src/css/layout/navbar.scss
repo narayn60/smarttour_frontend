@@ -104,3 +104,19 @@
     }
   }
 }
+
+.tourNavBar li {
+    display: inline-block;
+}
+ 
+.tourNavBar {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive;
+
+  &:hover {
+      color: black;
+  }
+}
+
