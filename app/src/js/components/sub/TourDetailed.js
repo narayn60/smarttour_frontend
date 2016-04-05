@@ -26,6 +26,7 @@ export default class TourDetailed extends React.Component {
 
   handleClick(index) {
     this.setState({selected: index});
+    console.log(index)
   }
 
   static getPropsFromStores() {
@@ -84,7 +85,7 @@ export default class TourDetailed extends React.Component {
                 </Col>
               </Row>
             </Col>
-            <Col md={4} class="user-details">
+            <Col md={4} class="user-details guide-details">
               <Row class="coralbg white creator-info">
                 <h3> Creator </h3>
                 <h4 class="white"> { guide.full_name } </h4>
@@ -99,9 +100,10 @@ export default class TourDetailed extends React.Component {
           </Row>
         </div>
         <Row class="browse-map">
+          <h2 class="tour-detail-name"> Experience The Tour </h2>
           <Col md={10} mdOffset={1}>
             <Col md={5}>
-              <LocationTable locations={this.state.locations}/>
+              <LocationTable locations={this.state.locations} onClick={this.handleClick.bind(this)}/>
             </Col>
             <Col md={7} style={{height: '600px', position: 'relative', overflow: 'hidden'}}>
               <div style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%'}}>
