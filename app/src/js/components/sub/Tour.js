@@ -29,8 +29,6 @@ export default class Tour extends React.Component {
         e.preventDefault();
     }
 
-    // Link to={`/browse/tours/${id}`} 
-
     render() {
         const { name, owner, id, guide } = this.props.tour;
         const qr_path = "/media/tours/" + id + "/qrcode_profile/"
@@ -45,7 +43,7 @@ export default class Tour extends React.Component {
                                 <div class="portfolio-hover-content">
                                     <Row>
                                         <Col md={6} class="tour-hover-content">
-                                            <i class="fa fa-plus fa-2x"></i>
+                                            <Link to={`/browse/tours/${id}`} class="fa fa-plus fa-2x"></Link>
                                             <p> Explore </p>
                                         </Col>
                                         <Col md={6} class="tour-hover-content">
