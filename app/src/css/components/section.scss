@@ -57,3 +57,43 @@ section {
     text-align: center;
   }
 }
+
+.about-ul {
+  list-style: none;
+  list-style-type: none;
+}
+
+.about-ul li {
+
+  margin-bottom: 100px;
+
+}
+
+.about-list {
+  list-style-type: none;
+  margin-bottom: 250px;
+}
+
+.about-image {
+  text-align: center;
+  width: 200px;
+  height: 120px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.about-panel {
+  color: white;
+  text-align: center;
+}
