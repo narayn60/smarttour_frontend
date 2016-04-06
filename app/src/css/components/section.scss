@@ -23,6 +23,37 @@ section {
   }
 }
 
+.browse-map {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 .tour-box {
   padding-top: 20px;
+}
+
+.guideBox {
+  margin-top: 20px;
+}
+
+.guideImage {
+  margin-top: 30px;
+}
+
+.guideProfile {
+  background-color: #FD7062;
+  margin-top: 30px;
+
+  h4 {
+    text-align: center;
+    color: white;
+  }
+
+  p {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin: 0;
+    color: white;
+    text-align: center;
+  }
 }

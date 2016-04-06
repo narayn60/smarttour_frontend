@@ -163,6 +163,41 @@ div {
 .user-details {
     background: $color_gallery_approx;
     min-height: 333px;
+
+    h3 {
+        text-align: center;
+    }
+
+    h4 {
+        text-align: center;
+    }
+}
+
+.guide-details {
+    margin-left: 20px;
+}
+
+.user-triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 25px 0 25px;
+    border-color: #05bc9e transparent transparent transparent;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.creator-info {
+    h3 {
+        text-align: center;
+    }
+}
+
+.tour-detail-name {
+    margin-top: 30px;
+    text-align: center;
 }
 
 .tour-about {
@@ -171,11 +206,14 @@ div {
 }
 
 .user-image {
-    overflow: hidden;
-    float: right;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 40px;
 }
 
 .overview {
+    margin-bottom: 10px;
+
     h3 {
         font-weight: 300;
         margin-top: 15px;

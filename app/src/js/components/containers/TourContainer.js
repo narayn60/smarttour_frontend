@@ -3,6 +3,7 @@ import TourStore from 'TourStore';
 import TourActions from 'TourActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Tour from '../sub/Tour';
+import TourNavBar from '../sub/TourNavBar';
 import { Link } from 'react-router';
 import { Row, Col, Button, DropdownButton, MenuItem } from "react-bootstrap";
 
@@ -65,9 +66,6 @@ export default class TourContainer extends React.Component {
   render() {
     //TODO get from source
     //Search
-    var genres = ['Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different'];
-    const genreComponent = genres.map((genre, i) => <MenuItem eventKey={i} key={i} onClick={this.filterTours.bind(this, genre)}>{genre}</MenuItem>);
-
     var ToursComponent = this.state.tours.map((tour, i) => <Tour key={i} tour={tour}/>);
     var searchString = this.state.searchString.trim().toLowerCase();
     var filteredTours = [];
@@ -90,10 +88,10 @@ export default class TourContainer extends React.Component {
           <Col md={4} mdOffset={4} class="text-center search-button-group">
             <Button bsStyle="primary" onClick={this.filterTours.bind(this, 'popular')}> Popular </Button>
             <Button bsStyle="primary" onClick={this.filterTours.bind(this, 'recent')}> Recent </Button>
-            <DropdownButton bsStyle="primary" title="Genre" id="bg-nested-dropdown">
-              {genreComponent}
-            </DropdownButton>
           </Col>
+        </Row>
+        <Row>
+            <TourNavBar tours={this.state.tours}/>
         </Row>
         <Row>
           {ToursComponent}
