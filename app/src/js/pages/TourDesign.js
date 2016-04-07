@@ -87,6 +87,10 @@ export default class TourDesign extends React.Component {
     LocationActions.updateOrder(this.tour_id, new_order);
   }
 
+  __deleteLocation(location_id) {
+    LocationActions.deleteLocation(this.tour_id, location_id);
+  }
+
   render() {
 
     const location_info = {
@@ -121,7 +125,11 @@ export default class TourDesign extends React.Component {
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
 
-    const SortTable = <SortableTable locations={this.state.locations} selected={this.state.selected} handleClick={this.__handleClick.bind(this)}/>;
+    const SortTable = <SortableTable
+                        locations={this.state.locations}
+                        selected={this.state.selected}
+                        handleClick={this.__handleClick.bind(this)}
+                        __deleteLocation={this.__deleteLocation.bind(this)}/>;
     
     return (
       <div>
@@ -129,15 +137,14 @@ export default class TourDesign extends React.Component {
           <h3> { this.state.tour.name } </h3>
         </div>
         <div style={{height: '400px', position: 'relative', overflow: 'hidden'}}>
-          <div style={{position: 'absolute', left: 0, top: 0, width: '62%', height: '100%'}}>
+          <div style={{position: 'absolute', left: 0, top: 0, width: '52%', height: '100%'}}>
             <TourMap
               handleClick={this.__handleClick.bind(this)}
               locations={this.state.locations}
               selected={this.state.selected}/>
           </div>
-          <div style={{position: 'absolute', right: 0, top: 0, width: '38%', height: '100%'}}>
+          <div style={{position: 'absolute', right: 0, top: 0, width: '48%', height: '100%'}}>
             {SortTable}
-            <Button onClick={this.__saveOrder.bind(this)}> Save new ordering </Button>
           </div>
         </div>
         <div class="container">

@@ -48,6 +48,9 @@ export default class SortableTable extends React.Component {
           <td class="qr-code" id={point.id} >
             <a href={qr_link}>Download QR code</a>
           </td>
+          <td class="delete-location" id={point.id} >
+            <Button onClick={() => this.props.__deleteLocation(point.id)}>Delete Location</Button>
+          </td>
         </tr>
       );
     });
@@ -64,12 +67,14 @@ export default class SortableTable extends React.Component {
                     <th>#</th>
                     <th>Name</th>
                     <th>Qr Codes</th>
+                    <th>Delete Location</th>
                   </tr>
                 </thead>
                 <tbody ref={this.sortableGroupDecorator}>
                   {Locations}
                 </tbody>
               </Table>
+              <Button onClick={() => this.props.__deleteLocation(1)}>Delete Location</Button>
             </div>
           </div>
         </div>

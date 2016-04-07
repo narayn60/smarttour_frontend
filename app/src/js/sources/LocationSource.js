@@ -15,12 +15,18 @@ export default class LocationSource {
   update_order(tour_id, order) {
     const url = Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/location_order/';
     return axios.patch(url, {order: JSON.stringify(order)})
-      .then((response) => {
-        console.log(response);
-        return response;
-      })
+      .then((response) => response)
       .catch((error) => {
         throw error;
+      });
+  }
+
+  delete_location(tour_id, location_id) {
+    const url = Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/locations/' + location_id + '/';
+    return axios.delete(url)
+      .then((response) => response)
+      .catch((error) => {
+        throw error; 
       });
   }
 

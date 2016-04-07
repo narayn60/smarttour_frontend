@@ -25,6 +25,7 @@ class LocationStore {
     this.errorMessage = errorMessage;
   }
 
+
 }
 
 export default alt.createStore(LocationStore, 'LocationStore');
