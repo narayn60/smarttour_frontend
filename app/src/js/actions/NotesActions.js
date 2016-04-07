@@ -14,10 +14,10 @@ class NotesActions {
     this.generateActions('updateBio');
   }
 
-  fetchNotes(location_id) {
+  fetchNotes(tour_id, location_id) {
     return (dispatch) => {
       dispatch();
-      this.stores.NotesSource.fetch_notes(location_id)
+      this.stores.NotesSource.fetch_notes(tour_id, location_id)
           .then((notes) => {
             this.updateNotes(notes.notes);
             this.updateBio(notes.note);
@@ -28,10 +28,10 @@ class NotesActions {
     };
   }
 
-  patchBio(values, location_id) {
+  patchBio(values, tour_id, location_id) {
     return (dispatch) => {
       dispatch();
-      this.stores.NotesSource.update_bio(values, location_id)
+      this.stores.NotesSource.update_bio(values, tour_id, location_id)
         .then((response) => {
           this.updateBio(values.note);
         })

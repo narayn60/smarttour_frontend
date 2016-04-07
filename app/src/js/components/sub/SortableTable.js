@@ -42,7 +42,7 @@ export default class SortableTable extends React.Component {
       });
       const qr_link = qr_base + "/" + point.qrcode_path_s3;
       return (
-        <tr class={classes} onClick={() => this.props.handleClick(i)}>
+        <tr class={classes} onClick={() => this.props.__handleClick(i)}>
           <td>{i}</td>
           <td class="location-name" id={point.id} >{point.name}</td>
           <td class="qr-code" id={point.id} >
@@ -74,7 +74,6 @@ export default class SortableTable extends React.Component {
                   {Locations}
                 </tbody>
               </Table>
-              <Button onClick={() => this.props.__deleteLocation(1)}>Delete Location</Button>
             </div>
           </div>
         </div>
@@ -87,10 +86,3 @@ export default class SortableTable extends React.Component {
     }
   }
 }
-
-/* <div>Swap them around</div>
-   <div>Swap us around</div>
-   <div>Swap things around</div>
-   <div>Swap everything around</div> */
-
-/* <div className="group-list" ref={this.sortableGroupDecorator}> */

@@ -69,7 +69,7 @@ export default class TourDesign extends React.Component {
 
   __handleClick(index) {
     this.setState({selected: index});
-    NotesActions.fetchNotes(this.state.locations[index].id);
+    NotesActions.fetchNotes(this.tour_id, this.state.locations[index].id);
     PhotoActions.fetchPhotos(this.state.locations[index].id);
   }
 
@@ -83,12 +83,14 @@ export default class TourDesign extends React.Component {
       document.getElementsByClassName('location-name'),
       ((currentValue, index, collection) => Number(currentValue.id)) //textContent for inner text
     );
-    console.log("New sorted order is", new_order);
     LocationActions.updateOrder(this.tour_id, new_order);
   }
 
   __deleteLocation(location_id) {
-    LocationActions.deleteLocation(this.tour_id, location_id);
+    const answer = confirm("Are you sure"); //TODO: Change this to something nicer
+    if (answer) {
+      LocationActions.deleteLocation(this.tour_id, location_id);
+    }
   }
 
   render() {
@@ -118,7 +120,7 @@ export default class TourDesign extends React.Component {
     );
 
     const sections = [
-      <EditTourForm values={this.state.locations[currentlySelected]} location_info={location_info} />,
+      <EditTourForm values={this.state.locations[currentlySelected]} tour_id={this.tour_id} location_info={location_info} />,
       <PhotoItem photos={this.state.photos} location_info={this.state.locations[currentlySelected]}/>,
       "Temp for something"
     ];
@@ -128,7 +130,7 @@ export default class TourDesign extends React.Component {
     const SortTable = <SortableTable
                         locations={this.state.locations}
                         selected={this.state.selected}
-                        handleClick={this.__handleClick.bind(this)}
+                        __handleClick={this.__handleClick.bind(this)}
                         __deleteLocation={this.__deleteLocation.bind(this)}/>;
     
     return (
@@ -145,6 +147,7 @@ export default class TourDesign extends React.Component {
           </div>
           <div style={{position: 'absolute', right: 0, top: 0, width: '48%', height: '100%'}}>
             {SortTable}
+            <Button onClick={this.__saveOrder.bind(this)}> Save new ordering </Button>
           </div>
         </div>
         <div class="container">

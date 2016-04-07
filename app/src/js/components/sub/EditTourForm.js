@@ -25,7 +25,7 @@ export default class EditTourForm extends React.Component {
     let update_value = {
       note: formValue.bio
     };
-    NotesActions.patchBio(update_value, location_id);
+    NotesActions.patchBio(update_value, this.props.tour_id, location_id);
   }
 
   render() {
