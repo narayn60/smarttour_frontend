@@ -26,8 +26,9 @@ export default class TourDesign extends React.Component {
 
   constructor(props) {
     super(props);
-    UserTourActions.fetchTour(this.props.params.id);
-    LocationActions.fetchLocations(this.props.params.id);
+    this.tour_id = this.props.params.id;
+    UserTourActions.fetchTour(this.tour_id);
+    LocationActions.fetchLocations(this.tour_id);
     this.state = LocationStore.getState();
     Object.assign(this.state, {
       subselected: 0,
@@ -76,12 +77,14 @@ export default class TourDesign extends React.Component {
     this.setState({subselected: selectedKey});
   }
 
-  saveOrder() {
+  __saveOrder() {
     //TODO: Make it so it extracts the relevant tour id so we can re-order the tour on the server
-    var result = [].map.call(
+    const new_order = [].map.call(
       document.getElementsByClassName('location-name'),
-      ((currentValue, index, collection) => currentValue.id) //textContent for inner text
+      ((currentValue, index, collection) => Number(currentValue.id)) //textContent for inner text
     );
+    console.log("New sorted order is", new_order);
+    LocationActions.updateOrder(this.tour_id, new_order);
   }
 
   render() {
@@ -134,7 +137,7 @@ export default class TourDesign extends React.Component {
           </div>
           <div style={{position: 'absolute', right: 0, top: 0, width: '38%', height: '100%'}}>
             {SortTable}
-            <Button onClick={this.saveOrder.bind(this)}> Save new ordering </Button>
+            <Button onClick={this.__saveOrder.bind(this)}> Save new ordering </Button>
           </div>
         </div>
         <div class="container">

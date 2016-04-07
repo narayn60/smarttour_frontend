@@ -67,7 +67,7 @@ export default class PhotoItem extends React.Component {
         <div>
           No Photos
         </div>
-      )
+      );
     }
 
     const photo_set = this.props.photos.map((photo) => {

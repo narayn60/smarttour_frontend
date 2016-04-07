@@ -10,14 +10,6 @@ export default class PhotoSource {
        src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
        caption: 'Toronto'
        },
-       {
-       src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-       caption: 'New York'
-       },
-       {
-       src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-       caption: 'Montreal'
-       }
        ];
        // returning a Promise because that is what fetch does.
        return new Promise(function (resolve, reject) {

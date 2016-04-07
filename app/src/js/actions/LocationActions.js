@@ -25,6 +25,19 @@ class LocationActions {
           });
     };
   }
+  
+  updateOrder(tour_id, new_order) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.LocationSource.update_order(tour_id, new_order)
+        .then((reponse) => {
+          this.fetchLocations(tour_id);
+        })
+        .catch((errorMessage) => {
+          this.locationsFailed(errorMessage);
+        });
+    };
+  }
 
   locationsFailed(errorMessage) {
     return errorMessage;
