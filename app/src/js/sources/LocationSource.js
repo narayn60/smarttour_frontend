@@ -12,9 +12,9 @@ export default class LocationSource {
                 });
   }
 
-  update_order(tour_id, new_order) {
+  update_order(tour_id, order) {
     const url = Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/location_order/';
-    return axios.patch(url, {order: '[2, 1]'})
+    return axios.patch(url, {order: JSON.stringify(order)})
       .then((response) => {
         console.log(response);
         return response;
