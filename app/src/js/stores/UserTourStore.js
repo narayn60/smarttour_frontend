@@ -6,7 +6,8 @@ class UserTourStore {
     this.bindActions(UserTourActions);
     this.errorMessage = null;
     this.state = {
-      tours: []
+      tours: [],
+      tour: null
     };
 
     this.exportPublicMethods({
@@ -15,15 +16,24 @@ class UserTourStore {
   }
 
   tourInfo(id) {
-    return this.getState().tours[id];
+    // return this.getState().tours[id];
+    return this.getState().tour;
   }
 
   onUpdateTours(tour) {
     this.setState({ tours: this.state.tours.concat(tour) });
   }
 
+  onUpdateTour(tour) {
+    this.setState({ tour: tour });
+  }
+
   onFetchTours() {
     this.state.tours = [];
+  }
+
+  onFetchTour() {
+    this.state.tour = null;
   }
 
   onReloadTours() {

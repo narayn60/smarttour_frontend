@@ -40,7 +40,7 @@ export default class TourTable extends React.Component {
   }
 
   rowClick(row) {
-    browserHistory.push('/mytours/' + (row.id - 1));
+    browserHistory.push('/mytours/' + row.id);
   }
 
   render() {
@@ -49,6 +49,8 @@ export default class TourTable extends React.Component {
     const options = {
       onRowClick: this.rowClick
     };
+
+    console.log(this.state.tours);
 
     return (
       <BootstrapTable data={this.state.tours} options={options} hover={true} pagination={true} search={true}>

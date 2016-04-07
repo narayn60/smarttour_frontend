@@ -20,14 +20,17 @@ import TourMap from '../components/gmaps/TourMap';
 
 import SortableTable from '../components/sub/SortableTable';
 
+import UserTourActions from 'UserTourActions';
+
 export default class TourDesign extends React.Component {
 
   constructor(props) {
     super(props);
+    UserTourActions.fetchTour(this.props.params.id);
+    LocationActions.fetchLocations(this.props.params.id);
     this.state = LocationStore.getState();
     this.state.subselected = 0;
-    this.state.selected = null; //Currently selected map point
-    this.state.tour = UserTourStore.tourInfo(this.props.params.id);
+    this.state.selected = null; //Currently selected
   }
 
   static getStores() {
@@ -38,7 +41,8 @@ export default class TourDesign extends React.Component {
     return {
       ...LocationStore.getState(),
       ...NotesStore.getState(),
-      ...PhotoStore.getState()
+      ...PhotoStore.getState(),
+      ...UserTourStore.getState()
     };
   }
 
@@ -46,13 +50,14 @@ export default class TourDesign extends React.Component {
     LocationStore.listen(this.onChange.bind(this));
     NotesStore.listen(this.onChange.bind(this));
     PhotoStore.listen(this.onChange.bind(this));
-    LocationActions.fetchLocations(this.state.tour.id);
+    UserTourStore.listen(this.onChange.bind(this));
   }
 
   componentWillUnmount() {
     LocationStore.unlisten(this.onChange.bind(this));
     NotesStore.unlisten(this.onChange.bind(this));
     PhotoStore.unlisten(this.onChange.bind(this));
+    UserTourStore.unlisten(this.onChange.bind(this));
   }
 
   onChange(state) {
@@ -79,6 +84,8 @@ export default class TourDesign extends React.Component {
 
   render() {
 
+    console.log("Trying to render", this.state);
+
     const location_info = {
       bio: this.state.bio
     };
@@ -93,18 +100,6 @@ export default class TourDesign extends React.Component {
       );
     }
 
-    const Locations = this.state.locations.map((point, i) => {
-      const classes = classNames( "table-element", {
-        'selected': (this.state.selected === i)
-      });
-      return (
-        <tr class={classes} onClick={() => this.__handleClick(i)}>
-          <td>{i}</td>
-          <td class="location-name" id={point.id} >{point.name}</td>
-        </tr>
-      );
-    });
-
     const currentlySelected = this.state.selected;
 
     const EditSelection = currentlySelected === null ? "" : (
@@ -116,14 +111,14 @@ export default class TourDesign extends React.Component {
     );
 
     const sections = [
-        <EditTourForm values={this.state.locations[currentlySelected]} location_info={location_info} />,
-        <PhotoItem photos={this.state.photos} location_info={this.state.locations[currentlySelected]}/>,
+      <EditTourForm values={this.state.locations[currentlySelected]} location_info={location_info} />,
+      <PhotoItem photos={this.state.photos} location_info={this.state.locations[currentlySelected]}/>,
       "Temp for something"
     ];
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
 
-    const SortTable = <SortableTable locations={Locations}/>;
+    const SortTable = <SortableTable locations={this.state.locations} selected={this.state.selected} handleClick={this.__handleClick.bind(this)}/>;
     
     return (
       <div>
@@ -134,7 +129,7 @@ export default class TourDesign extends React.Component {
           <div style={{position: 'absolute', left: 0, top: 0, width: '62%', height: '100%'}}>
             <TourMap
               handleClick={this.__handleClick.bind(this)}
-              locations={this.props.locations}
+              locations={this.state.locations}
               selected={this.state.selected}/>
           </div>
           <div style={{position: 'absolute', right: 0, top: 0, width: '38%', height: '100%'}}>

@@ -9,7 +9,7 @@ class UserTourActions {
     this.stores = {
       UserTourSource: new UserTourSource()
     };
-    this.generateActions('updateTours');
+    this.generateActions('updateTours', 'updateTour');
   }
 
   fetchTours() {
@@ -17,11 +17,23 @@ class UserTourActions {
       dispatch();
       this.stores.UserTourSource.fetch()
         .then((tours) => {
-          console.log("Tours", tours);
           this.updateTours(tours);
         })
         .catch((errorMessage) => {
-          console.log(errorMessage);
+          this.toursFailed(errorMessage);
+        });
+    };
+  }
+
+  fetchTour(tour_id) {
+    console.log("Fetch tour called");
+    return (dispatch) => {
+      dispatch();
+      this.stores.UserTourSource.fetch_tour(tour_id)
+        .then((tour) => {
+          this.updateTour(tour);
+        })
+        .catch((errorMessage) => {
           this.toursFailed(errorMessage);
         });
     };
