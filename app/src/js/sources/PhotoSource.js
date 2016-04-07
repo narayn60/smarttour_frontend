@@ -38,11 +38,8 @@ export default class PhotoSource {
 
   update_caption(location_id, photo_id, new_caption) {
     const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/photos/' + photo_id + '/';
-    return axios.patch(url, {caption: new_caption})
-      .then((response) => {
-        console.log("Caption response", response); //TODO Remove
-        return response;
-      })
+    return axios.patch(url, {description: new_caption})
+      .then((response) => response)
       .catch((error) => {
         throw error;
       });

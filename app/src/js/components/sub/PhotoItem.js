@@ -13,7 +13,7 @@ import t from 'tcomb-form';
 import PhotoActions from 'PhotoActions';
 
 const FormSchema = t.struct({
-  caption: t.String
+  description: t.String
 });
 
 export default class PhotoItem extends React.Component {
@@ -44,7 +44,7 @@ export default class PhotoItem extends React.Component {
     if (answer) {
       const value = this.refs["form" + i].getValue();
       const photo_info = this.state.photos[i];
-      PhotoActions.updateCaption(photo_info.location, photo_info.id, value.caption);
+      PhotoActions.updateCaption(photo_info.location, photo_info.id, value.description);
     } else {
       this.setState({
         photos: this.props.photos
@@ -85,7 +85,7 @@ export default class PhotoItem extends React.Component {
             src + ' 500w',
             src + ' 320w',
           ],
-          caption: photo.caption
+          caption: photo.description
         }
       });
     });
@@ -94,7 +94,7 @@ export default class PhotoItem extends React.Component {
       return (
         <div>
           <Col md={7}>
-            <div>{locals.inputs.caption}</div>
+            <div>{locals.inputs.description}</div>
           </Col>
           <Col md={1}>
             <Button type="submit" bsStyle="primary">Submit</Button>

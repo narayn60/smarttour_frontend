@@ -52,8 +52,6 @@ export default class SortableTable extends React.Component {
       );
     });
 
-    console.log(this.props.locations);
-
     if (process.env.BROWSER) {
       return (
         <div className="container" ref={this.sortableContainersDecorator}>

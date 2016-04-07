@@ -44,7 +44,6 @@ class PhotoActions {
       dispatch();
       this.stores.PhotoSource.delete_photo(location_id, photo_id)
         .then((response) => {
-          console.log("Should fetch photos");
           this.fetchPhotos(location_id);
         })
         .catch((errorMessage) => {
@@ -55,6 +54,7 @@ class PhotoActions {
 
   // TODO: Do somehting with error messages
   photosFailed(errorMessage) {
+    console.log("Photos Failed", errorMessage);
     return errorMessage;
   }
 

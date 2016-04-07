@@ -39,6 +39,7 @@ CLOSED: [2016-03-28 Mon 13:06]
 *** TODO Average time to carry out tour
 **** Non-essential but would be nice
 *** TODO Average reviews of the tour, what some people have said about the tour
+*** TODO Shift to Container
 
 ** Browse Tours Page
 *** TODO Change from small widgets to page wide widgets with a bit more information

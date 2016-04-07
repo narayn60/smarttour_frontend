@@ -28,9 +28,6 @@ export default class TourDetailed extends React.Component {
                     selected: null
                   }
     );
-    /* this.state = TourStore.getState();
-       this.state = LocationStore.getState();
-       this.state.selected = null; */
   }
 
   static getStores() {
@@ -38,7 +35,6 @@ export default class TourDetailed extends React.Component {
   }
 
   static getPropsFromStores() {
-    /* return LocationStore.getState(); */
     return {
       ...LocationStore.getState(),
       ...TourStore.getState()

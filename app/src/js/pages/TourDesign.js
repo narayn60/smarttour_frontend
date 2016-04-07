@@ -86,8 +86,6 @@ export default class TourDesign extends React.Component {
 
   render() {
 
-    console.log("Trying to render", this.state);
-
     const location_info = {
       bio: this.state.bio
     };
