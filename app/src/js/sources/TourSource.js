@@ -4,15 +4,20 @@ import AuthStore from 'AuthStore';
 
 export default class TourSource {
 
-  constructor() {
-      /* this.axios = axios.create({
-         baseURL: Global.backend_url + AuthStore.getUid()
-         }); */
-  }
-
   fetch() {
     return axios.get(Global.backend_url + AuthStore.getUid() + '/tours/')
       .then((tours) => {
+        return tours.data;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  fetch_tour(tour_id) {
+    return axios.get(Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/')
+      .then((tours) => {
+        console.log(tours);
         return tours.data;
       })
       .catch((error) => {

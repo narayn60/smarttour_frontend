@@ -9,15 +9,30 @@ class TourActions {
     this.stores = {
       TourSource: new TourSource()
     };
-    this.generateActions('updateTours');
+    this.generateActions('updateTours', 'updateTour');
   }
 
+  // Fetch all tours
   fetchTours() {
     return (dispatch) => {
       dispatch();
       this.stores.TourSource.fetch()
         .then((tours) => {
           this.updateTours(tours);
+        })
+        .catch((errorMessage) => {
+          this.toursFailed(errorMessage);
+        });
+    };
+  }
+
+  // Fetch an individual tour
+  fetchTour(tour_id) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.TourSource.fetch_tour(tour_id)
+        .then((tour) => {
+          this.updateTour(tour);
         })
         .catch((errorMessage) => {
           this.toursFailed(errorMessage);

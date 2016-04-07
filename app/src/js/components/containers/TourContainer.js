@@ -12,7 +12,7 @@ export default class TourContainer extends React.Component {
 
   constructor() {
     super();
-    this.state = TourStore.getState();
+    /* this.state = TourStore.getState(); */
     this.state = {'searchString': ''}; //TODO: Why initialised twice?
     this.filterByName = this.filterByName.bind(this);
   }

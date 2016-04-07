@@ -6,6 +6,9 @@ import LocationTable from './LocationTable';
 import LocationActions from 'LocationActions';
 import LocationStore from 'LocationStore';
 
+import TourStore from 'TourStore';
+import TourActions from 'TourActions';
+
 import connectToStores from 'alt-utils/lib/connectToStores';
 
 import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
@@ -16,48 +19,75 @@ export default class TourDetailed extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = LocationStore.getState();
-    this.state.selected = null;
+    TourActions.fetchTour(this.props.tour_id);
+    LocationActions.fetchLocations(this.props.tour_id);
+    this.state = TourStore.getState();
+    Object.assign(this.state,
+                  LocationStore.getState(),
+                  {
+                    selected: null
+                  }
+    );
+    /* this.state = TourStore.getState();
+       this.state = LocationStore.getState();
+       this.state.selected = null; */
   }
 
   static getStores() {
-    return [LocationStore];
-  }
-
-  handleClick(index) {
-    this.setState({selected: index});
-    console.log(index)
+    return [LocationStore, TourStore];
   }
 
   static getPropsFromStores() {
-    return LocationStore.getState();
+    /* return LocationStore.getState(); */
+    return {
+      ...LocationStore.getState(),
+      ...TourStore.getState()
+    }
+  }
+
+  componentWillMount() {
+    LocationStore.listen(this.onChange.bind(this));
+    TourStore.listen(this.onChange.bind(this));
+    console.log(this.props);
+  }
+
+  componentWillUnmount() {
+    LocationStore.unlisten(this.onChange.bind(this));
+    TourStore.unlisten(this.onChange.bind(this));
   }
 
   onChange(state) {
     this.setState(state);
   }
 
-  componentWillMount() {
-    LocationStore.listen(this.onChange.bind(this));
-    console.log(this.props.tour.id)
-    LocationActions.fetchLocations(this.props.tour.id);
+
+  __handleClick(index) {
+    this.setState({selected: index});
+    console.log(index);
   }
 
-  componentWillUnmount() {
-    LocationStore.unlisten(this.onChange.bind(this));
-  }
+
 
   render() {
 
-    var tour = this.props.tour;
-    var guide = this.props.tour.guide;
+    // Case where tour doesn't exist
+    if (this.state.tour === null) {
+      return (
+        <div>
+          Tour doesn't exist
+        </div>
+      );
+    }
+    console.log("State", this.state);
+    var tour = this.state.tour;
+    var guide = this.state.tour.guide;
     var dummy_photo = "../../img/team/3.jpg";
-    var qr_path = "/media/tours/" + tour.id + "/qrcode_profile/"
+    var qr_path = "/media/tours/" + tour.id + "/qrcode_profile/";
 
     return (
       <div>
         <div class="container">
-        <h2 class="tour-detail-name"> {tour.name} </h2>
+          <h2 class="tour-detail-name"> {tour.name} </h2>
           <Row class="square tour-box">
             <Col md={7} class="user-details">
               <Row class="overview">
@@ -80,8 +110,8 @@ export default class TourDetailed extends React.Component {
                   <ImageLoad path= { qr_path }/>
                 </Col>
                 <Col md={6} class="text-center tour-about">
-                    <h3> About </h3>
-                    <span> { tour.bio } </span>
+                  <h3> About </h3>
+                  <span> { tour.bio } </span>
                 </Col>
               </Row>
             </Col>
@@ -103,12 +133,12 @@ export default class TourDetailed extends React.Component {
           <h2 class="tour-detail-name"> Experience The Tour </h2>
           <Col md={10} mdOffset={1}>
             <Col md={5}>
-              <LocationTable locations={this.state.locations} onClick={this.handleClick.bind(this)}/>
+              <LocationTable locations={this.state.locations} onClick={this.__handleClick.bind(this)}/>
             </Col>
             <Col md={7} style={{height: '600px', position: 'relative', overflow: 'hidden'}}>
               <div style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%'}}>
                 <TourMap
-                  handleClick={this.handleClick.bind(this)}
+                  handleClick={this.__handleClick.bind(this)}
                   locations={this.state.locations}
                   selected={this.state.selected}/>
               </div>

@@ -29,8 +29,10 @@ export default class TourDesign extends React.Component {
     UserTourActions.fetchTour(this.props.params.id);
     LocationActions.fetchLocations(this.props.params.id);
     this.state = LocationStore.getState();
-    this.state.subselected = 0;
-    this.state.selected = null; //Currently selected
+    Object.assign(this.state, {
+      subselected: 0,
+      selected: null
+    });
   }
 
   static getStores() {
