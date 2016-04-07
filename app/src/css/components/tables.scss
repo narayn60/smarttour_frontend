@@ -1,7 +1,7 @@
 @import '../variables';
 
 .guideTours {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 
@@ -29,6 +29,23 @@ table.tableSection tr {
     height: 100px;
 }
 
-table.tableSection th, table.tableSection td {
-    width: 33%;
+table.tableSection td.fit,
+table.tableSection th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+
+table.tableSection td.location-data {
+
+    h4 {
+        text-align: left;
+    }
+
+    p {
+        color: gray;
+        text-align: left;
+        font-size: 12px;
+        margin-left: 10px;
+    }
+
 }

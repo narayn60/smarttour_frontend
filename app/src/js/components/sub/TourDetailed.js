@@ -44,6 +44,7 @@ export default class TourDetailed extends React.Component {
   componentWillMount() {
     LocationStore.listen(this.onChange.bind(this));
     TourStore.listen(this.onChange.bind(this));
+    // LocationActions.updateOrder(this.tour_id, new_order);
     console.log(this.props);
   }
 
@@ -61,7 +62,6 @@ export default class TourDetailed extends React.Component {
     this.setState({selected: index});
     console.log(index);
   }
-
 
 
   render() {

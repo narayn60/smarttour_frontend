@@ -10,6 +10,7 @@ export default class LocationTable extends React.Component {
 
 	locationClicked(index) {
 		console.log(index)
+		this.props.onClick(index)
 	}
 
 	render() {
@@ -21,11 +22,11 @@ export default class LocationTable extends React.Component {
     			<td> 
     				<ImageLoad path={"/" + location.qrcode_path_s3} /> 
     			</td>
-    			<td>
+    			<td class="location-data">
     				<h4>{location.name}</h4>
     				<p>
-    					<i class="fa fa-pencil"></i> 
-    					{location.note}
+    					<i class="fa fa-map-marker"></i> 
+    					{location.address}
     				</p>
     			</td>
     		</tr>);
