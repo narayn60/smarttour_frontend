@@ -2,17 +2,14 @@ import React from "react";
 import ImageLoad from './ImageLoad';
 import TourMap from '../../components/gmaps/TourMap';
 import LocationTable from './LocationTable';
-
 import LocationActions from 'LocationActions';
 import LocationStore from 'LocationStore';
-
 import TourStore from 'TourStore';
 import TourActions from 'TourActions';
-
 import connectToStores from 'alt-utils/lib/connectToStores';
-
 import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
 import { Router, Route, Link, browserHistory } from 'react-router';
+import Gravatar from 'react-gravatar';
 
 
 export default class TourDetailed extends React.Component {
@@ -44,8 +41,6 @@ export default class TourDetailed extends React.Component {
   componentWillMount() {
     LocationStore.listen(this.onChange.bind(this));
     TourStore.listen(this.onChange.bind(this));
-    // LocationActions.updateOrder(this.tour_id, new_order);
-    console.log(this.props);
   }
 
   componentWillUnmount() {
@@ -66,19 +61,20 @@ export default class TourDetailed extends React.Component {
 
   render() {
 
+    const tour = this.state.tour;
+
     // Case where tour doesn't exist
-    if (this.state.tour === null) {
+    if (tour === null) {
       return (
         <div>
           Tour doesn't exist
         </div>
       );
     }
-    console.log("State", this.state);
-    var tour = this.state.tour;
-    var guide = this.state.tour.guide;
-    var dummy_photo = "../../img/team/3.jpg";
-    var qr_path = "/media/tours/" + tour.id + "/qrcode_profile/";
+
+    const guide = this.state.tour.guide;
+    const qr_path = "/media/tours/" + tour.id + "/qrcode_profile/";
+    const gravatarSize = 225;
 
     return (
       <div>
@@ -120,7 +116,7 @@ export default class TourDetailed extends React.Component {
               <Row class="user-triangle">
               </Row>
               <Row>
-                <Image src= { dummy_photo } rounded class="user-image"/>
+                <Gravatar class="user-image" email={guide.email} size={gravatarSize} https />
               </Row>
             </Col>
           </Row>
