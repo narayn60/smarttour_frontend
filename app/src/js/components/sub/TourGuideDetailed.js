@@ -1,6 +1,8 @@
 import React from "react";
 import PersonalTourStore from 'PersonalTourStore';
 import PersonalTourActions from 'PersonalTourActions';
+import GuideStore from 'GuideStore';
+import GuideActions from 'GuideActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 
 import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
@@ -15,20 +17,25 @@ export default class TourGuideDetailed extends React.Component {
   constructor(props) {
     super(props);
     this.state = PersonalTourStore.getState();
-    this.state.guide_id = props.guide.id;
+    this.guide_id = props.guide_id;
   }
 
   static getStores() {
-    return [PersonalTourStore];
+    return [PersonalTourStore, GuideStore];
   }
 
   static getPropsFromStores() {
-    return PersonalTourStore.getState();
+    return {
+      ...PersonalTourStore.getState(),
+      ...GuideStore.getState(),
+    }
   }
 
   componentWillMount() {
     PersonalTourStore.listen(this.onChange.bind(this));
-    PersonalTourActions.fetchTours(this.state.guide_id);
+    GuideStore.listen(this.onChange.bind(this));
+    PersonalTourActions.fetchTours(this.guide_id);
+    GuideActions.fetchGuide(this.guide_id);
   }
 
   componentWillUnmount() {
@@ -39,11 +46,31 @@ export default class TourGuideDetailed extends React.Component {
     this.setState(state);
   }
 
+  __rowClick(tour_id) {
+    browserHistory.push('/browse/tours/' + tour_id);
+  }
+  
   render() {
-    var guide = this.props.guide;
-    const tourComponent = this.state.tours.map((tour, i) => <tr key={i}><td>{tour.name}</td><td>{tour.bio}</td><td>{tour.genre}</td></tr>);
-    console.log("SSTATE", this.state);
+
+    console.log("Tours", this.state.tours);
+
+    const guide = this.state.guide;
+    const tourComponent = this.state.tours.map((tour, i) => (
+      <tr onClick={() => this.__rowClick(tour.id)} key={i}>
+        <td>{tour.name}</td>
+        <td>{tour.bio}</td>
+        <td>{tour.genre}</td>
+      </tr>
+    ));
     const gravatarSize = 225;
+
+    if (!guide) {
+      return (
+        <div>
+          Guide doesn't exist
+        </div>
+      );
+    }
 
     return (
       <div>

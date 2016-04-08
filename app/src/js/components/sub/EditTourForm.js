@@ -8,7 +8,8 @@ const FormSchema = t.struct({
   name: t.String,
   bio: t.String,
   longitude: t.Number,
-  latitude: t.Number
+  latitude: t.Number,
+  notes_list: t.list(t.String)
 });
 
 export default class EditTourForm extends React.Component {
@@ -43,6 +44,9 @@ export default class EditTourForm extends React.Component {
               <div>{locals.inputs.bio}</div>
             </Col>
           </Row>
+          <Row>
+            <div>{locals.inputs.notes_list}</div>
+          </Row>
         </div>
       );
     };
@@ -63,15 +67,26 @@ export default class EditTourForm extends React.Component {
           label: "Information",
           type: 'textarea',
           attrs: {
+            autoFocus: true,
             className: 'edit-form-textarea'
           }
+        },
+        notes_list: {
+          label: "Notes"
         }
       }
     };
 
+    const notes = this.props.values.notes.map((note) => note.note);
+
     // let values = this.props.values + this.props.location_info;
-    const values = Object.assign(this.props.values, this.props.location_info);
-    console.log("Values are", values);
+    const values = Object.assign(
+      this.props.values,
+      this.props.location_info,
+      {
+        notes_list: notes
+      }
+    );
 
     return(
       <div>

@@ -13,4 +13,14 @@ export default class GuideSource {
         throw error;
       });
   }
+
+  fetch_guide(guide_id) {
+    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/' + guide_id + '/')
+      .then((users) => {
+        return users.data;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 }

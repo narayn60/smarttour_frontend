@@ -3,20 +3,17 @@ import GuideSource from 'GuideSource';
 
 class GuideActions {
   constructor() {
-    var dummy_photo = "img/team/3.jpg";
-    this.state = {
-      guides: []
+    this.stores = {GuideSource: new GuideSource()
     };
+    this.generateActions('updateGuides', 'updateGuide');
   }
 
   fetchGuides() {
     return (dispatch) => {
       dispatch();
-      var gs = new GuideSource();
-      gs.fetch()
+      this.stores.GuideSource.fetch()
         .then((guides) => {
-          console.log("guides", guides);
-          this.updateGuide(guides);
+          this.updateGuides(guides);
         })
         .catch((errorMessage) => {
           this.guidesFailed(errorMessage);
@@ -24,13 +21,24 @@ class GuideActions {
     };
     }
 
+  fetchGuide(guide_id) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.GuideSource.fetch_guide(guide_id)
+        .then((guide) => {
+          this.updateGuide(guide);
+        })
+        .catch((errorMessage) => {
+          this.guidesFailed(errorMessage);
+        });
+    };
+  }
+
+
   guidesFailed(errorMessage) {
     return errorMessage;
   }
 
-  updateGuide(guide) {
-    return (guide);
-  }
 }
 
 export default alt.createActions(GuideActions);

@@ -10,8 +10,7 @@ class NotesActions {
     this.stores = {
       NotesSource: new NotesSource()
     };
-    this.generateActions('updateNotes');
-    this.generateActions('updateBio');
+    this.generateActions('updateNotes', 'updateBio');
   }
 
   fetchNotes(tour_id, location_id) {
