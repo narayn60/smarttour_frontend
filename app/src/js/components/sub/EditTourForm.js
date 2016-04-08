@@ -41,7 +41,8 @@ export default class EditTourForm extends React.Component {
             </Col>
             <Col md={6}>
               <div>{locals.inputs.bio}</div>
-            </Col> </Row>
+            </Col>
+          </Row>
         </div>
       );
     };
@@ -70,6 +71,7 @@ export default class EditTourForm extends React.Component {
 
     // let values = this.props.values + this.props.location_info;
     const values = Object.assign(this.props.values, this.props.location_info);
+    console.log("Values are", values);
 
     return(
       <div>
