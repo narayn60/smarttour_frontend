@@ -40,6 +40,18 @@ class NotesActions {
     };
   }
 
+  deleteNote(tour_id, note_id, location_id) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.NotesSource.delete_note(note_id, location_id)
+        .then((response) => {
+          this.fetchNotes(tour_id, location_id);
+        })
+        .catch((errorMessage) => {
+          this.notesFailed(errorMessage);
+        });
+    };
+  }
 
   notesFailed(errorMessage) {
     return errorMessage;

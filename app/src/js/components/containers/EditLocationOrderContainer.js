@@ -1,8 +1,8 @@
 import React from 'react';
 import { Nav, NavItem, MenuItem, Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
-import EditTourForm from '../sub/EditTourForm';
-import PhotoItem from '../sub/PhotoItem';
 import classNames from 'classnames';
+import Gallery from 'react-photo-gallery';
+import connectToStores from 'alt-utils/lib/connectToStores';
 
 import LocationActions from 'LocationActions';
 import LocationStore from 'LocationStore';
@@ -10,16 +10,14 @@ import NotesActions from 'NotesActions';
 import NotesStore from 'NotesStore';
 import PhotoActions from 'PhotoActions';
 import PhotoStore from 'PhotoStore';
+import UserTourActions from 'UserTourActions';
 
-import connectToStores from 'alt-utils/lib/connectToStores';
-
-import Gallery from 'react-photo-gallery';
-
+import EditTourForm from '../sub/EditTourForm';
+import NotesList from '../sub/NotesList';
+import PhotoItem from '../sub/PhotoItem';
+import SortableTable from '../sub/SortableTable';
 import TourMap from '../gmaps/TourMap';
 
-import SortableTable from '../sub/SortableTable';
-
-import UserTourActions from 'UserTourActions';
 
 export default class EditLocationOrderContainer extends React.Component {
 
@@ -80,14 +78,15 @@ export default class EditLocationOrderContainer extends React.Component {
       <Nav bsStyle="tabs" activeKey={this.state.subselected} onSelect={this.__handleSelect.bind(this)}>
         <NavItem eventKey={0} title="Information">Information</NavItem>
         <NavItem eventKey={1} title="Photos">Photos</NavItem>
-        <NavItem eventKey={2}>NavItem 3 content</NavItem>
+        <NavItem eventKey={2} title="Notes">Notes</NavItem>
       </Nav>
     );
+
 
     const sections = [
       <EditTourForm values={this.props.locations[currentlySelected]} tour_id={this.tour_id} location_info={location_info} />,
       <PhotoItem photos={this.props.photos} location_info={this.props.locations[currentlySelected]}/>,
-      "Temp for something"
+      <NotesList tour_id={this.tour_id} notes={this.props.notes}/>
     ];
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];

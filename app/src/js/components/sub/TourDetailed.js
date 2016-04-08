@@ -1,15 +1,17 @@
 import React from "react";
-import ImageLoad from './ImageLoad';
-import TourMap from '../../components/gmaps/TourMap';
-import LocationTable from './LocationTable';
+import Gravatar from 'react-gravatar';
+import connectToStores from 'alt-utils/lib/connectToStores';
+import { Router, Route, Link, browserHistory } from 'react-router';
+import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
+
 import LocationActions from 'LocationActions';
 import LocationStore from 'LocationStore';
-import TourStore from 'TourStore';
+import LocationTable from './LocationTable';
 import TourActions from 'TourActions';
-import connectToStores from 'alt-utils/lib/connectToStores';
-import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
-import { Router, Route, Link, browserHistory } from 'react-router';
-import Gravatar from 'react-gravatar';
+import TourStore from 'TourStore';
+
+import ImageLoad from './ImageLoad';
+import TourMap from '../../components/gmaps/TourMap';
 
 
 export default class TourDetailed extends React.Component {
@@ -35,7 +37,7 @@ export default class TourDetailed extends React.Component {
     return {
       ...LocationStore.getState(),
       ...TourStore.getState()
-    }
+    };
   }
 
   componentWillMount() {

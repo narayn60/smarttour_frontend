@@ -80,6 +80,7 @@ export default class TourDesignContainer extends React.Component {
               tour_id={this.props.tour_id}
               photos={this.state.photos}
               bio={this.state.bio}
+              notes={this.state.notes}
             />
       );
       button_text = "Tour Overview";

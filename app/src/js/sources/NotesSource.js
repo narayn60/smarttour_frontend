@@ -25,4 +25,13 @@ export default class NotesSource {
         throw error;
       });
   }
+
+  delete_note(note_id, location_id) {
+    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/notes/' + note_id + '/';
+    return axios.delete(url)
+      .then((response) => response)
+      .catch((error) => {
+        throw error;
+      });
+  }
 }
