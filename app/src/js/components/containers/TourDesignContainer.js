@@ -9,6 +9,8 @@ import NotesStore from 'NotesStore';
 import PhotoStore from 'PhotoStore';
 import LocationActions from 'LocationActions';
 
+import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
+
 
 
 export default class TourDesignContainer extends React.Component {
@@ -19,8 +21,7 @@ export default class TourDesignContainer extends React.Component {
     UserTourActions.fetchTour(this.tour_id);
     LocationActions.fetchLocations(this.tour_id);
     this.state = {
-      subselected: 0,
-      selected: null,
+      overview: true,
       photos: [],
       bio: null
     };
@@ -57,26 +58,42 @@ export default class TourDesignContainer extends React.Component {
   onChange(state) {
     this.setState(state);
   }
+
+  __onClick() {
+    this.setState({
+      overview: !this.state.overview
+    });
+  }
   
   render() {
 
-    console.log(this.state);
-    console.log("Should be true", this.state.tour && this.state.locations);
+    var chosen_section,
+        button_text;
 
-    if (this.state.tour && this.state.locations) {
-      console.log("Should update");
-      return (
-        <div>
-          <div class="container">
-            <h3> { this.state.tour.name } </h3>
-          </div>
-          <div>
+    if (this.state.overview) {
+      chosen_section = "Hi";
+      button_text = "View Locations";
+    } else {
+      chosen_section = (
             <EditLocationOrderContainer
               locations={this.state.locations}
               tour_id={this.props.tour_id}
               photos={this.state.photos}
               bio={this.state.bio}
             />
+      );
+      button_text = "Tour Overview";
+    }
+
+    if (this.state.tour && this.state.locations) {
+      return (
+        <div>
+          <div class="container">
+            <h3> { this.state.tour.name } </h3>
+              <Button onClick={this.__onClick.bind(this)}>{button_text}</Button>
+          </div>
+          <div>
+            {chosen_section}
           </div>
         </div>
       );
@@ -89,6 +106,6 @@ export default class TourDesignContainer extends React.Component {
     }
 
   }
-}
+};
 
 export default connectToStores(TourDesignContainer);

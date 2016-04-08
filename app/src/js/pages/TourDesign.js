@@ -12,6 +12,3 @@ export default class TourDesign extends React.Component {
     );
   }
 }
-
-
-        {/* <EditLocationOrderContainer tour_id={this.props.params.id}/> */}
