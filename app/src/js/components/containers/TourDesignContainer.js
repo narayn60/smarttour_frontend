@@ -10,7 +10,7 @@ import LocationStore from 'LocationStore';
 import NotesStore from 'NotesStore';
 import PhotoStore from 'PhotoStore';
 
-import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
+import { Row, Col, Grid, Image, Button } from "react-bootstrap";
 
 
 
@@ -93,21 +93,25 @@ export default class TourDesignContainer extends React.Component {
 
     if (this.state.tour && this.state.locations) {
       return (
-        <div>
-          <div class="container">
-            <h3> { this.state.tour.name } </h3>
-              <Button onClick={this.__onClick.bind(this)}>{button_text}</Button>
-          </div>
-          <div>
-            {chosen_section}
-          </div>
-        </div>
+        <Grid fluid={true}>
+            <Row>
+                <Col md={6}>
+                    <h3> { this.state.tour.name } </h3>
+                </Col>
+                <Col md={6}>
+                    <Button onClick={this.__onClick.bind(this)}>{button_text}</Button>
+                </Col>
+            </Row>
+            <Row>
+                {chosen_section}
+            </Row>
+        </Grid>
       );
     } else {
       return (
-        <div>
+        <Grid>
           Hi
-        </div>
+        </Grid>
       );
     }
 

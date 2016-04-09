@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, NavItem, MenuItem, Row, Col, Image, Button, Collapse, Well, Table, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Nav, NavItem, Row, Col, Button, Grid } from "react-bootstrap";
 import classNames from 'classnames';
 import Gallery from 'react-photo-gallery';
 import connectToStores from 'alt-utils/lib/connectToStores';
@@ -98,26 +98,29 @@ export default class EditLocationOrderContainer extends React.Component {
                         __deleteLocation={this.__deleteLocation.bind(this)}/>;
 
     return (
-      <div>
-        <div style={{height: '400px', position: 'relative', overflow: 'hidden'}}>
-          <div style={{position: 'absolute', left: 0, top: 0, width: '52%', height: '100%'}}>
+      <Grid fluid={true}>
+        <Row style={{height: '400px'}}>
+          <Col md={7} style={{height: '100%'}}>
             <TourMap
               handleClick={this.__handleClick.bind(this)}
               locations={this.props.locations}
               selected={this.state.selected}/>
-          </div>
-          <div style={{position: 'absolute', right: 0, top: 0, width: '48%', height: '100%'}}>
+          </Col>
+          <Col md={5} style={{height: '100%'}}>
             {SortTable}
             <Button onClick={this.__saveOrder.bind(this)}> Save new ordering </Button>
-          </div>
-        </div>
+          </Col>
+        </Row>
         <div class="container">
           <Row>
             { EditSelection }
             { TourEdit }
           </Row>
         </div>
-      </div>
+      </Grid>
     );
   }
 }
+          // <div style={{position: 'absolute', left: 0, top: 0, width: '52%', height: '100%'}}>
+          // <div style={{position: 'absolute', right: 0, top: 0, width: '48%', height: '100%'}}>
+        // <Row style={{height: '400px', position: 'relative', overflow: 'hidden'}}>

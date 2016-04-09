@@ -60,7 +60,7 @@ gulp.task('fonts', function() {
   gulp.src('./fonts.list')
     .pipe(gp_googleWebFonts())
     .pipe(gulp.dest('public/fonts'));
-  gulp.src('./node_modules/font-awesome/fonts/**.*')
+  gulp.src(['./node_modules/font-awesome/fonts/**.*', './node_modules/bootstrap/fonts/**.*'])
     .pipe(gulp.dest('public/fonts'));
 });
 

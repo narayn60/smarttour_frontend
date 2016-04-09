@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Grid } from "react-bootstrap";
 
 import TourMap from '../gmaps/TourMap';
 import LocationTable from '../sub/LocationTable';
@@ -30,7 +30,7 @@ export default class PersonalTourOverviewContainer extends React.Component {
         }
 
         return (
-            <div class="container">
+            <Grid fluid={true}>
                 <Row style={{height: '400px'}}>
                     <Col md={6} style={{height: '100%'}}>
                         <TourMap
@@ -44,11 +44,7 @@ export default class PersonalTourOverviewContainer extends React.Component {
                         <LocationTable locations={this.props.locations} onClick={this.__handleClick.bind(this)}/>
                     </Col>
                 </Row>
-            </div>
+            </Grid>
            )
     }
 }
-                    // <div style={{position: 'absolute', left: 0, top: 0, width: '52%', height: '100%'}}>
-                    // <div style={{position: 'absolute', right: 0, top: 0, width: '48%', height: '100%'}}>
-                    // </div>
-                // <Row style={{height: '400px', position: 'relative', overflow: 'hidden'}}>
