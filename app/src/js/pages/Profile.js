@@ -8,6 +8,7 @@ import AuthStore from 'AuthStore';
 import Gravatar from 'react-gravatar';
 import TourTable from '../components/sub/TourTable';
 import SortableTable from '../components/sub/SortableTable';
+import FollowersList from '../components/sub/FollowersList';
 
 export default class Profile extends React.Component {
 
@@ -32,7 +33,7 @@ export default class Profile extends React.Component {
     const userName = AuthStore.getName().split(" ", 2)[0];
     const gravatarSize = 200;
 
-    const OptionalComponents = ["TODO: Followers will go here", <TourTable />, "TODO: Placeholder"];
+    const OptionalComponents = [<FollowersList />, <TourTable />, "TODO: Placeholder"];
     const TourTableComponent = OptionalComponents[this.state.chosenSection];
 
     var profileStyle = {

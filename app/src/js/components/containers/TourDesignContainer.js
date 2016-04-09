@@ -3,11 +3,12 @@ import UserTourActions from 'UserTourActions';
 import UserTourStore from 'UserTourStore';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import EditLocationOrderContainer from './EditLocationOrderContainer';
+import PersonalTourOverviewContainer from './PersonalTourOverviewContainer';
 
+import LocationActions from 'LocationActions';
 import LocationStore from 'LocationStore';
 import NotesStore from 'NotesStore';
 import PhotoStore from 'PhotoStore';
-import LocationActions from 'LocationActions';
 
 import { Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
 
@@ -64,15 +65,19 @@ export default class TourDesignContainer extends React.Component {
       overview: !this.state.overview
     });
   }
-  
+
   render() {
 
     var chosen_section,
         button_text;
 
     if (this.state.overview) {
-      chosen_section = "Hi";
-      button_text = "View Locations";
+      chosen_section = (
+              <PersonalTourOverviewContainer
+                locations={this.state.locations}
+              />
+              );
+      button_text = "Edit Tour";
     } else {
       chosen_section = (
             <EditLocationOrderContainer
