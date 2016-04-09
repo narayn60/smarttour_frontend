@@ -7,21 +7,31 @@ export default class NotesList extends React.Component {
 
   constructor(props) {
     super(props);
+    this.checked = new Set();
   }
 
-  __handleDelete(note_id, location_id) {
-    console.log(note_id, location_id);
+  __handleDelete() {
     const answer = confirm("Are you sure");
     if (answer) {
-      NotesActions.deleteNote(this.props.tour_id, note_id, location_id);
+      const notes = Array.from(this.checked);
+      NotesActions.deleteNotes(this.props.tour_id, this.props.location.id, notes);
+      this.checked.clear();
     }
+  }
+
+  __handleChecked(note_id) {
+    this.checked.has(note_id) ? this.checked.delete(note_id) : this.checked.add(note_id);
   }
 
   render() {
 
-    /* <Row>
-       <Button onClick={() => this.__handleDelete(note.id, note.location)}>Delete</Button> */
-    /* {note.note} */
+    if (this.props.notes.length === 0) {
+      return (
+        <div>
+          No Notes Created
+        </div>
+      );
+    }
 
     const gravatarSize = 75;
 
@@ -34,7 +44,7 @@ export default class NotesList extends React.Component {
         <tr ondata-status="pagado">
           <td>
             <div class="ckbox">
-              <input onClick={() => this.__handleDelete(note.id, note.location)} type="checkbox" id={checkBox}/>
+              <input onClick={() => this.__handleChecked(note.id)} type="checkbox" id={checkBox}/>
               <label for={checkBox}></label>
             </div>
           </td>
@@ -72,7 +82,7 @@ export default class NotesList extends React.Component {
                 <div class="panel-body">
                   <div class="pull-right">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-success btn-filter" data-target="pagado">Pagado</button>
+                      <Button onClick={() => this.__handleDelete()} data-target="pagado">Delete Selected</Button>
                     </div>
                   </div>
                   <div class="table-container">

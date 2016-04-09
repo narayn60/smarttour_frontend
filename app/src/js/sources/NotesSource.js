@@ -26,10 +26,13 @@ export default class NotesSource {
       });
   }
 
-  delete_note(note_id, location_id) {
-    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/notes/' + note_id + '/';
-    return axios.delete(url)
-      .then((response) => response)
+  delete_notes(notes, location_id) {
+    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/notes/note_id/';
+    const delete_requests = notes.map((note) => {
+      return axios.delete(url.replace('note_id', note));
+    });
+    return axios.all(delete_requests)
+      .then(axios.spread((response) => response))
       .catch((error) => {
         throw error;
       });

@@ -40,10 +40,10 @@ class NotesActions {
     };
   }
 
-  deleteNote(tour_id, note_id, location_id) {
+  deleteNotes(tour_id, location_id, notes) {
     return (dispatch) => {
       dispatch();
-      this.stores.NotesSource.delete_note(note_id, location_id)
+      this.stores.NotesSource.delete_notes(notes, location_id)
         .then((response) => {
           this.fetchNotes(tour_id, location_id);
         })

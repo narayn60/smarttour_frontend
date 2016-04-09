@@ -86,7 +86,7 @@ export default class EditLocationOrderContainer extends React.Component {
     const sections = [
       <EditTourForm values={this.props.locations[currentlySelected]} tour_id={this.tour_id} location_info={location_info} />,
       <PhotoItem photos={this.props.photos} location_info={this.props.locations[currentlySelected]}/>,
-      <NotesList tour_id={this.tour_id} notes={this.props.notes}/>
+      <NotesList location={this.props.locations[currentlySelected]} tour_id={this.tour_id} notes={this.props.notes}/>
     ];
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
