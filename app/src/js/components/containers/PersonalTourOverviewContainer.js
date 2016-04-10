@@ -4,6 +4,7 @@ import { Row, Col, Grid } from "react-bootstrap";
 import TourMap from '../gmaps/TourMap';
 import LocationTable from '../sub/LocationTable';
 import ReviewList from '../sub/ReviewList';
+import TourOverview from '../sub/TourOverview';
 
 export default class PersonalTourOverviewContainer extends React.Component {
 
@@ -30,15 +31,15 @@ export default class PersonalTourOverviewContainer extends React.Component {
 
     return (
       <Grid fluid={true}>
-        <Row style={{height: '400px'}}>
-          <Col md={6} style={{height: '100%'}}>
+        <Row>
+          <Col md={6} mdPush={6} style={{height: '100%'}}>
+            <TourOverview />
+          </Col>
+          <Col md={6} mdPull={6} style={{height: '400px'}}>
             <TourMap
               handleClick={this.__handleClick.bind(this)}
               locations={this.props.locations}
               selected={this.state.selected}/>
-          </Col>
-          <Col md={6}>
-            Placholder for side, will hold tour overview
           </Col>
         </Row>
         <Row>
