@@ -47,7 +47,7 @@ export default class TourOverview extends React.Component {
     });
 
     return (
-      <div>
+      <div class="touroverview">
         <Row>
           <h1>Tour Overview</h1>
           <ol class="breadcrumb">

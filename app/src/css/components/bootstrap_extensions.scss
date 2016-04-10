@@ -3,3 +3,13 @@
 .collapsing-well {
   margin: 20px 20px 20px 20px;
 }
+
+.container-fluid {
+  padding-right: 48px;
+  padding-left: 48px;
+
+  .navbar-header {
+    padding-right: 48px;
+    padding-left: 48px;
+  }
+}

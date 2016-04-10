@@ -34,10 +34,10 @@ export default class TourDesignContainer extends React.Component {
 
   static getPropsFromStores() {
     return {
-        ...UserTourStore.getState(),
-        ...LocationStore.getState(),
-        ...NotesStore.getState(),
-        ...PhotoStore.getState()
+      ...UserTourStore.getState(),
+      ...LocationStore.getState(),
+      ...NotesStore.getState(),
+      ...PhotoStore.getState()
     };
   }
 
@@ -73,20 +73,20 @@ export default class TourDesignContainer extends React.Component {
 
     if (this.state.overview) {
       chosen_section = (
-              <PersonalTourOverviewContainer
-                locations={this.state.locations}
-              />
-              );
+        <PersonalTourOverviewContainer
+          locations={this.state.locations}
+        />
+      );
       button_text = "Edit Tour";
     } else {
       chosen_section = (
-            <EditLocationOrderContainer
-              locations={this.state.locations}
-              tour_id={this.props.tour_id}
-              photos={this.state.photos}
-              bio={this.state.bio}
-              notes={this.state.notes}
-            />
+        <EditLocationOrderContainer
+          locations={this.state.locations}
+          tour_id={this.props.tour_id}
+          photos={this.state.photos}
+          bio={this.state.bio}
+          notes={this.state.notes}
+        />
       );
       button_text = "Tour Overview";
     }
@@ -94,17 +94,17 @@ export default class TourDesignContainer extends React.Component {
     if (this.state.tour && this.state.locations) {
       return (
         <Grid fluid={true}>
-            <Row>
-                <Col md={6}>
-                    <h3> { this.state.tour.name } </h3>
-                </Col>
-                <Col md={6}>
-                    <Button onClick={this.__onClick.bind(this)}>{button_text}</Button>
-                </Col>
-            </Row>
-            <Row>
-                {chosen_section}
-            </Row>
+          <Row>
+            <Col md={6}>
+              <h3> { this.state.tour.name } </h3>
+            </Col>
+            <Col md={6} style={{textAlign: 'right'}}>
+              <Button onClick={this.__onClick.bind(this)}>{button_text}</Button>
+            </Col>
+          </Row>
+          <Row>
+            {chosen_section}
+          </Row>
         </Grid>
       );
     } else {

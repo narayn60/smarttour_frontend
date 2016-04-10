@@ -51,8 +51,6 @@ export default class ProfileContainer extends React.Component {
 
   render() {
 
-    console.log("State", this.state.tours);
-
     const userEmail = AuthStore.getEmail();
     const userName = AuthStore.getName().split(" ", 2)[0];
     const gravatarSize = 250;

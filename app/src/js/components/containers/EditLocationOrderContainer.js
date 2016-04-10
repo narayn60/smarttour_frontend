@@ -99,8 +99,8 @@ export default class EditLocationOrderContainer extends React.Component {
 
     return (
       <Grid fluid={true}>
-        <Row style={{height: '400px'}}>
-          <Col md={7} style={{height: '100%'}}>
+        <Row>
+          <Col md={7} style={{height: '400px'}}>
             <TourMap
               handleClick={this.__handleClick.bind(this)}
               locations={this.props.locations}
@@ -111,16 +111,16 @@ export default class EditLocationOrderContainer extends React.Component {
             <Button onClick={this.__saveOrder.bind(this)}> Save new ordering </Button>
           </Col>
         </Row>
-        <div class="container">
+        <Grid>
           <Row>
             { EditSelection }
             { TourEdit }
           </Row>
-        </div>
+        </Grid>
       </Grid>
     );
   }
 }
-          // <div style={{position: 'absolute', left: 0, top: 0, width: '52%', height: '100%'}}>
-          // <div style={{position: 'absolute', right: 0, top: 0, width: '48%', height: '100%'}}>
-        // <Row style={{height: '400px', position: 'relative', overflow: 'hidden'}}>
+// <div style={{position: 'absolute', left: 0, top: 0, width: '52%', height: '100%'}}>
+// <div style={{position: 'absolute', right: 0, top: 0, width: '48%', height: '100%'}}>
+// <Row style={{height: '400px', position: 'relative', overflow: 'hidden'}}>
