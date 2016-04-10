@@ -1,109 +1,161 @@
 @import '../variables';
 
-//colors
-$button_border: #6ed3ea;
-$color_malibu_65_approx: rgba(97, 203, 255, 0.65);
-$seashell: #f1f1f1;
-$white_80: rgba(255, 255, 255, 0.8);
-$gray: #808080;
-$color_silver_chalice_approx: #adadad;
-$color_mine_shaft_approx: #333;
-$color_royal_blue_approx: #3d5de0;
+.toggled {
+    position: absolute;
+    margin-right: -250px;
+}
 
-//fonts
-$font_0: Helvetica Neue;
-$font_1: Helvetica;
-$font_2: Arial;
-$font_3: sans-serif;
+#profileCol .profile-sidebar{
+  min-height: 410px;
+}
 
-//urls
-$url_0: url(http://data2.whicdn.com/images/139218968/large.jpg);
+.hr-sep{
+    border:1px solid  #eee;  
+}
 
-.well {
-	margin-top: -20px;
-	background-color: $background_blue;
-	border: 2px solid $button_border;
-	text-align: center;
-	cursor: pointer;
-	font-size: 18px;
-	padding: 15px;
-	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-	border-radius: 0 !important;
-  color: $white;
+.profile {
+  margin: 20px 0;
+}
+
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
   text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
 }
-/* body { */
-/* 	font-family: $font_0, $font_1, $font_2, $font_3; */
-/* 	font-size: 14px; */
-/* 	line-height: 1.42857143; */
-/* 	color: $white; */
-/* 	background-color: $seashell; */
-/* } */
-.bg_blur {
-	background-image: $url_0;
-	height: 300px;
-	background-size: cover;
-}
-.follow_btn {
-	text-decoration: none;
-	position: absolute;
-	left: 35%;
-	top: 42.5%;
-	width: 35%;
-	height: 15%;
-	background-color: $background_blue;
-	padding: 10px;
-	padding-top: 6px;
-	color: $white;
-	text-align: center;
-	font-size: 20px;
-	border: 4px solid $button_border;
-	&:hover {
-		text-decoration: none;
-		position: absolute;
-		left: 35%;
-		top: 42.5%;
-		width: 35%;
-		height: 15%;
-		background-color: $background_blue;
-		padding: 10px;
-		padding-top: 6px;
-		color: $white;
-		text-align: center;
-		font-size: 20px;
-		border: 4px solid $white_80;
-	}
-}
-.header_profile {
-	color: $gray;
-	margin-left: 10%;
-	margin-top: 70px;
-}
-.picture {
-	height: 150px;
-	width: 150px;
-	position: absolute;
-	top: 75px;
-	left: -75px;
-}
-.picture_mob {
-	position: absolute;
-	width: 35%;
-	left: 35%;
-	bottom: 70%;
-}
-.btn-style {
-	color: $white;
-/* 	background-color: $button_border; */
-/* 	border-color: $color_silver_chalice_approx; */
-/* 	width: 33.3%; */
-/* 	&:hover { */
-/* 		color: $color_mine_shaft_approx; */
-/* 		background-color: $color_royal_blue_approx; */
-/* 		border-color: $color_silver_chalice_approx; */
-/* 		width: 33.3%; */
-	}
-/* } */
 
+   
+.profile-usermenu {
+  margin-top: 30px;
+}
 
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
 
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 410px;
+}
+
+.ibox-content {
+  background-color: transparent;
+  color: inherit;
+  padding: 20px 20px 20px;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0px;
+}
+
+.h-name{
+    font-size:20px;    
+}
+
+img.circle-border {
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+.follower-list{
+    background:#eee;    
+}
+
+.follower-item{
+    margin-top:3px;    
+}
+
+.btn-magick {
+    color: #fff;
+    background-color: #bb39d7;
+    border-color: #9a00cd;
+    text-shadow: 1px 1px 0 #9823d5;
+}
+.btn-magick:hover, .btn-magick:focus {
+    color: #fff;
+    background-color: #b13acd;
+    border-color: #8600b9;
+}
+.btn-pressure {
+    position: relative;
+    margin-bottom: 0;
+}
+.btn-pressure:focus {
+    -moz-outline-style:none;
+         outline:medium none;
+}
+
+.btn-pressure:active, .btn-pressure.active {
+    top: 4px;
+    border: 0;
+    position: relative;
+}
+.btn-sensitive:active, .btn-sensitive.active {
+    top: 1px;
+    margin-top: 4px;
+}

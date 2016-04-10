@@ -12,53 +12,36 @@ export default class FollowersList extends React.Component {
 
   render() {
 
-    const gravatarSize = 75;
+    const gravatarSize = 125;
 
     const followers = this.followers.map((follower) => {
 
 
       return (
-
-        <tr ondata-status="pagado">
-          <td>
-            <div class="media">
-              <a href="#" class="pull-left">
-                <Gravatar class="media-photo" email="narayn60@gmail.com" size={gravatarSize} https />
-              </a>
-              <div class="table-body">
-                <span class="media-meta pull-right">Febrero 13, 2016</span>
-                <h4 class="title">
-                </h4>
-                <p class="summary"></p>
-              </div>
+        <Col md={4} sm={6} class="follower-item">
+          <div class="ibox-content text-center">
+            <h2 class="h-name">Andrew Stuart</h2>
+            <div class="m-b-sm">
+              <Gravatar class="img-circle circle-border" email="narayn60@gmail.com" size={gravatarSize} https />
             </div>
-          </td>
-        </tr>
+            <p></p>
+            <div class="text-center">
+              <span>narayn60@gmail.com</span>
+              {/* <a class="btn btn-xs btn-default"><i class="fa fa-thumbs-up"></i>  </a>
+              <a class="btn btn-xs btn-info"><i class="fa fa-heart"></i> </a>
+              <a class="btn btn-xs btn-primary"><i class="fa fa-envelope"></i> </a>
+              <a class="btn btn-xs btn-success"><i class="fa fa-phone"></i> </a> */}
+            </div>
+          </div>
+        </Col>
       );
     }
     );
 
     return (
-      <div class="container">
-        <Row>
-          <section class="content">
-            <h1>Followers</h1>
-            <div>
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <div class="table-container">
-                    <table class="table table-filter">
-                      <tbody>
-                        {followers}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </Row>
-      </div>
+      <div>
+      {followers}
+        </div>
     );
   }
 
