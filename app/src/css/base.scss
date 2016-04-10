@@ -5,19 +5,20 @@
 @import 'layout/profileheader';
 @import 'layout/table';
 
-@import 'components/headers';
-@import 'components/section';
-@import 'components/buttons';
-@import 'components/paragraphs';
-@import 'components/links';
-@import 'components/forms';
-@import 'components/tourtable';
-@import 'components/inputs';
 @import 'components/bootstrap_extensions';
-@import 'components/tables';
-@import 'components/image';
+@import 'components/buttons';
 @import 'components/dropzone';
+@import 'components/forms';
+@import 'components/headers';
+@import 'components/image';
+@import 'components/inputs';
+@import 'components/links';
+@import 'components/paragraphs';
+@import 'components/reviewlist';
+@import 'components/section';
 @import 'components/table-filter';
+@import 'components/tables';
+@import 'components/tourtable';
 
 @import 'class/portfolio';
 @import 'class/teammember';

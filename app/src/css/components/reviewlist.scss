@@ -1,0 +1,116 @@
+@import '../variables';
+
+//colors
+$color_gallery_approx: #f0f0f0;
+$color_fuscous_gray_approx: #555555;
+$color_silver_chalice_approx: #aaaaaa;
+$black_10: rgba(0,0,0,0.1);
+$color_alto_approx: #dddddd;
+$color_mountain_mist_approx: #999999;
+$color_storm_dust_approx: #666666;
+
+.content-item {
+	padding: 30px 0;
+	background-color: $white;
+	&.grey {
+		background-color: $color_gallery_approx;
+		padding: 50px 0;
+		height: 100%;
+	}
+	h2 {
+		font-weight: 700;
+		font-size: 35px;
+		line-height: 45px;
+		text-transform: uppercase;
+		margin: 20px 0;
+	}
+	h3 {
+		font-weight: 400;
+		font-size: 20px;
+		color: $color_fuscous_gray_approx;
+		margin: 10px 0 15px;
+		padding: 0;
+	}
+}
+
+.content-headline {
+	height: 1px;
+	text-align: center;
+	margin: 20px 0 70px;
+	h2 {
+		background-color: $white;
+		display: inline-block;
+		margin: -20px auto 0;
+		padding: 0 20px;
+	}
+	h3 {
+		font-size: 14px;
+		color: $color_silver_chalice_approx;
+		display: block;
+	}
+}
+
+#comments {
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: 0 -1px 6px 1px $black_10;
+	background-color: $white;
+	form {
+		margin-bottom: 30px;
+		fieldset {
+			clear: both;
+		}
+		textarea {
+			height: 100px;
+		}
+	}
+	.btn {
+		margin-top: 7px;
+	}
+	.media {
+		border-top: 1px dashed $color_alto_approx;
+		padding: 20px 0;
+		margin: 0;
+		img {
+			max-width: 100px;
+		}
+		h4 {
+			margin: 0 0 10px;
+			span {
+				font-size: 14px;
+				float: right;
+				color: $color_mountain_mist_approx;
+			}
+		}
+		p {
+			margin-bottom: 15px;
+			text-align: justify;
+		}
+		> .pull-left {
+			margin-right: 20px;
+		}
+	}
+	.media-detail {
+		margin: 0;
+		li {
+			color: $color_silver_chalice_approx;
+			font-size: 12px;
+			padding-right: 10px;
+			font-weight: 600;
+			&:last-child {
+				padding-right: 0;
+			}
+			i {
+				color: $color_storm_dust_approx;
+				font-size: 15px;
+				margin-right: 10px;
+			}
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.grey .content-headline h2 {
+	background-color: $color_gallery_approx;
+}

@@ -3,6 +3,7 @@ import { Row, Col, Grid } from "react-bootstrap";
 
 import TourMap from '../gmaps/TourMap';
 import LocationTable from '../sub/LocationTable';
+import ReviewList from '../sub/ReviewList';
 
 export default class PersonalTourOverviewContainer extends React.Component {
 
@@ -18,8 +19,6 @@ export default class PersonalTourOverviewContainer extends React.Component {
   }
 
   render() {
-
-    console.log("PersonalTourOverview", this.props.locations, this.state.selected);
 
     if (this.props.locations.length === 0) {
       return (
@@ -47,7 +46,7 @@ export default class PersonalTourOverviewContainer extends React.Component {
             <LocationTable locations={this.props.locations} onClick={this.__handleClick.bind(this)}/>
           </Col>
           <Col md={6}>
-            Will hold review list
+            <ReviewList />
           </Col>
         </Row>
       </Grid>

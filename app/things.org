@@ -12,7 +12,8 @@
 *** TODO Blank out location if it has been reported that the QR code doesn't exist
 *** TODO Ability to upload audio to a location
 **** Maybe able to do this through the dropzone component
-*** TODO Hook up the relevant notes at that location
+*** DONE Hook up the relevant notes at that location
+CLOSED: [2016-04-10 Sun 14:37]
 **** Ability to delete irrevelant notes
 *** DONE Delete point as well as data attatched to a point
 CLOSED: [2016-04-08 Fri 11:39]
