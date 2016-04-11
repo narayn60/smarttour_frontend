@@ -23,9 +23,7 @@ const FormSchema = t.struct({
   name: t.String,
   genre: Genres,
   bio: t.String,
-  // owner: t.maybe(t.String),
   points: Positive
-  // email: t.String
 });
 
 
@@ -35,9 +33,6 @@ export default class CreateTourForm extends React.Component {
     super();
     this.state = {
       success: false
-      // value: {
-      //   email: AuthStore.getEmail()
-      // }
     };
     this.state = FormStore.getState();
 
@@ -75,7 +70,6 @@ export default class CreateTourForm extends React.Component {
     const value = this.refs.form.getValue();
     if (value) {
       this.setState({
-        // success: true,
         values: value
       });
       FormActions.createTour(value);
@@ -83,19 +77,14 @@ export default class CreateTourForm extends React.Component {
   }
   
   render() {
-    // let { tour } = this.props;
 
     const formLayout = (locals) => {
       return (
         <div>
-          <Row>
-            <Col md={4} mdOffset={4}>
-              <div>{locals.inputs.name}</div>
-              <div>{locals.inputs.genre}</div>
-              <div>{locals.inputs.bio}</div>
-              <div>{locals.inputs.points}</div>
-            </Col>
-          </Row>
+          <div>{locals.inputs.name}</div>
+          <div>{locals.inputs.genre}</div>
+          <div>{locals.inputs.bio}</div>
+          <div>{locals.inputs.points}</div>
         </div>
       );
     };
@@ -103,15 +92,9 @@ export default class CreateTourForm extends React.Component {
     const options = {
       template: formLayout,
       fields: {
-        // owner: {
-        //   disabled: true
-        // },
         points: {
           error: "Field needs to be a number greater than 1"
         }
-        // email: {
-        //   disabled: true
-        // }
       }
     };
 
@@ -138,16 +121,3 @@ export default class CreateTourForm extends React.Component {
 }
 
 export default connectToStores(CreateTourForm);
-
-
-// const selector = (state) => ({ tour: state.tour });
-
-// <form name="sentMessage" id="contactForm" noValidate>
-//     <div class="row">
-//         <div class="clearfix"></div>
-//         <div class="col-lg-12 text-center">
-//             <div id="success"></div>
-//             <button type="submit" class="btn btn-xl">Submit Tour - { tour.name }</button>
-//         </div>
-//     </div>
-// </form>

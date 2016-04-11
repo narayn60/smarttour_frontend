@@ -1,0 +1,83 @@
+@import '../variables';
+
+.box-widget {
+  border: none;
+  position: relative;
+  .widget-user-header {
+    padding: 20px;
+    //Instead of the line below you could use @include border-top-right-radius($radius)
+    border-top-right-radius: 3px;
+    //Instead of the line below you could use @include border-top-left-radius($radius)
+    border-top-left-radius: 3px;
+  }
+}
+.box {
+  position: relative;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 3px;
+  background: #ffffff;
+  border-top: 3px solid #d2d6de;
+  margin-bottom: 20px;
+  width: 100%;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  .nav-stacked > li {
+    border-bottom: 1px solid #f4f4f4;
+    margin: 0;
+  }
+}
+.widget-user-desc {
+  margin-left: 75px;
+  color: #fff;
+  margin-top: 0;
+}
+.widget-user-username {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 25px;
+  font-weight: 300;
+  color: #fff;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.box-footer {
+  //Instead of the line below you could use @include border-top-left-radius($radius)
+  border-top-left-radius: 0;
+  //Instead of the line below you could use @include border-top-right-radius($radius)
+  border-top-right-radius: 0;
+  //Instead of the line below you could use @include border-bottom-right-radius($radius)
+  border-bottom-right-radius: 3px;
+  //Instead of the line below you could use @include border-bottom-left-radius($radius)
+  border-bottom-left-radius: 3px;
+  border-top: 1px solid #f4f4f4;
+  padding: 10px;
+  background-color: #fff;
+}
+.bg-yellow {
+  background-color: #f39c12 !important;
+}
+.bg-blue {
+  background-color: #0073b7 !important;
+}
+.bg-aqua {
+  background-color: #00c0ef !important;
+}
+.bg-green {
+  background-color: #00a65a !important;
+}
+.bg-red {
+  background-color: #dd4b39 !important;
+}
+.widget-user-image > img {
+  width: 65px;
+  height: auto;
+  float: left;
+}
+.nav-stacked > li > a {
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 0;
+  border-top: 0;
+  border-left: 3px solid transparent;
+  color: #444;
+}

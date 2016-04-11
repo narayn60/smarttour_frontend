@@ -39,11 +39,12 @@ export default class TourGuideContainer extends React.Component {
     GuideActions.fetchGuides();
   }
 
-  createGuide() {
-    var profile_photo = "img/team/4.jpg";
-    var guide = {name: 'Jeff Bridges', bio: 'The boss.', photo: profile_photo};
-    GuideActions.updateGuide(guide);
-  }
+  //TODO: Remove?
+  // createGuide() {
+  //   var profile_photo = "img/team/4.jpg";
+  //   var guide = {name: 'Jeff Bridges', bio: 'The boss.', photo: profile_photo};
+  //   GuideActions.updateGuide(guide);
+  // }
 
   filterGuides(filter) {
     console.log('filter by ' + filter);
