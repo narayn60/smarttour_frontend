@@ -1,0 +1,19 @@
+@import '../variables';
+
+.touroverview {
+	padding: 30px 0;
+	background-color: $white;
+}
+
+#overview {
+	box-shadow: $box_shadow;
+	background-color: $white;
+}
+
+#overview_panels {
+  padding: 0px 15px;
+}
+
+#locations_list {
+  box-shadow: $box_shadow
+}

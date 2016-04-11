@@ -3,6 +3,7 @@
 ** Major Aims
 *** TODO Redesign the website
 *** TODO Hook up to backend
+*** TODO Fix issue where can't reload page on Docker
 
 ** New pages
 *** TODO Create Followers page

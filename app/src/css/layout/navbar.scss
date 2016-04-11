@@ -105,29 +105,9 @@
   }
 }
 
-.tourNavBar li {
-    display: inline-block;
-}
-
-.tourNavBar > li > a {
-    border-bottom: 2px solid gray;
-}
-
-.tourNavBar > li > a:hover {
-    color: black;
-    background-color: transparent;
-    border-bottom: 2px solid black;
-}
-
-.tourNavBar {
-  margin: 0 15%;
-  margin-bottom: 50px;
-  text-align: center;
-  font-size: 16px;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, cursive;
-
-  &:hover {
-      color: black;
+@media (max-width: 992px) {
+  .nav > li > a {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
-

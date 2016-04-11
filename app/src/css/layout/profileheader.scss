@@ -18,6 +18,7 @@
 }
 
 .profile-sidebar {
+  box-shadow: $box_shadow;
   padding: 20px 0 10px 0;
   background: #fff;
 }
@@ -98,6 +99,7 @@
 }
 
 .profile-content {
+  box-shadow: $box_shadow;
   padding: 20px;
   background: #fff;
   min-height: 410px;

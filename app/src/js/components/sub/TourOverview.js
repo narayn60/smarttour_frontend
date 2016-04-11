@@ -47,8 +47,8 @@ export default class TourOverview extends React.Component {
     });
 
     return (
-      <div class="touroverview">
-        <Row>
+      <div>
+        <section class="touroverview" id="overview">
           <h1>Tour Overview</h1>
           <ol class="breadcrumb">
             <li class="active">
@@ -56,10 +56,10 @@ export default class TourOverview extends React.Component {
               Dashboard
             </li>
           </ol>
-        </Row>
-        <Row>
-          {panels}
-        </Row>
+          <Row id="overview_panels">
+            {panels}
+          </Row>
+        </section>
       </div>
     );
   }

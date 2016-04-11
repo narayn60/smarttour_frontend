@@ -11,16 +11,16 @@ export default class TourNavBar extends React.Component {
 	    super(props);
 	    this.state = {
 	    	tours: props.tours
-	    }
+      };
 	    this.handleSelect = this.handleSelect.bind(this);
 	    this.genreCount = this.genreCount.bind(this);
   	}
-    	
-	handleSelect(selectedKey) {
+
+  handleSelect(selectedKey) {
 	}
 
 	genreCount(genre) {
-		return this.props.tours.filter(tour => tour.genre === genre).length
+    return this.props.tours.filter(tour => tour.genre === genre).length;
 	}
 
 	render() {
