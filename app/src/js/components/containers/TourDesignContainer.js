@@ -68,6 +68,8 @@ export default class TourDesignContainer extends React.Component {
 
   render() {
 
+    console.log("State", this.state.tour);
+
     var chosen_section,
         button_text;
 
@@ -91,16 +93,25 @@ export default class TourDesignContainer extends React.Component {
       button_text = "Tour Overview";
     }
 
+
     if (this.state.tour && this.state.locations) {
       return (
         <Grid fluid={true}>
           <Row>
-            <Col md={6}>
-              <h3> { this.state.tour.name } </h3>
-            </Col>
-            <Col md={6} style={{textAlign: 'right'}}>
-              <Button onClick={this.__onClick.bind(this)}>{button_text}</Button>
-            </Col>
+            <div class="cover-container">
+              <div class="social-cover"></div>
+              <div class="social-avatar" >
+                <img class="img-avatar" src="http://bootdey.com/img/Content/user-453533-fdadfd.png" style={{height: '100px', width: '100px'}}/>
+                <h4 class="fg-white text-center">{this.state.tour.name}</h4>
+                <h5 class="fg-white text-center" style={{opacity: '0.8'}}>{this.state.tour.bio}</h5>
+                <hr class="border-black75" style={{borderWidth: '2px'}}/>
+                <div class="text-center">
+                  <Button role="button" class="btn-inverse btn-outlined btn-retainBg btn-brightblue" onClick={this.__onClick.bind(this)}>
+                    <span>{button_text}</span>
+                  </Button>
+                </div>
+              </div>
+            </div>
           </Row>
           <Row>
             {chosen_section}

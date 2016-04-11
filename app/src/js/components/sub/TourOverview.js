@@ -50,12 +50,6 @@ export default class TourOverview extends React.Component {
       <div>
         <section class="touroverview" id="overview">
           <h1>Tour Overview</h1>
-          <ol class="breadcrumb">
-            <li class="active">
-              <i class="fa fa-dashboard"></i>
-              Dashboard
-            </li>
-          </ol>
           <Row id="overview_panels">
             {panels}
           </Row>

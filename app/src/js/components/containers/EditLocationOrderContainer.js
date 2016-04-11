@@ -98,7 +98,7 @@ export default class EditLocationOrderContainer extends React.Component {
                         __deleteLocation={this.__deleteLocation.bind(this)}/>;
 
     return (
-      <Grid fluid={true}>
+      <div>
         <Row>
           <Col md={7} style={{height: '400px'}}>
             <TourMap
@@ -106,7 +106,7 @@ export default class EditLocationOrderContainer extends React.Component {
               locations={this.props.locations}
               selected={this.state.selected}/>
           </Col>
-          <Col md={5} style={{height: '100%'}}>
+        <Col md={5} class="location_reorder">
             {SortTable}
             <Button onClick={this.__saveOrder.bind(this)}> Save new ordering </Button>
           </Col>
@@ -117,10 +117,7 @@ export default class EditLocationOrderContainer extends React.Component {
             { TourEdit }
           </Row>
         </Grid>
-      </Grid>
+      </div>
     );
   }
 }
-// <div style={{position: 'absolute', left: 0, top: 0, width: '52%', height: '100%'}}>
-// <div style={{position: 'absolute', right: 0, top: 0, width: '48%', height: '100%'}}>
-// <Row style={{height: '400px', position: 'relative', overflow: 'hidden'}}>

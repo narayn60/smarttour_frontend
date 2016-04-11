@@ -30,7 +30,7 @@ export default class PersonalTourOverviewContainer extends React.Component {
     }
 
     return (
-      <Grid fluid={true}>
+      <div>
         <Row>
           <Col md={6} mdPush={6} style={{height: '100%'}}>
             <TourOverview />
@@ -50,7 +50,7 @@ export default class PersonalTourOverviewContainer extends React.Component {
             <ReviewList />
           </Col>
         </Row>
-      </Grid>
+      </div>
     );
   }
 }
