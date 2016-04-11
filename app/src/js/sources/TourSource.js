@@ -17,7 +17,6 @@ export default class TourSource {
   fetch_tour(tour_id) {
     return axios.get(Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/')
       .then((tours) => {
-        console.log(tours);
         return tours.data;
       })
       .catch((error) => {

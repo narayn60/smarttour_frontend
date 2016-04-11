@@ -8,10 +8,11 @@ export default class UserTourSource {
 
     return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/my_tours/')
                 .then((tours) => {
-                  //TODO: Make sure backend sends actual image
+                  //TODO: Make sure backend sends actual image, change this to photo
                   tours.data.forEach((tour) =>
                     tour.img_url = "https://upload.wikimedia.org/wikipedia/commons/7/7f/Shop_Until_You_Drop_by_Banksy.JPG"
                   );
+                  console.log("Tours", tours);
                   return tours.data;
                 })
                 .catch((error) => {

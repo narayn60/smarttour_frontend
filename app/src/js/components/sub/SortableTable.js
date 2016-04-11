@@ -57,23 +57,26 @@ export default class SortableTable extends React.Component {
 
     if (process.env.BROWSER) {
       return (
-        <div ref={this.sortableContainersDecorator}>
-          <div className="group">
-            <h2 className="group-title">Locations</h2>
-            <div>
-              <Table bordered condensed hover>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Qr Codes</th>
-                    <th>Delete Location</th>
-                  </tr>
-                </thead>
-                <tbody ref={this.sortableGroupDecorator}>
-                  {Locations}
-                </tbody>
-              </Table>
+        <div>
+          <div ref={this.sortableContainersDecorator}>
+            <div className="group">
+              <h4 className="group-title">Locations</h4>
+              <hr/>
+              <div>
+                <Table responsive condensed hover class="sortable_table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Qr Codes</th>
+                      <th>Delete Location</th>
+                    </tr>
+                  </thead>
+                  <tbody ref={this.sortableGroupDecorator}>
+                    {Locations}
+                  </tbody>
+                </Table>
+              </div>
             </div>
           </div>
         </div>

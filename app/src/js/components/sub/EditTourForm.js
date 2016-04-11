@@ -80,7 +80,8 @@ export default class EditTourForm extends React.Component {
 
     return(
       <div>
-        <h1>Information</h1>
+        <h4>Information</h4>
+        <hr/>
         <form onSubmit={this.onSubmit.bind(this)}>
           <t.form.Form class="edit-form" ref="form" type={FormSchema} value={values} options={options} />
           <Row>

@@ -73,31 +73,28 @@ export default class NotesList extends React.Component {
     );
 
     return (
-      <div class="container">
-        <Row>
-          <section class="content">
-            <h1>Notes</h1>
-            <div>
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <div class="pull-right">
-                    <div class="btn-group">
-                      <Button onClick={() => this.__handleDelete()} data-target="pagado">Delete Selected</Button>
-                    </div>
+      <Row>
+          <h4>Notes</h4>
+          <hr/>
+          <div>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="pull-right">
+                  <div class="btn-group">
+                    <Button onClick={() => this.__handleDelete()} data-target="pagado">Delete Selected</Button>
                   </div>
-                  <div class="table-container">
-                    <table class="table table-filter">
-                      <tbody>
-                        {notes}
-                      </tbody>
-                    </table>
-                  </div>
+                </div>
+                <div class="table-container">
+                  <table class="table table-filter">
+                    <tbody>
+                      {notes}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
-          </section>
-        </Row>
-      </div>
+          </div>
+      </Row>
     );
   }
 

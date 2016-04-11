@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, NavItem, Row, Col, Button, Grid } from "react-bootstrap";
+import { Badge, Nav, NavItem, Row, Col, Button, Grid } from "react-bootstrap";
 import classNames from 'classnames';
 import Gallery from 'react-photo-gallery';
 import connectToStores from 'alt-utils/lib/connectToStores';
@@ -42,11 +42,14 @@ export default class EditLocationOrderContainer extends React.Component {
   }
 
   __saveOrder() {
-    const new_order = [].map.call(
-      document.getElementsByClassName('location-name'),
-      ((currentValue, index, collection) => Number(currentValue.id))
-    );
-    LocationActions.updateOrder(this.tour_id, new_order);
+    const answer = confirm("Are you sure?");
+    if (answer) {
+      const new_order = [].map.call(
+        document.getElementsByClassName('location-name'),
+        ((currentValue, index, collection) => Number(currentValue.id))
+      );
+      LocationActions.updateOrder(this.tour_id, new_order);
+    }
   }
 
   __deleteLocation(location_id) {
@@ -75,10 +78,16 @@ export default class EditLocationOrderContainer extends React.Component {
     const currentlySelected = this.state.selected;
 
     const EditSelection = currentlySelected === null ? "" : (
-      <Nav bsStyle="tabs" activeKey={this.state.subselected} onSelect={this.__handleSelect.bind(this)}>
-        <NavItem eventKey={0} title="Information">Information</NavItem>
-        <NavItem eventKey={1} title="Photos">Photos</NavItem>
-        <NavItem eventKey={2} title="Notes">Notes</NavItem>
+      <Nav bsStyle="pills" stacked activeKey={this.state.subselected} onSelect={this.__handleSelect.bind(this)}>
+        <NavItem eventKey={0} title="Information">
+          <i class="fa fa-info"></i> Information
+        </NavItem>
+        <NavItem eventKey={1} title="Photos">
+          <i class="fa fa-photo"></i> Photos <Badge pullRight>{this.props.photos.length}</Badge>
+        </NavItem>
+        <NavItem eventKey={2} title="Notes">
+          <i class="fa fa-sticky-note"></i> Notes <Badge pullRight>{this.props.notes.length}</Badge>
+        </NavItem>
       </Nav>
     );
 
@@ -90,6 +99,20 @@ export default class EditLocationOrderContainer extends React.Component {
     ];
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
+
+    const subSection = currentlySelected === null ? "" : (
+        <Grid fluid={true} class="edit_selection">
+          <Row>
+            <Col md={3}>
+              { EditSelection }
+              <hr/>
+            </Col>
+            <Col md={9}>
+              { TourEdit }
+            </Col>
+          </Row>
+        </Grid>
+    );
 
     const SortTable = <SortableTable
                         locations={this.props.locations}
@@ -106,18 +129,14 @@ export default class EditLocationOrderContainer extends React.Component {
               locations={this.props.locations}
               selected={this.state.selected}/>
           </Col>
-        <Col md={5} class="location_reorder">
+          <Col md={5} class="location_reorder">
             {SortTable}
             <Button onClick={this.__saveOrder.bind(this)}> Save new ordering </Button>
           </Col>
         </Row>
-        <Grid>
-          <Row>
-            { EditSelection }
-            { TourEdit }
-          </Row>
-        </Grid>
+        {subSection}
       </div>
     );
   }
 }
+

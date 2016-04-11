@@ -17,3 +17,22 @@ table {
     background-color: $background_red !important;
     color: $white;
 }
+
+th {
+  font-weight: normal;
+}
+
+td {
+  font-weight: normal;
+}
+
+.sortable_table {
+  font-weight: normal;
+  font-size:  12px;
+
+  td > button {
+    font-size: 12px;
+    padding: 0px 0px;
+    border: 0px;
+  }
+}

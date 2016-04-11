@@ -137,6 +137,8 @@ export default class PhotoItem extends React.Component {
 
     return (
       <div>
+        <h4>Photos</h4>
+        <hr/>
         <Button bsStyle="primary" onClick={this.__onClick.bind(this)}>{buttonSwitchText}</Button>
         {selectedComponent}
       </div>

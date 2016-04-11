@@ -59,6 +59,9 @@ export default class ProfileContainer extends React.Component {
     const OptionalComponents = [<TourTable tours={this.state.tours} />, <FollowersList />, "TODO: Placeholder"];
     const TourTableComponent = OptionalComponents[this.state.chosenSection];
 
+    const Titles = ["My Tours", "Followers", "Help"];
+    const Title = Titles[this.state.chosenSection];
+
     const dropdownOptions = [
       {text: 'My Tours', class_name: 'fa fa-map', badge: tourLength},
       {text: 'Followers', class_name: 'fa fa-user', badge: 4},
@@ -107,11 +110,8 @@ export default class ProfileContainer extends React.Component {
           </Col>
           <Col md={9} id="contentCol">
             <div class="profile-content">
-              <Row class="hidden-xs hidden-sm">
-                <a href="#" class="btn btn-info" id="toggle-link">
-                  <i class="fa fa-arrow-left"></i>
-                  Hide menu
-                </a>
+              <Row>
+                <h4>{Title}</h4>
                 <hr class="hr-sep"/>
               </Row>
               <Row>

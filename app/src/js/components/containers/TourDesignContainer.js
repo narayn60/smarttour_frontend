@@ -68,8 +68,6 @@ export default class TourDesignContainer extends React.Component {
 
   render() {
 
-    console.log("State", this.state.tour);
-
     var chosen_section,
         button_text;
 
@@ -96,7 +94,7 @@ export default class TourDesignContainer extends React.Component {
 
     if (this.state.tour && this.state.locations) {
       return (
-        <Grid fluid={true}>
+        <Grid>
           <Row>
             <div class="cover-container">
               <div class="social-cover"></div>

@@ -36,7 +36,7 @@ export default class NavHeader extends React.Component {
 
     return (
 
-        <Navbar staticTop fluid={true}>
+        <Navbar staticTop>
         <Navbar.Header>
           <LinkContainer to={{ pathname: '/'}}> 
             <Navbar.Brand>
