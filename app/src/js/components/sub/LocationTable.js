@@ -25,7 +25,7 @@ export default class LocationTable extends React.Component {
           <h4>{location.name}</h4>
           <p>
             <i class="fa fa-map-marker"></i>
-            {location.address}
+            { location.address }
           </p>
         </td>
       </tr>);

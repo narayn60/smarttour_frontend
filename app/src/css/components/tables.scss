@@ -8,13 +8,27 @@
 table.tableSection {
     display: table;
     width: 100%;
-    border-style: solid;
-    border-right: thick 3px black;
 }
 
 table.tableSection thead, table.tableSection tbody {
     float: left;
     width: 100%;
+}
+
+table.tableSection {
+    border-right: solid black 5px;
+
+    td {
+        border-right: solid black 5px;
+    }
+
+    th {
+        border-right: solid black 5px;
+    }
+
+    tr.selected {
+        border-right: solid red 5px;
+    }
 }
 
 table.tableSection tbody {
@@ -26,13 +40,21 @@ table.tableSection tr {
     width: 100%;
     display: table;
     text-align: left;
-    height: 100px;
+    height: 50px;
 }
 
 table.tableSection td.fit,
 table.tableSection th.fit {
     white-space: nowrap;
     width: 1%;
+}
+
+.table-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 15px 30px;
+    border-color: transparent transparent transparent #ff0000;
 }
 
 table.tableSection td.location-data {

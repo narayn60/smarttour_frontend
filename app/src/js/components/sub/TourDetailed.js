@@ -43,6 +43,7 @@ export default class TourDetailed extends React.Component {
   componentWillMount() {
     LocationStore.listen(this.onChange.bind(this));
     TourStore.listen(this.onChange.bind(this));
+    this.setState({'rank': 'gold'});
   }
 
   componentWillUnmount() {
@@ -60,7 +61,6 @@ export default class TourDetailed extends React.Component {
     console.log(index);
   }
 
-
   render() {
 
     const tour = this.state.tour;
@@ -76,56 +76,47 @@ export default class TourDetailed extends React.Component {
 
     const guide = this.state.tour.guide;
     const qr_path = "/media/tours/" + tour.id + "/qrcode_profile/";
-    const gravatarSize = 225;
+    const gravatarSize = 150;
 
     return (
       <div>
         <div class="container">
-          <h2 class="tour-detail-name"> {tour.name} </h2>
-          <Row class="square tour-box">
+          <h2 class="tour-detail-name"> {tour.name} 
+            <span class="fa-stack header-icon">
+                <i class={"fa fa-trophy fa-stack-1x fa-trophy-" + (this.state.rank)}></i>
+                <i class="fa fa-inverse fa-stack-1x char-overlay">1</i>
+            </span>
+            <span class="fa-stack header-icon">
+                <i class="fa fa-heart fa-stack-1x"></i>
+                <i class="fa fa-inverse fa-stack-1x char-overlay">{tour.followers}</i>
+            </span>
+          </h2>
+          <Row class="tour-box">
             <Col md={7} class="user-details">
-              <Row class="overview">
-                <Col md={4} class="user-pad text-center">
-                  <h3> Followers </h3>
-                  <h4> { tour.followers } </h4>
-                </Col>
-                <Col md={4} class="user-pad text-center">
-                  <h3> Locations </h3>
-                  <h4> { tour.points }</h4>
-                </Col>
-                <Col md={4} class="user-pad text-center">
-                  <h3> Rank </h3>
-                  <h4> 3 </h4>
-                </Col>
-              </Row>
               <Row>
-                <Col md={6}>
-                  <h3> Download </h3>
+                <Col md={6} class="tour-qr-profile">
                   <ImageLoad path= { qr_path }/>
                 </Col>
                 <Col md={6} class="text-center tour-about">
-                  <h3> About </h3>
                   <span> { tour.bio } </span>
                 </Col>
               </Row>
             </Col>
-            <Col md={4} class="user-details guide-details">
-              <Row class="coralbg white creator-info">
-                <h3> Creator </h3>
-                <h4 class="white"> { guide.full_name } </h4>
-                <h4 class="white"> { guide.email } </h4>
-              </Row>
-              <Row class="user-triangle">
-              </Row>
+            <Col md={4} class="user-details">
               <Row>
-                <Gravatar class="user-image" email={guide.email} size={gravatarSize} https />
+                <Col md={6}>
+                  <p class="gray"> by </p>
+                  <h4> { guide.full_name } </h4>
+                  <h4> { guide.email } </h4>
+                </Col>
+                <Col>
+                  <Gravatar class="user-image" email={guide.email} size={gravatarSize} https />
+                </Col>
               </Row>
             </Col>
           </Row>
-        </div>
         <Row class="browse-map">
-          <h2 class="tour-detail-name"> Experience The Tour </h2>
-          <Col md={10} mdOffset={1}>
+          <Col md={12}>
             <Col md={5}>
               <LocationTable locations={this.state.locations} onClick={this.__handleClick.bind(this)}/>
             </Col>
@@ -139,6 +130,7 @@ export default class TourDetailed extends React.Component {
             </Col>
           </Col>
         </Row>
+        </div>
       </div>
     );
   }
