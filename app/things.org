@@ -4,6 +4,7 @@
 *** TODO Redesign the website
 *** TODO Hook up to backend
 *** TODO Fix issue where can't reload page on Docker
+*** TODO Hook up intro.js or similar
 
 ** New pages
 *** TODO Create Followers page

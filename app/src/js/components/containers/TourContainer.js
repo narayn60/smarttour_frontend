@@ -68,9 +68,14 @@ export default class TourContainer extends React.Component {
   render() {
     //TODO get from source
     //Search
+
+    console.log("SHould render TourContainer");
     var ToursComponent = this.state.tours.map((tour, i) => <Tour key={i} tour={tour}/>);
     var searchString = this.state.searchString.trim().toLowerCase();
     var filteredTours = [];
+
+    console.log("State", this.state.tours);
+
 
     if(searchString.length > 0) {
       filteredTours = this.state.tours.filter(this.filterByName);

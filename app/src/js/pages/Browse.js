@@ -5,6 +5,8 @@ export default class Browse extends React.Component {
 
   render() {
 
+    console.log("Should render browse");
+
     return (
       <section id="portfolio">
         <div class="container">

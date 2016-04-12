@@ -5,6 +5,8 @@ web:
   # ports:
   #   - "3030:3000"
   command: npm run start:prod
+  links:
+    - redis:redis
 
 nginx:
   restart: always
@@ -19,3 +21,7 @@ nginx:
   links:
     - web:web
 
+redis:
+  image: redis
+  ports:
+    - "6379"

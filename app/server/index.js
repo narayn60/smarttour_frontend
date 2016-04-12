@@ -14,10 +14,10 @@ import routes from '../src/js/pages/routes';
 import authConfig from './config/auth';
 
 
-import expressSession from 'express-session';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import passportGoogle from 'passport-google-oauth';
+import history from 'connect-history-api-fallback';
 
 import alt from 'alt_base';
 
@@ -25,10 +25,26 @@ import Iso from 'iso';
 
 import AuthActions from 'AuthActions';
 
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 
 
 const server = global.server = express();
 
+// server.use(history({
+//   rewrites: [
+//     {
+//       from: /\/auth\/google\/callback.*$/,
+//       to: function(context) {
+//         console.log("CONETEXT", context);
+//         return context.parsedUrl.path;
+//       }
+//     },
+//     { from: /\/auth\/google/, to: '/auth/google'},
+//     { from: /\/user/, to: '/user'}
+//   ],
+//   verbose: true
+// }));
 server.use(compression());
 
 // Setup passport and authentication
@@ -36,8 +52,16 @@ server.use(compression());
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; //TODO: Make sure this is only development
 
 
+const redis_options = {
+  'host': 'redis'
+};
+
 server.use(cookieParser('secret'));
-server.use(expressSession()); // server.use(expressSession({
+server.use(session({
+  store: new RedisStore(redis_options),
+  secret: 'keyboard cat'
+}));
+// server.use(expressSession()); // server.use(expressSession({
 //   // secret: serverConfig.crypto,
 //   secret: "dkshljfhs", //TODO change this soon
 //   cookie: { secure: false },
@@ -136,12 +160,26 @@ server.get('/logout', (req, res) => {
   });
 });
 
+// maintain session
+server.get('/user', function(req, res, next) {
+  if(req.user) return res.json(req.user);
+  res.json({error: 'not logged in'});
+});
+
 //
 // static files
 //
 server.use(express.static('public'));
 
+const skipServerRender = (req, res) => {
+  renderPage(null);
+};
+
+server.get('/browse', skipServerRender);
+
 server.get('*', async (req, res, next) => {
+
+  console.log("User is", req.user);
   // auth first
   if (req.user) {
     AuthActions.login(req.user);
