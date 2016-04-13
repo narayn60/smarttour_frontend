@@ -7,7 +7,7 @@ export default class DetailedGuide extends React.Component {
 
     return (
       <div>
-        <TourGuideDetailed guide_id={this.props.params.id}/>;
+        <TourGuideDetailed guide_id={this.props.params.id}/>
       </div>
     );
   }

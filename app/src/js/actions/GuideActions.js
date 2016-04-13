@@ -29,6 +29,7 @@ class GuideActions {
           this.updateGuide(guide);
         })
         .catch((errorMessage) => {
+          console.log("Guides failed");
           this.guidesFailed(errorMessage);
         });
     };

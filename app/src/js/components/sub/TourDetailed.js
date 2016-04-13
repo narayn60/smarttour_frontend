@@ -1,5 +1,4 @@
 import React from "react";
-import Gravatar from 'react-gravatar';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import { Grid, Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
@@ -12,6 +11,9 @@ import TourStore from 'TourStore';
 
 import ImageLoad from './ImageLoad';
 import TourMap from '../../components/gmaps/TourMap';
+
+import Global from 'Global';
+import AuthStore from 'AuthStore';
 
 
 export default class TourDetailed extends React.Component {
@@ -69,44 +71,47 @@ export default class TourDetailed extends React.Component {
     if (tour === null) {
       return (
         <div>
-          Tour doesn't exist
+          <i class="fa fa-spin fa-spinner"></i>
+          Loading Tour
         </div>
       );
     }
 
     const guide = this.state.tour.guide;
+    guide.guide_photo = Global.backend_url + AuthStore.getUid() + "/" + guide.photo_path_s3;
     const qr_path = "/media/tours/" + tour.id + "/qrcode_profile/";
-    const gravatarSize = 150;
 
-    console.log("Tour", this.state.tour);
+    const tour_info = [
+      {class: "trophy", text: "Rank 1"},
+      {class: "users", text: "23 Followers"},
+      {class: "map-marker", text: "22 Points"}
+    ].map((info) => (
+      <li style={{lineHeight: '40px'}}>
+        <i class={"fa fa-2x fa-" + info.class} style={{float: 'left', verticalAlign: 'middle', height: '30px', paddingTop: '8px'}}></i>
+        {info.text}
+      </li>
+    ));
+
+    console.log("Guide", guide);
 
     return (
       <Grid>
         <Row id="cover_row" style={{backgroundImage: 'url(https://batlgrounds.com/wp-content/uploads/2015/03/Ottawa.jpg)'}}>
           <div class="social-cover"></div>
             <Col md={3} id="tourcover_left">
+              <h3 class="fg-white text-center">{this.state.tour.name}</h3>
               <img class="img-avatar" src={this.state.tour.img_url} style={{borderRadius: '0px', height: '100px', width: '100px'}}/>
-              <h4 class="fg-white text-center">{this.state.tour.name}</h4>
               <h5 class="fg-white text-center" style={{opacity: '0.8'}}>{this.state.tour.bio}</h5>
               <hr class="border-black75" style={{borderWidth: '2px'}}/>
-              <div class="text-center">
-                <i class="fa fa-trophy fa--5x"></i>
-                1
-              </div>
-              {/* <Row class="fa-stack text-center">
-              <i class={"fa fa-trophy fa-stack-4x fa-trophy-" + (this.state.rank)}></i>
-              <i class="fa fa-inverse fa-stack-4x char-overlay">1</i>
-              </Row>
-              <Row class="fa-stack text-center">
-              <i class="fa fa-heart fa-stack-1x"></i>
-              <i class="fa fa-inverse fa-stack-1x char-overlay">{tour.followers}</i>
-              </Row> */}
+              <ul class="fg-white text-center" style={{opacity: '0.8'}}>
+                {tour_info}
+              </ul>
             </Col>
             <Col md={3} mdOffset={6} id="tourcover_right">
-              <h4 class="fg-white text-center">Created By</h4>
-              <img class="img-avatar" src={this.state.tour.img_url} style={{height: '100px', width: '100px'}}/>
-              <h4 class="fg-white text-center">{guide.full_name}</h4>
-              <h5 class="fg-white text-center" style={{opacity: '0.8'}}>{guide.email}</h5>
+              <img class="img-avatar" src={guide.guide_photo} style={{height: '100px', width: '100px'}}/>
+              <p class="fg-white text-center">Created By</p>
+              <h5 class="fg-white text-center">{guide.full_name}</h5>
+              <h6 class="fg-white text-center" style={{opacity: '0.8'}}>{guide.email}</h6>
               <hr class="border-black75" style={{borderWidth: '2px'}}/>
               <div class="tour-qr-profile">
                 <ImageLoad path= { qr_path }/>
@@ -130,45 +135,7 @@ export default class TourDetailed extends React.Component {
         </Row>
       </Grid>
     );
-    /* return (
-       <div class="container">
-       <h2 class="tour-detail-name"> {tour.name} 
-       <span class="fa-stack header-icon">
-       <i class={"fa fa-trophy fa-stack-1x fa-trophy-" + (this.state.rank)}></i>
-       <i class="fa fa-inverse fa-stack-1x char-overlay">1</i>
-       </span>
-       <span class="fa-stack header-icon">
-       <i class="fa fa-heart fa-stack-1x"></i>
-       <i class="fa fa-inverse fa-stack-1x char-overlay">{tour.followers}</i>
-       </span>
-       </h2>
-       <Row class="tour-box">
-       <Col md={7} class="user-details">
-       <Row>
-       <Col md={6} class="tour-qr-profile">
-       <ImageLoad path= { qr_path }/>
-       </Col>
-       <Col md={6} class="text-center tour-about">
-       <span> { tour.bio } </span>
-       </Col>
-       </Row>
-       </Col>
-       <Col md={4} class="user-details">
-       <Row>
-       <Col md={6}>
-       <p class="gray"> by </p>
-       <h4> { guide.full_name } </h4>
-       <h4> { guide.email } </h4>
-       </Col>
-       <Col>
-       <Gravatar class="user-image" email={guide.email} size={gravatarSize} https />
-       </Col>
-       </Row>
-       </Col>
-       </Row>
-       </div>
-       ); */
   }
-}
+};
 
 export default connectToStores(TourDetailed);

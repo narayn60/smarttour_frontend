@@ -13,7 +13,7 @@ export default class ImageLoad extends React.Component {
     
     return (
     	<div>
-			<Image src={path} rounded />    		
+        <Image src={path} rounded />
     	</div>
     );
   }

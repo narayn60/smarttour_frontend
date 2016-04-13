@@ -7,7 +7,7 @@ export default class DetailedTour extends React.Component {
 
     return (
       <div>
-        <TourDetailed tour_id={this.props.params.id}/>;
+        <TourDetailed tour_id={this.props.params.id}/>
       </div>
     );
   }

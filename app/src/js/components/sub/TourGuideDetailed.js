@@ -4,10 +4,11 @@ import PersonalTourActions from 'PersonalTourActions';
 import GuideStore from 'GuideStore';
 import GuideActions from 'GuideActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
+import Global from 'Global';
+import AuthStore from 'AuthStore';
 
-import { Grid, Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
+import { Grid, Row, Col, Image, Button, Collapse, Well } from "react-bootstrap";
 import { Router, Route, Link, browserHistory } from 'react-router';
-import JsonTable from 'react-json-table';
 import Gravatar from 'react-gravatar';
 
 
@@ -49,11 +50,22 @@ export default class TourGuideDetailed extends React.Component {
   __rowClick(tour_id) {
     browserHistory.push('/browse/tours/' + tour_id);
   }
-  
+
   render() {
 
-    console.log(this.state.tours);
     const guide = this.state.guide;
+
+    if (!guide) {
+      return (
+        <div>
+          <i class="fa fa-spin fa-spinner"></i>
+          Loading Guide
+        </div>
+      );
+    }
+
+    const gravatarSize = 225;
+
     const tourComponent = this.state.tours.map((tour, i) => (
       <div class="member-entry" onClick={() => this.__rowClick(tour.id)}>
         <a href="#" class="member-img">
@@ -84,15 +96,7 @@ export default class TourGuideDetailed extends React.Component {
       </div>
     ));
 
-    const gravatarSize = 225;
-
-    if (!guide) {
-      return (
-        <div>
-          Guide doesn't exist
-        </div>
-      );
-    }
+    guide.guide_photo = Global.backend_url + AuthStore.getUid() + "/" + guide.photo_path_s3;
 
     return (
       <Grid class="bootstrap snippet">
@@ -101,7 +105,7 @@ export default class TourGuideDetailed extends React.Component {
             <div class="profile-container">
               <div class="profile-header row">
                 <Col md={4} sm={12} class="text-center">
-                  <img src="http://bootdey.com/img/Content/user_1.jpg" alt="" class="header-avatar"/>
+                  <img src={guide.guide_photo} alt="" class="header-avatar"/>
                 </Col>
                 <Col md={8} sm={12} class="profile-info">
                   <div class="header-fullname">{guide.full_name}</div>
@@ -150,74 +154,7 @@ export default class TourGuideDetailed extends React.Component {
       </Grid>
     );
 
-    // return (
-    //   <div>
-    //     <div class="container">
-    //       <h3 class="text-center"> {guide.username} </h3>
-    //       <Row class="square">
-    //         <Col md={8} mdOffset={2} class="user-details">
-    //           <Row class="coralbg white">
-    //             <Col md={6} class="no-pad">
-    //               <div class="user-pad">
-    //                 <h3>{ guide.username }</h3>
-    //                 <h4 class="white"><i class="fa fa-user"></i> { guide.username } </h4>
-    //                 <h4 class="white"><i class="fa fa-envelope-o"></i> { guide.email } </h4>
-    //                 <h4 class="white"><i class="fa fa-building"></i> { guide.id } </h4>
-    //               </div>
-    //             </Col>
-    //             <div class="col-md-6 no-pad">
-    //               <Gravatar email={guide.email} size={gravatarSize} https />
-    //             </div>
-    //           </Row>
-    //           <Row class="overview">
-    //             <Col md={4} class="user-pad text-center">
-    //               <h3>FOLLOWERS</h3>
-    //               <h4>{guide.followers}</h4>
-    //             </Col>
-    //             <Col md={4} class="user-pad text-center">
-    //               <h3>Tours Created</h3>
-    //               <h4>17</h4>
-    //             </Col>
-    //             <Col md={4} class="user-pad text-center">
-    //               <h3>Rank</h3>
-    //               <h4>3</h4>
-    //             </Col>
-    //           </Row>
-    //         </Col>
-    //       </Row>
-    //       <Row class="tourTable">
-    //         <Col md={8} mdOffset={2} class="text-center"> 
-    //           <Button bsStyle="success" bsSize="large" class="tourButton" onClick={ ()=> this.setState({ open: !this.state.open })}>
-    //             See Tours
-    //           </Button>
-    //           <Collapse in={this.state.open}>
-    //             <div>
-    //               <Table striped bordered condensed hover class="guideTours">
-    //                 <thead>
-    //                   <tr>
-    //                     <th>Tour Name</th>
-    //                     <th>Bio</th>
-    //                     <th>Genre</th>
-    //                   </tr>
-    //                 </thead>
-    //                 <tbody>
-    //                   {tourComponent}
-    //                 </tbody>
-    //               </Table>
-    //             </div>
-    //           </Collapse>
-    //         </Col>
-    //       </Row>
-    //     </div>
-    //   </div>
-    // );
   }
 }
 
 export default connectToStores(TourGuideDetailed);
-
-/* <tr onClick={() => this.__rowClick(tour.id)} key={i}>
-   <td>{tour.name}</td>
-   <td>{tour.bio}</td>
-   <td>{tour.genre}</td>
-   </tr> */
