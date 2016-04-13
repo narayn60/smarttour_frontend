@@ -93,7 +93,6 @@ export default class TourDesignContainer extends React.Component {
 
 
     if (this.state.tour && this.state.locations) {
-      console.log("Tour", this.state.tour);
       return (
         <Grid>
           <Row>
@@ -120,7 +119,7 @@ export default class TourDesignContainer extends React.Component {
     } else {
       return (
         <Grid>
-          Hi
+          Tour Doesn't Exist
         </Grid>
       );
     }

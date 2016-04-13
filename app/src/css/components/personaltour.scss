@@ -35,23 +35,6 @@
   /* } */
 }
 
-.social-cover {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-.cover-container {
-  height: 350px;
-  margin-top: -25px;
-  background-image: url(http://www.nuevayork.net/fotos/times-square.jpg);
-  background-size: cover;
-  position: relative;
-  margin-bottom: 25px;
-  background-position: center;
-}
 .btn-brightblue {
   &.btn-outlined {
     color: #003bff;
@@ -73,6 +56,7 @@
   position: absolute;
   background: linear-gradient(top,rgba(0,0,0,.3) 0,rgba(0,0,0,.5) 100%);
 }
+
 .img-avatar {
   display: block;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)

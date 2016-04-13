@@ -19,8 +19,9 @@ export default class TourSource {
 
   fetch_tour(tour_id) {
     return axios.get(Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/')
-                .then((tours) => {
-                  return tours.data;
+                .then((tour) => {
+                  tour.data.img_url = tour.data.photo ? Global.backend_url + AuthStore.getUid() + "/" + tour.data.photo_path_s3 : ' /img/portfolio/roundicons.png';
+                  return tour.data;
                 })
                 .catch((error) => {
                   throw error;
