@@ -5,8 +5,7 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import EditLocationOrderContainer from './EditLocationOrderContainer';
 import PersonalTourOverviewContainer from './PersonalTourOverviewContainer';
 
-import LocationActions from 'LocationActions';
-import LocationStore from 'LocationStore';
+import LocationActions from 'LocationActions'; import LocationStore from 'LocationStore';
 import NotesStore from 'NotesStore';
 import PhotoStore from 'PhotoStore';
 
@@ -93,13 +92,14 @@ export default class TourDesignContainer extends React.Component {
 
 
     if (this.state.tour && this.state.locations) {
+      console.log("Tour", this.state.tour);
       return (
         <Grid>
           <Row>
             <div class="cover-container">
               <div class="social-cover"></div>
               <div class="social-avatar" >
-                <img class="img-avatar" src="http://bootdey.com/img/Content/user-453533-fdadfd.png" style={{height: '100px', width: '100px'}}/>
+                <img class="img-avatar" src={this.state.tour.img_url} style={{height: '100px', width: '100px'}}/>
                 <h4 class="fg-white text-center">{this.state.tour.name}</h4>
                 <h5 class="fg-white text-center" style={{opacity: '0.8'}}>{this.state.tour.bio}</h5>
                 <hr class="border-black75" style={{borderWidth: '2px'}}/>

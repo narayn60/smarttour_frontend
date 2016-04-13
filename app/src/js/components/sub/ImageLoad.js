@@ -9,7 +9,7 @@ export default class ImageLoad extends React.Component {
 
   render() {
 
-	var path = Global.backend_url + AuthStore.getUid() + this.props.path
+	  const path = Global.backend_url + AuthStore.getUid() + this.props.path;
     
     return (
     	<div>
