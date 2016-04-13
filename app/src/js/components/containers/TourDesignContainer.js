@@ -74,6 +74,7 @@ export default class TourDesignContainer extends React.Component {
       chosen_section = (
         <PersonalTourOverviewContainer
           locations={this.state.locations}
+          tour={this.state.tour}
         />
       );
       button_text = "Edit Tour";

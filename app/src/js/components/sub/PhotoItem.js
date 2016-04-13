@@ -130,9 +130,9 @@ export default class PhotoItem extends React.Component {
     );
 
     const selectedComponent = this.state.gallery_selected ? <Gallery photos={photo_set} /> : (
-      <Grid>
+      <div>
         {photos}
-      </Grid>
+      </div>
     );
 
     return (

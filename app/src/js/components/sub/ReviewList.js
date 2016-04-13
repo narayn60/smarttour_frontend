@@ -4,20 +4,19 @@ export default class ReviewList extends React.Component {
 
   constructor(props) {
     super(props);
-    this.reviews = [3, 4, 5]; // Temporary
   }
 
   render() {
 
-    const reviews = this.reviews.map((review, i) => {
+    const reviews = this.props.reviews.map((review, i) => {
       return (
         <div class="media">
           <a class="pull-left" href="#">
             <img class="media-object" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt=""/>
           </a>
           <div class="media-body">
-            <h4 class="media-heading">John Doe</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h4 class="media-heading">{review.reviewer.full_name}</h4>
+            <p>{review.review_text}</p>
             <ul class="list-unstyled list-inline media-detail pull-left">
               <li><i class="fa fa-calendar"></i>27/02/2014</li>
               <li><i class="fa fa-thumbs-up"></i>13</li>
@@ -35,7 +34,7 @@ export default class ReviewList extends React.Component {
     return (
       <div>
         <section class="content-item" id="comments">
-          <h3>{this.reviews.length} Reviews </h3>
+          <h3>{this.props.reviews.length} Reviews </h3>
           {reviews}
         </section>
       </div>

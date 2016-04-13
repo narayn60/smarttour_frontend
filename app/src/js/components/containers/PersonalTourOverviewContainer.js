@@ -21,6 +21,8 @@ export default class PersonalTourOverviewContainer extends React.Component {
 
   render() {
 
+    console.log("STate", this.props.tour);
+
     if (this.props.locations.length === 0) {
       return (
         <div>
@@ -47,7 +49,7 @@ export default class PersonalTourOverviewContainer extends React.Component {
             <LocationTable locations={this.props.locations} onClick={this.__handleClick.bind(this)}/>
           </Col>
           <Col md={6}>
-            <ReviewList />
+            <ReviewList reviews={this.props.tour.reviews}/>
           </Col>
         </Row>
       </div>
