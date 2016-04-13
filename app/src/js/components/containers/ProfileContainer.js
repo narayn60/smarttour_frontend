@@ -56,7 +56,7 @@ export default class ProfileContainer extends React.Component {
     const gravatarSize = 250;
     const tourLength = this.state.tours.length;
 
-    const OptionalComponents = [<TourTable tours={this.state.tours} />, <FollowersList />, "TODO: Placeholder"];
+    const OptionalComponents = [<TourTable tours={this.state.tours} />, <FollowersList />, "TODO: Placeholder", "TODO: Placeholder"];
     const TourTableComponent = OptionalComponents[this.state.chosenSection];
 
     const Titles = ["My Tours", "Followers", "Help"];
@@ -64,7 +64,8 @@ export default class ProfileContainer extends React.Component {
 
     const dropdownOptions = [
       {text: 'My Tours', class_name: 'fa fa-map', badge: tourLength},
-      {text: 'Followers', class_name: 'fa fa-user', badge: 4},
+      {text: 'Followers', class_name: 'fa fa-users', badge: 4},
+      {text: 'Following', class_name: 'fa fa-user', badge: 4},
       {text: 'Help', class_name: 'glyphicon glyphicon-flag'}
     ];
     const optionSections = dropdownOptions.map((point, i) => {

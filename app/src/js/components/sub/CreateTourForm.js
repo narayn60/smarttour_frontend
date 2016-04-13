@@ -120,7 +120,7 @@ export default class CreateTourForm extends React.Component {
           <t.form.Form class="edit-form" ref="form" type={FormSchema} value={this.state.value} options={options}/>
           <Row>
             <div class="form-group">
-              <Button type="submit" bsStyle="primary" class="center-block">Submit</Button>
+              <Button type="submit" bsStyle="primary" class="center-block btn-xl">Submit</Button>
             </div>
           </Row>
           <Row>

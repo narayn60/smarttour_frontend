@@ -13,7 +13,7 @@ export default class About extends React.Component {
                 "http://icons.iconarchive.com/icons/igh0zt/ios7-style-metro-ui/512/MetroUI-Apps-Mac-App-Store-icon.png",
                 "http://tecnimedios.com/blog/wp-content/uploads/2013/10/amazon-aws.png",
                 "https://d30y9cdsu7xlg0.cloudfront.net/png/17698-200.png"
-              ]
+    ];
 
     const Services = [
       <Service key={1} step={1} path={path[0]} name={"- Download a tour -"} bio={"Browse our tours, find one that interests you and scan the QR code to download it. Easy as 1, 2, 3."} image_path={path}/>,
