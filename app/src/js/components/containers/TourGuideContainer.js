@@ -12,7 +12,7 @@ export default class TourGuideContainer extends React.Component {
     this.state = GuideStore.getState();
     this.state = {'searchString': ''};
     this.filterByName = this.filterByName.bind(this);
-    }
+  }
 
   static getStores() {
     return [GuideStore];
@@ -80,26 +80,31 @@ export default class TourGuideContainer extends React.Component {
 
     return (
       <div>
-        <Row class="text-center">
-          <h2 class="section-heading">Guides</h2>
-          <h3 class="section-subheading">Explore</h3>
-        </Row>
-        <Row>
-          <input class="searchTour" type="text" value={this.state.searchString} onChange={this.handleSearchChange.bind(this)} placeholder="search" />
-        </Row>
-        <Row>
-          <Col md={4} mdOffset={4} class="text-center search-button-group">
-            <Button bsStyle="primary" onClick={this.filterByName.bind(this, 'popular')}> Popular </Button>
-            <Button bsStyle="primary" onClick={this.filterByName.bind(this, 'recent')}> Recent </Button>
-            <DropdownButton bsStyle="primary" title="Genre" id="bg-nested-dropdown">
-              {genreComponent}
-            </DropdownButton>
-          </Col>
-        </Row>
-        <Row>
-          {GuidesComponent}
-        </Row>
+        <div class="border_box" id="guides_title">
+          <Row class="text-center">
+            <h2 class="section-heading">Guides</h2>
+            <h3 class="section-subheading">Explore</h3>
+          </Row>
+          <Row>
+            <input class="searchTour" type="text" value={this.state.searchString} onChange={this.handleSearchChange.bind(this)} placeholder="search" />
+          </Row>
+          <Row>
+            <Col md={4} mdOffset={4} class="text-center search-button-group">
+              <Button bsStyle="primary" onClick={this.filterByName.bind(this, 'popular')}> Popular </Button>
+              <Button bsStyle="primary" onClick={this.filterByName.bind(this, 'recent')}> Recent </Button>
+              <DropdownButton bsStyle="primary" title="Genre" id="bg-nested-dropdown">
+                {genreComponent}
+              </DropdownButton>
+            </Col>
+          </Row>
+        </div>
+        <div class="border_box" id="guides_list">
+          <Row>
+            {GuidesComponent}
+          </Row>
+        </div>
       </div>
+
     );
   }
 }

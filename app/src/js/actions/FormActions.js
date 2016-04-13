@@ -13,7 +13,7 @@ class FormActions {
     this.stores = {
       FormSource: new FormSource()
     };
-  }  
+  }
 
   createTour(values) {
     console.log(values);

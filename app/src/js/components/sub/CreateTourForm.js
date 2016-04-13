@@ -23,7 +23,8 @@ const FormSchema = t.struct({
   name: t.String,
   genre: Genres,
   bio: t.String,
-  points: Positive
+  points: Positive,
+  photo: t.form.File
 });
 
 
@@ -49,7 +50,6 @@ export default class CreateTourForm extends React.Component {
   onChange(state) {
     this.setState(state);
     if (state.tour_id != null) {
-      console.log('ID of new tour is: ' + state.tour_id);
       this.setState({
         success: true
       });
@@ -68,11 +68,20 @@ export default class CreateTourForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const value = this.refs.form.getValue();
+    var formData = new FormData();
     if (value) {
       this.setState({
         values: value
       });
-      FormActions.createTour(value);
+      for (var k in value) {
+        var v = value[k];
+        if (t.form.File.is(v)) {
+          formData.append(k, v, v.name);
+        } else {
+          formData.append(k, v);
+        }
+      }
+      FormActions.createTour(formData);
     }
   }
   
@@ -85,6 +94,7 @@ export default class CreateTourForm extends React.Component {
           <div>{locals.inputs.genre}</div>
           <div>{locals.inputs.bio}</div>
           <div>{locals.inputs.points}</div>
+          <div>{locals.inputs.photo}</div>
         </div>
       );
     };
@@ -94,6 +104,9 @@ export default class CreateTourForm extends React.Component {
       fields: {
         points: {
           error: "Field needs to be a number greater than 1"
+        },
+        photo: {
+          type: 'file'
         }
       }
     };
