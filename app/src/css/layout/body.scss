@@ -13,3 +13,8 @@ body {
   background-color: #e1e8f0;
   padding-bottom: 0px;
 }
+
+.border_box {
+  background: $white;
+  box-shadow: $box_shadow;
+}

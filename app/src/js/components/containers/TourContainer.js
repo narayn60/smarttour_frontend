@@ -84,25 +84,29 @@ export default class TourContainer extends React.Component {
 
     return (
       <div>
-        <Row class="text-center">
-          <h2 class="section-heading"> Browse all tours </h2>
-          <h3 class="section-subheading"> Revolutionize the novel </h3>
-        </Row>
-        <Row>
-          <input class="searchTour" type="text" value={this.state.searchString} onChange={this.handleSearchChange.bind(this)} placeholder="search" />
-        </Row>
-        <Row>
-          <Col md={4} mdOffset={4} class="text-center search-button-group">
-            <Button bsStyle="primary" onClick={this.filterTours.bind(this, 'popular')}> Popular </Button>
-            <Button bsStyle="primary" onClick={this.filterTours.bind(this, 'recent')}> Recent </Button>
-          </Col>
-        </Row>
-        <Row>
+        <div class="border_box" id="browse_title">
+          <Row class="text-center">
+            <h2 class="section-heading"> Browse all tours </h2>
+            <h3 class="section-subheading"> Revolutionize the novel </h3>
+          </Row>
+          <Row>
+            <input class="searchTour" type="text" value={this.state.searchString} onChange={this.handleSearchChange.bind(this)} placeholder="search" />
+          </Row>
+          <Row>
+            <Col md={4} mdOffset={4} class="text-center search-button-group">
+              <Button bsStyle="primary" onClick={this.filterTours.bind(this, 'popular')}> Popular </Button>
+              <Button bsStyle="primary" onClick={this.filterTours.bind(this, 'recent')}> Recent </Button>
+            </Col>
+          </Row>
+        </div>
+        <div class="border_box" id="browse_results">
+          <Row>
             <TourNavBar tours={this.state.tours}/>
-        </Row>
-        <Row>
-          {ToursComponent}
-        </Row>
+          </Row>
+          <Row>
+            {ToursComponent}
+          </Row>
+        </div>
       </div>
     );
   }

@@ -41,9 +41,9 @@ const server = global.server = express();
 //       }
 //     },
 //     { from: /\/auth\/google/, to: '/auth/google'},
-//     { from: /\/user/, to: '/user'}
-//   ],
-//   verbose: true
+//     { from: /\/user/, to: '/user'},
+//     { from: /\logout/, to: '/logout'}
+//   ]
 // }));
 server.use(compression());
 
@@ -127,6 +127,7 @@ const routeToPrivate = '/about';
 //
 const socialUserRedirect = (req, res) => {
   if (typeof req.user !== 'undefined') {
+    AuthActions.login(req.user);
     res.cookie('user', JSON.stringify(req.user));
   }
   return res.redirect(routeToPrivate);
@@ -171,11 +172,11 @@ server.get('/user', function(req, res, next) {
 //
 server.use(express.static('public'));
 
-const skipServerRender = (req, res) => {
-  renderPage(null);
-};
+// const skipServerRender = (req, res) => {
+//   renderPage(null);
+// };
 
-server.get('/browse', skipServerRender);
+// server.get('/browse', skipServerRender);
 
 server.get('*', async (req, res, next) => {
 

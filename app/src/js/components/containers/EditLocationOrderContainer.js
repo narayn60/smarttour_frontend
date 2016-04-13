@@ -101,7 +101,7 @@ export default class EditLocationOrderContainer extends React.Component {
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
 
     const subSection = currentlySelected === null ? "" : (
-        <Grid fluid={true} class="edit_selection">
+        <Grid fluid={true} class="border_box" id="edit_selection">
           <Row>
             <Col md={3}>
               { EditSelection }
@@ -129,7 +129,7 @@ export default class EditLocationOrderContainer extends React.Component {
               locations={this.props.locations}
               selected={this.state.selected}/>
           </Col>
-          <Col md={5} class="location_reorder">
+          <Col md={5} class="border_box" id="location_reorder">
             {SortTable}
             <Button onClick={this.__saveOrder.bind(this)}> Save new ordering </Button>
           </Col>

@@ -35,16 +35,17 @@ module.exports = (
     <Route path="/login" component={Login}/>
 
     <Route onEnter={LoginRedirect}>
+      <Route path='/profile' component={Profile}/>
       <Route path="/browse" component={Browse}/>
       <Route path="/browse/tours/:id" component={DetailedTour}/>
       <Route path='/guides' component={Guides}/>
       <Route path="/guides/:id" component={DetailedGuide}/>
       <Route path='/createtour' component={CreateTour}/>
-      <Route path='/profile' component={Profile}/>
       <Route path='/mytours/:id' component={TourDesign}/>
     </Route>
   </Route>
 );
+
 
 
 

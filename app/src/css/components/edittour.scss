@@ -1,14 +1,10 @@
 @import '../variables';
 
-.location_reorder {
+#location_reorder {
   height: 100%;
-  background: $white;
-  box-shadow: $box_shadow;
   text-align: center;
 }
 
-.edit_selection {
-  background: $white;
-  box-shadow: $box_shadow;
+#edit_selection {
   margin-top: 20px;
 }
