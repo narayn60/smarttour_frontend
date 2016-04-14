@@ -130,14 +130,16 @@ export default class TourDesignContainer extends React.Component {
               Current Photo
             </Row>
             <Row>
-              <img class="img-responsive" src={this.state.tour.img_url} style={{textAlign: 'center'}}/>
+              <img class="img-responsive" src={this.state.tour.img_url} style={{textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}/>
             </Row>
-            <Row style={{textAlign: 'center'}}>
-              <Col md={6}>
-                <input type="file" value={this.state.imgValue} onChange={this.__updateImage.bind(this)} name="pic" accept="image/*"/>
+            <Row>
+              <Col md={6} class="text-center">
+                <div class="input-group" style={{textAlign: 'center'}}>
+                  <input type="file" value={this.state.imgValue} onChange={this.__updateImage.bind(this)} name="pic" accept="image/*"/>
+                </div>
               </Col>
-              <Col md={6}>
-                <Button type="submit" onClick={() => this.__uploadImage()}>Upload new photo</Button>
+              <Col md={6} style={{textAlign: 'center'}}>
+                <Button type="submit" onClick={() => this.__uploadImage()} style={{float: 'center'}}>Upload new photo</Button>
               </Col>
             </Row>
           </Modal.Body>

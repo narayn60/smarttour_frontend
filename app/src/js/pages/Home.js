@@ -19,7 +19,7 @@ export default class Home extends React.Component {
                   <h3>Discover the world</h3>
                 </Row>
                 <Row class="home-button">
-                  <Link class="intro-photo" to="/browse">
+                  <Link class="intro-photo" to="/login">
                     <Button class="btn btn-xl">Sign Up</Button>
                   </Link>
                 </Row>
