@@ -61,8 +61,10 @@ export default class EditLocationOrderContainer extends React.Component {
 
   render() {
 
+
+    console.log("Props container", this.props);
     const location_info = {
-      bio: this.props.bio
+      about: this.props.about
     };
 
     // Account for case where no locations have been created

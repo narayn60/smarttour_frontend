@@ -5,7 +5,7 @@ export default class Profile extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginTop: '16px'}}>
         <ProfileContainer />
       </div>
     );

@@ -14,7 +14,7 @@ export default class NotesSource {
       });
   }
 
-  update_bio(values, tour_id, location_id) {
+  update_about(values, tour_id, location_id) {
     const url = Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/locations/' + location_id + '/';
     return axios.patch(url, values)
       .then((response) => {

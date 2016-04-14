@@ -6,7 +6,7 @@ import NotesActions from 'NotesActions';
 
 const FormSchema = t.struct({
   name: t.String,
-  bio: t.String,
+  about: t.String,
   longitude: t.Number,
   latitude: t.Number
 });
@@ -23,9 +23,9 @@ export default class EditTourForm extends React.Component {
     const formValue = this.refs.form.getValue();
     const location_id = this.props.values.id;
     let update_value = {
-      note: formValue.bio
+      about: formValue.about
     };
-    NotesActions.patchBio(update_value, this.props.tour_id, location_id);
+    NotesActions.patchAbout(update_value, this.props.tour_id, location_id);
   }
 
   render() {
@@ -40,7 +40,7 @@ export default class EditTourForm extends React.Component {
               <div>{locals.inputs.latitude}</div>
             </Col>
             <Col md={6}>
-              <div>{locals.inputs.bio}</div>
+              <div>{locals.inputs.about}</div>
             </Col>
           </Row>
         </div>
@@ -59,7 +59,7 @@ export default class EditTourForm extends React.Component {
         latitude: {
           disabled: true
         },
-        bio: {
+        about: {
           label: "Information",
           type: 'textarea',
           attrs: {
@@ -70,14 +70,11 @@ export default class EditTourForm extends React.Component {
       }
     };
 
-    // console.log("Props", this.props.values);
-    // const notes = this.props.values.text.map((text) => text.);
-
-    // let values = this.props.values + this.props.location_info;
     const values = Object.assign(
       this.props.values,
       this.props.location_info
     );
+
 
     return(
       <div>

@@ -32,19 +32,16 @@ export default class PersonalTourOverviewContainer extends React.Component {
     return (
       <div>
         <Row>
-          <Col md={6} mdPush={6} style={{height: '100%'}}>
-            <TourOverview />
-          </Col>
-          <Col md={6} mdPull={6} style={{height: '400px'}}>
-            <TourMap
-              handleClick={this.__handleClick.bind(this)}
-              locations={this.props.locations}
-              selected={this.state.selected}/>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={6}>
-            <LocationTable locations={this.props.locations} onClick={this.__handleClick.bind(this)}/>
+          <Col md={6} style={{height: '100%'}}>
+            <Row style={{height: '400px'}}>
+              <TourMap
+                handleClick={this.__handleClick.bind(this)}
+                locations={this.props.locations}
+                selected={this.state.selected}/>
+            </Row>
+            <Row>
+              <LocationTable locations={this.props.locations} onClick={this.__handleClick.bind(this)}/>
+            </Row>
           </Col>
           <Col md={6}>
             <ReviewList reviews={this.props.tour.reviews}/>

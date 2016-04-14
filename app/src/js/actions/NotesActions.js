@@ -4,13 +4,13 @@ import NotesSource from 'NotesSource';
 class NotesActions {
   constructor() {
     this.state = {
-      bio: [],
+      about: [],
       notes: []
     };
     this.stores = {
       NotesSource: new NotesSource()
     };
-    this.generateActions('updateNotes', 'updateBio');
+    this.generateActions('updateNotes', 'updateAbout');
   }
 
   fetchNotes(tour_id, location_id) {
@@ -20,7 +20,7 @@ class NotesActions {
           .then((notes) => {
             console.log("NOtes are", notes);
             this.updateNotes(notes.text);
-            this.updateBio(notes.about);
+            this.updateAbout(notes.about);
           })
           .catch((errorMessage) => {
             this.notesFailed(errorMessage);
@@ -28,12 +28,12 @@ class NotesActions {
     };
   }
 
-  patchBio(values, tour_id, location_id) {
+  patchAbout(values, tour_id, location_id) {
     return (dispatch) => {
       dispatch();
-      this.stores.NotesSource.update_bio(values, tour_id, location_id)
+      this.stores.NotesSource.update_about(values, tour_id, location_id)
         .then((response) => {
-          this.updateBio(values.note);
+          this.updateAbout(values.about);
         })
         .catch((errorMessage) => {
           this.notesFailed(errorMessage);

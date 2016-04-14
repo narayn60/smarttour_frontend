@@ -6,7 +6,7 @@ export default class DetailedTour extends React.Component {
   render() {
 
     return (
-      <div>
+      <div style={{marginTop: '16px'}}>
         <TourDetailed tour_id={this.props.params.id}/>
       </div>
     );

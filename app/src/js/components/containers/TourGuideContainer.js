@@ -3,7 +3,7 @@ import GuideStore from 'GuideStore';
 import GuideActions from 'GuideActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import TourGuide from '../sub/TourGuide';
-import { Row, Col, Button, DropdownButton, MenuItem } from "react-bootstrap";
+import { Grid, Row, Col, Button, DropdownButton, MenuItem } from "react-bootstrap";
 
 export default class TourGuideContainer extends React.Component {
 
@@ -80,7 +80,7 @@ export default class TourGuideContainer extends React.Component {
 
     return (
       <div>
-        <div class="border_box" id="guides_title">
+        <Grid class="border_box" id="guides_title">
           <Row class="text-center">
             <h2 class="section-heading">Guides</h2>
             <h3 class="section-subheading">Explore</h3>
@@ -97,12 +97,12 @@ export default class TourGuideContainer extends React.Component {
               </DropdownButton>
             </Col>
           </Row>
-        </div>
-        <div class="border_box" id="guides_list">
+        </Grid>
+        <Grid class="border_box" id="guides_list">
           <Row>
             {GuidesComponent}
           </Row>
-        </div>
+        </Grid>
       </div>
 
     );

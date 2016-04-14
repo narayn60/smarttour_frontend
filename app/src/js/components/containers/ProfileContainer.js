@@ -86,7 +86,7 @@ export default class ProfileContainer extends React.Component {
 
     return (
       <Grid class="bootstrap snippet">
-        <Row class="profile">
+        <Row>
           <Col md={3} id="profileCol">
             <div class="profile-sidebar">
               <div class="profile-userpic">

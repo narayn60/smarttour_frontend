@@ -130,7 +130,7 @@ export default class TourDetailed extends React.Component {
                   locations={this.state.locations}
                   selected={this.state.selected}/>
               </div>
-            </Col>
+           </Col>
           </Col>
         </Row>
       </Grid>

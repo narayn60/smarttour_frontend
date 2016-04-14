@@ -41,7 +41,6 @@ export default class PhotoSource {
     const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/photos/' + photo_id + '/';
     return axios.delete(url)
       .then((response) => {
-        console.log("Succesfully deleted photo");
         return response;
       })
       .catch((error) => {
