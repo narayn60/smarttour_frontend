@@ -104,21 +104,23 @@ export default class TourDesignContainer extends React.Component {
       button_text = "Tour Overview";
     }
 
-    const tourPhoto_modal = (
-      <Modal show={this.state.showModal} onHide={this.__closeModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Tour Photo</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.__closeModal}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
 
 
     if (this.state.tour && this.state.locations) {
+      const tourPhoto_modal = (
+        <Modal show={this.state.showModal} onHide={this.__closeModal.bind(this)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Tour Photo</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <img src={this.state.tour.img_url}/>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.__closeModal.bind(this)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      );
+
       return (
         <Grid>
           <Row>
@@ -149,16 +151,7 @@ export default class TourDesignContainer extends React.Component {
           <Row>
             {chosen_section}
           </Row>
-          <Modal show={this.state.showModal} onHide={this.__closeModal.bind(this)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Edit Tour Photo</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.__closeModal.bind(this)}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+          {tourPhoto_modal}
         </Grid>
       );
     } else {
