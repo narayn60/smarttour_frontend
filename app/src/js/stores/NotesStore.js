@@ -7,7 +7,7 @@ class NotesStore {
     this.errorMessage = null;
 
     this.state ={
-      bio: "",
+      about: "",
       notes: [],
       note_response: null
     };
@@ -19,8 +19,8 @@ class NotesStore {
     this.setState({ notes: this.state.notes.concat(note)});
   }
 
-  onUpdateBio(new_bio) {
-    this.setState({ bio: new_bio });
+  onUpdateAbout(new_about) {
+    this.setState({ about: new_about });
   }
 
   onPatchBio(id) {

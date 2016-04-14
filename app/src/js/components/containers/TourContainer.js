@@ -5,7 +5,7 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import Tour from '../sub/Tour';
 import TourNavBar from '../sub/TourNavBar';
 import { Link } from 'react-router';
-import { Row, Col, Button, DropdownButton, MenuItem } from "react-bootstrap";
+import { Grid, Row, Col, Button, DropdownButton, MenuItem } from "react-bootstrap";
 
 
 export default class TourContainer extends React.Component {
@@ -69,12 +69,10 @@ export default class TourContainer extends React.Component {
     //TODO get from source
     //Search
 
-    console.log("SHould render TourContainer");
     var ToursComponent = this.state.tours.map((tour, i) => <Tour key={i} tour={tour}/>);
     var searchString = this.state.searchString.trim().toLowerCase();
     var filteredTours = [];
 
-    console.log("State", this.state.tours);
 
 
     if(searchString.length > 0) {

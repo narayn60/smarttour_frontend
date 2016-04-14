@@ -24,7 +24,8 @@ export default class TourDesignContainer extends React.Component {
       overview: true,
       photos: [],
       bio: null,
-      showModal: false
+      showModal: false,
+      imgValue: null
     };
   }
 
@@ -78,6 +79,18 @@ export default class TourDesignContainer extends React.Component {
     });
   }
 
+  __updateImage(event) {
+    this.setState({
+      imgValue: event.target.value
+    });
+  }
+
+  __uploadImage() {
+    if (this.state.imgValue) {
+      //TODO: Actually change the photo
+    }
+  }
+
   render() {
 
     var chosen_section,
@@ -97,7 +110,7 @@ export default class TourDesignContainer extends React.Component {
           locations={this.state.locations}
           tour_id={this.props.tour_id}
           photos={this.state.photos}
-          bio={this.state.bio}
+          about={this.state.about}
           notes={this.state.notes}
         />
       );
@@ -113,7 +126,22 @@ export default class TourDesignContainer extends React.Component {
             <Modal.Title>Edit Tour Photo</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <img src={this.state.tour.img_url}/>
+            <Row style={{textAlign: 'center'}}>
+              Current Photo
+            </Row>
+            <Row>
+              <img class="img-responsive" src={this.state.tour.img_url} style={{textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}/>
+            </Row>
+            <Row>
+              <Col md={6} class="text-center">
+                <div class="input-group" style={{textAlign: 'center'}}>
+                  <input type="file" value={this.state.imgValue} onChange={this.__updateImage.bind(this)} name="pic" accept="image/*"/>
+                </div>
+              </Col>
+              <Col md={6} style={{textAlign: 'center'}}>
+                <Button type="submit" onClick={() => this.__uploadImage()} style={{float: 'center'}}>Upload new photo</Button>
+              </Col>
+            </Row>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.__closeModal.bind(this)}>Close</Button>
@@ -121,12 +149,23 @@ export default class TourDesignContainer extends React.Component {
         </Modal>
       );
 
+      const tour_info = [
+        {class: "trophy", text: "Rank 1"},
+        {class: "users", text: "23 Followers"},
+        {class: "map-marker", text: this.state.locations.length + " Points"}
+      ].map((info) => (
+        <li style={{lineHeight: '40px'}}>
+          <i class={"fa fa-2x fa-" + info.class} style={{float: 'left', verticalAlign: 'middle', height: '30px', paddingTop: '8px'}}></i>
+          {info.text}
+        </li>
+      ));
+
+
       return (
         <Grid>
-          <Row>
-            <div class="cover-container">
-              <div class="social-cover"></div>
-              <div class="social-avatar">
+          <Row id="cover_row" style={{backgroundImage: 'url(https://batlgrounds.com/wp-content/uploads/2015/03/Ottawa.jpg)'}}>
+            <div class="social-cover"></div>
+            <Col md={3} mdOffset={3} mdPush={6} id="tourcover_right" style={{height: '350px'}}>
                 <div class="avatar-link" onClick={this.__openModal.bind(this)}>
                   <div class="avatar-hover">
                     <div class="avatar-hover-content">
@@ -145,10 +184,16 @@ export default class TourDesignContainer extends React.Component {
                     <span>{button_text}</span>
                   </Button>
                 </div>
-              </div>
-            </div>
+            </Col>
+            <Col md={3} mdPull={6} id="tourcover_left">
+              <h5 class="fg-white text-center" style={{opacity: '0.8'}}>Tour Stats</h5>
+              <hr class="border-black75" style={{borderWidth: '2px'}}/>
+              <ul class="fg-white text-center" style={{opacity: '0.8'}}>
+                {tour_info}
+              </ul>
+            </Col>
           </Row>
-          <Row>
+          <Row style={{marginTop: '16px'}}>
             {chosen_section}
           </Row>
           {tourPhoto_modal}

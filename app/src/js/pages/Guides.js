@@ -5,11 +5,9 @@ export default class Guides extends React.Component {
 
   render() {
     return (
-      <section id="portfolio">
-        <div class="container">
-          <TourGuideContainer />
-        </div>
-      </section>
+      <div style={{marginTop: '16px'}}>
+        <TourGuideContainer />
+      </div>
     );
   }
 }

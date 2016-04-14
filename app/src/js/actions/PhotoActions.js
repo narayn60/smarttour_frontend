@@ -17,7 +17,6 @@ class PhotoActions {
       dispatch();
       this.stores.PhotoSource.fetch_photos(location_id)
           .then((photos) => {
-            console.log("Photos are", photos);
             this.updatePhotos(photos);
           })
           .catch((errorMessage) => {

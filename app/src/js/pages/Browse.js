@@ -8,11 +8,9 @@ export default class Browse extends React.Component {
     console.log("Should render browse");
 
     return (
-      <section id="portfolio">
-        <div class="container">
-          <TourContainer />
-        </div>
-      </section>
+      <div class="container" id="portfolio" style={{marginTop: '16px'}}>
+        <TourContainer />
+      </div>
     );
   }
 }
