@@ -26,7 +26,7 @@ export default class Tour extends React.Component {
 
   handleDestroy() {
     this.setState({
-      destroy:true,
+      destroy:true
     });
   }
 
@@ -70,7 +70,7 @@ export default class Tour extends React.Component {
               </Row>
             </div>
           </div>
-          <img src={img_url} class="img-responsive" alt=""/>
+          <img src={img_url} class="img-responsive" alt="" style={{width: '400px', height: '250px', objectFit: 'contain', background: 'rgba(0, 0, 0, 0.89)'}}/>
         </div>
         <div class="portfolio-caption">
           <Row>
