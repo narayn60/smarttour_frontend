@@ -24,7 +24,8 @@ export default class TourDesignContainer extends React.Component {
       overview: true,
       photos: [],
       bio: null,
-      showModal: false
+      showModal: false,
+      imgValue: null
     };
   }
 
@@ -78,6 +79,18 @@ export default class TourDesignContainer extends React.Component {
     });
   }
 
+  __updateImage(event) {
+    this.setState({
+      imgValue: event.target.value
+    });
+  }
+
+  __uploadImage() {
+    if (this.state.imgValue) {
+      //TODO: Actually change the photo
+    }
+  }
+
   render() {
 
     var chosen_section,
@@ -113,7 +126,20 @@ export default class TourDesignContainer extends React.Component {
             <Modal.Title>Edit Tour Photo</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <img src={this.state.tour.img_url}/>
+            <Row style={{textAlign: 'center'}}>
+              Current Photo
+            </Row>
+            <Row>
+              <img class="img-responsive" src={this.state.tour.img_url} style={{textAlign: 'center'}}/>
+            </Row>
+            <Row style={{textAlign: 'center'}}>
+              <Col md={6}>
+                <input type="file" value={this.state.imgValue} onChange={this.__updateImage.bind(this)} name="pic" accept="image/*"/>
+              </Col>
+              <Col md={6}>
+                <Button type="submit" onClick={() => this.__uploadImage()}>Upload new photo</Button>
+              </Col>
+            </Row>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.__closeModal.bind(this)}>Close</Button>
