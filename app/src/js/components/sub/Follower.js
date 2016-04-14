@@ -1,50 +1,23 @@
 import React from 'react';
 import Gravatar from 'react-gravatar';
 import { Row, Col, Button } from "react-bootstrap";
-import GuideStore from 'GuideStore';
-import GuideActions from 'GuideActions';
-import connectToStores from 'alt-utils/lib/connectToStores';
 
-export default class FollowersList extends React.Component {
+export default class Follower extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = GuideStore.getState();
-    this.checked = new Set();
-  }
-
-  static getStores() {
-    return [GuideStore];
-  }
-
-  static getPropsFromStores() {
-    return GuideStore.getState();
-  }
-
-  componentWillMount() {
-    GuideStore.listen(this.onChange.bind(this));
-    GuideActions.fetchMyFollowers();
-  }
-
-  componentWillUnmount() {
-    GuideStore.unlisten(this.onChange.bind(this));
-  }
-
-  onChange(state) {
-    this.setState(state);
   }
 
   render() {
 
+    const follower = this.props.guide
     const gravatarSize = 125;
-
-    const followers = this.state.guides.map((follower) => {
 
       return (
         <Col md={6}>
           <div class="box box-widget widget-user">
             <div class="widget-user-header bg-yellow" style={{background: 'url("http://lorempixel.com/500/320/nature/1/") center center;'}}>
-              <h3 class="widget-user-username">{follower.username}</h3>
+              <h3 class="widget-user-username">{follower.full_name}</h3>
               <h5 class="widget-user-desc">{follower.email}</h5>
             </div>
             <div class="widget-user-image">
@@ -76,15 +49,4 @@ export default class FollowersList extends React.Component {
         </Col>
       );
     }
-    );
-
-    return (
-      <div>
-        {followers}
-      </div>
-    );
   }
-
-}
-
-export default connectToStores(FollowersList);

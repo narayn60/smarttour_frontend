@@ -43,4 +43,25 @@ export default class GuideSource {
         throw error;
       })
   }
+
+  fetchFollowing(following_ids) {
+    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/' + following_ids + '/followers/')
+      .then((guides) => {
+        return guides.data;
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
+
+  fetchFollowers(follower_ids) {
+  return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/' + follower_ids + '/followers/')
+    .then((guides) => {
+      return guides.data;
+    })
+    .catch((error) => {
+      throw error;
+    })
+  }
+
 }

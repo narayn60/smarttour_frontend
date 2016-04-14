@@ -6,6 +6,7 @@ import GuideActions from 'GuideActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Global from 'Global';
 import AuthStore from 'AuthStore';
+import Follower from './Follower';
 
 import { Grid, Row, Col, Image, Button, Collapse, Well } from "react-bootstrap";
 import { Router, Route, Link, browserHistory } from 'react-router';
@@ -19,6 +20,9 @@ export default class TourGuideDetailed extends React.Component {
     super(props);
     this.state = PersonalTourStore.getState();
     this.guide_id = props.guide_id;
+    this.state = {
+      chosenSection: 0
+    };
   }
 
   static getStores() {
@@ -47,12 +51,16 @@ export default class TourGuideDetailed extends React.Component {
     this.setState(state);
   }
 
+  __onClick(selected) {
+    this.setState({chosenSection: selected});
+  }
+
   __rowClick(tour_id) {
     browserHistory.push('/browse/tours/' + tour_id);
   }
 
   render() {
-
+    console.log(this.state)
     const guide = this.state.guide;
 
     if (!guide) {
@@ -96,6 +104,12 @@ export default class TourGuideDetailed extends React.Component {
       </div>
     ));
 
+    const followers = this.state.followers.map((follower) => (<Follower guide={follower} />));
+    const following = this.state.following.map((follower) => (<Follower guide={follower} />));
+    const OptionalComponents = [tourComponent, followers, following];
+
+    const GuideTableComponent = OptionalComponents[this.state.chosenSection];
+
     guide.guide_photo = Global.backend_url + AuthStore.getUid() + "/" + guide.photo_path_s3;
 
     return (
@@ -132,15 +146,15 @@ export default class TourGuideDetailed extends React.Component {
                   <Row>
                     <Col md={4} sm={4} xs={4} class="stats-col">
                       <div class="stats-value red">{this.state.tours.length}</div>
-                      <div class="stats-title">TOURS</div>
+                      <div class="stats-title" onClick={() => this.__onClick(0)}>TOURS</div>
                     </Col>
                     <Col md={4} sm={4} xs={4} class="stats-col">
                       <div class="stats-value red">284</div>
-                      <div class="stats-title">FOLLOWING</div>
+                      <div class="stats-title" onClick={() => this.__onClick(1)}>FOLLOWING</div>
                     </Col>
                     <Col md={4} sm={4} xs={4} class="stats-col">
                       <div class="stats-value red">803</div>
-                      <div class="stats-title">FOLLOWERS</div>
+                      <div class="stats-title" onClick={() => this.__onClick(2)}>FOLLOWERS</div>
                     </Col>
                   </Row>
                 </Col>
@@ -149,7 +163,7 @@ export default class TourGuideDetailed extends React.Component {
           </Col>
         </Row>
         <Row>
-          {tourComponent}
+        {GuideTableComponent}
         </Row>
       </Grid>
     );

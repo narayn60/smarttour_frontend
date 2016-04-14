@@ -7,12 +7,22 @@ class GuideStore {
 
     this.state = {
       guides: [],
-      guide: null
+      guide: null,
+      followers: [],
+      following: [],
     };
   }
 
   onUpdateGuides(guide) {
     this.setState({ guides: this.state.guides.concat(guide) });
+  }
+
+  onUpdateFollowers(guides) {
+    this.setState({ followers: this.state.followers.concat(guides) });
+  }
+
+  onUpdateFollowing(guides) {
+    this.setState({ following: this.state.followers.concat(guides) });
   }
 
   onUpdateGuide(guide) {
@@ -24,11 +34,19 @@ class GuideStore {
   }
 
   onFetchMyFollowers(guides) {
-    this.setState({ guides: [] });
+    this.setState({ followers: [] });
   }
 
   onFetchMyFollowing(guides) {
-    this.setState({ guides: [] });
+    this.setState({ following: [] });
+  }
+
+  onFetchFollowers(guides) {
+    this.setState({ followers: [] });
+  }
+
+  onFetchFollowing(guides) {
+    this.setState({ following: [] });
   }
 
   onGuidesFailed(errorMessage) {

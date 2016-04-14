@@ -11,8 +11,8 @@ import TourStore from 'TourStore';
 import UserTourStore from 'UserTourStore';
 import UserTourActions from 'UserTourActions';
 
-import FollowersList from '../sub/FollowersList';
-import FollowingList from '../sub/FollowingList';
+import MyFollowers from '../sub/MyFollowers';
+import MyFollowing from '../sub/MyFollowing';
 import SortableTable from '../sub/SortableTable';
 import TourTable from '../sub/TourTable';
 
@@ -57,7 +57,7 @@ export default class ProfileContainer extends React.Component {
     const gravatarSize = 250;
     const tourLength = this.state.tours.length;
 
-    const OptionalComponents = [<TourTable tours={this.state.tours} />, <FollowersList />, <FollowingList />, "TODO: Placeholder"];
+    const OptionalComponents = [<TourTable tours={this.state.tours} />, <MyFollowers />, <MyFollowing />, "TODO: Placeholder"];
     const TourTableComponent = OptionalComponents[this.state.chosenSection];
 
     const Titles = ["My Tours", "Followers", "Following"];

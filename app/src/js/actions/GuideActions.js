@@ -5,7 +5,7 @@ class GuideActions {
   constructor() {
     this.stores = {GuideSource: new GuideSource()
     };
-    this.generateActions('updateGuides', 'updateGuide');
+    this.generateActions('updateGuides', 'updateGuide', 'updateFollowers', 'updateFollowing');
   }
 
   fetchGuides() {
@@ -26,6 +26,8 @@ class GuideActions {
       dispatch();
       this.stores.GuideSource.fetch_guide(guide_id)
         .then((guide) => {
+          this.fetchFollowers(guide.followers)
+          this.fetchFollowing(guide.following)
           this.updateGuide(guide);
         })
         .catch((errorMessage) => {
@@ -40,21 +42,20 @@ class GuideActions {
       dispatch();
       this.stores.GuideSource.fetchMyFollowers()
         .then((guides) => {
-          this.updateGuides(guides);
+          this.updateFollowers(guides);
         })
         .catch((errorMessage) => {
           this.guidesFailed(errorMessage);
         });
     }
   }
-
 
   fetchMyFollowing() {
     return (dispatch) => {
       dispatch();
       this.stores.GuideSource.fetchMyFollowing()
         .then((guides) => {
-          this.updateGuides(guides);
+          this.updateFollowing(guides);
         })
         .catch((errorMessage) => {
           this.guidesFailed(errorMessage);
@@ -62,6 +63,31 @@ class GuideActions {
     }
   }
 
+  fetchFollowing(following_ids) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.GuideSource.fetchFollowing(following_ids)
+        .then((guides) => {
+          this.updateFollowing(guides);
+        })
+        .catch((errorMessage) => {
+          this.guidesFailed(errorMessage);
+        });
+    }
+  }
+
+  fetchFollowers(follower_ids) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.GuideSource.fetchFollowers(follower_ids)
+        .then((guides) => {
+          this.updateFollowers(guides);
+        })
+        .catch((errorMessage) => {
+          this.guidesFailed(errorMessage);
+        });
+    }
+  }
 
   guidesFailed(errorMessage) {
     return errorMessage;
