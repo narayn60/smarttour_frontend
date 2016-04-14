@@ -23,6 +23,14 @@ class GuideStore {
     this.setState({ guides: [] });
   }
 
+  onFetchMyFollowers(guides) {
+    this.setState({ guides: [] });
+  }
+
+  onFetchMyFollowing(guides) {
+    this.setState({ guides: [] });
+  }
+
   onGuidesFailed(errorMessage) {
     console.log("Guides failed");
     this.state.errorMessage = errorMessage;

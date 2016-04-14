@@ -35,6 +35,33 @@ class GuideActions {
     };
   }
 
+  fetchMyFollowers() {
+    return (dispatch) => {
+      dispatch();
+      this.stores.GuideSource.fetchMyFollowers()
+        .then((guides) => {
+          this.updateGuides(guides);
+        })
+        .catch((errorMessage) => {
+          this.guidesFailed(errorMessage);
+        });
+    }
+  }
+
+
+  fetchMyFollowing() {
+    return (dispatch) => {
+      dispatch();
+      this.stores.GuideSource.fetchMyFollowing()
+        .then((guides) => {
+          this.updateGuides(guides);
+        })
+        .catch((errorMessage) => {
+          this.guidesFailed(errorMessage);
+        });
+    }
+  }
+
 
   guidesFailed(errorMessage) {
     return errorMessage;

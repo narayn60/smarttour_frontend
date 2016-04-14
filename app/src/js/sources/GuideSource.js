@@ -23,4 +23,24 @@ export default class GuideSource {
         throw error;
       });
   }
+
+  fetchMyFollowers() {
+    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/my_followers/')
+      .then((guides) => {
+        return guides.data;
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
+
+  fetchMyFollowing() {
+    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/my_following/')
+      .then((guides) => {
+        return guides.data;
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
 }
