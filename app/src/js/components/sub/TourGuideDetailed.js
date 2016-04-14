@@ -112,6 +112,24 @@ export default class TourGuideDetailed extends React.Component {
 
     guide.guide_photo = Global.backend_url + AuthStore.getUid() + "/" + guide.photo_path_s3;
 
+    var followingButton = (
+        <a href="#" class="btn btn-palegreen btn-sm  btn-follow">
+        Follow
+        </a>
+    )
+
+    var userEmail = AuthStore.getEmail()
+    for (let follower of this.state.followers) {
+        if (follower.email === userEmail) {
+          followingButton = (
+            <a href="#" class="btn btn-palegreen disabled btn-sm  btn-follow">
+            <i class="fa fa-check"></i>
+            Following
+            </a>
+          )
+        }
+    }
+
     return (
       <Grid class="bootstrap snippet">
         <Row>
@@ -123,10 +141,7 @@ export default class TourGuideDetailed extends React.Component {
                 </Col>
                 <Col md={8} sm={12} class="profile-info">
                   <div class="header-fullname">{guide.full_name}</div>
-                  <a href="#" class="btn btn-palegreen btn-sm  btn-follow">
-                    <i class="fa fa-check"></i>
-                    Following
-                  </a>
+                  {followingButton}
                   <div class="header-information">
                     Kim is a software developer in Microsoft. She works in ASP.NET MVC Team and collaborates with other teams.
                   </div>
