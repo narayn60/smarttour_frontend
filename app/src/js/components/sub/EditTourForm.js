@@ -70,7 +70,8 @@ export default class EditTourForm extends React.Component {
       }
     };
 
-    const notes = this.props.values.notes.map((note) => note.note);
+    // console.log("Props", this.props.values);
+    // const notes = this.props.values.text.map((text) => text.);
 
     // let values = this.props.values + this.props.location_info;
     const values = Object.assign(

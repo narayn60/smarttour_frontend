@@ -78,7 +78,9 @@ export default class CreateTourForm extends React.Component {
         if (t.form.File.is(v)) {
           formData.append(k, v, v.name);
         } else {
-          formData.append(k, v);
+          if (v) {
+            formData.append(k, v);
+          }
         }
       }
       FormActions.createTour(formData);

@@ -18,8 +18,9 @@ class NotesActions {
       dispatch();
       this.stores.NotesSource.fetch_notes(tour_id, location_id)
           .then((notes) => {
-            this.updateNotes(notes.notes);
-            this.updateBio(notes.note);
+            console.log("NOtes are", notes);
+            this.updateNotes(notes.text);
+            this.updateBio(notes.about);
           })
           .catch((errorMessage) => {
             this.notesFailed(errorMessage);
