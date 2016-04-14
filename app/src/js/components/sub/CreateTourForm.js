@@ -24,7 +24,7 @@ const FormSchema = t.struct({
   genre: Genres,
   bio: t.String,
   points: Positive,
-  photo: t.form.File
+  photo: t.maybe(t.form.File)
 });
 
 

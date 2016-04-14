@@ -23,31 +23,12 @@
   box-shadow: $box_shadow;
   margin-top: 20px;
   margin-bottom: 20px;
-  /* text-align: center; */
-  /* white-space: nowrap; */
-
-  /* &:before { */
-  /*   content: ''; */
-  /*   display: inline-block; */
-  /*   height: 100%; */
-  /*   vertical-align: middle; */
-  /*   margin-right: -0.25em; */
-  /* } */
 }
 
-.btn-brightblue {
-  &.btn-outlined {
-    color: #003bff;
-    background: 0 0;
-  }
-  &.btn-inverse.btn-outlined {
-    color: #fff;
-    border-color: #fff;
-  }
-}
 .border-black75 {
   border-color: #3f3f3b!important;
 }
+
 .social-avatar {
   top: 0;
   right: 0;
@@ -57,14 +38,53 @@
   background: linear-gradient(top,rgba(0,0,0,.3) 0,rgba(0,0,0,.5) 100%);
 }
 
-.img-avatar {
+.tour_image {
   display: block;
-  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-  border-radius: 100px;
-  border: 2px solid #fff;
+  height: 150px;
+  width: 150px;
   margin: auto;
   margin-top: 50px;
 }
+
+.img-avatar {
+  @extend .tour_image;
+  border-radius: 100px;
+  border: 2px solid $white;
+}
+
+.avatar-link {
+  @extend .tour_image;
+  position: relative;
+  .avatar-hover {
+    border-radius: 100px;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all ease .75s;
+    &:hover {
+      opacity: 0.9;
+    }
+
+    .avatar-hover-content {
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      font-size: 24px;
+      text-align: center;
+      top: 50%;
+      margin-top: -12px;
+      color: $white;
+      i {
+        margin-top: -8px;
+      }
+    }
+  }
+}
+
+
+
 
 .fg-white {
   color: #fff;
@@ -90,20 +110,6 @@
   &.btn-inverse.btn-outlined {
     color: #fff;
     border-color: #fff;
-  }
-}
-
-.btn {
-  &.btn-rounded {
-    line-height: 1;
-    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-    border-radius: 100px;
-    height: auto!important;
-    padding: 15px!important;
-  }
-  > .rubix-icon {
-    line-height: 1;
-    font-size: 18px;
   }
 }
 

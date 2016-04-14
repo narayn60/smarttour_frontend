@@ -9,7 +9,7 @@ import LocationActions from 'LocationActions'; import LocationStore from 'Locati
 import NotesStore from 'NotesStore';
 import PhotoStore from 'PhotoStore';
 
-import { Row, Col, Grid, Image, Button } from "react-bootstrap";
+import { Row, Col, Grid, Image, Button, Modal } from "react-bootstrap";
 
 
 
@@ -17,13 +17,14 @@ export default class TourDesignContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.tour_id = this.props.tour_id;
+    this.tour_id = props.tour_id;
     UserTourActions.fetchTour(this.tour_id);
     LocationActions.fetchLocations(this.tour_id);
     this.state = {
       overview: true,
       photos: [],
-      bio: null
+      bio: null,
+      showModal: false
     };
   }
 
@@ -65,6 +66,18 @@ export default class TourDesignContainer extends React.Component {
     });
   }
 
+  __openModal() {
+    this.setState({
+      showModal: true
+    });
+  }
+
+  __closeModal() {
+    this.setState({
+      showModal: false
+    });
+  }
+
   render() {
 
     var chosen_section,
@@ -91,6 +104,19 @@ export default class TourDesignContainer extends React.Component {
       button_text = "Tour Overview";
     }
 
+    const tourPhoto_modal = (
+      <Modal show={this.state.showModal} onHide={this.__closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Tour Photo</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.__closeModal}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+
 
     if (this.state.tour && this.state.locations) {
       return (
@@ -98,8 +124,17 @@ export default class TourDesignContainer extends React.Component {
           <Row>
             <div class="cover-container">
               <div class="social-cover"></div>
-              <div class="social-avatar" >
-                <img class="img-avatar" src={this.state.tour.img_url} style={{height: '100px', width: '100px'}}/>
+              <div class="social-avatar">
+                <div class="avatar-link" onClick={this.__openModal.bind(this)}>
+                  <div class="avatar-hover">
+                    <div class="avatar-hover-content">
+                      <Row>
+                        <i class="fa fa-camera fa-2x"></i>
+                      </Row>
+                    </div>
+                  </div>
+                  <img class="img-avatar" src={this.state.tour.img_url}/>
+                </div>
                 <h4 class="fg-white text-center">{this.state.tour.name}</h4>
                 <h5 class="fg-white text-center" style={{opacity: '0.8'}}>{this.state.tour.bio}</h5>
                 <hr class="border-black75" style={{borderWidth: '2px'}}/>
@@ -114,6 +149,16 @@ export default class TourDesignContainer extends React.Component {
           <Row>
             {chosen_section}
           </Row>
+          <Modal show={this.state.showModal} onHide={this.__closeModal.bind(this)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Edit Tour Photo</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.__closeModal.bind(this)}>Close</Button>
+            </Modal.Footer>
+          </Modal>
         </Grid>
       );
     } else {

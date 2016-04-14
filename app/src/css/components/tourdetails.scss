@@ -9,7 +9,8 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 .cover-container {
-  height: 350px;
+  min-height: 400px;
+  height: 100%;
   margin-top: -25px;
   background-image: url(http://www.nuevayork.net/fotos/times-square.jpg);
   background-size: cover;

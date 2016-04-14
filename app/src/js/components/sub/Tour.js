@@ -39,7 +39,7 @@ export default class Tour extends React.Component {
     const qr_path = "/media/tours/" + id + "/qrcode_profile/";
 
     return (
-      <div class="col-md-6 col-sm-6 portfolio-item">
+      <Col md={6} sm={6} class="portfolio-item">
         <div class="portfolio-heading">
           <h4>{ name }</h4>
         </div>
@@ -88,7 +88,7 @@ export default class Tour extends React.Component {
             </Col>
           </Row>
         </div>
-      </div>
+      </Col>
     );
   }
 }

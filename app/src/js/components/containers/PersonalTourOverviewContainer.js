@@ -21,8 +21,6 @@ export default class PersonalTourOverviewContainer extends React.Component {
 
   render() {
 
-    console.log("STate", this.props.tour);
-
     if (this.props.locations.length === 0) {
       return (
         <div>
