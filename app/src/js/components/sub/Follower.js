@@ -10,7 +10,7 @@ export default class Follower extends React.Component {
 
   render() {
 
-    const follower = this.props.guide
+    const follower = this.props.guide;
     const gravatarSize = 125;
 
       return (

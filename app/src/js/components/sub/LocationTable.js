@@ -1,6 +1,7 @@
 import React from "react";
-import { Table } from "react-bootstrap";
-import ImageLoad from './ImageLoad';
+import { Image, Table } from "react-bootstrap";
+import AuthStore from 'AuthStore';
+import Global from 'Global';
 
 export default class LocationTable extends React.Component {
 
@@ -14,15 +15,16 @@ export default class LocationTable extends React.Component {
 
   render() {
 
-    var locations = this.props.locations;
+    const locations = this.props.locations;
+	  const path = Global.backend_url + AuthStore.getUid() + "/";
 
     var locationTable = locations.map((location, i) =>
       <tr onClick={this.locationClicked.bind(this, i)}>
-        <td>
-          <ImageLoad path={"/" + location.qrcode_path_s3} />
+        <td style={{height: '100px', width: '100px'}}>
+          <Image src={path + location.qrcode_path_s3} class="img-responsive" style={{objectFit: 'contain'}}/>
         </td>
         <td class="location-data">
-          <h4>{location.name}</h4>
+          <h5>{location.name}</h5>
           <p>
             <i class="fa fa-map-marker"></i>
             { location.address }
@@ -31,13 +33,11 @@ export default class LocationTable extends React.Component {
       </tr>);
 
     return (
-      <div>
-        <Table bordered condense hover class="tableSection" id="locations_list">
-          <tbody>
-            { locationTable }
-          </tbody>
-        </Table>
-      </div>
+      <Table bordered condense hover class="tableSection">
+        <tbody>
+          { locationTable }
+        </tbody>
+      </Table>
     );
   }
 }

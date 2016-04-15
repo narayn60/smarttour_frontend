@@ -159,17 +159,17 @@ export default class TourGuideDetailed extends React.Component {
                     </Col>
                   </Row>
                   <Row>
-                    <Col md={4} sm={4} xs={4} class="stats-col">
+                    <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(0)}>
                       <div class="stats-value red">{this.state.tours.length}</div>
-                      <div class="stats-title" onClick={() => this.__onClick(0)}>TOURS</div>
+                      <div class="stats-title">TOURS</div>
                     </Col>
-                    <Col md={4} sm={4} xs={4} class="stats-col">
+                    <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(1)}>
                       <div class="stats-value red">284</div>
-                      <div class="stats-title" onClick={() => this.__onClick(1)}>FOLLOWING</div>
+                      <div class="stats-title">FOLLOWING</div>
                     </Col>
-                    <Col md={4} sm={4} xs={4} class="stats-col">
+                    <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(2)}>
                       <div class="stats-value red">803</div>
-                      <div class="stats-title" onClick={() => this.__onClick(2)}>FOLLOWERS</div>
+                      <div class="stats-title">FOLLOWERS</div>
                     </Col>
                   </Row>
                 </Col>

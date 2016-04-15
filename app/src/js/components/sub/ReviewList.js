@@ -33,7 +33,7 @@ export default class ReviewList extends React.Component {
 
     return (
       <div>
-        <section class="content-item" id="comments">
+        <section class="border_box content-item" id="comments">
           <h4 className="group-title">{this.props.reviews.length} Reviews</h4>
           <hr/>
           {reviews}
