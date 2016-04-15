@@ -18,11 +18,12 @@ class GuideStore {
   }
 
   onUpdateFollowers(guides) {
-    this.setState({ followers: this.state.followers.concat(guides) });
+    console.log(guides)
+    this.setState({ followers: guides });
   }
 
   onUpdateFollowing(guides) {
-    this.setState({ following: this.state.followers.concat(guides) });
+    this.setState({ following: guides });
   }
 
   onUpdateGuide(guide) {
@@ -47,6 +48,10 @@ class GuideStore {
 
   onFetchFollowing(guides) {
     this.setState({ following: [] });
+  }
+
+  onFollow(guide) {
+    this.setState({ followers: this.state.followers.concat(guide) });
   }
 
   onGuidesFailed(errorMessage) {

@@ -55,6 +55,14 @@ export default class TourGuideDetailed extends React.Component {
     this.setState({chosenSection: selected});
   }
 
+  clickFollow() {
+    GuideActions.follow(this.state.guide)
+  }
+
+  clickUnfollow() {
+    GuideActions.unfollow(this.state.guide)
+  }
+
   __rowClick(tour_id) {
     browserHistory.push('/browse/tours/' + tour_id);
   }
@@ -113,21 +121,25 @@ export default class TourGuideDetailed extends React.Component {
     guide.guide_photo = Global.backend_url + AuthStore.getUid() + "/" + guide.photo_path_s3;
 
     var followingButton = (
-        <a href="#" class="btn btn-palegreen btn-sm  btn-follow">
+        <a href="#" class="btn btn-palegreen btn-sm  btn-follow" onClick={() => this.clickFollow()}>
         Follow
         </a>
     )
 
     var userEmail = AuthStore.getEmail()
-    for (let follower of this.state.followers) {
-        if (follower.email === userEmail) {
-          followingButton = (
-            <a href="#" class="btn btn-palegreen disabled btn-sm  btn-follow">
-            <i class="fa fa-check"></i>
-            Following
-            </a>
-          )
+    if (this.state.followers.length > 0) {
+      for (let follower of this.state.followers) {
+        if (follower !== undefined) {
+          if (follower.email === userEmail) {
+            followingButton = (
+              <a href="#" class="btn btn-palegreen btn-sm  btn-follow" onClick={() => this.clickUnfollow()}>
+              <i class="fa fa-check"></i>
+              Unfollow
+              </a>
+            )
+          }
         }
+      }
     }
 
     return (
@@ -159,17 +171,17 @@ export default class TourGuideDetailed extends React.Component {
                     </Col>
                   </Row>
                   <Row>
-                    <Col md={4} sm={4} xs={4} class="stats-col">
+                    <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(0)}>
                       <div class="stats-value red">{this.state.tours.length}</div>
-                      <div class="stats-title" onClick={() => this.__onClick(0)}>TOURS</div>
+                      <div class="stats-title">TOURS</div>
                     </Col>
-                    <Col md={4} sm={4} xs={4} class="stats-col">
+                    <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(1)}>
                       <div class="stats-value red">284</div>
-                      <div class="stats-title" onClick={() => this.__onClick(1)}>FOLLOWING</div>
+                      <div class="stats-title">FOLLOWERS</div>
                     </Col>
-                    <Col md={4} sm={4} xs={4} class="stats-col">
+                    <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(2)}>
                       <div class="stats-value red">803</div>
-                      <div class="stats-title" onClick={() => this.__onClick(2)}>FOLLOWERS</div>
+                      <div class="stats-title" >FOLLOWING</div>
                     </Col>
                   </Row>
                 </Col>

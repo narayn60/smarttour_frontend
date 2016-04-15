@@ -64,4 +64,24 @@ export default class GuideSource {
     })
   }
 
+  follow(guide) {
+    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/' + guide.id + '/follow/')
+      .then((guide) => {
+        console.log(guide.data[0])
+        return guide.data[0]
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
+
+  unfollow(guide) {
+    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/' + guide.id + '/unfollow/')
+      .then((guide) => {
+        return guide.data[0]
+      })
+      .catch((error) => {
+        throw error;
+      })
+  }
 }

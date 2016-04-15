@@ -89,6 +89,32 @@ class GuideActions {
     }
   }
 
+  follow(guide) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.GuideSource.follow(guide)
+        .then((guide) => {
+          this.fetchFollowers(guide.followers);
+        })
+        .catch((errorMessage) => {
+          this.guidesFailed(errorMessage)
+        });
+    }
+  }
+
+  unfollow(guide) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.GuideSource.unfollow(guide)
+        .then((guide) => {
+          this.fetchFollowers(guide.followers);
+        })
+        .catch((errorMessage) => {
+          this.guidesFailed(errorMessage)
+        });
+    }
+  }
+
   guidesFailed(errorMessage) {
     return errorMessage;
   }
