@@ -97,12 +97,6 @@ export default class ProfileContainer extends React.Component {
                   {userName}
                 </div>
               </div>
-              <div class="profile-userbuttons">
-                <button type="button" class="btn btn-info btn-sm">
-                  <i class="fa fa-user-plus"></i>
-                  Follow
-                </button>
-              </div>
               <div class="profile-usermenu">
                 <Nav>
                   {optionSections}

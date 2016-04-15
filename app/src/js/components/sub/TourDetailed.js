@@ -102,19 +102,25 @@ export default class TourDetailed extends React.Component {
     ));
 
     const location_table = (
-        <div class="browse-map">
-          <Col md={5} class="border_box" style={{paddingLeft: '0px'}}>
-            <LocationTable locations={this.state.locations} onClick={this.__handleClick.bind(this)}/>
-          </Col>
-          <Col md={7} class="border_box" style={{height: '600px', position: 'relative', overflow: 'hidden'}}>
-            <div style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%'}}>
-              <TourMap
-                handleClick={this.__handleClick.bind(this)}
-                locations={this.state.locations}
-                selected={this.state.selected}/>
-            </div>
-          </Col>
-        </div>
+      <div class="border_box browse-map">
+        <section class="content-item">
+          <h4 className="group-title">{this.state.locations.length} Locations</h4>
+          <hr/>
+          <Row>
+            <Col md={5}>
+              <LocationTable locations={this.state.locations} onClick={this.__handleClick.bind(this)}/>
+            </Col>
+            <Col md={7} style={{height: '600px', position: 'relative', overflow: 'hidden'}}>
+              <div style={{left: 0, top: 0, width: '100%', height: '100%'}}>
+                <TourMap
+                  handleClick={this.__handleClick.bind(this)}
+                  locations={this.state.locations}
+                  selected={this.state.selected}/>
+              </div>
+            </Col>
+          </Row>
+        </section>
+      </div>
     );
 
     const sections = [location_table, "Followers", <ReviewList reviews={this.state.tour.reviews}/>];
