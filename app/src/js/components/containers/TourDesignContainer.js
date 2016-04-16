@@ -11,6 +11,8 @@ import PhotoStore from 'PhotoStore';
 
 import { Row, Col, Grid, Image, Button, Modal } from "react-bootstrap";
 
+import UserTourSource from 'UserTourSource';
+
 
 
 export default class TourDesignContainer extends React.Component {
@@ -79,16 +81,23 @@ export default class TourDesignContainer extends React.Component {
     });
   }
 
-  __updateImage(event) {
+  __updateImage(e) {
+    const file = e.target.files[0];
     this.setState({
-      imgValue: event.target.value
+      imgValue: file
     });
   }
 
   __uploadImage() {
     if (this.state.imgValue) {
-      //TODO: Actually change the photo
+      //TODO: Make this upload the photos
+      /* const temp = new UserTourSource();
+         temp.update_tour_photo(this.props.tour_id, this.state.imgValue); */
     }
+  }
+
+  __handleSubmit(e) {
+    e.preventDefault();
   }
 
   render() {
@@ -135,7 +144,9 @@ export default class TourDesignContainer extends React.Component {
             <Row>
               <Col md={6} class="text-center">
                 <div class="input-group" style={{textAlign: 'center'}}>
-                  <input type="file" value={this.state.imgValue} onChange={this.__updateImage.bind(this)} name="pic" accept="image/*"/>
+                  <form onSubmit={this.__handleSubmit.bind(this)}>
+                    <input type="file" onChange={this.__updateImage.bind(this)} name="pic" accept="image/*"/>
+                  </form>
                 </div>
               </Col>
               <Col md={6} style={{textAlign: 'center'}}>
@@ -163,7 +174,7 @@ export default class TourDesignContainer extends React.Component {
 
       return (
         <Grid>
-          <Row id="cover_row" style={{backgroundImage: 'url(https://batlgrounds.com/wp-content/uploads/2015/03/Ottawa.jpg)'}}>
+          <Row id="cover_row" style={{backgroundImage: 'url(' + this.state.tour.cover_url + ')'}}>
             <div class="social-cover"></div>
             <Col md={3} mdOffset={3} mdPush={6} id="tourcover_right" style={{height: '350px'}}>
                 <div class="avatar-link" onClick={this.__openModal.bind(this)}>

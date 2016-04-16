@@ -125,9 +125,11 @@ export default class TourDetailed extends React.Component {
 
     const sections = [location_table, "Followers", <ReviewList reviews={this.state.tour.reviews}/>];
 
+    console.log("This tour", this.state.tour);
+
     return (
       <Grid>
-        <Row id="cover_row" style={{backgroundImage: 'url(https://batlgrounds.com/wp-content/uploads/2015/03/Ottawa.jpg)'}}>
+        <Row id="cover_row" style={{backgroundImage: 'url(' + this.state.tour.cover_url + ')'}}>
           <div class="social-cover"></div>
             <Col md={3} id="tourcover_left">
               <h3 class="fg-white text-center">{this.state.tour.name}</h3>
