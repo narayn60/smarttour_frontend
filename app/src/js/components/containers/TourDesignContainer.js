@@ -1,17 +1,17 @@
 import React from 'react';
+import { Row, Col, Grid, Image, Button, Modal } from "react-bootstrap";
+import connectToStores from 'alt-utils/lib/connectToStores';
+
+import LocationActions from 'LocationActions';
+import LocationStore from 'LocationStore';
+import NotesStore from 'NotesStore';
+import PhotoStore from 'PhotoStore';
 import UserTourActions from 'UserTourActions';
 import UserTourStore from 'UserTourStore';
-import connectToStores from 'alt-utils/lib/connectToStores';
+
 import EditLocationOrderContainer from './EditLocationOrderContainer';
 import PersonalTourOverviewContainer from './PersonalTourOverviewContainer';
 
-import LocationActions from 'LocationActions'; import LocationStore from 'LocationStore';
-import NotesStore from 'NotesStore';
-import PhotoStore from 'PhotoStore';
-
-import { Row, Col, Grid, Image, Button, Modal } from "react-bootstrap";
-
-import UserTourSource from 'UserTourSource';
 
 
 
@@ -90,9 +90,7 @@ export default class TourDesignContainer extends React.Component {
 
   __uploadImage() {
     if (this.state.imgValue) {
-      //TODO: Make this upload the photos
-      /* const temp = new UserTourSource();
-         temp.update_tour_photo(this.props.tour_id, this.state.imgValue); */
+      UserTourActions.updateTourPhoto(this.props.tour_id, this.state.imgValue);
     }
   }
 
@@ -139,7 +137,7 @@ export default class TourDesignContainer extends React.Component {
               Current Photo
             </Row>
             <Row>
-              <img class="img-responsive" src={this.state.tour.img_url} style={{textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}/>
+              <img class="img-responsive" src={this.state.tour.img_url + "?" + new Date().getTime()} style={{textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}/>
             </Row>
             <Row>
               <Col md={6} class="text-center">
@@ -185,7 +183,7 @@ export default class TourDesignContainer extends React.Component {
                       </Row>
                     </div>
                   </div>
-                  <img class="img-avatar" src={this.state.tour.img_url}/>
+                  <img class="img-avatar" src={this.state.tour.img_url + "?" + new Date().getTime()}/>
                 </div>
                 <h4 class="fg-white text-center">{this.state.tour.name}</h4>
                 <h5 class="fg-white text-center" style={{opacity: '0.8'}}>{this.state.tour.bio}</h5>

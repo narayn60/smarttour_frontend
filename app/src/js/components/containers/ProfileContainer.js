@@ -15,6 +15,7 @@ import MyFollowers from '../sub/MyFollowers';
 import MyFollowing from '../sub/MyFollowing';
 import SortableTable from '../sub/SortableTable';
 import TourTable from '../sub/TourTable';
+import AccountSettings from '../sub/AccountSettings';
 
 export default class ProfileContainer extends React.Component {
 
@@ -57,17 +58,17 @@ export default class ProfileContainer extends React.Component {
     const gravatarSize = 250;
     const tourLength = this.state.tours.length;
 
-    const OptionalComponents = [<TourTable tours={this.state.tours} />, <MyFollowers />, <MyFollowing />, "TODO: Placeholder"];
+    const OptionalComponents = [<TourTable tours={this.state.tours} />, <MyFollowers />, <MyFollowing />, <AccountSettings />];
     const TourTableComponent = OptionalComponents[this.state.chosenSection];
 
-    const Titles = ["My Tours", "Followers", "Following"];
+    const Titles = ["My Tours", "Followers", "Following", "Account Settings"];
     const Title = Titles[this.state.chosenSection];
 
     const dropdownOptions = [
       {text: 'My Tours', class_name: 'fa fa-map', badge: tourLength},
       {text: 'Followers', class_name: 'fa fa-users', badge: 4},
       {text: 'Following', class_name: 'fa fa-user', badge: 4},
-      {text: 'Help', class_name: 'glyphicon glyphicon-flag'}
+      {text: 'Account Settings', class_name: 'fa fa-cog'}
     ];
     const optionSections = dropdownOptions.map((point, i) => {
       const classes = classNames( {

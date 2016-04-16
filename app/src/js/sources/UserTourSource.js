@@ -35,11 +35,13 @@ export default class UserTourSource {
   }
 
   update_tour_photo(tour_id, new_photo) {
-    /* const base_url = Global.backend_url + AuthStore.getUid();
-       return axios.post(base_url + '/tours/' + tour_id + '/', {photo: new_photo})
-       .then((response) => response)
-       .catch((error) => {
-       throw error;
-       }); */
+    const base_url = Global.backend_url + AuthStore.getUid();
+    const formData = new FormData();
+    formData.append("photo", new_photo);
+    return axios.patch(base_url + '/tours/' + tour_id + '/', formData)
+                .then((response) => response)
+                .catch((error) => {
+                  throw error;
+                });
   }
 }

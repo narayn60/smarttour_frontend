@@ -1,5 +1,4 @@
 import React from 'react';
-import Gravatar from 'react-gravatar';
 import { Row, Col, Button } from "react-bootstrap";
 import Follower from './Follower';
 import GuideStore from 'GuideStore';
@@ -36,8 +35,6 @@ export default class MyFollowers extends React.Component {
   }
 
   render() {
-
-    const gravatarSize = 125;
 
     const followers = this.state.followers.map((follower) => {
 
