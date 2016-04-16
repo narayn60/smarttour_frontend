@@ -34,11 +34,10 @@ export default class UserTourSource {
                 });
   }
 
-  update_tour_photo(tour_id, new_photo) {
+  // Need to pass a form in with the field that needs to be updated
+  update_photo(tour_id, photo_form) {
     const base_url = Global.backend_url + AuthStore.getUid();
-    const formData = new FormData();
-    formData.append("photo", new_photo);
-    return axios.patch(base_url + '/tours/' + tour_id + '/', formData)
+    return axios.patch(base_url + '/tours/' + tour_id + '/', photo_form)
                 .then((response) => response)
                 .catch((error) => {
                   throw error;

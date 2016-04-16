@@ -38,10 +38,10 @@ class UserTourActions {
     };
   }
 
-  updateTourPhoto(tour_id, tour_photo) {
+  updateTourPhoto(tour_id, photo_form) {
     return (dispatch) => {
       dispatch();
-      this.stores.UserTourSource.update_tour_photo(tour_id, tour_photo)
+      this.stores.UserTourSource.update_photo(tour_id, photo_form)
         .then((tour) => {
           this.fetchTour(tour_id);
         })

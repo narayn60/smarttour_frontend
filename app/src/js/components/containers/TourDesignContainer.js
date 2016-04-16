@@ -90,7 +90,10 @@ export default class TourDesignContainer extends React.Component {
 
   __uploadImage() {
     if (this.state.imgValue) {
-      UserTourActions.updateTourPhoto(this.props.tour_id, this.state.imgValue);
+      // Do it here to avoid rewriting functionality
+      const formData = new FormData();
+      formData.append("photo", this.state.imgValue);
+      UserTourActions.updateTourPhoto(this.props.tour_id, formData);
     }
   }
 
