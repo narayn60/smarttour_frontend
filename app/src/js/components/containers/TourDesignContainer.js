@@ -11,9 +11,7 @@ import UserTourStore from 'UserTourStore';
 
 import EditLocationOrderContainer from './EditLocationOrderContainer';
 import PersonalTourOverviewContainer from './PersonalTourOverviewContainer';
-
-
-
+import PhotoEditModal from '../sub/PhotoEditModal';
 
 export default class TourDesignContainer extends React.Component {
 
@@ -27,7 +25,8 @@ export default class TourDesignContainer extends React.Component {
       photos: [],
       bio: null,
       showModal: false,
-      imgValue: null
+      imgValue: null,
+      editPhotoClicked: null
     };
   }
 
@@ -69,9 +68,10 @@ export default class TourDesignContainer extends React.Component {
     });
   }
 
-  __openModal() {
+  __openModal(button_clicked) {
     this.setState({
-      showModal: true
+      showModal: true,
+      editPhotoClicked: button_clicked
     });
   }
 
@@ -92,13 +92,9 @@ export default class TourDesignContainer extends React.Component {
     if (this.state.imgValue) {
       // Do it here to avoid rewriting functionality
       const formData = new FormData();
-      formData.append("photo", this.state.imgValue);
+      formData.append(this.state.editPhotoClicked, this.state.imgValue);
       UserTourActions.updateTourPhoto(this.props.tour_id, formData);
     }
-  }
-
-  __handleSubmit(e) {
-    e.preventDefault();
   }
 
   render() {
@@ -130,36 +126,6 @@ export default class TourDesignContainer extends React.Component {
 
 
     if (this.state.tour && this.state.locations) {
-      const tourPhoto_modal = (
-        <Modal show={this.state.showModal} onHide={this.__closeModal.bind(this)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Edit Tour Photo</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Row style={{textAlign: 'center'}}>
-              Current Photo
-            </Row>
-            <Row>
-              <img class="img-responsive" src={this.state.tour.img_url + "?" + new Date().getTime()} style={{textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}/>
-            </Row>
-            <Row>
-              <Col md={6} class="text-center">
-                <div class="input-group" style={{textAlign: 'center'}}>
-                  <form onSubmit={this.__handleSubmit.bind(this)}>
-                    <input type="file" onChange={this.__updateImage.bind(this)} name="pic" accept="image/*"/>
-                  </form>
-                </div>
-              </Col>
-              <Col md={6} style={{textAlign: 'center'}}>
-                <Button type="submit" onClick={() => this.__uploadImage()} style={{float: 'center'}}>Upload new photo</Button>
-              </Col>
-            </Row>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.__closeModal.bind(this)}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-      );
 
       const tour_info = [
         {class: "trophy", text: "Rank 1"},
@@ -173,12 +139,15 @@ export default class TourDesignContainer extends React.Component {
       ));
 
 
+      const images = {photo: this.state.tour.img_url, cover_photo: this.state.tour.cover_url};
+      const titles = {photo: 'Edit Tour Photo', cover_photo: 'Edit Tour Cover'};
+
       return (
         <Grid>
           <Row id="cover_row" style={{backgroundImage: 'url(' + this.state.tour.cover_url + ')'}}>
             <div class="social-cover"></div>
             <Col md={3} mdOffset={3} mdPush={6} id="tourcover_right" style={{height: '350px'}}>
-                <div class="avatar-link" onClick={this.__openModal.bind(this)}>
+                <div class="avatar-link" onClick={() => this.__openModal('photo')}>
                   <div class="avatar-hover">
                     <div class="avatar-hover-content">
                       <Row>
@@ -192,7 +161,7 @@ export default class TourDesignContainer extends React.Component {
                 <h5 class="fg-white text-center" style={{opacity: '0.8'}}>{this.state.tour.bio}</h5>
                 <hr class="border-black75" style={{borderWidth: '2px'}}/>
                 <div class="text-center">
-                  <Button role="button" class="btn-inverse btn-outlined btn-retainBg btn-brightblue" onClick={this.__onClick.bind(this)}>
+                  <Button role="button" class="btn-inverse btn-outlined btn-retainBg btn-brightblue" onClick={() => this.__onClick()}>
                     <span>{button_text}</span>
                   </Button>
                 </div>
@@ -204,11 +173,26 @@ export default class TourDesignContainer extends React.Component {
                 {tour_info}
               </ul>
             </Col>
+            <div style={{position: 'absolute', bottom: '0'}}>
+              <Button role="button" class="btn-inverse btn-outlined btn-retainBg btn-brightblue" onClick={() => this.__openModal('cover_photo')}>
+                <span>
+                  <i class={"fa fa-camera"}></i>
+                  Update Cover Photo
+                </span>
+              </Button>
+            </div>
           </Row>
           <Row style={{marginTop: '16px'}}>
             {chosen_section}
           </Row>
-          {tourPhoto_modal}
+          <PhotoEditModal
+            title={titles[this.state.editPhotoClicked]}
+            showModal={this.state.showModal}
+            __closeModal={this.__closeModal.bind(this)}
+            img_url={images[this.state.editPhotoClicked]}
+            __updateImage={this.__updateImage.bind(this)}
+            __uploadImage={this.__uploadImage.bind(this)}
+            />
         </Grid>
       );
     } else {
