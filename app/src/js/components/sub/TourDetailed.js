@@ -125,8 +125,6 @@ export default class TourDetailed extends React.Component {
 
     const sections = [location_table, "Followers", <ReviewList reviews={this.state.tour.reviews}/>];
 
-    console.log("This tour", this.state.tour);
-
     return (
       <Grid>
         <Row id="cover_row" style={{backgroundImage: 'url(' + this.state.tour.cover_url + ')'}}>

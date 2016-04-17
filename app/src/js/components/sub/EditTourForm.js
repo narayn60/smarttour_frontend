@@ -1,6 +1,5 @@
 import React from 'react';
 import t from 'tcomb-form';
-import DropZone from './DropZone';
 import { Row, Col } from 'react-bootstrap';
 import NotesActions from 'NotesActions';
 
@@ -88,7 +87,6 @@ export default class EditTourForm extends React.Component {
             </div>
           </Row>
         </form>
-        <DropZone location_id={this.props.values['id']}/>
       </div>
     );
   }

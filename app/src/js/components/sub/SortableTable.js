@@ -49,7 +49,7 @@ export default class SortableTable extends React.Component {
             <a href={qr_link}>Download QR code</a>
           </td>
           <td class="delete-location" id={point.id} >
-            <Button onClick={() => this.props.__deleteLocation(point.id)}>Delete Location</Button>
+            <a href='#' onClick={() => this.props.__deleteLocation(point.id)}>Delete Location</a>
           </td>
         </tr>
       );
