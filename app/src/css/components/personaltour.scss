@@ -43,13 +43,13 @@
 }
 
 .img-avatar {
-  @extend .tour_image;
+  /* @extend .tour_image; */
   border-radius: 100px;
   border: 2px solid $white;
 }
 
 .avatar-link {
-  @extend .tour_image;
+  /* @extend .tour_image; */
   position: relative;
   .avatar-hover {
     border-radius: 100px;

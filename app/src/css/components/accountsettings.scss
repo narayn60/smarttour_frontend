@@ -1,0 +1,21 @@
+@import '../variables';
+
+#account_settings {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.account_profile_image {
+  display: block;
+  height: 150px;
+  width: 150px;
+  margin: auto;
+}
+
+.account_cover_image {
+  display: block;
+  height: 150px;
+  width: auto;
+  margin: auto;
+  background-color: $dark_background;
+}

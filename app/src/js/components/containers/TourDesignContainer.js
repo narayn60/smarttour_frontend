@@ -147,7 +147,7 @@ export default class TourDesignContainer extends React.Component {
           <Row id="cover_row" style={{backgroundImage: 'url(' + this.state.tour.cover_url + ')'}}>
             <div class="social-cover"></div>
             <Col md={3} mdOffset={3} mdPush={6} id="tourcover_right" style={{height: '350px'}}>
-                <div class="avatar-link" onClick={() => this.__openModal('photo')}>
+                <div class="tour_image avatar-link" onClick={() => this.__openModal('photo')}>
                   <div class="avatar-hover">
                     <div class="avatar-hover-content">
                       <Row>
@@ -155,7 +155,7 @@ export default class TourDesignContainer extends React.Component {
                       </Row>
                     </div>
                   </div>
-                  <img class="img-avatar" src={this.state.tour.img_url + "?" + new Date().getTime()}/>
+                  <img class="tour_image img-avatar" src={this.state.tour.img_url + "?" + new Date().getTime()}/>
                 </div>
                 <h4 class="fg-white text-center">{this.state.tour.name}</h4>
                 <h5 class="fg-white text-center" style={{opacity: '0.8'}}>{this.state.tour.bio}</h5>
