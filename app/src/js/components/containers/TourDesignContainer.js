@@ -68,10 +68,10 @@ export default class TourDesignContainer extends React.Component {
     });
   }
 
-  __openModal(button_clicked) {
+  __openModal(photo_clicked) {
     this.setState({
       showModal: true,
-      editPhotoClicked: button_clicked
+      editPhotoClicked: photo_clicked
     });
   }
 

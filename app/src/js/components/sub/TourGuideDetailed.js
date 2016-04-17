@@ -135,20 +135,21 @@ export default class TourGuideDetailed extends React.Component {
         <Row>
           <div class="profile-container">
             <Row class="profile-header">
-              <div>
-              <Col md={4} sm={12} class="text-center">
-                <img src={guide.guide_photo} alt="" class="header-avatar"/>
-              </Col>
-              <Col md={8} sm={12} class="profile-info">
-                <div class="header-fullname">{guide.full_name}</div>
-                {followingButton}
-                <div class="header-information">
-                  Kim is a software developer in Microsoft. She works in ASP.NET MVC Team and collaborates with other teams.
-                </div>
-              </Col>
-              </div>
-              <Col md={12} sm={12} xs={12} class="profile-stats">
+              <div id="profile-image" style={{backgroundImage: "url('http://www.intrawallpaper.com/static/images/VintageBackground.jpg')"}}>
+                <div class="social-cover"></div>
                 <Row>
+                  <Col md={4} sm={12} class="text-center">
+                    <img src={guide.guide_photo} alt="" class="header-avatar"/>
+                  </Col>
+                  <Col md={8} sm={12} class="profile-info">
+                    <div class="header-fullname">{guide.full_name}</div>
+                    {followingButton}
+                    <div class="header-information">
+                      Kim is a software developer in Microsoft. She works in ASP.NET MVC Team and collaborates with other teams.
+                    </div>
+                  </Col>
+                </Row>
+                <Row class="profile-stats">
                   <Col md={4} sm={4} xs={4} class="inlinestats-col">
                     <i class="glyphicon glyphicon-map-marker"></i> Boston
                   </Col>
@@ -159,22 +160,22 @@ export default class TourGuideDetailed extends React.Component {
                     Age: <strong>24</strong>
                   </Col>
                 </Row>
-                <Row>
-                  <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(0)}>
-                    <div class="stats-value red">{this.state.tours.length}</div>
-                    <div class="stats-title">TOURS</div>
-                  </Col>
-                  <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(1)}>
-                    <div class="stats-value red">284</div>
-                    <div class="stats-title">FOLLOWING</div>
-                  </Col>
-                  <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(2)}>
-                    <div class="stats-value red">803</div>
-                    <div class="stats-title">FOLLOWERS</div>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>   
+              </div>
+              <Row class="profile-stats">
+                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(0)}>
+                  <div class="stats-value red">{this.state.tours.length}</div>
+                  <div class="stats-title">TOURS</div>
+                </Col>
+                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(1)}>
+                  <div class="stats-value red">284</div>
+                  <div class="stats-title">FOLLOWING</div>
+                </Col>
+                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(2)}>
+                  <div class="stats-value red">803</div>
+                  <div class="stats-title">FOLLOWERS</div>
+                </Col>
+              </Row>
+            </Row>
           </div>
         </Row>
         <Row>

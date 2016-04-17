@@ -14,7 +14,8 @@
 *** TODO Blank out location if it has been reported that the QR code doesn't exist
 *** TODO Ability to upload audio to a location
 **** Maybe able to do this through the dropzone component
-*** TODO Upload Tour Photo
+*** DONE Upload Tour Photo
+CLOSED: [2016-04-16 Sat 17:55]
 *** DONE Hook up the relevant notes at that location
 CLOSED: [2016-04-10 Sun 14:37]
 **** Ability to delete irrevelant notes
@@ -45,7 +46,8 @@ CLOSED: [2016-03-28 Mon 13:06]
 *** TODO Average time to carry out tour
 **** Non-essential but would be nice
 *** TODO Average reviews of the tour, what some people have said about the tour
-*** TODO Shift to Container
+*** DONE Shift to Container
+CLOSED: [2016-04-16 Sat 17:55]
 *** DONE Show mini map of the points on the tour
 CLOSED: [2016-04-08 Fri 11:39]
 
