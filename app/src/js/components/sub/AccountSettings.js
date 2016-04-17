@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Row, Col } from 'react-bootstrap';
+import {Button, Row, Col, Modal } from 'react-bootstrap';
 import PhotoEditModal from './PhotoEditModal';
 
 export default class AccountSettings extends React.Component {
@@ -9,13 +9,34 @@ export default class AccountSettings extends React.Component {
     this.state = {
       editPhotoClicked: null,
       imgValue: null,
-      showModal: false
+      showModal: false,
+      showDeleteModal: false
     };
   }
 
   __deleteAccount() {
     //TODO: Make this into a modal
-    alert("Are you sure");
+    this.setState({
+      showDeleteModal: true
+    });
+  }
+
+  __confirmDelete() {
+    var quit = false;
+    if (confirm("Are you sure that you want to delete your account")) {
+      if (confirm("This is your final chance, are you sure?")) {
+        //TODO: Delete account and relevant information
+      } else {
+        quit = true;
+      }
+    } else {
+      quit = true;
+    }
+    if (quit) {
+      this.setState({
+        showDeleteModal: false
+      });
+    }
   }
 
   __openModal(photo_clicked) {
@@ -25,9 +46,9 @@ export default class AccountSettings extends React.Component {
     });
   }
 
-  __closeModal() {
+  __closeModal(modal) {
     this.setState({
-      showModal: false
+      [modal]: false
     });
   }
 
@@ -49,6 +70,24 @@ export default class AccountSettings extends React.Component {
 
 
   render() {
+
+    const deleteModal = (
+      <Modal show={this.state.showDeleteModal} onHide={() => this.__closeModal('showDeleteModal')}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Account</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Row>
+            If you delete your account all information attatched to your acocunt will be fully delted. This action is
+            irreversible so proceed with caution. There is no grace period so only delete if you're totally sure.
+          </Row>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => this.__confirmDelete()}>Delete My Account</Button>
+          <Button onClick={() => this.__closeModal('showDeleteModal')}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
 
     const temp_image = 'http://cdn.theatlantic.com/assets/media/img/photo/2015/11/images-from-the-2016-sony-world-pho/s01_130921474920553591/main_900.jpg?144847670';
     const images = {photo: temp_image, cover_photo: temp_image};
@@ -90,11 +129,12 @@ export default class AccountSettings extends React.Component {
         <PhotoEditModal
           title={titles[this.state.editPhotoClicked]}
           showModal={this.state.showModal}
-          __closeModal={this.__closeModal.bind(this)}
+          __closeModal={this.__closeModal.bind(this, 'showModal')}
           img_url={images[this.state.editPhotoClicked]}
           __updateImage={this.__updateImage.bind(this)}
           __uploadImage={this.__uploadImage.bind(this)}
         />
+        {deleteModal}
       </div>
     );
   }
