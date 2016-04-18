@@ -4,6 +4,7 @@ import FormActions from 'FormActions';
 // To use import FormStore into your required file and then
 // do FormStore.getTourId() to extract the relevant tour id
 class FormStore {
+
   constructor() {
     this.bindActions(FormActions);
     this.errorMessage = null;

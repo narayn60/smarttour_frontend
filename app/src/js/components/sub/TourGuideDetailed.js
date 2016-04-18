@@ -145,7 +145,7 @@ export default class TourGuideDetailed extends React.Component {
                     <div class="header-fullname">{guide.full_name}</div>
                     {followingButton}
                     <div class="header-information">
-                      Kim is a software developer in Microsoft. She works in ASP.NET MVC Team and collaborates with other teams.
+                      {guide.bio}
                     </div>
                   </Col>
                 </Row>

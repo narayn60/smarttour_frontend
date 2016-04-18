@@ -1,36 +1,27 @@
 import alt from 'alt_base';
-import axios from 'axios';
-import AuthStore from 'AuthStore';
-import Global from 'Global';
 import FormSource from 'FormSource';
 
 
 class FormActions {
   constructor() {
-      this.state = {
-      tour_id: []
-    };
-    this.stores = {
+    this.source = {
       FormSource: new FormSource()
     };
+    this.generateActions('updateId');
   }
 
   createTour(values) {
-    console.log(values);
     return (dispatch) => {
       dispatch();
-      this.stores.FormSource.save(values)
+      this.source.FormSource.save(values)
         .then((id) => {
           this.updateId(id);
         })
         .catch((errorMessage) => {
           console.log('error: ' + errorMessage);
+          this.formFailed(errorMessage);
         });
     };
-  }
-
-  updateId(id) {
-    return id;
   }
 
   formFailed(errorMessage) {

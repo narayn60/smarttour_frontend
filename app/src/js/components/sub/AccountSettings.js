@@ -15,7 +15,6 @@ export default class AccountSettings extends React.Component {
   }
 
   __deleteAccount() {
-    //TODO: Make this into a modal
     this.setState({
       showDeleteModal: true
     });
@@ -90,7 +89,7 @@ export default class AccountSettings extends React.Component {
     );
 
     const temp_image = 'http://cdn.theatlantic.com/assets/media/img/photo/2015/11/images-from-the-2016-sony-world-pho/s01_130921474920553591/main_900.jpg?144847670';
-    const images = {photo: temp_image, cover_photo: temp_image};
+    const images = {photo: this.props.profile.img_url, cover_photo: temp_image};
     const titles = {photo: 'Edit Profile Photo', cover_photo: 'Edit Cover Photo'};
 
     return(
@@ -106,7 +105,7 @@ export default class AccountSettings extends React.Component {
                   </Row>
                 </div>
               </div>
-              <img class="image-responsive account_profile_image" src='http://cdn.theatlantic.com/assets/media/img/photo/2015/11/images-from-the-2016-sony-world-pho/s01_130921474920553591/main_900.jpg?1448476701'/> 
+              <img class="image-responsive account_profile_image" src={this.props.profile.img_url}/>
             </div>
           </Col>
           <Col md={8}>
@@ -119,7 +118,7 @@ export default class AccountSettings extends React.Component {
                   </Row>
                 </div>
               </div>
-              <img class="img-responsive account_cover_image" src='http://cdn.theatlantic.com/assets/media/img/photo/2015/11/images-from-the-2016-sony-world-pho/s01_130921474920553591/main_900.jpg?1448476701'/> 
+              <img class="img-responsive account_cover_image" src={images.cover_photo}/>
             </div>
           </Col>
         </Row>
