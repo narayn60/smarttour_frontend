@@ -2,7 +2,6 @@ var _ = require('lodash');
 
 // Include gulp
 var gulp = require('gulp');
-// var webpack = require('webpack');
 var debug = require('gulp-debug');
 
 var gp_concat = require('gulp-concat');
@@ -11,17 +10,6 @@ var gp_uglify = require('gulp-uglify');
 var gp_sourcemaps = require('gulp-sourcemaps');
 var gp_minifyCss = require('gulp-minify-css');
 var gp_googleWebFonts = require('gulp-google-webfonts');
-
-// gulp.task('webpack', function (done) {
-//   webpack(require('./webpack.config.js')).run(function(err, stats) {
-//     if(err) {
-//       console.log('Error', err);
-//     } else {
-//       console.log(stats.toString());
-//     }
-//     done();
-//   });
-// });
 
 var css_locations = {};
 css_locations.bootstrap = "./node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -37,17 +25,6 @@ gulp.task('copy', function() {
   gulp.src('./src/img/**')
     .pipe(gulp.dest('public/img/'));
 });
-
-// gulp.task('js-fef', function() {
-//   return gulp.src('./src/js/design_js/**')
-//     .pipe(gp_sourcemaps.init())
-//     .pipe(gp_concat('concat.js'))
-//     .pipe(gulp.dest('public/js/'))
-//     .pipe(gp_rename('pagebundle.min.js'))
-//     .pipe(gp_uglify())
-//     .pipe(gp_sourcemaps.write('./'))
-//     .pipe(gulp.dest('public/js/'));
-// });
 
 gulp.task('bundle-css', function() {
   return gulp.src(css_list)

@@ -14,7 +14,7 @@ import Gravatar from 'react-gravatar';
 
 
 
-class TourGuideDetailed extends React.Component {
+export default class TourGuideDetailed extends React.Component {
 
   constructor(props) {
     super(props);
@@ -56,11 +56,11 @@ class TourGuideDetailed extends React.Component {
   }
 
   clickFollow() {
-    GuideActions.follow(this.state.guide)
+    GuideActions.follow(this.state.guide);
   }
 
   clickUnfollow() {
-    GuideActions.unfollow(this.state.guide)
+    GuideActions.unfollow(this.state.guide);
   }
 
   __rowClick(tour_id) {
@@ -120,80 +120,82 @@ class TourGuideDetailed extends React.Component {
 
     guide.guide_photo = Global.backend_url + AuthStore.getUid() + "/" + guide.photo_path_s3;
 
-    var followingButton = (
-        <a href="#" class="btn btn-palegreen btn-sm  btn-follow" onClick={() => this.clickFollow()}>
+    let followingButton = (
+      <a href="#" class="btn btn-palegreen btn-sm  btn-follow" onClick={() => this.clickFollow()}>
         Follow
-        </a>
+      </a>
     );
 
-    var userEmail = AuthStore.getEmail()
+    const userEmail = guide.email;
     if (this.state.followers.length > 0) {
       for (let follower of this.state.followers) {
         if (follower !== undefined) {
           if (follower.email === userEmail) {
             followingButton = (
               <a href="#" class="btn btn-palegreen btn-sm  btn-follow" onClick={() => this.clickUnfollow()}>
-              <i class="fa fa-check"></i>
-              Unfollow
+                <i class="fa fa-check"></i>
+                Unfollow
               </a>
-            )
+            );
           }
-    }
+        }
 
-    return (
-      <Grid class="bootstrap snippet">
-        <Row>
-          <div class="profile-container">
-            <Row class="profile-header">
-              <div id="profile-image" style={{backgroundImage: "url('http://www.intrawallpaper.com/static/images/VintageBackground.jpg')"}}>
-                <div class="social-cover"></div>
-                <Row>
-                  <Col md={4} sm={12} class="text-center">
-                    <img src={guide.guide_photo} alt="" class="header-avatar"/>
-                  </Col>
-                  <Col md={8} sm={12} class="profile-info">
-                    <div class="header-fullname">{guide.full_name}</div>
-                    {followingButton}
-                    <div class="header-information">
-                      {guide.bio}
-                    </div>
-                  </Col>
-                </Row>
-                <Row class="profile-stats">
-                  <Col md={4} sm={4} xs={4} class="inlinestats-col">
-                    <i class="glyphicon glyphicon-map-marker"></i> Boston
-                  </Col>
-                  <Col md={4} sm={4} xs={4} class="inlinestats-col">
-                    Rate: <strong>$250</strong>
-                  </Col>
-                  <Col md={4} sm={4} xs={4} class="inlinestats-col">
-                    Age: <strong>24</strong>
-                  </Col>
+        return (
+          <Grid class="bootstrap snippet">
+            <Row>
+              <div class="profile-container">
+                <Row class="profile-header">
+                  <div id="profile-image" style={{backgroundImage: "url('http://www.intrawallpaper.com/static/images/VintageBackground.jpg')"}}>
+                    <div class="social-cover"></div>
+                    <Row>
+                      <Col md={4} sm={12} class="text-center">
+                        <img src={guide.guide_photo} alt="" class="header-avatar"/>
+                      </Col>
+                      <Col md={8} sm={12} class="profile-info">
+                        <div class="header-fullname">{guide.full_name}</div>
+                        {followingButton}
+                        <div class="header-information">
+                          {guide.bio}
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row class="profile-stats">
+                      <Col md={4} sm={4} xs={4} class="inlinestats-col">
+                        <i class="glyphicon glyphicon-map-marker"></i> Boston
+                      </Col>
+                      <Col md={4} sm={4} xs={4} class="inlinestats-col">
+                        Rate: <strong>$250</strong>
+                      </Col>
+                      <Col md={4} sm={4} xs={4} class="inlinestats-col">
+                        Age: <strong>24</strong>
+                      </Col>
+                    </Row>
+                  </div>
+                  <Row class="profile-stats">
+                    <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(0)}>
+                      <div class="stats-value red">{this.state.tours.length}</div>
+                      <div class="stats-title">TOURS</div>
+                    </Col>
+                    <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(1)}>
+                      <div class="stats-value red">284</div>
+                      <div class="stats-title">FOLLOWING</div>
+                    </Col>
+                    <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(2)}>
+                      <div class="stats-value red">803</div>
+                      <div class="stats-title">FOLLOWERS</div>
+                    </Col>
+                  </Row>
                 </Row>
               </div>
-              <Row class="profile-stats">
-                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(0)}>
-                  <div class="stats-value red">{this.state.tours.length}</div>
-                  <div class="stats-title">TOURS</div>
-                </Col>
-                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(1)}>
-                  <div class="stats-value red">284</div>
-                  <div class="stats-title">FOLLOWING</div>
-                </Col>
-                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(2)}>
-                  <div class="stats-value red">803</div>
-                  <div class="stats-title">FOLLOWERS</div>
-                </Col>
-              </Row>
             </Row>
-          </div>
-        </Row>
-        <Row>
-          {GuideTableComponent}
-        </Row>
-      </Grid>
-    );
+            <Row>
+              {GuideTableComponent}
+            </Row>
+          </Grid>
+        );
 
+      }
+    }
   }
 }
 

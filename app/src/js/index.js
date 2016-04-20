@@ -8,8 +8,8 @@ import Iso from 'iso';
 import alt from 'alt_base';
 
 // Page related
-require('jquery.easing');
-require.context("./design_js/", true, /.*/);
+// require('jquery.easing');
+// require.context("./design_js/", true, /.*/);
 
 Iso.bootstrap((state) => {
   alt.bootstrap(state);
