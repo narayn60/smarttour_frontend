@@ -32,7 +32,7 @@ export default class PersonalTourOverviewContainer extends React.Component {
     return (
       <div>
         <Row>
-          <Col md={6} style={{height: '100%'}}>
+          <Col md={6} style={{height: '100%'}} class="border_box">
             <Row style={{height: '400px'}}>
               <TourMap
                 handleClick={this.__handleClick.bind(this)}

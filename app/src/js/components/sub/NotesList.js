@@ -28,6 +28,8 @@ export default class NotesList extends React.Component {
     if (this.props.notes.length === 0) {
       return (
         <div>
+          <h4>Notes</h4>
+          <hr/>
           No Notes Created
         </div>
       );
@@ -63,7 +65,7 @@ export default class NotesList extends React.Component {
                 <h4 class="title">
                   {note.title}
                 </h4>
-                <p class="summary">{note.note}</p>
+                <p class="summary">{note.description}</p>
               </div>
             </div>
           </td>
@@ -74,26 +76,26 @@ export default class NotesList extends React.Component {
 
     return (
       <Row>
-          <h4>Notes</h4>
-          <hr/>
-          <div>
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="pull-right">
-                  <div class="btn-group">
-                    <Button onClick={() => this.__handleDelete()} data-target="pagado">Delete Selected</Button>
-                  </div>
+        <h4>Notes</h4>
+        <hr/>
+        <div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="pull-right">
+                <div class="btn-group">
+                  <Button onClick={() => this.__handleDelete()} data-target="pagado">Delete Selected</Button>
                 </div>
-                <div class="table-container">
-                  <table class="table table-filter">
-                    <tbody>
-                      {notes}
-                    </tbody>
-                  </table>
-                </div>
+              </div>
+              <div class="table-container">
+                <table class="table table-filter">
+                  <tbody>
+                    {notes}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
+        </div>
       </Row>
     );
   }

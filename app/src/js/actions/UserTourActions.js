@@ -26,12 +26,24 @@ class UserTourActions {
   }
 
   fetchTour(tour_id) {
-    console.log("Fetch tour called");
     return (dispatch) => {
       dispatch();
       this.stores.UserTourSource.fetch_tour(tour_id)
         .then((tour) => {
           this.updateTour(tour);
+        })
+        .catch((errorMessage) => {
+          this.toursFailed(errorMessage);
+        });
+    };
+  }
+
+  updateTourPhoto(tour_id, photo_form) {
+    return (dispatch) => {
+      dispatch();
+      this.stores.UserTourSource.update_photo(tour_id, photo_form)
+        .then((tour) => {
+          this.fetchTour(tour_id);
         })
         .catch((errorMessage) => {
           this.toursFailed(errorMessage);

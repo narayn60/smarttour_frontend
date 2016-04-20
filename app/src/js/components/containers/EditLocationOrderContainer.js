@@ -61,8 +61,6 @@ export default class EditLocationOrderContainer extends React.Component {
 
   render() {
 
-
-    console.log("Props container", this.props);
     const location_info = {
       about: this.props.about
     };
@@ -80,40 +78,50 @@ export default class EditLocationOrderContainer extends React.Component {
     const currentlySelected = this.state.selected;
 
     const EditSelection = currentlySelected === null ? "" : (
-      <Nav bsStyle="pills" stacked activeKey={this.state.subselected} onSelect={this.__handleSelect.bind(this)}>
-        <NavItem eventKey={0} title="Information">
-          <i class="fa fa-info"></i> Information
-        </NavItem>
-        <NavItem eventKey={1} title="Photos">
-          <i class="fa fa-photo"></i> Photos <Badge pullRight>{this.props.photos.length}</Badge>
-        </NavItem>
-        <NavItem eventKey={2} title="Notes">
-          <i class="fa fa-sticky-note"></i> Notes <Badge pullRight>{this.props.notes.length}</Badge>
-        </NavItem>
-      </Nav>
+      <div>
+        <h4> Attatched Info</h4>
+        <hr/>
+        <Nav bsStyle="pills" stacked activeKey={this.state.subselected} onSelect={this.__handleSelect.bind(this)}>
+          <NavItem eventKey={0} title="Information">
+            <i class="fa fa-info"></i> Information
+          </NavItem>
+          <NavItem eventKey={1} title="Photos">
+            <i class="fa fa-photo"></i> Photos <Badge pullRight>{this.props.photos.length}</Badge>
+          </NavItem>
+          <NavItem eventKey={2} title="Notes">
+            <i class="fa fa-sticky-note"></i> Note <Badge pullRight>{this.props.notes.length}</Badge>
+          </NavItem>
+          <NavItem eventKey={3} title="Files">
+            <i class="fa fa-file-text"></i> Attatched Text <Badge pullRight>0</Badge>
+          </NavItem>
+          <NavItem eventKey={4} title="Files">
+            <i class="fa fa-file"></i> Files <Badge pullRight>0</Badge>
+          </NavItem>
+        </Nav>
+      </div>
     );
 
 
     const sections = [
       <EditTourForm values={this.props.locations[currentlySelected]} tour_id={this.tour_id} location_info={location_info} />,
       <PhotoItem photos={this.props.photos} location_info={this.props.locations[currentlySelected]}/>,
-      <NotesList location={this.props.locations[currentlySelected]} tour_id={this.tour_id} notes={this.props.notes}/>
+      <NotesList location={this.props.locations[currentlySelected]} tour_id={this.tour_id} notes={this.props.notes}/>,
     ];
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
 
     const subSection = currentlySelected === null ? "" : (
-        <Grid fluid={true} class="border_box" id="edit_selection">
-          <Row>
-            <Col md={3}>
-              { EditSelection }
-              <hr/>
-            </Col>
-            <Col md={9}>
-              { TourEdit }
-            </Col>
-          </Row>
-        </Grid>
+      <Grid fluid={true} class="border_box" id="edit_selection" style={{minHeight: '500px'}}>
+        <Row>
+          <Col md={3}>
+            { EditSelection }
+            <hr/>
+          </Col>
+          <Col md={9}>
+            { TourEdit }
+          </Col>
+        </Row>
+      </Grid>
     );
 
     const SortTable = <SortableTable

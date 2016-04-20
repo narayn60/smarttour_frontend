@@ -14,10 +14,6 @@
   padding: 0px 15px;
 }
 
-#locations_list {
-  box-shadow: $box_shadow
-}
-
 .tour_title {
   background-color: $white;
   box-shadow: $box_shadow;
@@ -53,7 +49,7 @@
 }
 
 .avatar-link {
-  @extend .tour_image;
+  /* @extend .tour_image; */
   position: relative;
   .avatar-hover {
     border-radius: 100px;

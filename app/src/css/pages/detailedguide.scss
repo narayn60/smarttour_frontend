@@ -37,14 +37,23 @@ $color_abbey_approx: #4f5259;
 		@extend %extend_1;
 	}
 }
+
+#profile-image {
+  min-height: 200px;
+  height: auto;
+  background-size: cover;
+  position: relative;
+  background-position: center;
+  color: $white;
+}
+
 .profile-container .profile-header {
-	min-height: 175px;
-	margin: 15px 15px 0;
-	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	min-height: 100px;
+	/* margin: 15px 15px 0; */
 	box-shadow: 0 1px 2px $black_35;
 	background-color: $color_alabaster_approx;
 	.profile-stats {
-		min-height: 175px;
+		min-height: 100px;
 		.inlinestats-col {
 			padding-top: 15px;
 			text-align: center;

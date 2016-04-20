@@ -1,6 +1,7 @@
 import React from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { browserHistory } from 'react-router';
+import { Button } from 'react-bootstrap';
 import TableImage from './TableImage';
 
 
@@ -23,9 +24,14 @@ export default class TourTable extends React.Component {
     //TODO: Instead of saying no tours, add button to create tour
     if (this.props.tours.length === 0) {
       return (
+        <div>
           <div>
-          No tours created 
+            No tours created 
           </div>
+          <div class="text-center">
+            <Button onClick={() => browserHistory.push('/createtour')}>Create New Tour</Button>
+          </div>
+        </div>
       );
     }
 

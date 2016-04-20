@@ -12,23 +12,33 @@ class TourStore {
   }
 
   onUpdateTours(tour) {
-    this.setState({ tours: this.state.tours.concat(tour) });
+    this.setState({
+      tours: this.state.tours.concat(tour)
+    });
   }
 
   onUpdateTour(tour) {
-    this.setState({ tour: tour});
+    this.setState({
+      tour: tour
+    });
   }
 
   onFetchTours() {
-    this.state.tours = [];
+    this.setState({
+      tours: []
+    });
   }
 
   onFetchTour() {
-    this.state.tour = null;
+    this.setState({
+      tour: null
+    });
   }
 
   onReloadTours() {
-    this.state.tours = [];
+    this.setState({
+      tours: []
+    });
   }
 
   onToursFailed(errorMessage) {

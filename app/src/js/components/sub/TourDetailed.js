@@ -3,6 +3,8 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import { Grid, Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
 
+import AuthStore from 'AuthStore';
+import Global from 'Global';
 import LocationActions from 'LocationActions';
 import LocationStore from 'LocationStore';
 import LocationTable from './LocationTable';
@@ -11,9 +13,8 @@ import TourStore from 'TourStore';
 
 import ImageLoad from './ImageLoad';
 import TourMap from '../../components/gmaps/TourMap';
+import ReviewList from './ReviewList';
 
-import Global from 'Global';
-import AuthStore from 'AuthStore';
 
 
 export default class TourDetailed extends React.Component {
@@ -26,7 +27,8 @@ export default class TourDetailed extends React.Component {
     Object.assign(this.state,
                   LocationStore.getState(),
                   {
-                    selected: null
+                    selected: null,
+                    selectedSection: 0
                   }
     );
   }
@@ -59,8 +61,15 @@ export default class TourDetailed extends React.Component {
 
 
   __handleClick(index) {
-    this.setState({selected: index});
-    console.log(index);
+    this.setState({
+      selected: index
+    });
+  }
+
+  __onClick(index) {
+    this.setState({
+      selectedSection: index
+    });
   }
 
   render() {
@@ -92,11 +101,33 @@ export default class TourDetailed extends React.Component {
       </li>
     ));
 
-    console.log("Guide", guide);
+    const location_table = (
+      <div class="border_box browse-map">
+        <section class="content-item">
+          <h4 className="group-title">{this.state.locations.length} Locations</h4>
+          <hr/>
+          <Row>
+            <Col md={5}>
+              <LocationTable locations={this.state.locations} onClick={this.__handleClick.bind(this)}/>
+            </Col>
+            <Col md={7} style={{height: '600px', position: 'relative', overflow: 'hidden'}}>
+              <div style={{left: 0, top: 0, width: '100%', height: '100%'}}>
+                <TourMap
+                  handleClick={this.__handleClick.bind(this)}
+                  locations={this.state.locations}
+                  selected={this.state.selected}/>
+              </div>
+            </Col>
+          </Row>
+        </section>
+      </div>
+    );
+
+    const sections = [location_table, "Followers", <ReviewList reviews={this.state.tour.reviews}/>];
 
     return (
       <Grid>
-        <Row id="cover_row" style={{backgroundImage: 'url(https://batlgrounds.com/wp-content/uploads/2015/03/Ottawa.jpg)'}}>
+        <Row id="cover_row" style={{backgroundImage: 'url(' + this.state.tour.cover_url + ')'}}>
           <div class="social-cover"></div>
             <Col md={3} id="tourcover_left">
               <h3 class="fg-white text-center">{this.state.tour.name}</h3>
@@ -118,20 +149,24 @@ export default class TourDetailed extends React.Component {
               </div>
             </Col>
         </Row>
-        <Row class="browse-map">
-          <Col md={12}>
-            <Col md={5}>
-              <LocationTable locations={this.state.locations} onClick={this.__handleClick.bind(this)}/>
+        <Row class="border_box">
+          <Row>
+            <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(0)} style={{textAlign: 'center'}}>
+              <div class="stats-value red">{this.state.locations.length}</div>
+              <div class="stats-title">Locations</div>
             </Col>
-            <Col md={7} style={{height: '600px', position: 'relative', overflow: 'hidden'}}>
-              <div style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%'}}>
-                <TourMap
-                  handleClick={this.__handleClick.bind(this)}
-                  locations={this.state.locations}
-                  selected={this.state.selected}/>
-              </div>
-           </Col>
-          </Col>
+            <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(1)} style={{textAlign: 'center'}}>
+              <div class="stats-value red">284</div>
+              <div class="stats-title">FOLLOWING</div>
+            </Col>
+            <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(2)} style={{textAlign: 'center'}}>
+              <div class="stats-value red">{this.state.tour.reviews.length}</div>
+              <div class="stats-title">REVIEWS</div>
+            </Col>
+          </Row>
+        </Row>
+        <Row>
+          {sections[this.state.selectedSection]}
         </Row>
       </Grid>
     );

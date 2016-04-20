@@ -9,7 +9,7 @@ class GuideStore {
       guides: [],
       guide: null,
       followers: [],
-      following: [],
+      following: []
     };
   }
 
@@ -55,9 +55,8 @@ class GuideStore {
   }
 
   onGuidesFailed(errorMessage) {
-    console.log("Guides failed");
+    console.log("GuideStore error: ", errorMessage);
     this.state.errorMessage = errorMessage;
-    console.log(errorMessage);
   }
 }
 

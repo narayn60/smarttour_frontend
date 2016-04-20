@@ -1,20 +1,20 @@
 import React from 'react';
-import Gravatar from 'react-gravatar';
 import classNames from 'classnames';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import { Router, Route, Link, browserHistory } from 'react-router';
-import { Row, Col, Grid, Nav, Button, Badge } from "react-bootstrap";
+import { Image, Row, Col, Grid, Nav, Button, Badge } from "react-bootstrap";
 
 import AuthStore from 'AuthStore';
-import TourActions from 'TourActions';
-import TourStore from 'TourStore';
 import UserTourStore from 'UserTourStore';
 import UserTourActions from 'UserTourActions';
+import ProfileStore from 'ProfileStore';
+import ProfileActions from 'ProfileActions';
 
 import MyFollowers from '../sub/MyFollowers';
 import MyFollowing from '../sub/MyFollowing';
 import SortableTable from '../sub/SortableTable';
 import TourTable from '../sub/TourTable';
+import AccountSettings from '../sub/AccountSettings';
 
 export default class ProfileContainer extends React.Component {
 
@@ -26,20 +26,26 @@ export default class ProfileContainer extends React.Component {
   }
 
   static getStores() {
-    return [UserTourStore];
+    return [UserTourStore, ProfileStore];
   }
 
   static getPropsFromStores() {
-    return UserTourStore.getState();
+    return {
+      ...UserTourStore.getState(),
+      ...ProfileStore.getState()
+    };
   }
 
   componentWillMount() {
     UserTourStore.listen(this.onChange.bind(this));
+    ProfileStore.listen(this.onChange.bind(this));
     UserTourActions.fetchTours();
+    ProfileActions.getProfile();
   }
 
   componentWillUnmount() {
     UserTourStore.unlisten(this.onChange.bind(this));
+    ProfileStore.unlisten(this.onChange.bind(this));
   }
 
   onChange(state) {
@@ -52,22 +58,32 @@ export default class ProfileContainer extends React.Component {
 
   render() {
 
-    const userEmail = AuthStore.getEmail();
-    const userName = AuthStore.getName().split(" ", 2)[0];
-    const gravatarSize = 250;
+    if (!this.state.profile) {
+      return (
+        <div>
+          <i class="fa fa-spin fa-spinner"></i>
+          Loading Profile
+        </div>
+      );
+    }
+
+    const profile = this.state.profile[0];
+    console.log("Profile", profile);
+    const userEmail = profile.email;
+    const userName = profile.full_name;
     const tourLength = this.state.tours.length;
 
-    const OptionalComponents = [<TourTable tours={this.state.tours} />, <MyFollowers />, <MyFollowing />, "TODO: Placeholder"];
+    const OptionalComponents = [<TourTable tours={this.state.tours} />, <MyFollowers />, <MyFollowing />, <AccountSettings profile={profile}/>];
     const TourTableComponent = OptionalComponents[this.state.chosenSection];
 
-    const Titles = ["My Tours", "Followers", "Following"];
+    const Titles = ["My Tours", "Followers", "Following", "Account Settings"];
     const Title = Titles[this.state.chosenSection];
 
     const dropdownOptions = [
       {text: 'My Tours', class_name: 'fa fa-map', badge: tourLength},
       {text: 'Followers', class_name: 'fa fa-users', badge: 4},
       {text: 'Following', class_name: 'fa fa-user', badge: 4},
-      {text: 'Help', class_name: 'glyphicon glyphicon-flag'}
+      {text: 'Account Settings', class_name: 'fa fa-cog'}
     ];
     const optionSections = dropdownOptions.map((point, i) => {
       const classes = classNames( {
@@ -90,18 +106,12 @@ export default class ProfileContainer extends React.Component {
           <Col md={3} id="profileCol">
             <div class="profile-sidebar">
               <div class="profile-userpic">
-                <Gravatar email={userEmail} size={gravatarSize} https class="img-responsive"/>
+                <Image class="img-responsive" src={profile.img_url}/>
               </div>
               <div class="profile-usertitle">
                 <div class="profile-usertitle-name">
                   {userName}
                 </div>
-              </div>
-              <div class="profile-userbuttons">
-                <button type="button" class="btn btn-info btn-sm">
-                  <i class="fa fa-user-plus"></i>
-                  Follow
-                </button>
               </div>
               <div class="profile-usermenu">
                 <Nav>
