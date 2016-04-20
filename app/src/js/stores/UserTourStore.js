@@ -29,15 +29,21 @@ class UserTourStore {
   }
 
   onFetchTours() {
-    this.state.tours = [];
+    this.setState({
+      tours: []
+    });
   }
 
   onFetchTour() {
-    this.state.tour = null;
+    this.setState({
+      tour: null
+    });
   }
 
   onReloadTours() {
-    this.state.tours = [];
+    this.setState({
+      tours: []
+    });
   }
 
   onToursFailed(errorMessage) {

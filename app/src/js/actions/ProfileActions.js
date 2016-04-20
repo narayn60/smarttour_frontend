@@ -27,5 +27,18 @@ class ProfileActions {
   profileFailed(errorMessage) {
     return errorMessage;
   }
+
+  updateProfilePhoto(guide_id, photo_form) {
+    return (dispatch) => {
+      dispatch();
+      this.source.ProfileSource.update_photo(guide_id, photo_form)
+        .then((guide) => {
+          this.getProfile();
+        })
+        .catch((errorMessage) => {
+          this.profileFailed(errorMessage);
+        });
+    };
+  }
 }
 export default alt.createActions(ProfileActions);

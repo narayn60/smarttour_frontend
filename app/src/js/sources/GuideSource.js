@@ -15,9 +15,12 @@ export default class GuideSource {
   }
 
   fetch_guide(guide_id) {
-    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/' + guide_id + '/')
-      .then((users) => {
-        return users.data;
+    const base_url = Global.backend_url + AuthStore.getUid();
+    return axios.get(base_url + '/guides/' + guide_id + '/')
+      .then((guide) => {
+        guide.data.img_url = base_url + "/" + guide.data.photo_path_s3;
+        guide.data.cover_url = base_url + "/" + guide.data.cover_photo_path_s3;
+        return guide.data;
       })
       .catch((error) => {
         throw error;
@@ -31,7 +34,7 @@ export default class GuideSource {
       })
       .catch((error) => {
         throw error;
-      })
+      });
   }
 
   fetchMyFollowing() {
@@ -41,7 +44,7 @@ export default class GuideSource {
       })
       .catch((error) => {
         throw error;
-      })
+      });
   }
 
   fetchFollowing(following_ids) {
@@ -51,7 +54,7 @@ export default class GuideSource {
       })
       .catch((error) => {
         throw error;
-      })
+      });
   }
 
   fetchFollowers(follower_ids) {
@@ -61,27 +64,26 @@ export default class GuideSource {
     })
     .catch((error) => {
       throw error;
-    })
+    });
   }
 
   follow(guide) {
     return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/' + guide.id + '/follow/')
       .then((guide) => {
-        console.log(guide.data[0])
-        return guide.data[0]
+        return guide.data[0];
       })
       .catch((error) => {
         throw error;
-      })
+      });
   }
 
   unfollow(guide) {
     return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/' + guide.id + '/unfollow/')
       .then((guide) => {
-        return guide.data[0]
+        return guide.data[0];
       })
       .catch((error) => {
         throw error;
-      })
+      });
   }
 }

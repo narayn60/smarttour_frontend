@@ -18,7 +18,6 @@ class GuideStore {
   }
 
   onUpdateFollowers(guides) {
-    console.log(guides)
     this.setState({ followers: guides });
   }
 

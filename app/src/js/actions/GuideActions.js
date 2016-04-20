@@ -97,9 +97,9 @@ class GuideActions {
           this.fetchFollowers(guide.followers);
         })
         .catch((errorMessage) => {
-          this.guidesFailed(errorMessage)
+          this.guidesFailed(errorMessage);
         });
-    }
+    };
   }
 
   unfollow(guide) {
@@ -110,9 +110,9 @@ class GuideActions {
           this.fetchFollowers(guide.followers);
         })
         .catch((errorMessage) => {
-          this.guidesFailed(errorMessage)
+          this.guidesFailed(errorMessage);
         });
-    }
+    };
   }
 
   guidesFailed(errorMessage) {

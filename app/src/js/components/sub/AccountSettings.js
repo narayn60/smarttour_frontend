@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Row, Col, Modal } from 'react-bootstrap';
 import PhotoEditModal from './PhotoEditModal';
+import ProfileActions from 'ProfileActions';
 
 export default class AccountSettings extends React.Component {
 
@@ -63,12 +64,14 @@ export default class AccountSettings extends React.Component {
       // Do it here to avoid rewriting functionality
       const formData = new FormData();
       formData.append(this.state.editPhotoClicked, this.state.imgValue);
-      /* UserTourActions.updateTourPhoto(this.props.tour_id, formData); */
+      ProfileActions.updateProfilePhoto(this.props.profile.id, formData);
     }
   }
 
 
   render() {
+
+    console.log("Profile", this.props.profile);
 
     const deleteModal = (
       <Modal show={this.state.showDeleteModal} onHide={() => this.__closeModal('showDeleteModal')}>
@@ -88,8 +91,7 @@ export default class AccountSettings extends React.Component {
       </Modal>
     );
 
-    const temp_image = 'http://cdn.theatlantic.com/assets/media/img/photo/2015/11/images-from-the-2016-sony-world-pho/s01_130921474920553591/main_900.jpg?144847670';
-    const images = {photo: this.props.profile.img_url, cover_photo: temp_image};
+    const images = {photo: this.props.profile.img_url, cover_photo: this.props.profile.cover_url};
     const titles = {photo: 'Edit Profile Photo', cover_photo: 'Edit Cover Photo'};
 
     return(
@@ -105,7 +107,7 @@ export default class AccountSettings extends React.Component {
                   </Row>
                 </div>
               </div>
-              <img class="image-responsive account_profile_image" src={this.props.profile.img_url}/>
+              <img class="image-responsive account_profile_image" src={this.props.profile.img_url + "?" + new Date().getTime()}/>
             </div>
           </Col>
           <Col md={8}>
@@ -118,7 +120,7 @@ export default class AccountSettings extends React.Component {
                   </Row>
                 </div>
               </div>
-              <img class="img-responsive account_cover_image" src={images.cover_photo}/>
+              <img class="img-responsive account_cover_image" src={images.cover_photo + "?" + new Date().getTime()}/>
             </div>
           </Col>
         </Row>

@@ -6,7 +6,7 @@ class UserTourActions {
     this.state = {
       tours: []
     };
-    this.stores = {
+    this.source = {
       UserTourSource: new UserTourSource()
     };
     this.generateActions('updateTours', 'updateTour');
@@ -15,7 +15,7 @@ class UserTourActions {
   fetchTours() {
     return (dispatch) => {
       dispatch();
-      this.stores.UserTourSource.fetch()
+      this.source.UserTourSource.fetch()
         .then((tours) => {
           this.updateTours(tours);
         })
@@ -28,7 +28,7 @@ class UserTourActions {
   fetchTour(tour_id) {
     return (dispatch) => {
       dispatch();
-      this.stores.UserTourSource.fetch_tour(tour_id)
+      this.source.UserTourSource.fetch_tour(tour_id)
         .then((tour) => {
           this.updateTour(tour);
         })
@@ -41,7 +41,7 @@ class UserTourActions {
   updateTourPhoto(tour_id, photo_form) {
     return (dispatch) => {
       dispatch();
-      this.stores.UserTourSource.update_photo(tour_id, photo_form)
+      this.source.UserTourSource.update_photo(tour_id, photo_form)
         .then((tour) => {
           this.fetchTour(tour_id);
         })

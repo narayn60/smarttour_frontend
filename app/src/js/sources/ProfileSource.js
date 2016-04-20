@@ -9,10 +9,20 @@ export default class ProfileSource {
     return axios.get(base_url + '/guides/me/')
 	    .then((profile) => {
         profile.data[0].img_url = base_url + "/" + profile.data[0].photo_path_s3;
+        profile.data[0].cover_url = base_url + "/" + profile.data[0].cover_photo_path_s3;
         return profile.data;
 	    })
 	    .catch((error) => {
 	      throw error;
 	    });
+  }
+
+  update_photo(guide_id, photo_form) {
+    const base_url = Global.backend_url + AuthStore.getUid();
+    return axios.patch(base_url + '/guides/' + guide_id + '/', photo_form)
+      .then((response) => response)
+      .catch((error) => {
+        throw error;
+      });
   }
 }

@@ -76,8 +76,6 @@ export default class TourDetailed extends React.Component {
 
     const tour = this.state.tour;
 
-    console.log("State", this.state);
-
     // Case where tour doesn't exist
     if (tour === null) {
       return (
