@@ -23,6 +23,7 @@ export default class TourDesignContainer extends React.Component {
     this.state = {
       overview: true,
       photos: [],
+      audio: [],
       bio: null,
       showModal: false,
       imgValue: null,
@@ -116,6 +117,8 @@ export default class TourDesignContainer extends React.Component {
           locations={this.state.locations}
           tour_id={this.props.tour_id}
           photos={this.state.photos}
+          audio={this.state.audio}
+          videos={this.state.videos}
           about={this.state.about}
           notes={this.state.notes}
         />

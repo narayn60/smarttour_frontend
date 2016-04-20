@@ -9,15 +9,20 @@ class PhotoActions {
     this.stores = {
       PhotoSource: new PhotoSource()
     };
-    this.generateActions('updatePhotos');
+    this.generateActions('updatePhotos', 'updateAudio', 'updateVideo');
   }
 
   fetchPhotos(location_id) {
     return (dispatch) => {
       dispatch();
       this.stores.PhotoSource.fetch_photos(location_id)
-          .then((photos) => {
+          .then((files) => {
+            const photos = files.filter((value) => value.descriptor === 'Picture');
+            const audio = files.filter((value) => value.descriptor === 'Audio');
+            const videos = files.filter((value) => value.descriptor === 'Video');
             this.updatePhotos(photos);
+            this.updateAudio(audio);
+            this.updateVideo(videos);
           })
           .catch((errorMessage) => {
             this.photosFailed(errorMessage);

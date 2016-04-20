@@ -7,8 +7,6 @@ import {
   Input
 } from 'react-bootstrap';
 import Gallery from 'react-photo-gallery';
-import Global from 'Global';
-import AuthStore from 'AuthStore';
 import t from 'tcomb-form';
 import PhotoActions from 'PhotoActions';
 import DropZone from './DropZone';
@@ -63,14 +61,14 @@ export default class PhotoItem extends React.Component {
         <div>
           <h4>Photos</h4>
           <hr/>
-          <DropZone location_id={this.props.location_info.id}/>
+        <DropZone location_id={this.props.location_info.id} upload_type='Photo'/>
           No Photos
         </div>
       );
     }
 
     const photo_set = this.props.photos.map((photo) => {
-      const src = Global.backend_url + AuthStore.getUid() + "/" + photo.photo_path_s3;
+      const src = photo.src_url;
       return ({
         src: src,
         width: 960,
@@ -109,16 +107,15 @@ export default class PhotoItem extends React.Component {
     const buttonSwitchText = this.state.gallery_selected ? "Edit Photos" : "View Gallery";
     const uploadPhoto = this.state.showDropzone ? (
       <Row>
-        <DropZone location_id={this.props.location_info.id}/>
+        <DropZone location_id={this.props.location_info.id} upload_type='Photo'/>
       </Row> ) : "";
 
     const photos = this.state.photos.map((photo, i) => {
       const ref = "form" + i;
-      const src = Global.backend_url + AuthStore.getUid() + "/" + photo.photo_path_s3;
       return (
         <Row>
           <Col md={3}>
-            <Image class="tour-pic" src={src} rounded />
+            <Image class="tour-pic" src={photo.src_url} rounded />
           </Col>
           <form onSubmit={this.__onSubmit.bind(this, i)}>
             <t.form.Form class="edit-form" ref={ref} type={FormSchema} value={photo} options={options}/>

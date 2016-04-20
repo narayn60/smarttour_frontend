@@ -15,6 +15,8 @@ import UserTourActions from 'UserTourActions';
 import EditTourForm from '../sub/EditTourForm';
 import NotesList from '../sub/NotesList';
 import PhotoItem from '../sub/PhotoItem';
+import AudioItem from '../sub/AudioItem';
+import VideoItem from '../sub/VideoItem';
 import SortableTable from '../sub/SortableTable';
 import TourMap from '../gmaps/TourMap';
 
@@ -97,11 +99,14 @@ export default class EditLocationOrderContainer extends React.Component {
           <NavItem eventKey={2} title="Notes">
             <i class="fa fa-sticky-note"></i> Note <Badge pullRight>{this.props.notes.length}</Badge>
           </NavItem>
-          <NavItem eventKey={3} title="Files">
+          <NavItem eventKey={3} title="Text">
             <i class="fa fa-file-text"></i> Attatched Text <Badge pullRight>0</Badge>
           </NavItem>
-          <NavItem eventKey={4} title="Files">
-            <i class="fa fa-file"></i> Files <Badge pullRight>0</Badge>
+          <NavItem eventKey={4} title="Audio">
+            <i class="fa fa-music"></i> Audio <Badge pullRight>0</Badge>
+          </NavItem>
+          <NavItem eventKey={5} title="Videos">
+            <i class="fa fa-video-camera"></i> Videos <Badge pullRight>0</Badge>
           </NavItem>
         </Nav>
       </div>
@@ -112,6 +117,9 @@ export default class EditLocationOrderContainer extends React.Component {
       <EditTourForm values={this.props.locations[currentlySelected]} tour_id={this.tour_id} location_info={location_info} />,
       <PhotoItem photos={this.props.photos} location_info={this.props.locations[currentlySelected]}/>,
       <NotesList location={this.props.locations[currentlySelected]} tour_id={this.tour_id} notes={this.props.notes}/>,
+      "Text placeholder",
+      <AudioItem audio={this.props.audio} location_info={this.props.locations[currentlySelected]}/>,
+      <VideoItem videos={this.props.videos} location_info={this.props.locations[currentlySelected]}/>
     ];
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];

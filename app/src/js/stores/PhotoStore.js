@@ -7,7 +7,9 @@ class PhotoStore {
     this.errorMessage = null;
 
     this.state ={
-      photos: []
+      photos: [],
+      audio: [],
+      videos: []
     };
 
   }
@@ -15,6 +17,18 @@ class PhotoStore {
   onUpdatePhotos(photo) {
     //TODO: Push the new updated location
     this.setState({ photos: this.state.photos.concat(photo)});
+  }
+
+  onUpdateAudio(audio) {
+    this.setState({
+      audio: this.state.audio.concat(audio)
+    });
+  }
+
+  onUpdateVideo(video) {
+    this.setState({
+      videos: this.state.videos.concat(video)
+    });
   }
 
   onFetchPhotos() {

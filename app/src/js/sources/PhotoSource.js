@@ -5,31 +5,21 @@ import AuthStore from 'AuthStore';
 export default class PhotoSource {
 
   fetch_photos(location_id) {
-    /* var mockData = [
-       {
-       src: 'https://www.burgessyachts.com/media/adminforms/locations/n/e/new_york_1.jpg',
-       caption: 'Toronto'
-       },
-       ];
-       // returning a Promise because that is what fetch does.
-       return new Promise(function (resolve, reject) {
-       // simulate an asynchronous action where data is fetched on
-       // a remote server somewhere.
-       setTimeout(function () {
-       // resolve with some mock data
-       resolve(mockData);
-       }, 250);
-       }); */
-    return axios.get(Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/photos/')
-                .then((photos) => photos.data)
-                .catch((error) => {
-                  throw error;
-                });
-
-  } 
+    const base_url = Global.backend_url + AuthStore.getUid();
+    return axios.get(base_url + '/locations/' + location_id + '/files/')
+      .then((files) => {
+        files.data.map((file) => {
+            file.src_url = base_url + "/" + file.file_path_s3;
+        });
+        return files.data;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 
   update_caption(location_id, photo_id, new_caption) {
-    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/photos/' + photo_id + '/';
+    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/files/' + photo_id + '/';
     return axios.patch(url, {description: new_caption})
       .then((response) => response)
       .catch((error) => {

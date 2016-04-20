@@ -9,20 +9,46 @@ import PhotoActions from 'PhotoActions';
 
 export default class DropZone extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.upload_type = props.upload_type;
+    console.log("Dropzone", props.upload_type);
+    this.descriptor = this.upload_type;
+    if (this.upload_type === 'Photo') {
+      this.acceptedFiles = 'image/*';
+    } else if (this.upload_type === 'Audio') {
+      this.acceptedFiles = 'audio/*';
+    } else if (this.upload_type === 'Video') {
+      this.acceptedFiles = 'video/*';
+    }
+    console.log("Accepted files", this.acceptedFiles);
+  }
+
   render() {
+
+    if (!this.acceptedFiles) {
+      console.log("Not correct upload type");
+      return (
+        <div>
+        </div>
+      );
+    }
 
     let location_id = this.props.location_id;
 
     var djsConfig = {
-      paramName: 'photo',
+      paramName: 'file',
       addRemoveLinks: true,
-      acceptedFiles: "image/jpeg,image/png,image/gif"
+      acceptedFiles: this.acceptedFiles,
+      params: {
+        descriptor: this.descriptor
+      }
     };
 
     var componentConfig = {
       iconFiletypes: ['.jpg', '.png', '.gif'],
       showFiletypeIcon: true,
-      postUrl: Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/photos/'
+      postUrl: Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/files/'
     };
 
     var removeFile = function () {
@@ -74,9 +100,9 @@ export default class DropZone extends React.Component {
     };
 
     return (
-        <DropzoneComponent config={componentConfig}
-      eventHandlers={eventHandlers}
-      djsConfig={djsConfig} />,
+      <DropzoneComponent config={componentConfig}
+        eventHandlers={eventHandlers}
+        djsConfig={djsConfig} />,
     );
   }
 }
