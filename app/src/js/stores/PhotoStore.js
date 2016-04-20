@@ -14,21 +14,30 @@ class PhotoStore {
 
   }
 
-  onUpdatePhotos(photo) {
+  onUpdatePhotos(photos) {
     //TODO: Push the new updated location
-    this.setState({ photos: this.state.photos.concat(photo)});
+    this.setState({
+      photos: photos
+    });
+    // this.setState({ photos: this.state.photos.concat(photo)});
   }
 
   onUpdateAudio(audio) {
     this.setState({
-      audio: this.state.audio.concat(audio)
+      audio: audio
     });
+    // this.setState({
+    //   audio: this.state.audio.concat(audio)
+    // });
   }
 
-  onUpdateVideo(video) {
+  onUpdateVideo(videos) {
     this.setState({
-      videos: this.state.videos.concat(video)
+      videos: videos
     });
+    // this.setState({
+    //   videos: this.state.videos.concat(video)
+    // });
   }
 
   onFetchPhotos() {

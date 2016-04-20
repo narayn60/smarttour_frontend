@@ -14,9 +14,7 @@ import UserTourActions from 'UserTourActions';
 
 import EditTourForm from '../sub/EditTourForm';
 import NotesList from '../sub/NotesList';
-import PhotoItem from '../sub/PhotoItem';
-import AudioItem from '../sub/AudioItem';
-import VideoItem from '../sub/VideoItem';
+import FileItem from '../sub/FileItem';
 import SortableTable from '../sub/SortableTable';
 import TourMap from '../gmaps/TourMap';
 
@@ -115,12 +113,14 @@ export default class EditLocationOrderContainer extends React.Component {
 
     const sections = [
       <EditTourForm values={this.props.locations[currentlySelected]} tour_id={this.tour_id} location_info={location_info} />,
-      <PhotoItem photos={this.props.photos} location_info={this.props.locations[currentlySelected]}/>,
+      <FileItem files={this.props.photos} location_info={this.props.locations[currentlySelected]} file_type="Photo"/>,
       <NotesList location={this.props.locations[currentlySelected]} tour_id={this.tour_id} notes={this.props.notes}/>,
       "Text placeholder",
-      <AudioItem audio={this.props.audio} location_info={this.props.locations[currentlySelected]}/>,
-      <VideoItem videos={this.props.videos} location_info={this.props.locations[currentlySelected]}/>
+      <FileItem files={this.props.audio} location_info={this.props.locations[currentlySelected]} file_type="Audio"/>,
+      <FileItem files={this.props.videos} location_info={this.props.locations[currentlySelected]} file_type="Video"/>
     ];
+    
+    console.log("Should re-render editlocationorder");
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
 

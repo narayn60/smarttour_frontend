@@ -28,7 +28,7 @@ export default class PhotoSource {
   }
 
   delete_photo(location_id, photo_id) {
-    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/photos/' + photo_id + '/';
+    const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/files/' + photo_id + '/';
     return axios.delete(url)
       .then((response) => {
         return response;
