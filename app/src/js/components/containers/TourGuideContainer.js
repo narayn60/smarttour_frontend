@@ -64,6 +64,8 @@ export default class TourGuideContainer extends React.Component {
 
   render() {
 
+    console.log("Guides", this.state.guides);
+
     //Search
     var genres = ['Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different'];
     const genreComponent = genres.map((genre, i) => <MenuItem eventKey={i} key={i} onClick={this.filterByName.bind(this, genre)}>{genre}</MenuItem>);

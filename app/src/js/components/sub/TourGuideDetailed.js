@@ -20,7 +20,7 @@ export default class TourGuideDetailed extends React.Component {
     this.state = PersonalTourStore.getState();
     this.guide_id = props.guide_id;
     this.state = {
-      chosenSection: 0
+      chosenSection: null
     };
   }
 
@@ -111,8 +111,12 @@ export default class TourGuideDetailed extends React.Component {
 
     const followers = this.state.followers.map((follower) => (<Follower guide={follower} />));
     const following = this.state.following.map((follower) => (<Follower guide={follower} />));
-    const OptionalComponents = [tourComponent, followers, following];
 
+    const OptionalComponents = {
+      'tour': tourComponent,
+      'followers': followers,
+      'following': following
+    };
     const GuideTableComponent = OptionalComponents[this.state.chosenSection];
 
     var followingButton = (
@@ -121,10 +125,8 @@ export default class TourGuideDetailed extends React.Component {
       </a>
     );
 
-    console.log("Re-render");
-
     const userEmail = guide.email;
-    console.log("Followers length", this.state.followers);
+    console.log("Followers length", this.state);
     if (this.state.followers.length > 0) {
       for (let follower of this.state.followers) {
         if (follower !== undefined) {
@@ -173,15 +175,15 @@ export default class TourGuideDetailed extends React.Component {
                 </Row>
               </div>
               <Row class="profile-stats">
-                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(0)}>
+                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick('tour')}>
                   <div class="stats-value red">{this.state.tours.length}</div>
                   <div class="stats-title">TOURS</div>
                 </Col>
-                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(1)}>
+                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick('followers')}>
                   <div class="stats-value red">284</div>
                   <div class="stats-title">FOLLOWING</div>
                 </Col>
-                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(2)}>
+                <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick('following')}>
                   <div class="stats-value red">803</div>
                   <div class="stats-title">FOLLOWERS</div>
                 </Col>

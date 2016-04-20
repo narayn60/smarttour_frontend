@@ -5,9 +5,14 @@ import AuthStore from 'AuthStore';
 export default class GuideSource {
 
   fetch() {
-    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/')
-      .then((users) => {
-        return users.data;
+    const base_url = Global.backend_url + AuthStore.getUid();
+    return axios.get(base_url + '/guides/')
+      .then((guides) => {
+        guides.data.map((guide) => {
+          guide.img_url = base_url + "/" + guide.photo_path_s3;
+          guide.cover_url = base_url + "/" + guide.cover_photo_path_s3;
+        });
+        return guides.data;
       })
       .catch((error) => {
         throw error;
@@ -28,8 +33,13 @@ export default class GuideSource {
   }
 
   fetchMyFollowers() {
-    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/my_followers/')
+    const base_url = Global.backend_url + AuthStore.getUid();
+    return axios.get(base_url + '/guides/my_followers/')
       .then((guides) => {
+        guides.data.map((guide) => {
+          guide.img_url = base_url + "/" + guide.photo_path_s3;
+          guide.cover_url = base_url + "/" + guide.cover_photo_path_s3;
+        });
         return guides.data;
       })
       .catch((error) => {
@@ -38,8 +48,13 @@ export default class GuideSource {
   }
 
   fetchMyFollowing() {
-    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/my_following/')
+    const base_url = Global.backend_url + AuthStore.getUid();
+    return axios.get(base_url + '/guides/my_following/')
       .then((guides) => {
+        guides.data.map((guide) => {
+          guide.img_url = base_url + "/" + guide.photo_path_s3;
+          guide.cover_url = base_url + "/" + guide.cover_photo_path_s3;
+        });
         return guides.data;
       })
       .catch((error) => {
@@ -48,8 +63,13 @@ export default class GuideSource {
   }
 
   fetchFollowing(following_ids) {
-    return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/' + following_ids + '/followers/')
+    const base_url = Global.backend_url + AuthStore.getUid();
+    return axios.get(base_url + '/guides/' + following_ids + '/followers/')
       .then((guides) => {
+        guides.data.map((guide) => {
+          guide.img_url = base_url + "/" + guide.photo_path_s3;
+          guide.cover_url = base_url + "/" + guide.cover_photo_path_s3;
+        });
         return guides.data;
       })
       .catch((error) => {
@@ -58,8 +78,13 @@ export default class GuideSource {
   }
 
   fetchFollowers(follower_ids) {
-  return axios.get(Global.backend_url + AuthStore.getUid() + '/guides/' + follower_ids + '/followers/')
+    const base_url = Global.backend_url + AuthStore.getUid();
+    return axios.get(base_url + '/guides/' + follower_ids + '/followers/')
     .then((guides) => {
+      guides.data.map((guide) => {
+        guide.img_url = base_url + "/" + guide.photo_path_s3;
+        guide.cover_url = base_url + "/" + guide.cover_photo_path_s3;
+      });
       return guides.data;
     })
     .catch((error) => {

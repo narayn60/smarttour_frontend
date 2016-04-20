@@ -81,8 +81,8 @@ export default class ProfileContainer extends React.Component {
 
     const dropdownOptions = [
       {text: 'My Tours', class_name: 'fa fa-map', badge: tourLength},
-      {text: 'Followers', class_name: 'fa fa-users', badge: 4},
-      {text: 'Following', class_name: 'fa fa-user', badge: 4},
+      {text: 'Followers', class_name: 'fa fa-users', badge: (JSON.parse(profile.followers)).length},
+      {text: 'Following', class_name: 'fa fa-user', badge: (JSON.parse(profile.following)).length},
       {text: 'Account Settings', class_name: 'fa fa-cog'}
     ];
     const optionSections = dropdownOptions.map((point, i) => {
