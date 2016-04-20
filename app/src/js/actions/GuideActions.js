@@ -26,8 +26,8 @@ class GuideActions {
       dispatch();
       this.stores.GuideSource.fetch_guide(guide_id)
         .then((guide) => {
-          this.fetchFollowers(guide.followers)
-          this.fetchFollowing(guide.following)
+          this.fetchFollowers(guide.followers);
+          this.fetchFollowing(guide.following);
           this.updateGuide(guide);
         })
         .catch((errorMessage) => {
@@ -47,7 +47,7 @@ class GuideActions {
         .catch((errorMessage) => {
           this.guidesFailed(errorMessage);
         });
-    }
+    };
   }
 
   fetchMyFollowing() {
@@ -60,7 +60,7 @@ class GuideActions {
         .catch((errorMessage) => {
           this.guidesFailed(errorMessage);
         });
-    }
+    };
   }
 
   fetchFollowing(following_ids) {
@@ -73,7 +73,7 @@ class GuideActions {
         .catch((errorMessage) => {
           this.guidesFailed(errorMessage);
         });
-    }
+    };
   }
 
   fetchFollowers(follower_ids) {
@@ -86,7 +86,7 @@ class GuideActions {
         .catch((errorMessage) => {
           this.guidesFailed(errorMessage);
         });
-    }
+    };
   }
 
   guidesFailed(errorMessage) {

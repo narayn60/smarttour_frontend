@@ -18,6 +18,9 @@ import PhotoItem from '../sub/PhotoItem';
 import SortableTable from '../sub/SortableTable';
 import TourMap from '../gmaps/TourMap';
 
+import Global from 'Global';
+import AuthStore from 'AuthStore';
+
 
 export default class EditLocationOrderContainer extends React.Component {
 
@@ -61,6 +64,8 @@ export default class EditLocationOrderContainer extends React.Component {
 
   render() {
 
+    const qr_grid = Global.backend_url + AuthStore.getUid() + "/media/tours/" + this.tour_id + "/qrcode_grid";
+
     const location_info = {
       about: this.props.about
     };
@@ -71,6 +76,7 @@ export default class EditLocationOrderContainer extends React.Component {
       return (
         <div class="container">
           No Locations Created for tour
+          <a href={qr_grid}>Re-Download QR codes for tour</a>
         </div>
       );
     }

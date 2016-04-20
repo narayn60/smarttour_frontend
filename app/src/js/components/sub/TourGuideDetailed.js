@@ -60,8 +60,8 @@ export default class TourGuideDetailed extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const guide = this.state.guide;
+    console.log("Guide", guide);
 
     if (!guide) {
       return (

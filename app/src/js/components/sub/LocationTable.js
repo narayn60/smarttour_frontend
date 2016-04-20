@@ -29,8 +29,6 @@ export default class LocationTable extends React.Component {
     const locations = this.props.locations;
     const path = Global.backend_url + AuthStore.getUid() + "/";
 
-    console.log("Location", locations);
-
     var locationTable = locations.map((location, i) =>
       (
         <div onClick={() => this.props.onClick(i)}>

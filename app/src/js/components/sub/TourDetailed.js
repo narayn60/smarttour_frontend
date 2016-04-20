@@ -76,6 +76,8 @@ export default class TourDetailed extends React.Component {
 
     const tour = this.state.tour;
 
+    console.log("State", this.state);
+
     // Case where tour doesn't exist
     if (tour === null) {
       return (
@@ -92,8 +94,8 @@ export default class TourDetailed extends React.Component {
 
     const tour_info = [
       {class: "trophy", text: "Rank 1"},
-      {class: "users", text: "23 Followers"},
-      {class: "map-marker", text: "22 Points"}
+      {class: "users", text: tour.followers + " Followers"},
+      {class: "map-marker", text: this.state.locations.length + " Points"}
     ].map((info) => (
       <li style={{lineHeight: '40px'}}>
         <i class={"fa fa-2x fa-" + info.class} style={{float: 'left', verticalAlign: 'middle', height: '30px', paddingTop: '8px'}}></i>
@@ -157,11 +159,11 @@ export default class TourDetailed extends React.Component {
             </Col>
             <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(1)} style={{textAlign: 'center'}}>
               <div class="stats-value red">284</div>
-              <div class="stats-title">FOLLOWING</div>
+              <div class="stats-title">Followers</div>
             </Col>
             <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(2)} style={{textAlign: 'center'}}>
               <div class="stats-value red">{this.state.tour.reviews.length}</div>
-              <div class="stats-title">REVIEWS</div>
+              <div class="stats-title">Reviews</div>
             </Col>
           </Row>
         </Row>
