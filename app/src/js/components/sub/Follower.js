@@ -13,6 +13,10 @@ export default class Follower extends React.Component {
     const follower = this.props.guide;
     const gravatarSize = 125;
 
+      if (follower === undefined) {
+        return <div></div>
+      }
+
       return (
         <Col md={6}>
           <div class="box box-widget widget-user">
