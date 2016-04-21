@@ -94,6 +94,7 @@ class GuideActions {
       dispatch();
       this.stores.GuideSource.follow(guide)
         .then((guide) => {
+          console.log("update followers + " , guide)
           this.fetchFollowers(guide.followers);
         })
         .catch((errorMessage) => {

@@ -13,11 +13,13 @@ export default class Follower extends React.Component {
     const follower = this.props.guide;
     const gravatarSize = 125;
 
-    console.log("Follower", follower);
-    console.log("Parsed", JSON.parse(follower.followers));
     if (follower === undefined) {
       return <div></div>;
     }
+
+
+    console.log("Follower", follower);
+    console.log("Parsed", JSON.parse(follower.followers));
 
     return (
       <Col md={6}>

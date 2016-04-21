@@ -125,11 +125,12 @@ export default class TourGuideDetailed extends React.Component {
       </a>
     );
 
-    const userEmail = guide.email;
+    const userEmail = AuthStore.getEmail();
     console.log("Followers length", this.state);
     if (this.state.followers.length > 0) {
       for (let follower of this.state.followers) {
         if (follower !== undefined) {
+          console.log(follower.email + "  " + userEmail)
           if (follower.email === userEmail) {
             followingButton = (
               <a href="#" class="btn btn-palegreen btn-sm  btn-follow" onClick={() => this.clickUnfollow()}>
@@ -181,11 +182,11 @@ export default class TourGuideDetailed extends React.Component {
                 </Col>
                 <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick('followers')}>
                   <div class="stats-value red">284</div>
-                  <div class="stats-title">FOLLOWING</div>
+                  <div class="stats-title">FOLLOWERS</div>
                 </Col>
                 <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick('following')}>
                   <div class="stats-value red">803</div>
-                  <div class="stats-title">FOLLOWERS</div>
+                  <div class="stats-title">FOLLOWING</div>
                 </Col>
               </Row>
             </Row>
