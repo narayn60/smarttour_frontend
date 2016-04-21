@@ -28,7 +28,9 @@ export default class PhotoItem extends React.Component {
 
   componentWillReceiveProps() {
     this.setState({
-      files: this.props.files
+      files: this.props.files,
+      gallery_selected: true,
+      showDropzone: false
     });
   }
 
@@ -61,7 +63,7 @@ export default class PhotoItem extends React.Component {
         <div>
           <h4>{this.props.file_type + 's'}</h4>
           <hr/>
-        <DropZone location_id={this.props.location_info.id} upload_type={this.props.file_type}/>
+          <DropZone location_id={this.props.location_info.id} upload_type={this.props.file_type}/>
           No Files
         </div>
       );
@@ -90,7 +92,7 @@ export default class PhotoItem extends React.Component {
         <DropZone location_id={this.props.location_info.id} upload_type={this.props.file_type}/>
       </Row> ) : "";
 
-    const files = this.state.files.map((file, i) => {
+    const files = this.props.files.map((file, i) => {
       const ref = "form" + i;
       return (
         <Row>

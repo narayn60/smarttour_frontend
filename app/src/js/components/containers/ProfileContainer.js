@@ -68,7 +68,6 @@ export default class ProfileContainer extends React.Component {
     }
 
     const profile = this.state.profile[0];
-    console.log("Profile", profile);
     const userEmail = profile.email;
     const userName = profile.full_name;
     const tourLength = this.state.tours.length;

@@ -101,10 +101,10 @@ export default class EditLocationOrderContainer extends React.Component {
             <i class="fa fa-file-text"></i> Attatched Text <Badge pullRight>0</Badge>
           </NavItem>
           <NavItem eventKey={4} title="Audio">
-            <i class="fa fa-music"></i> Audio <Badge pullRight>0</Badge>
+            <i class="fa fa-music"></i> Audio <Badge pullRight>{this.props.audio.length}</Badge>
           </NavItem>
           <NavItem eventKey={5} title="Videos">
-            <i class="fa fa-video-camera"></i> Videos <Badge pullRight>0</Badge>
+            <i class="fa fa-video-camera"></i> Videos <Badge pullRight>{this.props.videos.length}</Badge>
           </NavItem>
         </Nav>
       </div>

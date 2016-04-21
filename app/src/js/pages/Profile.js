@@ -1,14 +1,13 @@
 import React from 'react';
-import CreateTourForm from '../components/sub/CreateTourForm';
-import { Row, Col, Grid } from "react-bootstrap";
+import ProfileContainer from '../components/containers/ProfileContainer';
 
-export default class CreateTour extends React.Component {
+export default class Profile extends React.Component {
 
   render() {
-
-    return(
-      <div class="backgroundImageContainer" id="create_tour_background"></div>
-     )
+    return (
+        <div style={{marginTop: '16px', paddingBottom: '16px'}}>
+        <ProfileContainer />
+        </div>
+    );
   }
- }
-   
+}
