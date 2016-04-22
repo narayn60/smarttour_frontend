@@ -22,7 +22,7 @@ export default class TourGuideContainer extends React.Component {
     return GuideStore.getState();
   }
 
-  componentWillMount() {
+  componentDidMount() {
     GuideStore.listen(this.onChange.bind(this));
     GuideActions.fetchGuides();
   }
@@ -64,7 +64,14 @@ export default class TourGuideContainer extends React.Component {
 
   render() {
 
-    console.log("Guides", this.state.guides);
+    if (!this.state.guides) {
+      return (
+        <div>
+          <i class="fa fa-spin fa-spinner"></i>
+          Loading Guides
+        </div>
+      );
+    }
 
     //Search
     var genres = ['Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different'];
@@ -79,6 +86,7 @@ export default class TourGuideContainer extends React.Component {
       GuidesComponent = filteredGuides.map((guide, i) => <TourGuide key={i} guide={guide}/>);
     }
 
+    console.log("Should be able to render tour container");
 
     return (
       <div>

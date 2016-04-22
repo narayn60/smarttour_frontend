@@ -39,6 +39,9 @@ export default class ProfileContainer extends React.Component {
   componentWillMount() {
     UserTourStore.listen(this.onChange.bind(this));
     ProfileStore.listen(this.onChange.bind(this));
+  }
+
+  componentDidMount() {
     UserTourActions.fetchTours();
     ProfileActions.getProfile();
   }
@@ -67,7 +70,7 @@ export default class ProfileContainer extends React.Component {
       );
     }
 
-    const profile = this.state.profile[0];
+    const profile = this.state.profile;
     const userEmail = profile.email;
     const userName = profile.full_name;
     const tourLength = this.state.tours.length;

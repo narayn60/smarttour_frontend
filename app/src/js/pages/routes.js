@@ -1,4 +1,3 @@
-import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import App from './App';
 import About from './About';
@@ -15,6 +14,7 @@ import TourDesign from './TourDesign';
 import axios from 'axios';
 
 function LoginRedirect(nextState, replace) {
+  console.log("LoginRedirect", process.env.BROWSER);
   if (process.env.BROWSER) {
     if (!AuthStore.isLoggedIn()) {
       replace({
@@ -31,7 +31,6 @@ module.exports = (
     <Route path="/about" component={About}/>
     <Route path="/login" component={Login}/>
 
-    <Route onEnter={LoginRedirect}>
       <Route path='/profile' component={Profile}/>
       <Route path="/browse" component={Browse}/>
       <Route path="/browse/tours/:id" component={DetailedTour}/>
@@ -39,10 +38,12 @@ module.exports = (
       <Route path="/guides/:id" component={DetailedGuide}/>
       <Route path='/createtour' component={CreateTour}/>
       <Route path='/mytours/:id' component={TourDesign}/>
-    </Route>
   </Route>
 );
 
 
 
 
+
+/* <Route onEnter={LoginRedirect}>
+   </Route> */

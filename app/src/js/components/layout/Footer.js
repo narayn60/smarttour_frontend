@@ -4,6 +4,7 @@ export default class Footer extends React.Component {
 
   render() {
 
+    //TODO: Change these to links
     return (
       <footer class="footer-distributed">
         <div class="footer-right">

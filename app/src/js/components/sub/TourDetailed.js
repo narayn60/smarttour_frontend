@@ -44,7 +44,7 @@ export default class TourDetailed extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     LocationStore.listen(this.onChange.bind(this));
     TourStore.listen(this.onChange.bind(this));
     this.setState({'rank': 'gold'});

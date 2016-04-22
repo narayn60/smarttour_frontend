@@ -2,8 +2,6 @@ web:
   build: ./app
   volumes:
     - "./app:/src/app"
-  # ports:
-  #   - "3030:3000"
   command: npm run start:prod
   links:
     - redis:redis

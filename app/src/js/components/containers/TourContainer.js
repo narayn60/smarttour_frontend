@@ -27,7 +27,7 @@ export default class TourContainer extends React.Component {
     return TourStore.getState();
   }
 
-  componentWillMount() {
+  componentDidMount() {
     TourStore.listen(this.onChange.bind(this));
     TourActions.fetchTours();
   }
@@ -66,8 +66,15 @@ export default class TourContainer extends React.Component {
 
 
   render() {
-    //TODO get from source
-    //Search
+
+    if (!this.state.tours) {
+      return (
+          <div>
+          <i class="fa fa-spin fa-spinner"></i>
+          Loading Tours
+        </div>
+      );
+    }
 
     var ToursComponent = this.state.tours.map((tour, i) => <Tour key={i} tour={tour}/>);
     var searchString = this.state.searchString.trim().toLowerCase();

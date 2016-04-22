@@ -2,6 +2,9 @@ var js_base = "src/js/";
 var store_base = js_base + "stores/";
 var action_base = js_base + "actions/";
 var source_base = js_base + "sources/";
+var path = require('path');
+
+var temp = path.join(__dirname, '../node_modules/react');
 
 module.exports = {
   Global:  js_base + 'Global',
@@ -42,5 +45,7 @@ module.exports = {
   ProfileSource: source_base + 'ProfileSource',
 
   alt_base: js_base + 'alt',
-  base_css: "src/css/base.scss"
+  base_css: "src/css/base.scss",
+
+  react: temp
 }

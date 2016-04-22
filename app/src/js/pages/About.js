@@ -2,11 +2,12 @@
 import React from 'react';
 import { Link } from "react-router";
 import Service from '../components/sub/Service';
-import { Row, Col } from 'react-bootstrap';
 
 export default class About extends React.Component {
   
   render() {
+
+    console.log("Should render about page");
 
     const path = [
                 "https://static-unitag.com/images/help/QRCode/qrcode.png?mh=07b7c2a2",

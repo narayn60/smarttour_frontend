@@ -66,7 +66,9 @@ var config = {
     }),
     new webpack.ProvidePlugin({
       $: "jquery",
-      jQuery: "jquery"
+      jQuery: "jquery",
+      react: "react",
+      React: "react"
     }),
     // new ExtractTextPlugin( "css/bundle.css", {
     //   allChunks: true

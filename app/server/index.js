@@ -42,7 +42,8 @@ const server = global.server = express();
 //     },
 //     { from: /\/auth\/google/, to: '/auth/google'},
 //     { from: /\/user/, to: '/user'},
-//     { from: /\logout/, to: '/logout'}
+//     { from: /\/logout/, to: '/logout'},
+//     { from: /\//, to: '/'}
 //   ]
 // }));
 server.use(compression());
@@ -61,6 +62,7 @@ server.use(session({
   store: new RedisStore(redis_options),
   secret: 'keyboard cat'
 }));
+/* server.use(session()); */
 // server.use(expressSession()); // server.use(expressSession({
 //   // secret: serverConfig.crypto,
 //   secret: "dkshljfhs", //TODO change this soon
@@ -144,7 +146,7 @@ server.get('/auth/google',
                'openid'
              ]
            })
-          );
+);
 
 server.get('/auth/google/callback',
            passport.authenticate('google'),
@@ -178,7 +180,7 @@ server.use(express.static('public'));
 
 // server.get('/browse', skipServerRender);
 
-server.get('*', async (req, res, next) => {
+server.get('*', (req, res, next) => {
 
   console.log("User is", req.user);
   // auth first
@@ -187,11 +189,15 @@ server.get('*', async (req, res, next) => {
   }
 
   match({ routes: routes, location: req.url }, (err, redirect, props) => {
+    console.log("Trying to match");
     if (err) {
+      console.log("Error in match");
       res.status(500).send(err.message);
     } else if (props) {
+      console.log("Props exists");
       let serverHtml = Iso.render(renderToString(<RouterContext {...props}/>), alt.flush());
-      res.send(renderPage(serverHtml));
+      // let serverHtml = render(renderToString(<RouterContext {...props}/>));
+      res.status(200).send(renderPage(serverHtml));
     } else {
       res.status(404).send('Not Found');
     }
@@ -199,15 +205,17 @@ server.get('*', async (req, res, next) => {
 });
 
 function renderPage(serverHtml) {
+  console.log("Trying to render page");
   return `
     <!DOCTYPE html>
     <html>
         <head>
             <meta charset=utf-8/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Jaffna Tour</title>
-            <link href="css/vendor.min.css" rel="stylesheet">
-            <link href="css/bundle.css" rel="stylesheet">
-            <link href="fonts/fonts.css" rel="stylesheet">
+            <link href="/css/vendor.min.css" rel="stylesheet">
+            <link href="/css/bundle.css" rel="stylesheet">
+            <link href="/fonts/fonts.css" rel="stylesheet">
             <style type="text/css" >
             .js #fouc { display: none; }
             </style>
@@ -218,11 +226,11 @@ function renderPage(serverHtml) {
         <body>
             <div id="fouc">
                 <div id=app>
-                  ${serverHtml}
+                      ${serverHtml}
                 </div>
             </div>
         </body>
-        <script src="bundle.min.js"></script>
+        <script src="/bundle.min.js"></script>
         <script type="text/javascript">
         document.getElementById("fouc").style.display="block";
         </script>

@@ -57,7 +57,7 @@ export default class CreateTourForm extends React.Component {
   }
 
 
-  componentWillMount() {
+  componentDidMount() {
     FormStore.listen(this.onChange.bind(this));
   }
 

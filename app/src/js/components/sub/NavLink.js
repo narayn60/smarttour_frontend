@@ -13,9 +13,9 @@ export class NavLink extends React.Component {
 export class NavHeaderLink extends React.Component {
   render() {
     return (
-        <LinkContainer to={{ pathname: this.props.path}}>
+      <LinkContainer to={{ pathname: this.props.path}}>
         <NavItem eventKey={this.props.key}>{this.props.name}</NavItem>
-        </LinkContainer>
+      </LinkContainer>
     );
   }
 }

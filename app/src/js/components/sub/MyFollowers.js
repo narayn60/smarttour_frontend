@@ -23,8 +23,12 @@ export default class MyFollowers extends React.Component {
 
   componentWillMount() {
     GuideStore.listen(this.onChange.bind(this));
+  }
+
+  componentDidMount() {
     GuideActions.fetchMyFollowers();
   }
+
 
   componentWillUnmount() {
     GuideStore.unlisten(this.onChange.bind(this));

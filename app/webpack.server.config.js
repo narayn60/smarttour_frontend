@@ -68,6 +68,12 @@ module.exports = {
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      react: "react",
+      React: "react"
+    }),
     new ExtractTextPlugin( path.join("../", "public", "css", "bundle.css"), {
       allChunks: true
     })

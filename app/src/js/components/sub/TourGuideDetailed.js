@@ -35,7 +35,7 @@ export default class TourGuideDetailed extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     PersonalTourStore.listen(this.onChange.bind(this));
     GuideStore.listen(this.onChange.bind(this));
     PersonalTourActions.fetchTours(this.guide_id);

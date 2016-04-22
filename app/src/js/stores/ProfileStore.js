@@ -12,15 +12,24 @@ class ProfileStore {
     };
   }
 
-  onGetProfile() {
+  // onGetProfile() {
+  //   this.setState({
+  //     profile: null
+  //   });
+  // }
+
+  onUpdateProfile(profile) {
+    console.log("OnUpdateProfile here", profile);
     this.setState({
-      profile: null
+      profile: profile
     });
   }
 
-  onUpdateProfile(profile) {
+  onProfileFailed(errorMessage) {
+    console.log("Profile failed", this.state.profile);
     this.setState({
-      profile: profile
+      profile: null,
+      errorMessage: errorMessage
     });
   }
 }

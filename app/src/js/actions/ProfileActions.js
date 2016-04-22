@@ -10,21 +10,38 @@ class ProfileActions {
     this.generateActions('updateProfile');
   }
 
+  // updateProfile(profile) {
+  //   console.log("Should update profile");
+  //   return profile;
+  // }
+
   getProfile() {
-    return (dispatch) => {
-      dispatch();
-      this.source.ProfileSource.get_profile()
-          .then((profile) => {
-            this.updateProfile(profile);
-          })
-          .catch((errorMessage) => {
-            console.log('ProfileAction error: ', errorMessage);
-            this.profileFailed(errorMessage);
-          });
-    };
+    return this.source.ProfileSource.get_profile()
+      .then((profile) => {
+        console.log("Updated profile", profile);
+        this.updateProfile(profile);
+        // console.log("UpdateProfile", this.updateProfile(profile));
+      })
+      .catch((errorMessage) => {
+        console.log('ProfileAction error: ', errorMessage);
+        this.profileFailed(errorMessage);
+      });
+    // return (dispatch) => {
+    //   dispatch();
+    //   this.source.ProfileSource.get_profile()
+    //       .then((profile) => {
+    //         console.log("Updated profile");
+    //         this.updateProfile(profile);
+    //       })
+    //       .catch((errorMessage) => {
+    //         console.log('ProfileAction error: ', errorMessage);
+    //         this.profileFailed(errorMessage);
+    //       });
+    // };
   }
 
   profileFailed(errorMessage) {
+    console.log("PRofile failed", errorMessage);
     return errorMessage;
   }
 
