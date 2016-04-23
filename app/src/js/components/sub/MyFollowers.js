@@ -21,11 +21,8 @@ export default class MyFollowers extends React.Component {
     return GuideStore.getState();
   }
 
-  componentWillMount() {
-    GuideStore.listen(this.onChange.bind(this));
-  }
-
   componentDidMount() {
+    GuideStore.listen(this.onChange.bind(this));
     GuideActions.fetchMyFollowers();
   }
 

@@ -6,6 +6,8 @@
 *** DONE Fix issue where can't reload page on Docker
 CLOSED: [2016-04-23 Sat 14:08]
 *** TODO Hook up intro.js or similar
+*** TODO Audio recorder
+*** TODO Fix reload of everything
 
 ** New pages
 *** TODO Create Followers page

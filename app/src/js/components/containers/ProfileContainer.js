@@ -36,12 +36,9 @@ export default class ProfileContainer extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     UserTourStore.listen(this.onChange.bind(this));
     ProfileStore.listen(this.onChange.bind(this));
-  }
-
-  componentDidMount() {
     UserTourActions.fetchTours();
     ProfileActions.getProfile();
   }
