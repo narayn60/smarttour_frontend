@@ -3,18 +3,21 @@
 ** Major Aims
 *** TODO Redesign the website
 *** TODO Hook up to backend
-*** TODO Fix issue where can't reload page on Docker
+*** DONE Fix issue where can't reload page on Docker
+CLOSED: [2016-04-23 Sat 14:08]
 *** TODO Hook up intro.js or similar
 
 ** New pages
 *** TODO Create Followers page
 
 ** Profile Page
-*** TODO Hook up account settings
+*** TODO Blank out location if it has been reported that the QR code doesn't exist
+*** DONE Hook up account settings
+CLOSED: [2016-04-23 Sat 14:08]
 *** DONE Followers
 CLOSED: [2016-04-17 Sun 12:09]
-*** TODO Blank out location if it has been reported that the QR code doesn't exist
-*** TODO Ability to upload audio to a location
+*** DONE Ability to upload audio to a location
+CLOSED: [2016-04-23 Sat 14:08]
 **** Maybe able to do this through the dropzone component
 *** DONE Upload Tour Photo
 CLOSED: [2016-04-16 Sat 17:55]
@@ -54,7 +57,8 @@ CLOSED: [2016-04-16 Sat 17:55]
 CLOSED: [2016-04-08 Fri 11:39]
 
 ** Detailed Guide Page
-*** TODO Move TourGuideDetailed.js to DetailedGuideContainer.js
+*** DONE Move TourGuideDetailed.js to DetailedGuideContainer.js
+CLOSED: [2016-04-23 Sat 14:15]
 
 ** Browse Tours Page
 *** TODO Change from small widgets to page wide widgets with a bit more information

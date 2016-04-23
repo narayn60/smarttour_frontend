@@ -6,14 +6,14 @@ import GuideActions from 'GuideActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
 import Global from 'Global';
 import AuthStore from 'AuthStore';
-import Follower from './Follower';
+import Follower from '../sub/Follower';
 
 import { Grid, Row, Col, Image, Button, Collapse, Well } from "react-bootstrap";
 import { Router, Route, Link, browserHistory } from 'react-router';
 
 
 
-export default class TourGuideDetailed extends React.Component {
+export default class DetailedGuideContainer extends React.Component {
 
   constructor(props) {
     super(props);
@@ -198,4 +198,4 @@ export default class TourGuideDetailed extends React.Component {
   }
 }
 
-export default connectToStores(TourGuideDetailed);
+export default connectToStores(DetailedGuideContainer);
