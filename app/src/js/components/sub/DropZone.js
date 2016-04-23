@@ -12,7 +12,6 @@ export default class DropZone extends React.Component {
   constructor(props) {
     super(props);
     this.upload_type = props.upload_type;
-    console.log("Dropzone", props.upload_type);
     this.descriptor = this.upload_type;
     if (this.upload_type === 'Photo') {
       this.acceptedFiles = 'image/*';
@@ -21,7 +20,6 @@ export default class DropZone extends React.Component {
     } else if (this.upload_type === 'Video') {
       this.acceptedFiles = 'video/*';
     }
-    console.log("Accepted files", this.acceptedFiles);
   }
 
   render() {

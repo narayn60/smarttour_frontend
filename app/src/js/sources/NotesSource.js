@@ -18,7 +18,6 @@ export default class NotesSource {
     const url = Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/locations/' + location_id + '/';
     return axios.patch(url, values)
       .then((response) => {
-        console.log(response);
         return response;
       })
       .catch((error) => {

@@ -71,8 +71,6 @@ export default class AccountSettings extends React.Component {
 
   render() {
 
-    console.log("Profile", this.props.profile);
-
     const deleteModal = (
       <Modal show={this.state.showDeleteModal} onHide={() => this.__closeModal('showDeleteModal')}>
         <Modal.Header closeButton>

@@ -8,6 +8,7 @@ class AuthStore {
     this.user= {
       id: null,
       id_token: null,
+      refresh_token: null,
       token: null,
       name: null,
       logo: null,

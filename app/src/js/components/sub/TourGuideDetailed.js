@@ -126,11 +126,9 @@ export default class TourGuideDetailed extends React.Component {
     );
 
     const userEmail = AuthStore.getEmail();
-    console.log("Followers length", this.state);
     if (this.state.followers.length > 0) {
       for (let follower of this.state.followers) {
         if (follower !== undefined) {
-          console.log(follower.email + "  " + userEmail)
           if (follower.email === userEmail) {
             followingButton = (
               <a href="#" class="btn btn-palegreen btn-sm  btn-follow" onClick={() => this.clickUnfollow()}>

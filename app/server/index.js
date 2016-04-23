@@ -10,14 +10,12 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from '../src/js/pages/routes';
 
-// import auth_setup from './auth';
 import authConfig from './config/auth';
 
 
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import passportGoogle from 'passport-google-oauth';
-import history from 'connect-history-api-fallback';
 
 import alt from 'alt_base';
 
@@ -79,6 +77,7 @@ const getInfoFromUser = function setupUserInfo(user) {
     name: user.displayName,
     logo: '',
     id_token: user.id_token,
+    refresh_token: user.refresh_token,
     token: user.token,
     email: user.emails[0].value
   };
@@ -113,8 +112,11 @@ passport.use(new passportGoogle.OAuth2Strategy({
   clientSecret: authConfig.googleAuth.clientSecret,
   callbackURL: authConfig.googleAuth.callbackURL
 }, (accessToken, refreshToken, X, profile, done) => {
+  console.log("Refresh token is", refreshToken);
   const result = Object.assign(profile, { id_token: X.id_token,
-                                          token: accessToken });
+                                          token: accessToken,
+                                          refresh_token: refreshToken
+                                        });
   return done(null, getInfoFromUser(result));
 }));
 
@@ -139,6 +141,8 @@ const socialUserRedirect = (req, res) => {
 // GET /auth/google
 server.get('/auth/google',
            passport.authenticate('google', {
+             accessType: 'offline',
+             prompt: 'consent',
              scope: [
                'https://www.googleapis.com/auth/plus.login',
                'https://www.googleapis.com/auth/userinfo.email',

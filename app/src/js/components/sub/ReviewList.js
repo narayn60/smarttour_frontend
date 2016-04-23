@@ -10,8 +10,6 @@ export default class ReviewList extends React.Component {
 
   render() {
 
-    console.log("Reviews are", this.props.reviews);
-
     const base_url = Global.backend_url + AuthStore.getUid() + "/";
 
     const reviews = this.props.reviews.map((review, i) => {

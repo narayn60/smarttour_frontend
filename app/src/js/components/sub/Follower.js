@@ -18,9 +18,6 @@ export default class Follower extends React.Component {
     }
 
 
-    console.log("Follower", follower);
-    console.log("Parsed", JSON.parse(follower.followers));
-
     return (
       <Col md={6}>
         <div class="box box-widget widget-user">

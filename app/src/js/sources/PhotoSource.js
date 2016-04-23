@@ -34,7 +34,6 @@ export default class PhotoSource {
         return response;
       })
       .catch((error) => {
-        console.log(error);
         throw error;
       });
   }
