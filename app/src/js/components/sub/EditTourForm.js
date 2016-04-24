@@ -22,6 +22,7 @@ export default class EditTourForm extends React.Component {
     const formValue = this.refs.form.getValue();
     const location_id = this.props.values.id;
     let update_value = {
+      name: formValue.name,
       about: formValue.about
     };
     NotesActions.patchAbout(update_value, this.props.tour_id, location_id);
@@ -50,7 +51,7 @@ export default class EditTourForm extends React.Component {
       template: formLayout,
       fields: {
         name: {
-          disabled: true
+          disabled: false
         },
         longitude: {
           disabled: true

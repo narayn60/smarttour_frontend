@@ -5,26 +5,26 @@ class AuthStore {
   constructor() {
     this.bindActions(AuthActions);
 
-    this.user= {
-      id: null,
-      id_token: null,
-      refresh_token: null,
-      token: null,
-      name: null,
-      logo: null,
-      provider: null,
-      email: null
-    };
-
     // this.user= {
-    //   id: 1,
-    // id_token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImFiYzZhY2ZhNjFhZGIyMDhjYTk1MjRhNzdlMGNiMTM0OTFkZWM4NDMifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhdF9oYXNoIjoiYW9VS3FucHpDTDhVWnZLSzA2T3hYZyIsImF1ZCI6Ijk4MTU2NzMyMzU5Ni1sNHNwaTMyM2J1ajl0MTl2dDh2ZmZtdWRnaWluZDdoai5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwNDAxMzEzNTk2MDQ5ODgwNDgxNiIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5ODE1NjczMjM1OTYtbDRzcGkzMjNidWo5dDE5dnQ4dmZmbXVkZ2lpbmQ3aGouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJlbWFpbCI6ImphZmZuYWxhYkBnbWFpbC5jb20iLCJpYXQiOjE0NjEzNDU5MjQsImV4cCI6MTQ2MTM0OTUyNCwibmFtZSI6IkphZmZuYSBUZWFtIiwiZ2l2ZW5fbmFtZSI6IkphZmZuYSIsImZhbWlseV9uYW1lIjoiVGVhbSIsImxvY2FsZSI6ImVuIn0.TzmHRk18C-wpKV-6BjN8-eeRQkIrvc4G477G6HDIhsNpGEqqjdP8fpx-Q9YjSaHjJ709Qk1esi0RgHroVlcjoNSZmy2AXhD0t3MgbOxrIFaAS4R9etAwRJRkTNFanx-m4-tDUJzwxRlqCB5GuRM8HQ9xd76qt3lltocTs7dCxsE6m9NRQE-2HlYcow2aPiguEdNKRKdnKamiF1EeJo_n6VopiMV0tAOuBGbRged-xBUU4CmKP4YUjnB-v0-wO2dJpWLyZbnmdkjTQH59tPPk8gnai-2qrvTHuntSNDqGK-cwX3Na8e9ifXL-QwcN5Pun3SGp1-uWGnYIl7l92TdaVA',
-    //   token: 1,
-    //   name: 'Test',
+    //   id: null,
+    //   id_token: null,
+    //   refresh_token: null,
+    //   token: null,
+    //   name: null,
     //   logo: null,
-    //   provider: 'google',
-    //   email: 'jaffnalab@gmail.com'
+    //   provider: null,
+    //   email: null
     // };
+
+    this.user= {
+      id: 1,
+      id_token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc1MWZhYjVjZGE1NmMzYzdlNjc1NTRmMDI1NmZiMTJiZGQ1OTI5MzAifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhdF9oYXNoIjoiM3Q5TE12a3RjRElVWGdJMy1kRHVhdyIsImF1ZCI6Ijk4MTU2NzMyMzU5Ni1sNHNwaTMyM2J1ajl0MTl2dDh2ZmZtdWRnaWluZDdoai5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwNDAxMzEzNTk2MDQ5ODgwNDgxNiIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI5ODE1NjczMjM1OTYtbDRzcGkzMjNidWo5dDE5dnQ4dmZmbXVkZ2lpbmQ3aGouYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJlbWFpbCI6ImphZmZuYWxhYkBnbWFpbC5jb20iLCJpYXQiOjE0NjE1MzI2OTcsImV4cCI6MTQ2MTUzNjI5NywibmFtZSI6IkphZmZuYSBUZWFtIiwiZ2l2ZW5fbmFtZSI6IkphZmZuYSIsImZhbWlseV9uYW1lIjoiVGVhbSIsImxvY2FsZSI6ImVuIn0.r0kd-jQ2-qszRQxIOOZrIY6wi_jd-hre1E-9Jezx8WV3SNSej_7huf1u-FWTdyvC5XpmwzTaFdtiArCXQpc24x01Hps39iMrn62SmWsTgXMumHLBlc9H4_QqFM1d-f_Z44FuUY8NK7uj4FGcoG2orx_6rcrqfu6gzJNTNtGAE7Dayzv2fdxKe-TcB0Mu2aziB43n0wPs8vO7xAmrxjLizKRjaIVtNhS1_VIwe7vHGrTbDWESO1jPz9srxV13wRJ_y5IN2J1kZ_85cDlA0Al8qfOhGcLG718BbO5JLl34g_YTT3jvXP9qJxB6Uk9GQKFNceiM7OSDRyZboGFYw91vig',
+      token: 1,
+      name: 'Test',
+      logo: null,
+      provider: 'google',
+      email: 'jaffnalab@gmail.com'
+    };
 
     this.exportPublicMethods({
       isLoggedIn: this.isLoggedIn,

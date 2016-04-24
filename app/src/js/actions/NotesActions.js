@@ -18,7 +18,6 @@ class NotesActions {
       dispatch();
       this.stores.NotesSource.fetch_notes(tour_id, location_id)
           .then((notes) => {
-            console.log("NOtes are", notes);
             this.updateNotes(notes.text);
             this.updateAbout(notes.about);
           })

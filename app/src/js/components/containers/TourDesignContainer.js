@@ -51,9 +51,6 @@ export default class TourDesignContainer extends React.Component {
     PhotoStore.listen(this.onChange.bind(this));
   }
 
-
-
-
   componentWillUnmount() {
     UserTourStore.unlisten(this.onChange.bind(this));
     LocationStore.unlisten(this.onChange.bind(this));

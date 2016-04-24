@@ -10,6 +10,10 @@ if (process.env.BROWSER) {
 
 export default class SortableTable extends React.Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   sortableContainersDecorator = (componentBackingInstance) => {
     // check if backing instance not null
     if (componentBackingInstance) {
@@ -34,6 +38,8 @@ export default class SortableTable extends React.Component {
 
   render() {
 
+    console.log("Re-render sortable", this.props.locations);
+
     const qr_base = Global.backend_url + AuthStore.getUid();
 
     const Locations = this.props.locations.map((point, i) => {
@@ -42,14 +48,16 @@ export default class SortableTable extends React.Component {
       });
       const qr_link = qr_base + "/" + point.qrcode_path_s3;
       return (
-        <tr class={classes} onClick={() => this.props.__handleClick(i)}>
+        <tr class={classes}>
+          <div onClick={() => this.props.__handleClick(i)}>
           <td>{i}</td>
           <td class="location-name" id={point.id} >{point.name}</td>
+          </div>
           <td class="qr-code" id={point.id} >
             <a href={qr_link}>Download QR code</a>
           </td>
           <td class="delete-location" id={point.id} >
-            <a href='#' onClick={() => this.props.__deleteLocation(point.id)}>Delete Location</a>
+          <a href='#' onClick={() => this.props.__deleteLocation(point.id, i)}>Delete Location</a>
           </td>
         </tr>
       );

@@ -25,6 +25,15 @@ class LocationStore {
     this.errorMessage = errorMessage;
   }
 
+  onSuccessfulDelete(location_id) {
+    console.log(this.state.locations, location_id);
+    const new_locations = this.state.locations.filter((location) => location.id !== location_id);
+    console.log(new_locations);
+    this.setState({
+      locations: new_locations
+    });
+  }
+
 
 }
 

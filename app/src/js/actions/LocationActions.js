@@ -9,7 +9,7 @@ class LocationActions {
     this.stores = {
       LocationSource: new LocationSource()
     };
-    this.generateActions('updateLocations');
+    this.generateActions('updateLocations', 'successfulDelete');
   }
 
   fetchLocations(tour_id) {
@@ -43,7 +43,8 @@ class LocationActions {
       dispatch();
       this.stores.LocationSource.delete_location(tour_id, location_id)
         .then((response) => {
-          this.fetchLocations(tour_id);
+          this.successfulDelete(location_id);
+          // this.fetchLocations(tour_id);
         })
         .catch((errorMessage) => {
           this.locationsFailed(errorMessage);

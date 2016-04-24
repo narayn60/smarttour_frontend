@@ -26,7 +26,7 @@ export default class EditLocationOrderContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.tour_id = this.props.tour_id;
+    this.tour_id = props.tour_id;
     this.state = {
       subselected: 0,
       selected: null,
@@ -55,9 +55,14 @@ export default class EditLocationOrderContainer extends React.Component {
     }
   }
 
-  __deleteLocation(location_id) {
+  __deleteLocation(location_id, selected) {
     const answer = confirm("Are you sure"); //TODO: Change this to something nicer
     if (answer) {
+      if (this.state.selected === selected) {
+        this.setState({
+          selected: null
+        });
+      }
       LocationActions.deleteLocation(this.tour_id, location_id);
     }
   }
@@ -82,6 +87,13 @@ export default class EditLocationOrderContainer extends React.Component {
     }
 
     const currentlySelected = this.state.selected;
+
+    const SortTable = <SortableTable
+                        locations={this.props.locations}
+                        selected={this.state.selected}
+                        __handleClick={this.__handleClick.bind(this)}
+                        __deleteLocation={this.__deleteLocation.bind(this)}/>;
+
 
     const EditSelection = currentlySelected === null ? "" : (
       <div>
@@ -120,7 +132,7 @@ export default class EditLocationOrderContainer extends React.Component {
       <FileItem files={this.props.videos} location_info={this.props.locations[currentlySelected]} file_type="Video"/>
     ];
     
-    console.log("Should re-render editlocationorder");
+    console.log("Should re-render editlocationorder", this.props.locations);
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
 
@@ -137,12 +149,6 @@ export default class EditLocationOrderContainer extends React.Component {
         </Row>
       </Grid>
     );
-
-    const SortTable = <SortableTable
-                        locations={this.props.locations}
-                        selected={this.state.selected}
-                        __handleClick={this.__handleClick.bind(this)}
-                        __deleteLocation={this.__deleteLocation.bind(this)}/>;
 
     return (
       <div>
@@ -163,4 +169,5 @@ export default class EditLocationOrderContainer extends React.Component {
     );
   }
 }
+
 
