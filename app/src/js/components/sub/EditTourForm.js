@@ -1,7 +1,8 @@
 import React from 'react';
 import t from 'tcomb-form';
 import { Row, Col } from 'react-bootstrap';
-import NotesActions from 'NotesActions';
+/* import NotesActions from 'NotesActions'; */
+import LocationActions from 'LocationActions';
 
 const FormSchema = t.struct({
   name: t.String,
@@ -25,7 +26,7 @@ export default class EditTourForm extends React.Component {
       name: formValue.name,
       about: formValue.about
     };
-    NotesActions.patchAbout(update_value, this.props.tour_id, location_id);
+    LocationActions.updateValues(update_value, this.props.tour_id, location_id);
   }
 
   render() {
@@ -71,10 +72,12 @@ export default class EditTourForm extends React.Component {
     };
 
     const values = Object.assign(
-      this.props.values,
-      this.props.location_info
+      this.props.values
+      /* this.props.location_info */
     );
 
+
+    console.log("Values", this.props.values);
 
     return(
       <div>

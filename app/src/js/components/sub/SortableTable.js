@@ -38,8 +38,6 @@ export default class SortableTable extends React.Component {
 
   render() {
 
-    console.log("Re-render sortable", this.props.locations);
-
     const qr_base = Global.backend_url + AuthStore.getUid();
 
     const Locations = this.props.locations.map((point, i) => {

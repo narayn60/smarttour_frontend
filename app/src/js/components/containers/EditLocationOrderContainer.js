@@ -131,8 +131,6 @@ export default class EditLocationOrderContainer extends React.Component {
       <FileItem files={this.props.audio} location_info={this.props.locations[currentlySelected]} file_type="Audio"/>,
       <FileItem files={this.props.videos} location_info={this.props.locations[currentlySelected]} file_type="Video"/>
     ];
-    
-    console.log("Should re-render editlocationorder", this.props.locations);
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
 

@@ -38,6 +38,28 @@ class LocationActions {
     };
   }
 
+  updateValues(new_values, tour_id, location_id) {
+    console.log("update values", new_values);
+    return (dispatch) => {
+      dispatch();
+      this.stores.LocationSource.update_values(new_values, tour_id, location_id)
+        .then((response) => {
+          this.successfulUpdate(new_values, location_id);
+        })
+        .catch((errorMessage) => {
+          this.locationsFailed(errorMessage);
+        });
+    };
+  }
+
+  successfulUpdate(new_values, location_id) {
+    console.log("Successful update action called");
+    return {
+      values: new_values,
+      id: location_id
+    };
+  }
+
   deleteLocation(tour_id, location_id) {
     return (dispatch) => {
       dispatch();

@@ -21,6 +21,18 @@ export default class LocationSource {
       });
   }
 
+  update_values(values, tour_id, location_id) {
+    const url = Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/locations/' + location_id + '/';
+    return axios.patch(url, values)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+
   delete_location(tour_id, location_id) {
     const url = Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/locations/' + location_id + '/';
     return axios.delete(url)

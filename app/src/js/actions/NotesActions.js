@@ -1,6 +1,8 @@
 import alt from 'alt_base';
 import NotesSource from 'NotesSource';
 
+
+//TODO: Delete this, don't need anymore
 class NotesActions {
   constructor() {
     this.state = {

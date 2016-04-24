@@ -134,6 +134,8 @@ export default class TourDesignContainer extends React.Component {
       button_text = "Tour Overview";
     }
 
+    console.log("Locations", this.state.locations);
+
 
 
     const tour_info = [
