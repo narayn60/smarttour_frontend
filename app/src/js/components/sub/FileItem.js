@@ -111,7 +111,7 @@ export default class PhotoItem extends React.Component {
     );
 
     const gallery_component = {
-      'Photo': <PhotoGallery photos={this.props.files}/>,
+      'Picture': <PhotoGallery photos={this.props.files}/>,
       'Video': this.props.files.map((video) => (
         <Row>
           <h4>{video.description}</h4>

@@ -99,6 +99,8 @@ export default class TourDesignContainer extends React.Component {
 
   render() {
 
+    console.log("Photos TourDesignContainer", this.state.photos);
+
     if (!this.state.tour || !this.state.locations) {
       return (
         <div>

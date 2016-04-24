@@ -18,9 +18,9 @@ export default class PhotoSource {
       });
   }
 
-  update_caption(location_id, photo_id, new_caption) {
+  update_description(location_id, photo_id, new_description) {
     const url = Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/files/' + photo_id + '/';
-    return axios.patch(url, {description: new_caption})
+    return axios.patch(url, {description: new_description})
       .then((response) => response)
       .catch((error) => {
         throw error;

@@ -9,7 +9,7 @@ class PhotoActions {
     this.stores = {
       PhotoSource: new PhotoSource()
     };
-    this.generateActions('updatePhotos', 'updateAudio', 'updateVideo');
+    this.generateActions('successfulDelete', 'updateFiles');
   }
 
   fetchPhotos(location_id) {
@@ -17,12 +17,7 @@ class PhotoActions {
       dispatch();
       this.stores.PhotoSource.fetch_photos(location_id)
           .then((files) => {
-            const photos = files.filter((value) => value.descriptor === 'Picture');
-            const audio = files.filter((value) => value.descriptor === 'Audio');
-            const videos = files.filter((value) => value.descriptor === 'Video');
-            this.updatePhotos(photos);
-            this.updateAudio(audio);
-            this.updateVideo(videos);
+            this.updateFiles(files);
           })
           .catch((errorMessage) => {
             this.photosFailed(errorMessage);
@@ -30,12 +25,12 @@ class PhotoActions {
     };
   }
 
-  updateCaption(location_id, photo_id, caption) {
+  updateCaption(location_id, photo_id, description) {
     return (dispatch) => {
       dispatch();
-      this.stores.PhotoSource.update_caption(location_id, photo_id, caption)
+      this.stores.PhotoSource.update_description(location_id, photo_id, description)
           .then((response) => {
-            this.fetchPhotos(location_id); //TODO: Change this to stop stuttering, need to update to keep consistent state
+            this.successfulUpdateDescription(location_id, photo_id, description);
           })
           .catch((errorMessage) => {
             this.photosFailed(errorMessage);
@@ -43,12 +38,12 @@ class PhotoActions {
     };
   }
 
-  deletePhoto(location_id, photo_id) {
+  deletePhoto(location_id, file_id) {
     return (dispatch) => {
       dispatch();
-      this.stores.PhotoSource.delete_photo(location_id, photo_id)
+      this.stores.PhotoSource.delete_photo(location_id, file_id)
         .then((response) => {
-          this.fetchPhotos(location_id);
+          this.successfulDelete(file_id);
         })
         .catch((errorMessage) => {
           this.photosFailed(errorMessage);
@@ -60,6 +55,14 @@ class PhotoActions {
   photosFailed(errorMessage) {
     console.log("Photos Failed", errorMessage);
     return errorMessage;
+  }
+
+  successfulUpdateDescription(location_id, file_id, description) {
+    return {
+      location_id: location_id,
+      file_id: file_id,
+      description: description
+    };
   }
 
 }

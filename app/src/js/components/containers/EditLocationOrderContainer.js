@@ -36,8 +36,8 @@ export default class EditLocationOrderContainer extends React.Component {
 
   __handleClick(index) {
     this.setState({selected: index});
-    NotesActions.fetchNotes(this.tour_id, this.props.locations[index].id);
     PhotoActions.fetchPhotos(this.props.locations[index].id);
+    NotesActions.fetchNotes(this.tour_id, this.props.locations[index].id);
   }
 
   __handleSelect(selectedKey) {
@@ -122,10 +122,9 @@ export default class EditLocationOrderContainer extends React.Component {
       </div>
     );
 
-
     const sections = [
       <EditTourForm values={this.props.locations[currentlySelected]} tour_id={this.tour_id} location_info={location_info} />,
-      <FileItem files={this.props.photos} location_info={this.props.locations[currentlySelected]} file_type="Photo"/>,
+      <FileItem files={this.props.photos} location_info={this.props.locations[currentlySelected]} file_type="Picture"/>,
       <NotesList location={this.props.locations[currentlySelected]} tour_id={this.tour_id} notes={this.props.notes}/>,
       "Text placeholder",
       <FileItem files={this.props.audio} location_info={this.props.locations[currentlySelected]} file_type="Audio"/>,

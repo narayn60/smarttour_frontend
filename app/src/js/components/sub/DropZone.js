@@ -13,7 +13,7 @@ export default class DropZone extends React.Component {
     super(props);
     this.upload_type = props.upload_type;
     this.descriptor = this.upload_type;
-    if (this.upload_type === 'Photo') {
+    if (this.upload_type === 'Picture') {
       this.acceptedFiles = 'image/*';
     } else if (this.upload_type === 'Audio') {
       this.acceptedFiles = 'audio/*';

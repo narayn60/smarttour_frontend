@@ -9,35 +9,22 @@ class PhotoStore {
     this.state ={
       photos: [],
       audio: [],
-      videos: []
+      videos: [],
+      files: []
     };
 
   }
 
-  onUpdatePhotos(photos) {
-    //TODO: Push the new updated location
+  onUpdateFiles(files) {
+    const photos = files.filter((value) => value.descriptor === 'Picture');
+    const audio = files.filter((value) => value.descriptor === 'Audio');
+    const videos = files.filter((value) => value.descriptor === 'Video');
     this.setState({
-      photos: photos
-    });
-    // this.setState({ photos: this.state.photos.concat(photo)});
-  }
-
-  onUpdateAudio(audio) {
-    this.setState({
-      audio: audio
-    });
-    // this.setState({
-    //   audio: this.state.audio.concat(audio)
-    // });
-  }
-
-  onUpdateVideo(videos) {
-    this.setState({
+      files: files,
+      photos: photos,
+      audio: audio,
       videos: videos
     });
-    // this.setState({
-    //   videos: this.state.videos.concat(video)
-    // });
   }
 
   onFetchPhotos() {
@@ -47,6 +34,29 @@ class PhotoStore {
   onPhotosFailed(errorMessage) {
     this.errorMessage = errorMessage;
   }
+
+  onSuccessfulDelete(file_id) {
+    const new_files = this.state.files.filter((file) => file.id !== file_id);
+    this.onUpdateFiles(new_files);
+  }
+
+  // onSuccessfulUpdateCaption(input) {
+  // }
+
+  onSuccessfulUpdateDescription(input) {
+    const location_id = input.location_id;
+    const file_id = input.file_id;
+    const description = input.description;
+
+    const new_files = this.state.files;
+    for (var i=0; i < new_files.length; i++) {
+      if (new_files[i].id === file_id) {
+        new_files[i].description = description;
+      }
+    }
+    this.onUpdateFiles(new_files);
+  }
+
 
 }
 
