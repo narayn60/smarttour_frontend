@@ -3,6 +3,7 @@ import { Button, Table } from "react-bootstrap";
 import classNames from 'classnames';
 import Global from 'Global';
 import AuthStore from 'AuthStore';
+import QRModal from './QRModal';
 
 if (process.env.BROWSER) {
   var Sortable = require('sortablejs');
@@ -44,6 +45,8 @@ export default class SortableTable extends React.Component {
       const classes = classNames( "table-element", {
         'selected': (this.props.selected === i)
       });
+      const exist_icon = point.exists ? "check" : "times";
+      const exist_color = point.exists ? "green" : "red";
       const qr_link = qr_base + "/" + point.qrcode_path_s3;
       return (
         <tr class={classes}>
@@ -52,10 +55,13 @@ export default class SortableTable extends React.Component {
           <td class="location-name" id={point.id} >{point.name}</td>
           </div>
           <td class="qr-code" id={point.id} >
-            <a href={qr_link}>Download QR code</a>
+            <QRModal qr_path={qr_link} button_text="Download QR Code" button_type="link" />
           </td>
           <td class="delete-location" id={point.id} >
-          <a href='#' onClick={() => this.props.__deleteLocation(point.id, i)}>Delete Location</a>
+            <a href='#' onClick={() => this.props.__deleteLocation(point.id, i)}>Delete Location</a>
+          </td>
+          <td class="currently-active" id={point.id} >
+            <i class={"fa fa-" + exist_icon} aria-hidden="true" style={{color: exist_color}}></i>
           </td>
         </tr>
       );
@@ -76,6 +82,7 @@ export default class SortableTable extends React.Component {
                       <th>Name</th>
                       <th>Qr Codes</th>
                       <th>Delete Location</th>
+                      <th>Currently Active</th>
                     </tr>
                   </thead>
                   <tbody ref={this.sortableGroupDecorator}>

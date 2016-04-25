@@ -12,6 +12,7 @@ import UserTourStore from 'UserTourStore';
 import EditLocationOrderContainer from './EditLocationOrderContainer';
 import PersonalTourOverviewContainer from './PersonalTourOverviewContainer';
 import PhotoEditModal from '../sub/PhotoEditModal';
+import QRModal from '../sub/QRModal';
 
 import Global from 'Global';
 import AuthStore from 'AuthStore';
@@ -101,14 +102,8 @@ export default class TourDesignContainer extends React.Component {
     }
   }
 
-  __downloadQR() {
-    const qr_link = Global.backend_url + AuthStore.getUid() + '/media/tours/' + this.tour_id + "/qrcode_grid/";
-    location.href=qr_link;
-  }
 
   render() {
-
-    console.log("Locations tourdesign container", this.state.locations);
 
     if (!this.state.tour || !this.state.locations) {
       return (
@@ -122,6 +117,8 @@ export default class TourDesignContainer extends React.Component {
     var chosen_section,
         button_text,
         button_download_qr;
+
+    const qr_link = Global.backend_url + AuthStore.getUid() + '/media/tours/' + this.tour_id + "/qrcode_grid/";
 
     if (this.state.overview) {
       chosen_section = (
@@ -146,15 +143,9 @@ export default class TourDesignContainer extends React.Component {
       );
       button_text = "Tour Overview";
       button_download_qr = (
-        <Button role="button" class="btn-inverse btn-outlined btn-retainBg btn-brightblue" onClick={() => this.__downloadQR()}>
-          <span>Download QR Codes</span>
-        </Button>
+        <QRModal qr_path={qr_link} button_text="Download QR Codes" button_type="full" />
       );
     }
-
-    console.log("Locations", this.state.locations);
-
-
 
     const tour_info = [
       {class: "trophy", text: "Rank 1"},

@@ -21,6 +21,8 @@ export default class TourTable extends React.Component {
 
   render() {
 
+    console.log("Tours", this.props.tours);
+
     //TODO: Instead of saying no tours, add button to create tour
     if (this.props.tours.length === 0) {
       return (
@@ -44,8 +46,8 @@ export default class TourTable extends React.Component {
         <BootstrapTable data={this.props.tours} options={options} hover={true} pagination={true} condensed={true} search={true} striped={false} bordered={false}>
         <TableHeaderColumn dataField="img_url" width="120px" dataFormat={this.imageFormatter} dataAlign="center">Icon</TableHeaderColumn>
         <TableHeaderColumn dataField="name" isKey={true} dataAlign="center" dataSort={true}>Tour Name</TableHeaderColumn>
-        <TableHeaderColumn dataField="followers" dataAlign="center" dataSort={true}>Subscribers</TableHeaderColumn>
-        <TableHeaderColumn dataField="points" dataAlign="center" dataSort={true}>Rating</TableHeaderColumn>
+        <TableHeaderColumn dataField="followers" dataAlign="center" dataSort={true}>Followers</TableHeaderColumn>
+        <TableHeaderColumn dataField="points" dataAlign="center" dataSort={true}>Locations Specified</TableHeaderColumn>
       </BootstrapTable>
 
     );
