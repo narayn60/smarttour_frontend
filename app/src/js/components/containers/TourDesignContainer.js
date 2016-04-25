@@ -13,6 +13,10 @@ import EditLocationOrderContainer from './EditLocationOrderContainer';
 import PersonalTourOverviewContainer from './PersonalTourOverviewContainer';
 import PhotoEditModal from '../sub/PhotoEditModal';
 
+import Global from 'Global';
+import AuthStore from 'AuthStore';
+
+
 export default class TourDesignContainer extends React.Component {
 
   constructor(props) {
@@ -97,9 +101,14 @@ export default class TourDesignContainer extends React.Component {
     }
   }
 
+  __downloadQR() {
+    const qr_link = Global.backend_url + AuthStore.getUid() + '/media/tours/' + this.tour_id + "/qrcode_grid/";
+    location.href=qr_link;
+  }
+
   render() {
 
-    console.log("Photos TourDesignContainer", this.state.photos);
+    console.log("Locations tourdesign container", this.state.locations);
 
     if (!this.state.tour || !this.state.locations) {
       return (
@@ -111,7 +120,8 @@ export default class TourDesignContainer extends React.Component {
     }
 
     var chosen_section,
-        button_text;
+        button_text,
+        button_download_qr;
 
     if (this.state.overview) {
       chosen_section = (
@@ -121,6 +131,7 @@ export default class TourDesignContainer extends React.Component {
         />
       );
       button_text = "Edit Tour";
+      button_download_qr = "";
     } else {
       chosen_section = (
         <EditLocationOrderContainer
@@ -134,6 +145,11 @@ export default class TourDesignContainer extends React.Component {
         />
       );
       button_text = "Tour Overview";
+      button_download_qr = (
+        <Button role="button" class="btn-inverse btn-outlined btn-retainBg btn-brightblue" onClick={() => this.__downloadQR()}>
+          <span>Download QR Codes</span>
+        </Button>
+      );
     }
 
     console.log("Locations", this.state.locations);
@@ -143,7 +159,7 @@ export default class TourDesignContainer extends React.Component {
     const tour_info = [
       {class: "trophy", text: "Rank 1"},
       {class: "users", text: "23 Followers"},
-      {class: "map-marker", text: this.state.locations.length + " Points"}
+      {class: "map-marker", text: this.state.locations.length + " Locations"}
     ].map((info) => (
       <li style={{lineHeight: '40px'}}>
         <i class={"fa fa-2x fa-" + info.class} style={{float: 'left', verticalAlign: 'middle', height: '30px', paddingTop: '8px'}}></i>
@@ -159,7 +175,7 @@ export default class TourDesignContainer extends React.Component {
       <Grid>
         <Row id="cover_row" style={{backgroundImage: 'url(' + this.state.tour.cover_url + ')'}}>
           <div class="social-cover"></div>
-          <Col md={3} mdOffset={3} mdPush={6} id="tourcover_right" style={{height: '350px'}}>
+          <Col md={3} mdOffset={3} mdPush={6} id="tourcover_right" style={{height: '400px'}}>
             <div class="tour_image avatar-link" onClick={() => this.__openModal('photo')}>
               <div class="avatar-hover">
                 <div class="avatar-hover-content">
@@ -177,6 +193,7 @@ export default class TourDesignContainer extends React.Component {
               <Button role="button" class="btn-inverse btn-outlined btn-retainBg btn-brightblue" onClick={() => this.__onClick()}>
                 <span>{button_text}</span>
               </Button>
+              {button_download_qr}
             </div>
           </Col>
           <Col md={3} mdPull={6} id="tourcover_left">

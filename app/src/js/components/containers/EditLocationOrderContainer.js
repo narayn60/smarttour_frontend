@@ -75,6 +75,8 @@ export default class EditLocationOrderContainer extends React.Component {
       about: this.props.about
     };
 
+    console.log("Locations EditLocation", this.props.locations);
+
     // Account for case where no locations have been created
     // TODO: Make this page a lot nicer than it currently is
     if (this.props.locations.length === 0) {

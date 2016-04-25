@@ -6,7 +6,10 @@ export default class LocationSource {
 
   fetch_locations(tour_id) {
     return axios.get(Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/locations/')
-                .then((locations) => locations.data)
+                .then((locations) => {
+                  console.log("Locations here", locations);
+                  return locations.data;
+                })
                 .catch((error) => {
                   throw error;
                 });
@@ -15,31 +18,31 @@ export default class LocationSource {
   update_order(tour_id, order) {
     const url = Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/location_order/';
     return axios.patch(url, {order: JSON.stringify(order)})
-      .then((response) => response)
-      .catch((error) => {
-        throw error;
-      });
+                .then((response) => response)
+                .catch((error) => {
+                  throw error;
+                });
   }
 
   update_values(values, tour_id, location_id) {
     const url = Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/locations/' + location_id + '/';
     return axios.patch(url, values)
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => {
-        throw error;
-      });
+                .then((response) => {
+                  return response;
+                })
+                .catch((error) => {
+                  throw error;
+                });
   }
 
 
   delete_location(tour_id, location_id) {
     const url = Global.backend_url + AuthStore.getUid() + '/tours/' + tour_id + '/locations/' + location_id + '/';
     return axios.delete(url)
-      .then((response) => response)
-      .catch((error) => {
-        throw error; 
-      });
+                .then((response) => response)
+                .catch((error) => {
+                  throw error; 
+                });
   }
 
 }

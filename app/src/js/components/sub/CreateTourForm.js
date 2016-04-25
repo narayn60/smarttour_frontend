@@ -33,7 +33,8 @@ export default class CreateTourForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      success: false
+      success: false,
+      loading: false
     };
     this.state = FormStore.getState();
 
@@ -71,6 +72,7 @@ export default class CreateTourForm extends React.Component {
     var formData = new FormData();
     if (value) {
       this.setState({
+        loading: true,
         values: value
       });
       for (var k in value) {
@@ -114,17 +116,22 @@ export default class CreateTourForm extends React.Component {
     };
 
     const completed = this.state.success ? <TourFormSuccess fieldValues={this.state.values} newTourID={this.state.tour_id}/> : "";
+    const submitText = this.state.loading ? "Creating..." : "Submit";
+
+    const submissionButton = this.state.success ? "" : (
+      <Row>
+        <div class="form-group">
+          <Button type="submit" bsStyle="primary" class="center-block btn-xl">{submitText}</Button>
+        </div>
+      </Row>
+    );
 
     return (
 
       <div>
         <form onSubmit={this.onSubmit.bind(this)}>
-          <t.form.Form class="edit-form" ref="form" type={FormSchema} value={this.state.value} options={options}/>
-          <Row>
-            <div class="form-group">
-              <Button type="submit" bsStyle="primary" class="center-block btn-xl">Submit</Button>
-            </div>
-          </Row>
+          <t.form.Form class="edit-form" ref="form" type={FormSchema} value={this.state.values} options={options}/>
+          {submissionButton}
           <Row>
             {completed}
           </Row>

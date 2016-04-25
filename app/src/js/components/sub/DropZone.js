@@ -38,6 +38,10 @@ export default class DropZone extends React.Component {
       paramName: 'file',
       addRemoveLinks: true,
       acceptedFiles: this.acceptedFiles,
+      headers: {
+        'Cache-Control': null,
+        'X-Requested-With': null
+      },
       params: {
         descriptor: this.descriptor
       }

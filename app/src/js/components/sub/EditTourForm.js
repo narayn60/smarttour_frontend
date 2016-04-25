@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import LocationActions from 'LocationActions';
 
 const FormSchema = t.struct({
+  note: t.String,
   name: t.String,
   about: t.String,
   longitude: t.Number,
@@ -15,7 +16,6 @@ export default class EditTourForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   onSubmit(e) {
@@ -35,6 +35,9 @@ export default class EditTourForm extends React.Component {
       return (
         <div>
           <Row>
+          {locals.inputs.note}
+          </Row>
+          <Row>
             <Col md={6}>
               <div>{locals.inputs.name}</div>
               <div>{locals.inputs.longitude}</div>
@@ -51,6 +54,9 @@ export default class EditTourForm extends React.Component {
     const options = {
       template: formLayout,
       fields: {
+        note: {
+          label: "Note"
+        },
         name: {
           disabled: false
         },
@@ -71,13 +77,17 @@ export default class EditTourForm extends React.Component {
       }
     };
 
+    var note = "";
+    if (this.props.values.note.length > 1) {
+      note = this.props.values.note[0].note;
+    }
     const values = Object.assign(
-      this.props.values
-      /* this.props.location_info */
+      {},
+      this.props.values,
+      {'note': note}
     );
 
 
-    console.log("Values", this.props.values);
 
     return(
       <div>

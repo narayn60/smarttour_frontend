@@ -27,7 +27,6 @@ class LocationStore {
 
   onSuccessfulDelete(location_id) {
     const new_locations = this.state.locations.filter((location) => location.id !== location_id);
-    console.log(new_locations);
     this.setState({
       locations: new_locations
     });
@@ -38,6 +37,7 @@ class LocationStore {
     const values = input.values;
 
     const new_locations = this.state.locations;
+    csoneol.log("SuccessfulUpdate");
     for (var i=0; i < new_locations.length; i++) {
       if (new_locations[i].id === location_id) {
         Object.assign(new_locations[i], values);
