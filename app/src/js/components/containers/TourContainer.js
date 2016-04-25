@@ -91,8 +91,8 @@ export default class TourContainer extends React.Component {
       <div>
         <div class="border_box" id="browse_title">
           <Row class="text-center">
-            <h2 class="section-heading"> Browse all tours </h2>
-            <h3 class="section-subheading"> Revolutionize the novel </h3>
+            <h2 class="section-heading"> Tours </h2>
+            <h3 class="section-subheading"> Discover your world </h3>
           </Row>
           <Row>
             <input class="searchTour" type="text" value={this.state.searchString} onChange={this.handleSearchChange.bind(this)} placeholder="search" />
