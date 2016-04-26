@@ -40,11 +40,16 @@ class UserTourStore {
     });
   }
 
-  onReloadTours() {
-    this.setState({
-      tours: []
-    });
+  onSuccessfulDeleteTour(tour_id) {
+    const new_tours = this.state.tours.filter((tour) => tour.id !== tour_id);
+    this.setState({tours: new_tours});
   }
+
+  // onReloadTours() {
+  //   this.setState({
+  //     tours: []
+  //   });
+  // }
 
   onToursFailed(errorMessage) {
     this.errorMessage = errorMessage;

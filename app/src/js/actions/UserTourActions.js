@@ -6,16 +6,16 @@ class UserTourActions {
     this.state = {
       tours: []
     };
-    this.source = {
+    this.sources = {
       UserTourSource: new UserTourSource()
     };
-    this.generateActions('updateTours', 'updateTour');
+    this.generateActions('updateTours', 'updateTour', 'successfulDeleteTour');
   }
 
   fetchTours() {
     return (dispatch) => {
       dispatch();
-      this.source.UserTourSource.fetch()
+      this.sources.UserTourSource.fetch()
         .then((tours) => {
           this.updateTours(tours);
         })
@@ -28,7 +28,7 @@ class UserTourActions {
   fetchTour(tour_id) {
     return (dispatch) => {
       dispatch();
-      this.source.UserTourSource.fetch_tour(tour_id)
+      this.sources.UserTourSource.fetch_tour(tour_id)
         .then((tour) => {
           this.updateTour(tour);
         })
@@ -41,7 +41,7 @@ class UserTourActions {
   updateTourPhoto(tour_id, photo_form) {
     return (dispatch) => {
       dispatch();
-      this.source.UserTourSource.update_photo(tour_id, photo_form)
+      this.sources.UserTourSource.update_photo(tour_id, photo_form)
         .then((tour) => {
           this.fetchTour(tour_id);
         })
@@ -50,6 +50,20 @@ class UserTourActions {
         });
     };
   }
+
+  deleteTour(tour_id) {
+    return (dispatch) => {
+      dispatch();
+      this.sources.UserTourSource.delete_tour(tour_id)
+        .then((response) => {
+          this.successfulDeleteTour(tour_id);
+        })
+        .catch((errorMessage) => {
+          this.toursFailed(errorMessage);
+        });
+    };
+  }
+
 
   toursFailed(errorMessage) {
     return errorMessage;

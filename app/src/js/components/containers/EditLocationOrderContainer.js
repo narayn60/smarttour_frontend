@@ -60,7 +60,6 @@ export default class EditLocationOrderContainer extends React.Component {
     const answer = confirm("Are you sure"); //TODO: Change this to something nicer
     if (answer) {
       if (this.state.selected === selected) {
-        console.log("Deleted curently selected");
         this.setState({selected: null});
       }
       LocationActions.deleteLocation(this.tour_id, location_id);
@@ -68,8 +67,6 @@ export default class EditLocationOrderContainer extends React.Component {
   }
 
   render() {
-
-    console.log("Edit location state", this.state);
 
     const qr_grid = Global.backend_url + AuthStore.getUid() + "/media/tours/" + this.tour_id + "/qrcode_grid";
 

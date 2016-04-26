@@ -19,14 +19,12 @@ class ProfileStore {
   // }
 
   onUpdateProfile(profile) {
-    console.log("OnUpdateProfile here", profile);
     this.setState({
       profile: profile
     });
   }
 
   onProfileFailed(errorMessage) {
-    console.log("Profile failed", this.state.profile);
     this.setState({
       profile: null,
       errorMessage: errorMessage
