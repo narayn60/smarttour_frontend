@@ -3,11 +3,16 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { browserHistory } from 'react-router';
 import { Button } from 'react-bootstrap';
 import TableImage from './TableImage';
+import UserTourActions from 'UserTourActions';
 
 class DeleteButton extends React.Component {
 
   __handleBtnClick(e) {
     e.stopPropagation();
+    const answer = confirm("Are you sure that you want to delete this tour?");
+    if (answer) {
+      UserTourActions.deleteTour(this.props.tour_id);
+    }
     console.log("Need to delete", this.props.tour_id);
   }
 
