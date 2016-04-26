@@ -39,28 +39,21 @@ export default class TourGuideContainer extends React.Component {
     GuideActions.fetchGuides();
   }
 
-  //TODO: Remove?
-  // createGuide() {
-  //   var profile_photo = "img/team/4.jpg";
-  //   var guide = {name: 'Jeff Bridges', bio: 'The boss.', photo: profile_photo};
-  //   GuideActions.updateGuide(guide);
-  // }
-
-  filterGuides(filter) {
-    console.log('filter by ' + filter);
-  }
-
   filterByName(guide) {
-    if (guide.name.toLowerCase().match( this.state.searchString )) {
-      return true;
+    console.log(guide)
+    if (guide.full_name != null) {
+      if (guide.full_name.toLowerCase().match(this.state.searchString.toLowerCase())) {
+        return true;
+      }
     }
-    return false;
+    else {
+      return false
+    }
   }
 
   handleSearchChange(e) {
-    this.setState({searchString: e.target.value.toLowerCase()});
+    this.setState({searchString: e.target.value});
   }
-
 
   render() {
 
@@ -72,10 +65,6 @@ export default class TourGuideContainer extends React.Component {
         </div>
       );
     }
-
-    //Search
-    var genres = ['Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different'];
-    const genreComponent = genres.map((genre, i) => <MenuItem eventKey={i} key={i} onClick={this.filterByName.bind(this, genre)}>{genre}</MenuItem>);
 
     var GuidesComponent = this.state.guides.map((guide, i) => <TourGuide key={i} guide={guide}/>);
     var searchString = this.state.searchString.trim().toLowerCase();
@@ -97,15 +86,6 @@ export default class TourGuideContainer extends React.Component {
           </Row>
           <Row>
             <input class="searchTour" type="text" value={this.state.searchString} onChange={this.handleSearchChange.bind(this)} placeholder="search" />
-          </Row>
-          <Row>
-            <Col md={4} mdOffset={4} class="text-center search-button-group">
-              <Button bsStyle="primary" onClick={this.filterByName.bind(this, 'popular')}> Popular </Button>
-              <Button bsStyle="primary" onClick={this.filterByName.bind(this, 'recent')}> Recent </Button>
-              <DropdownButton bsStyle="primary" title="Genre" id="bg-nested-dropdown">
-                {genreComponent}
-              </DropdownButton>
-            </Col>
           </Row>
         </Grid>
         <Grid class="border_box" id="guides_list">

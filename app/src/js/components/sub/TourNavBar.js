@@ -11,21 +11,27 @@ export default class TourNavBar extends React.Component {
 	    super(props);
 	    this.state = {
 	    	tours: props.tours
-      };
+	  	};
 	    this.handleSelect = this.handleSelect.bind(this);
 	    this.genreCount = this.genreCount.bind(this);
-  	}
+	}
 
-  handleSelect(selectedKey) {
+	handleSelect(selectedKey) {
+		var genres = ['All', 'Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different'];
+		this.props.onClick(genres[selectedKey]);
 	}
 
 	genreCount(genre) {
-    return this.props.tours.filter(tour => tour.genre === genre).length;
+		if (genre === 'All') {
+			return this.props.tours.length;
+		}
+		else {
+			return this.props.tours.filter(tour => tour.genre === genre).length;
+		}
 	}
 
 	render() {
-
-		var genres = ['Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different'];
+		var genres = ['All', 'Entertainment', 'Historical', 'Art', 'Food & Drink', 'Educational', 'Adult', 'Different'];
    		const genreComponent = genres.map((genre, i) => <NavItem eventKey={i} key={i} title={genre}>{genre} {this.genreCount(genre)} </NavItem>);
 
 		return (
@@ -33,6 +39,6 @@ export default class TourNavBar extends React.Component {
 				{genreComponent}
 			</Nav>
 		);
-  }
+  	}
 }
 
