@@ -13,10 +13,9 @@ export default class TourContainer extends React.Component {
   constructor() {
     super();
     this.state = TourStore.getState();
-    Object.assign(this.state,
-                  {'searchString': ''}
-    );
+    this.state = {searchString: '', genre: ''};
     this.filterByName = this.filterByName.bind(this);
+    this.filterByGenre = this.filterByGenre.bind(this);
   }
 
   static getStores() {
@@ -54,7 +53,14 @@ export default class TourContainer extends React.Component {
   }
 
   filterByName(tour) {
-    if (tour.title.toLowerCase().match( this.state.searchString )) {
+    if (tour.name.toLowerCase().match( this.state.searchString.toLowerCase() )) {
+      return true;
+    }
+    return false;
+  }
+
+  filterByGenre(tour) {
+    if (tour.genre.toLowerCase().match( this.state.genre.toLowerCase() )) {
       return true;
     }
     return false;
@@ -62,6 +68,15 @@ export default class TourContainer extends React.Component {
 
   handleSearchChange(e) {
     this.setState({searchString: e.target.value});
+  }
+
+  handleGenreChange(genre) {
+    if (genre === 'All') {
+      this.setState({genre: ''})
+    }
+    else {
+      this.setState({genre: genre})
+    }
   }
 
 
@@ -78,14 +93,17 @@ export default class TourContainer extends React.Component {
 
     var ToursComponent = this.state.tours.map((tour, i) => <Tour key={i} tour={tour}/>);
     var searchString = this.state.searchString.trim().toLowerCase();
-    var filteredTours = [];
-
-
+    var filteredTours = this.state.tours;
 
     if(searchString.length > 0) {
-      filteredTours = this.state.tours.filter(this.filterByName);
-      ToursComponent = filteredTours.map((tour, i) => <Tour key={i} tour={tour}/>);
+      filteredTours = filteredTours.filter(this.filterByName);
     }
+
+    if(this.state.genre.length > 0) {
+      filteredTours = filteredTours.filter(this.filterByGenre);
+    }
+
+    ToursComponent = filteredTours.map((tour, i) => <Tour key={i} tour={tour}/>);
 
     return (
       <div>
@@ -106,7 +124,7 @@ export default class TourContainer extends React.Component {
         </div>
         <div class="border_box" id="browse_results">
           <Row>
-            <TourNavBar tours={this.state.tours}/>
+            <TourNavBar tours={this.state.tours} onClick={this.handleGenreChange.bind(this)}/>
           </Row>
           <Row>
             {ToursComponent}
