@@ -21,6 +21,7 @@ module.exports = {
   FormStore: store_base + 'FormStore',
   PhotoStore: store_base + 'PhotoStore',
   ProfileStore: store_base + 'ProfileStore',
+  ReviewStore: store_base + 'ReviewStore',
 
   AuthActions: action_base + "AuthActions",
   TourActions: action_base + "TourActions",
@@ -32,6 +33,7 @@ module.exports = {
   NotesActions: action_base + "NotesActions",
   PhotoActions: action_base + "PhotoActions",
   ProfileActions: action_base + "ProfileActions",
+  ReviewActions: action_base + 'ReviewActions',
 
   AuthSource: source_base + "AuthSource",
   GuideSource: source_base + "GuideSource",
@@ -43,6 +45,7 @@ module.exports = {
   FormSource: source_base + 'FormSource',
   PhotoSource: source_base + 'PhotoSource',
   ProfileSource: source_base + 'ProfileSource',
+  ReviewSource: source_base + 'ReviewSource',
 
   alt_base: js_base + 'alt',
   base_css: "src/css/base.scss",
