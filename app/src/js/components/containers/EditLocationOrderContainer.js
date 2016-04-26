@@ -55,13 +55,13 @@ export default class EditLocationOrderContainer extends React.Component {
     }
   }
 
-  __deleteLocation(location_id, selected) {
+  __deleteLocation(location_id, selected, e) {
+    e.stopPropagation();
     const answer = confirm("Are you sure"); //TODO: Change this to something nicer
     if (answer) {
       if (this.state.selected === selected) {
-        this.setState({
-          selected: null
-        });
+        console.log("Deleted curently selected");
+        this.setState({selected: null});
       }
       LocationActions.deleteLocation(this.tour_id, location_id);
     }
@@ -69,13 +69,13 @@ export default class EditLocationOrderContainer extends React.Component {
 
   render() {
 
+    console.log("Edit location state", this.state);
+
     const qr_grid = Global.backend_url + AuthStore.getUid() + "/media/tours/" + this.tour_id + "/qrcode_grid";
 
     const location_info = {
       about: this.props.about
     };
-
-    console.log("Locations EditLocation", this.props.locations);
 
     // Account for case where no locations have been created
     // TODO: Make this page a lot nicer than it currently is
@@ -135,6 +135,7 @@ export default class EditLocationOrderContainer extends React.Component {
 
     const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
 
+    console.log("Currently selected", currentlySelected);
     const subSection = currentlySelected === null ? "" : (
       <Grid fluid={true} class="border_box" id="edit_selection" style={{minHeight: '500px'}}>
         <Row>
