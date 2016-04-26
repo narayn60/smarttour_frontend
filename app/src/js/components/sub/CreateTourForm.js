@@ -7,16 +7,16 @@ import FormActions from 'FormActions';
 import FormStore from 'FormStore';
 import AuthStore from 'AuthStore';
 
-const Positive = t.refinement(t.Number, (n) => n >= 1); //TODO: Set maximum number
+const Positive = t.refinement(t.Number, (n) => (n >= 1 && n <= 200)); //TODO: Set maximum number
 
 const Genres = t.enums({
-  En: 'Entertainment',
-  Hi: 'Historical',
-  Ar: 'Art',
-  Fd: 'Food & Drink',
-  Ed: 'Educational',
-  Ad: 'Adult',
-  Ot: 'Other'
+  Entertainment: 'Entertainment',
+  Historical: 'Historical',
+  Art: 'Art',
+  FoodandDrink: 'Food & Drink',
+  Educational: 'Educational',
+  Adult: 'Adult',
+  Other: 'Other'
 });
 
 const FormSchema = t.struct({
@@ -108,7 +108,7 @@ export default class CreateTourForm extends React.Component {
       fields: {
         points: {
           label: "Locations",
-          error: "Field needs to be a number greater than 1"
+          error: "Field needs to be a number between 1 and 200"
         },
         photo: {
           type: 'file'

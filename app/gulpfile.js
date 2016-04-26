@@ -17,6 +17,7 @@ css_locations.fontaweseome = "./node_modules/font-awesome/css/font-awesome.min.c
 css_locations.bootstrap_table = "./node_modules/react-bootstrap-table/css/react-bootstrap-table-all.min.css";
 css_locations.dropzone_file = "./node_modules/react-dropzone-component/styles/filepicker.css";
 css_locations.dropzone_min = "./node_modules/dropzone/dist/min/dropzone.min.css";
+css_locations.rating_css = "./node_modules/react-star-rating/dist/css/react-star-rating.min.css";
 var css_list = _.values(css_locations);
 
 gulp.task('copy', function() {
