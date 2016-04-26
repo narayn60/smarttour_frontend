@@ -83,7 +83,6 @@ review and average time for example
 *** TODO Improve s3 buckets and backend
 *** TODO Add picture from notes to page
 *** TODO Move Note to separate section and display picture
-*** TODO Margins around boxes
 *** TODO Add More Locations
 *** TODO Ability to add reviews
 *** DONE Make Whole row clikcable
