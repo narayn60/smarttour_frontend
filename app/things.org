@@ -77,15 +77,17 @@ review and average time for example
 
 
 * Todays Tasks
-*** TODO Delete Tour
 *** TODO Improve the landing page
-*** TODO Make followers clickable
 *** TODO Improve s3 buckets and backend
 *** TODO Add picture from notes to page
 *** TODO Move Note to separate section and display picture
 *** TODO Add More Locations
 *** TODO Ability to add reviews
+*** DONE Delete Tour
+CLOSED: [2016-04-26 Tue 15:15]
 *** DONE Make Whole row clikcable
 CLOSED: [2016-04-26 Tue 13:32]
 *** DONE Change Points to Locations
 CLOSED: [2016-04-26 Tue 10:54]
+*** DONE Make followers clickable
+CLOSED: [2016-04-26 Tue 15:34]
