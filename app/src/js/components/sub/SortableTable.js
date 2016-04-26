@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Table, OverlayTrigger, Popover } from "react-bootstrap";
 import classNames from 'classnames';
 import Global from 'Global';
 import AuthStore from 'AuthStore';
@@ -39,6 +39,7 @@ export default class SortableTable extends React.Component {
 
   render() {
 
+    console.log("re-render sortable table", this.props.selected);
     const qr_base = Global.backend_url + AuthStore.getUid();
 
     const Locations = this.props.locations.map((point, i) => {
@@ -49,16 +50,15 @@ export default class SortableTable extends React.Component {
       const exist_color = point.exists ? "green" : "red";
       const qr_link = qr_base + "/" + point.qrcode_path_s3;
       return (
-        <tr class={classes}>
-          <div onClick={() => this.props.__handleClick(i)}>
+        <tr class={classes} onClick={() => this.props.__handleClick(i)}>
           <td>{i}</td>
           <td class="location-name" id={point.id} >{point.name}</td>
-          </div>
           <td class="qr-code" id={point.id} >
             <QRModal qr_path={qr_link} button_text="Download QR Code" button_type="link" />
           </td>
           <td class="delete-location" id={point.id} >
-            <a href='#' onClick={() => this.props.__deleteLocation(point.id, i)}>Delete Location</a>
+            {/* <a href='#' onClick={() => this.props.__deleteLocation(point.id, i)}>Delete Location</a> */}
+            <a href='#' onClick={this.props.__deleteLocation.bind(this, point.id, i)}>Delete Location</a>
           </td>
           <td class="currently-active" id={point.id} >
             <i class={"fa fa-" + exist_icon} aria-hidden="true" style={{color: exist_color}}></i>
@@ -82,7 +82,17 @@ export default class SortableTable extends React.Component {
                       <th>Name</th>
                       <th>Qr Codes</th>
                       <th>Delete Location</th>
+                      <OverlayTrigger trigger="hover" placement="top" overlay={<Popover title="Description">
+                        <i class="fa fa-check" aria-hidden="true" style={{color: "green"}}>
+                                                                        QR Code Still Active
+                        </i>
+                        <i class="fa fa-times" aria-hidden="true" style={{color: "red"}}>
+                                                                        QR Code Reported Destroyed or Missing
+                        </i>
+
+                      </Popover>}>
                       <th>Currently Active</th>
+                      </OverlayTrigger>
                     </tr>
                   </thead>
                   <tbody ref={this.sortableGroupDecorator}>

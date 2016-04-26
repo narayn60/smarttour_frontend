@@ -74,3 +74,19 @@ review and average time for example
 *** TODO Make sure endpoints send information to the actual api
 *** TODO Store some information on the api rather than the backend
 *** TODO Store related points from the tour to the api
+
+
+* Todays Tasks
+*** TODO Delete Tour
+*** TODO Improve the landing page
+*** TODO Make followers clickable
+*** TODO Improve s3 buckets and backend
+*** TODO Add picture from notes to page
+*** TODO Move Note to separate section and display picture
+*** TODO Margins around boxes
+*** TODO Add More Locations
+*** TODO Ability to add reviews
+*** DONE Make Whole row clikcable
+CLOSED: [2016-04-26 Tue 13:32]
+*** DONE Change Points to Locations
+CLOSED: [2016-04-26 Tue 10:54]

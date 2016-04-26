@@ -107,6 +107,7 @@ export default class CreateTourForm extends React.Component {
       template: formLayout,
       fields: {
         points: {
+          label: "Locations",
           error: "Field needs to be a number greater than 1"
         },
         photo: {
