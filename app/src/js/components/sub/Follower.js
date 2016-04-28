@@ -1,6 +1,6 @@
 import React from 'react';
-import Gravatar from 'react-gravatar';
 import { Row, Col, Button, Image } from "react-bootstrap";
+import { browserHistory } from "react-router";
 
 export default class Follower extends React.Component {
 
@@ -11,7 +11,6 @@ export default class Follower extends React.Component {
   render() {
 
     const follower = this.props.guide;
-    const gravatarSize = 125;
 
     if (follower === undefined) {
       return <div></div>;
@@ -19,7 +18,7 @@ export default class Follower extends React.Component {
 
 
     return (
-      <Col md={6}>
+      <Col md={6} onClick={() => browserHistory.push('/guides/' + follower.id + '/')}>
         <div class="box box-widget widget-user">
           <div class="widget-user-header bg-yellow" style={{background: 'url(' + follower.cover_url + ') center center;'}}>
             <h3 class="widget-user-username">{follower.full_name}</h3>

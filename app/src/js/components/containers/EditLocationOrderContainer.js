@@ -16,6 +16,7 @@ import EditTourForm from '../sub/EditTourForm';
 import NotesList from '../sub/NotesList';
 import FileItem from '../sub/FileItem';
 import SortableTable from '../sub/SortableTable';
+import NoteSection from '../sub/NoteSection';
 import TourMap from '../gmaps/TourMap';
 
 import Global from 'Global';
@@ -94,58 +95,62 @@ export default class EditLocationOrderContainer extends React.Component {
                         __deleteLocation={this.__deleteLocation.bind(this)}/>;
 
 
-    const EditSelection = currentlySelected === null ? "" : (
-      <div>
-        <h4> Attatched Info</h4>
-        <hr/>
-        <Nav bsStyle="pills" stacked activeKey={this.state.subselected} onSelect={this.__handleSelect.bind(this)}>
-          <NavItem eventKey={0} title="Information">
-            <i class="fa fa-info"></i> Information
-          </NavItem>
-          <NavItem eventKey={1} title="Photos">
-            <i class="fa fa-photo"></i> Photos <Badge pullRight>{this.props.photos.length}</Badge>
-          </NavItem>
-          <NavItem eventKey={2} title="Notes">
-            <i class="fa fa-sticky-note"></i> Note <Badge pullRight>{this.props.notes.length}</Badge>
-          </NavItem>
-          <NavItem eventKey={3} title="Text">
-            <i class="fa fa-file-text"></i> Attatched Text <Badge pullRight>0</Badge>
-          </NavItem>
-          <NavItem eventKey={4} title="Audio">
-            <i class="fa fa-music"></i> Audio <Badge pullRight>{this.props.audio.length}</Badge>
-          </NavItem>
-          <NavItem eventKey={5} title="Videos">
-            <i class="fa fa-video-camera"></i> Videos <Badge pullRight>{this.props.videos.length}</Badge>
-          </NavItem>
-        </Nav>
-      </div>
-    );
+    var EditSelection,
+        TourEdit,
+        subSection;
 
-    const sections = [
-      <EditTourForm values={this.props.locations[currentlySelected]} tour_id={this.tour_id} location_info={location_info} />,
-      <FileItem files={this.props.photos} location_info={this.props.locations[currentlySelected]} file_type="Picture"/>,
-      <NotesList location={this.props.locations[currentlySelected]} tour_id={this.tour_id} notes={this.props.notes}/>,
-      "Text placeholder",
-      <FileItem files={this.props.audio} location_info={this.props.locations[currentlySelected]} file_type="Audio"/>,
-      <FileItem files={this.props.videos} location_info={this.props.locations[currentlySelected]} file_type="Video"/>
-    ];
+    if (currentlySelected !== null) {
+      EditSelection = (
+        <div>
+          <h4> Attatched Info</h4>
+          <hr/>
+          <Nav bsStyle="pills" stacked activeKey={this.state.subselected} onSelect={this.__handleSelect.bind(this)}>
+            <NavItem eventKey={0} title="Information">
+              <i class="fa fa-info"></i> Information
+            </NavItem>
+            <NavItem eventKey={1} title="Note">
+              <i class="fa fa-sticky-note"></i> Note
+            </NavItem>
+            <NavItem eventKey={2} title="Photos">
+              <i class="fa fa-photo"></i> Photos <Badge pullRight>{this.props.photos.length}</Badge>
+            </NavItem>
+            <NavItem eventKey={3} title="Text">
+              <i class="fa fa-file-text"></i> Attatched Text <Badge pullRight>0</Badge>
+            </NavItem>
+            <NavItem eventKey={4} title="Audio">
+              <i class="fa fa-music"></i> Audio <Badge pullRight>{this.props.audio.length}</Badge>
+            </NavItem>
+            <NavItem eventKey={5} title="Videos">
+              <i class="fa fa-video-camera"></i> Videos <Badge pullRight>{this.props.videos.length}</Badge>
+            </NavItem>
+          </Nav>
+        </div>
+      );
 
-    const TourEdit = currentlySelected === null ? "" : sections[this.state.subselected];
+      TourEdit = [
+        <EditTourForm values={this.props.locations[currentlySelected]} tour_id={this.tour_id} location_info={location_info} />,
+        <NoteSection note={this.props.locations[currentlySelected].note} />,
+        <FileItem files={this.props.photos} location_info={this.props.locations[currentlySelected]} file_type="Picture"/>,
+        "Text placeholder",
+        <FileItem files={this.props.audio} location_info={this.props.locations[currentlySelected]} file_type="Audio"/>,
+        <FileItem files={this.props.videos} location_info={this.props.locations[currentlySelected]} file_type="Video"/>
+      ][this.state.subselected];
 
-    console.log("Currently selected", currentlySelected);
-    const subSection = currentlySelected === null ? "" : (
-      <Grid fluid={true} class="border_box" id="edit_selection" style={{minHeight: '500px'}}>
-        <Row>
-          <Col md={3}>
-            { EditSelection }
-            <hr/>
-          </Col>
-          <Col md={9}>
-            { TourEdit }
-          </Col>
-        </Row>
-      </Grid>
-    );
+      subSection = (
+        <Grid fluid={true} class="border_box" id="edit_selection" style={{minHeight: '500px'}}>
+          <Row>
+            <Col md={3}>
+              { EditSelection }
+              <hr/>
+            </Col>
+            <Col md={9}>
+              { TourEdit }
+            </Col>
+          </Row>
+        </Grid>
+      );
+
+    }
 
     return (
       <div>

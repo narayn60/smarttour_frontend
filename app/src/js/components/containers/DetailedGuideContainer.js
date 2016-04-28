@@ -163,13 +163,13 @@ export default class DetailedGuideContainer extends React.Component {
                 </Row>
                 <Row class="profile-stats">
                   <Col md={4} sm={4} xs={4} class="inlinestats-col">
-                    <i class="glyphicon glyphicon-map-marker"></i> Boston
+                    <i class="glyphicon glyphicon-map-marker"></i> {guide.address}
                   </Col>
                   <Col md={4} sm={4} xs={4} class="inlinestats-col">
-                    Rate: <strong>$250</strong>
+                    {/* Rate: <strong>$250</strong> */}
                   </Col>
                   <Col md={4} sm={4} xs={4} class="inlinestats-col">
-                    Age: <strong>24</strong>
+                    {/* Age: <strong>24</strong> */}
                   </Col>
                 </Row>
               </div>
