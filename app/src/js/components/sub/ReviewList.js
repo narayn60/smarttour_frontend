@@ -30,17 +30,19 @@ export default class ReviewList extends React.Component {
   render() {
 
     var submitReview = <div></div>;
-    if (this.state.review_submitted === false) {
+    if (this.state.review_submitted === false && this.props.personal === false) {
       submitReview = (
-          <ul class="list-unstyled center">
-          <li> <input type="text" value={this.state.review_text} onChange={this.handleChange.bind(this)} /></li>
-          <li><StarRating name="review-rating" caption="Rate your tour!" totalStars={5} size={25} onRatingClick={this.ratingClick.bind(this)}/></li>
-          <li><Button bsStyle="success" onClick={() => this.submitReview()}>Submit</Button></li>
+          <ul class="list-unstyled review-list">
+            <li> <input class="review-input" type="text" value={this.state.review_text} onChange={this.handleChange.bind(this)} placeholder="Leave your own review"/></li>
+            <li><StarRating name="review-rating" totalStars={5} size={25} onRatingClick={this.ratingClick.bind(this)}/></li>
+            <li><Button bsStyle="success" onClick={() => this.submitReview()}>Submit</Button></li>
           </ul>
       );
     }
     else {
-      submitReview = (<h4> Thanks! </h4>);
+      if (this.props.personal === false) {
+        submitReview = (<h4> Thanks! </h4>);  
+      }
     }
 
     const base_url = Global.backend_url + AuthStore.getUid() + "/";
