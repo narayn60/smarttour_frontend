@@ -106,12 +106,18 @@ export default class CreateTourForm extends React.Component {
     const options = {
       template: formLayout,
       fields: {
+        name: {
+          label: "Tour Name"
+        },
         points: {
-          label: "Locations",
+          label: "Number of Locations for Tour",
           error: "Field needs to be a number between 1 and 200"
         },
         photo: {
           type: 'file'
+        },
+        bio: {
+          label: "About Tour"
         }
       }
     };

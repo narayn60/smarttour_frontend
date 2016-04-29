@@ -7,6 +7,7 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 import Global from 'Global';
 import AuthStore from 'AuthStore';
 import Follower from '../sub/Follower';
+import pluralize from 'pluralize';
 
 import { Grid, Row, Col, Image, Button, Collapse, Well } from "react-bootstrap";
 import { Router, Route, Link, browserHistory } from 'react-router';
@@ -94,15 +95,11 @@ export default class DetailedGuideContainer extends React.Component {
             <div class="clear"></div>
             <Col sm={4}>
               <i class="fa fa-map-marker"></i>
-              <a href="#">Location</a>
+              <a href="#">{" " + pluralize('Location', tour.points, true)}</a>
             </Col>
             <Col sm={4}>
-              <i class="fa fa-map-marker"></i>
-              <a href="#">Points</a>
-            </Col>
-            <Col sm={4}>
-              <i class="fa fa-linkedin"></i>
-              <a href="#">johnkennedy</a>
+              <i class="fa fa-users"></i>
+              <a href="#">{" " + pluralize('Follower', tour.followers, true)}</a>
             </Col>
           </div>
         </div>
@@ -176,14 +173,14 @@ export default class DetailedGuideContainer extends React.Component {
               <Row class="profile-stats">
                 <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick('tour')}>
                   <div class="stats-value red">{this.state.tours.length}</div>
-                  <div class="stats-title">TOURS</div>
+                  <div class="stats-title">{pluralize('TOUR', this.state.tours.length)}</div>
                 </Col>
                 <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick('followers')}>
-                  <div class="stats-value red">284</div>
-                  <div class="stats-title">FOLLOWERS</div>
+                  <div class="stats-value red">{this.state.followers.length}</div>
+                  <div class="stats-title">{pluralize('FOLLOWER', this.state.followers.length)}</div>
                 </Col>
                 <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick('following')}>
-                  <div class="stats-value red">803</div>
+                  <div class="stats-value red">{this.state.following.length}</div>
                   <div class="stats-title">FOLLOWING</div>
                 </Col>
               </Row>

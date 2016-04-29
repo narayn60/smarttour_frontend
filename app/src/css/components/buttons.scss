@@ -232,3 +232,14 @@ fieldset[disabled] .btn-xl.active {
     border-color: #fff;
   }
 }
+
+.cover-button {
+  background: none;
+  color: $white;
+  border: none !important;
+
+  &:hover {
+    background: none;
+    color: $white;
+  }
+}

@@ -2,6 +2,7 @@ import React from "react";
 import connectToStores from 'alt-utils/lib/connectToStores';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import { Grid, Row, Col, Image, Button, Collapse, Well, Table } from "react-bootstrap";
+import pluralize from 'pluralize';
 
 import AuthStore from 'AuthStore';
 import Global from 'Global';
@@ -92,8 +93,9 @@ export default class TourDetailed extends React.Component {
 
     const tour_info = [
       {class: "trophy", text: "Rank 1"},
-      {class: "users", text: tour.followers + " Followers"},
-      {class: "map-marker", text: this.state.locations.length + " Points"}
+      {class: "users", text: pluralize("Follower", tour.followers, true)},
+      {class: "map-marker", text: pluralize("Location", this.state.locations.length, true)},
+      {class: "bookmark", text: tour.genre}
     ].map((info) => (
       <li style={{lineHeight: '40px'}}>
         <i class={"fa fa-2x fa-" + info.class} style={{float: 'left', verticalAlign: 'middle', height: '30px', paddingTop: '8px'}}></i>
@@ -153,15 +155,15 @@ export default class TourDetailed extends React.Component {
           <Row>
             <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(0)} style={{textAlign: 'center'}}>
               <div class="stats-value red">{this.state.locations.length}</div>
-              <div class="stats-title">Locations</div>
+              <div class="stats-title">{pluralize("Location", this.state.locations.length)}</div>
             </Col>
             <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(1)} style={{textAlign: 'center'}}>
-              <div class="stats-value red">284</div>
-              <div class="stats-title">Followers</div>
+              <div class="stats-value red">{tour.followers}</div>
+              <div class="stats-title">{pluralize("Follower", tour.followers)}</div>
             </Col>
             <Col md={4} sm={4} xs={4} class="stats-col" onClick={() => this.__onClick(2)} style={{textAlign: 'center'}}>
               <div class="stats-value red">{this.state.tour.reviews.length}</div>
-              <div class="stats-title">Reviews</div>
+              <div class="stats-title">{pluralize("Review", this.state.tour.reviews.length)}</div>
             </Col>
           </Row>
         </Row>

@@ -4,6 +4,7 @@ import AuthStore from 'AuthStore';
 import StarRating from 'react-star-rating';
 import { Button } from "react-bootstrap";
 import ReviewActions from 'ReviewActions';
+import pluralize from 'pluralize';
 
 export default class ReviewList extends React.Component {
 
@@ -13,18 +14,17 @@ export default class ReviewList extends React.Component {
   }
 
   handleChange(e) {
-    console.log(e)
     this.setState({review_text: e.target.value});
   }  
 
   submitReview() {
-    var review = {review_text: this.state.review_text, review_rating: this.state.review_rating, tour_id: this.props.tour_id}
+    var review = {review_text: this.state.review_text, review_rating: this.state.review_rating, tour_id: this.props.tour_id};
     ReviewActions.createReview(review);
     this.setState({review_submitted: true});
   }
 
   ratingClick(e, things) {
-    this.setState({review_rating: things.rating})
+    this.setState({review_rating: things.rating});
   }
 
   render() {
@@ -76,7 +76,7 @@ export default class ReviewList extends React.Component {
     return (
       <div>
         <section class="border_box content-item" id="comments">
-          <h4 className="group-title">{this.props.reviews.length} Reviews</h4>
+          <h4 className="group-title">{pluralize('Review', this.props.reviews.length, true)}</h4>
           {submitReview}
           <hr/>
           {reviews}

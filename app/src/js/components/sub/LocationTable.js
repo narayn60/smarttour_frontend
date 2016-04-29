@@ -45,11 +45,9 @@ export default class LocationTable extends React.Component {
             </Col>
           </Row>
           <Panel collapsible expanded={this.state.open.has(i)}>
-            <Grid>
-              <Row>
-                About: { location.about}
-              </Row>
-            </Grid>
+            <div>
+              About: { location.about}
+            </div>
           </Panel>
         </div>
       )

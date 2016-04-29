@@ -47,7 +47,7 @@ export default class TourGuideContainer extends React.Component {
       }
     }
     else {
-      return false
+      return false;
     }
   }
 
@@ -74,8 +74,6 @@ export default class TourGuideContainer extends React.Component {
       filteredGuides = this.state.guides.filter(this.filterByName);
       GuidesComponent = filteredGuides.map((guide, i) => <TourGuide key={i} guide={guide}/>);
     }
-
-    console.log("Should be able to render tour container");
 
     return (
       <div>

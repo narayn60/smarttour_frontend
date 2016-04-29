@@ -13,13 +13,12 @@ class DeleteButton extends React.Component {
     if (answer) {
       UserTourActions.deleteTour(this.props.tour_id);
     }
-    console.log("Need to delete", this.props.tour_id);
   }
 
   render() {
     return (
       <Button onClick={this.__handleBtnClick.bind(this)}>
-        <i class="fa fa-times" style={{color: "red"}}></i>
+        <i class="fa fa-trash-o" style={{color: "grey"}}></i>
       </Button>
 
     );

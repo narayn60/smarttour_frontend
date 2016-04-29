@@ -14,11 +14,14 @@ export default class DropZone extends React.Component {
     this.upload_type = props.upload_type;
     this.descriptor = this.upload_type;
     if (this.upload_type === 'Picture') {
-      this.acceptedFiles = 'image/*';
+      this.acceptedFiles = '.jpg, .png';
+      this.iconFiletypes = ['.jpg', '.png'];
     } else if (this.upload_type === 'Audio') {
-      this.acceptedFiles = 'audio/*';
+      this.acceptedFiles = '.mp3, .ogg';
+      this.iconFiletypes = ['.mp3', '.ogg'];
     } else if (this.upload_type === 'Video') {
-      this.acceptedFiles = 'video/*';
+      this.acceptedFiles = '.mp4';
+      this.iconFiletypes = ['.mp4'];
     }
   }
 
@@ -48,7 +51,7 @@ export default class DropZone extends React.Component {
     };
 
     var componentConfig = {
-      iconFiletypes: ['.jpg', '.png', '.gif'],
+      iconFiletypes: this.iconFiletypes,
       showFiletypeIcon: true,
       postUrl: Global.backend_url + AuthStore.getUid() + '/locations/' + location_id + '/files/'
     };

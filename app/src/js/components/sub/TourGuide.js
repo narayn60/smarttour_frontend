@@ -1,7 +1,6 @@
 import React from "react";
 import { browserHistory } from 'react-router';
 import { Col, Image } from "react-bootstrap";
-import Gravatar from 'react-gravatar';
 
 export default class Guide extends React.Component {
 
@@ -11,8 +10,10 @@ export default class Guide extends React.Component {
 
 
   render() {
-    var gravatarSize = 225;
     const guide = this.props.guide;
+    const no_followers = (JSON.parse(guide.followers)).length;
+    const no_following = (JSON.parse(guide.following)).length;
+
 
     return (
       <Col md={4} onClick={() => this.guideClick(guide.id)}>
@@ -27,8 +28,8 @@ export default class Guide extends React.Component {
           <div class="box-footer no-padding">
             <ul class="nav nav-stacked">
               <li><a href="#">Tours <span class="pull-right badge bg-blue">Needs replacing</span></a></li>
-              <li><a href="#">Followers <span class="pull-right badge bg-aqua">{((JSON.parse(guide.followers)).length)}</span></a></li>
-              <li><a href="#">Following <span class="pull-right badge bg-red">{((JSON.parse(guide.following)).length)}</span></a></li>
+              <li><a href="#">Followers<span class="pull-right badge bg-aqua">{no_followers}</span></a></li>
+              <li><a href="#">Following <span class="pull-right badge bg-red">{no_following}</span></a></li>
               <li><a href="#">Average Rating <span class="pull-right badge bg-green">12</span></a></li>
             </ul>
           </div>

@@ -39,7 +39,6 @@ class LocationActions {
   }
 
   updateValues(new_values, tour_id, location_id) {
-    console.log("update values", new_values);
     return (dispatch) => {
       dispatch();
       this.stores.LocationSource.update_values(new_values, tour_id, location_id)
@@ -53,7 +52,6 @@ class LocationActions {
   }
 
   successfulUpdate(new_values, location_id) {
-    console.log("Successful update action called");
     return {
       values: new_values,
       id: location_id

@@ -37,7 +37,6 @@ class LocationStore {
     const values = input.values;
 
     const new_locations = this.state.locations;
-    csoneol.log("SuccessfulUpdate");
     for (var i=0; i < new_locations.length; i++) {
       if (new_locations[i].id === location_id) {
         Object.assign(new_locations[i], values);

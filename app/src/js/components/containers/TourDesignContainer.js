@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Grid, Image, Button, Modal } from "react-bootstrap";
 import connectToStores from 'alt-utils/lib/connectToStores';
+import pluralize from 'pluralize';
 
 import LocationActions from 'LocationActions';
 import LocationStore from 'LocationStore';
@@ -32,7 +33,8 @@ export default class TourDesignContainer extends React.Component {
       bio: null,
       showModal: false,
       imgValue: null,
-      editPhotoClicked: null
+      editPhotoClicked: null,
+      coverPhotoButtonHover: false
     };
   }
 
@@ -102,6 +104,20 @@ export default class TourDesignContainer extends React.Component {
     }
   }
 
+  __coverPhotoButtonOver() {
+    this.setState({
+      coverPhotoButtonHover: true
+    });
+  }
+
+  __coverPhotoButtonOut() {
+    this.setState({
+      coverPhotoButtonHover: false
+    });
+  }
+
+
+
 
   render() {
 
@@ -147,10 +163,12 @@ export default class TourDesignContainer extends React.Component {
       );
     }
 
+    console.log("State", this.state);
     const tour_info = [
       {class: "trophy", text: "Rank 1"},
-      {class: "users", text: "23 Followers"},
-      {class: "map-marker", text: this.state.locations.length + " Locations"}
+      {class: "users", text: pluralize("Follower", 0, true)},
+      {class: "map-marker", text: pluralize("Location", this.state.locations.length, true)},
+      {class: "bookmark", text: this.state.tour.genre}
     ].map((info) => (
       <li style={{lineHeight: '40px'}}>
         <i class={"fa fa-2x fa-" + info.class} style={{float: 'left', verticalAlign: 'middle', height: '30px', paddingTop: '8px'}}></i>
@@ -161,6 +179,8 @@ export default class TourDesignContainer extends React.Component {
 
     const images = {photo: this.state.tour.img_url, cover_photo: this.state.tour.cover_url};
     const titles = {photo: 'Edit Tour Photo', cover_photo: 'Edit Tour Cover'};
+
+    const coverButtonText = this.state.coverPhotoButtonHover ? "Upload cover photo" : "";
 
     return (
       <Grid>
@@ -195,10 +215,10 @@ export default class TourDesignContainer extends React.Component {
             </ul>
           </Col>
           <div style={{position: 'absolute', bottom: '0'}}>
-            <Button role="button" class="btn-inverse btn-outlined btn-retainBg btn-brightblue" onClick={() => this.__openModal('cover_photo')}>
+            <Button role="button" class="btn-inverse cover-button btn-retainBg" onClick={() => this.__openModal('cover_photo')} onMouseOver={() => this.__coverPhotoButtonOver()} onMouseOut={() => this.__coverPhotoButtonOut()}>
               <span>
                 <i class={"fa fa-camera"}></i>
-                Update Cover Photo
+                {coverButtonText}
               </span>
             </Button>
           </div>
