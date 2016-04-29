@@ -62,7 +62,7 @@ export default class ProfileContainer extends React.Component {
       return (
         <div>
           <i class="fa fa-spin fa-spinner"></i>
-          Loadingprofile.email
+          Loading Profile
         </div>
       );
     }
