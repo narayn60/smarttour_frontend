@@ -49,7 +49,7 @@ export default class PhotoItem extends React.Component {
   }
 
   __onDelete(i) {
-    const answer = confirm("Delete photo");
+    const answer = confirm("Delete " + this.props.file_type + "?");
     if (answer) {
       const photo_info = this.state.files[i];
       PhotoActions.deletePhoto(this.props.location_info.id, photo_info.id);
