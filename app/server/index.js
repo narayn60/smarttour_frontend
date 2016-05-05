@@ -156,11 +156,6 @@ server.get('/auth/google/callback',
            socialUserRedirect);
 
 
-server.get('/loaderio-d59ee75dfc1c1fe8f0a2013f4f4472bc', (req, res) => {
-  res.set({"Content-Disposition":"attachment; filename=\"loaderio-d59ee75dfc1c1fe8f0a2013f4f4472bc.txt\""});
-  res.send("loaderio-d59ee75dfc1c1fe8f0a2013f4f4472bc");
-});
-
 //
 // close session
 //

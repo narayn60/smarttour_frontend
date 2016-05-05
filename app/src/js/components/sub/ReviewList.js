@@ -44,8 +44,7 @@ export default class ReviewList extends React.Component {
     }
 
     if(this.props.guide === AuthStore.getEmail()) {
-      console.log('hello')
-      submitReview = <div></div>
+      submitReview = "";
     }
 
     const base_url = Global.backend_url + AuthStore.getUid() + "/";
