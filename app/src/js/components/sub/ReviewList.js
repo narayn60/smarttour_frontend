@@ -43,9 +43,7 @@ export default class ReviewList extends React.Component {
         submitReview = (<h4> Thanks! </h4>);  
     }
 
-    console.log(this.props.guide.id)
-    console.log(AuthStore.getId())
-    if(this.props.guide.id === AuthStore.getId()) {
+    if(this.props.guide === AuthStore.getEmail()) {
       console.log('hello')
       submitReview = <div></div>
     }

@@ -44,7 +44,7 @@ export default class PersonalTourOverviewContainer extends React.Component {
             </Row>
           </Col>
           <Col md={6}>
-            <ReviewList reviews={this.props.tour.reviews}/>
+            <ReviewList reviews={this.props.tour.reviews} tour_id={0} personal={true} guide={""}/>
           </Col>
         </Row>
       </div>

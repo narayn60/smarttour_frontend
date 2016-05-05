@@ -125,7 +125,7 @@ export default class TourDetailed extends React.Component {
       </div>
     );
 
-    const sections = [location_table, "Followers", <ReviewList reviews={this.state.tour.reviews} tour_id={this.props.tour_id} personal={false} guide={this.state.tour.guide}/>];
+    const sections = [location_table, "Followers", <ReviewList reviews={this.state.tour.reviews} tour_id={this.props.tour_id} personal={false} guide={this.state.tour.guide.email}/>];
 
     return (
       <Grid>
