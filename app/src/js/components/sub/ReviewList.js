@@ -39,10 +39,15 @@ export default class ReviewList extends React.Component {
           </ul>
       );
     }
-    else {
-      if (this.props.personal === false) {
+    else if (this.state.review_submitted === true && this.props.personal === false) {
         submitReview = (<h4> Thanks! </h4>);  
-      }
+    }
+
+    console.log(this.props.guide.id)
+    console.log(AuthStore.getId())
+    if(this.props.guide.id === AuthStore.getId()) {
+      console.log('hello')
+      submitReview = <div></div>
     }
 
     const base_url = Global.backend_url + AuthStore.getUid() + "/";
