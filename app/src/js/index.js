@@ -12,7 +12,6 @@ import alt from 'alt_base';
 // require.context("./design_js/", true, /.*/);
 
 Iso.bootstrap((state) => {
-  console.log("bootstrapped state", state);
   alt.bootstrap(state);
 });
 

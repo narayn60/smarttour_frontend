@@ -112,7 +112,6 @@ passport.use(new passportGoogle.OAuth2Strategy({
   clientSecret: authConfig.googleAuth.clientSecret,
   callbackURL: authConfig.googleAuth.callbackURL
 }, (accessToken, refreshToken, X, profile, done) => {
-  console.log("Refresh token is", refreshToken);
   const result = Object.assign(profile, { id_token: X.id_token,
                                           token: accessToken,
                                           refresh_token: refreshToken
@@ -157,6 +156,11 @@ server.get('/auth/google/callback',
            socialUserRedirect);
 
 
+server.get('/loaderio-d59ee75dfc1c1fe8f0a2013f4f4472bc', (req, res) => {
+  res.set({"Content-Disposition":"attachment; filename=\"loaderio-d59ee75dfc1c1fe8f0a2013f4f4472bc.txt\""});
+  res.send("loaderio-d59ee75dfc1c1fe8f0a2013f4f4472bc");
+});
+
 //
 // close session
 //
@@ -186,19 +190,15 @@ server.use(express.static('public'));
 
 server.get('*', (req, res, next) => {
 
-  console.log("User is", req.user);
   // auth first
   if (req.user) {
     AuthActions.login(req.user);
   }
 
   match({ routes: routes, location: req.url }, (err, redirect, props) => {
-    console.log("Trying to match");
     if (err) {
-      console.log("Error in match");
       res.status(500).send(err.message);
     } else if (props) {
-      console.log("Props exists");
       let serverHtml = Iso.render(renderToString(<RouterContext {...props}/>), alt.flush());
       // let serverHtml = render(renderToString(<RouterContext {...props}/>));
       res.status(200).send(renderPage(serverHtml));
@@ -209,7 +209,6 @@ server.get('*', (req, res, next) => {
 });
 
 function renderPage(serverHtml) {
-  console.log("Trying to render page");
   return `
     <!DOCTYPE html>
     <html>
