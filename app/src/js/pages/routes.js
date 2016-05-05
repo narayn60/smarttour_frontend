@@ -14,7 +14,6 @@ import TourDesign from './TourDesign';
 import axios from 'axios';
 
 function LoginRedirect(nextState, replace) {
-  console.log("LoginRedirect", process.env.BROWSER);
   if (process.env.BROWSER) {
     if (!AuthStore.isLoggedIn()) {
       replace({
