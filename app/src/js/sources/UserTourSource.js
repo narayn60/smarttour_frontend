@@ -20,7 +20,6 @@ export default class UserTourSource {
 
   };
 
-  
   fetch_tour(tour_id) {
     const base_url = Global.backend_url + AuthStore.getUid();
     return axios.get(base_url + '/tours/' + tour_id + '/')
@@ -47,6 +46,15 @@ export default class UserTourSource {
   delete_tour(tour_id) {
     const base_url = Global.backend_url + AuthStore.getUid();
     return axios.delete(base_url + '/tours/' + tour_id + '/')
+      .then((response) => response)
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  create_location(tour_id) {
+    const base_url = Global.backend_url + AuthStore.getUid();
+    return axios.patch(base_url + '/tours/' + tour_id + '/add_location/', {})
       .then((response) => response)
       .catch((error) => {
         throw error;

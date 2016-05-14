@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Grid, Image, Button, Modal } from "react-bootstrap";
 import connectToStores from 'alt-utils/lib/connectToStores';
+
 import pluralize from 'pluralize';
 
 import LocationActions from 'LocationActions';
@@ -82,6 +83,14 @@ export default class TourDesignContainer extends React.Component {
     });
   }
 
+  __onCreateLocation() {
+    let answer = confirm("Create new location?");
+    if (answer) {
+      UserTourActions.createLocation(this.tour_id);
+      alert("Location successfully created");
+    }
+  }
+
   __closeModal() {
     this.setState({
       showModal: false
@@ -132,9 +141,10 @@ export default class TourDesignContainer extends React.Component {
 
     var chosen_section,
         button_text,
-        button_download_qr;
+        button_download_qr,
+        button_create_location;
 
-    const qr_link = Global.backend_url + AuthStore.getUid() + '/media/tours/' + this.tour_id + "/qrcode_grid/";
+    const qr_link = Global.backend_url + AuthStore.getUid() + '/media/tours/' + this.tour_id + "/qrcode_grid/?" + this.state.location_created;
 
     if (this.state.overview) {
       chosen_section = (
@@ -145,6 +155,7 @@ export default class TourDesignContainer extends React.Component {
       );
       button_text = "Edit Tour";
       button_download_qr = "";
+      button_create_location = "";
     } else {
       chosen_section = (
         <EditLocationOrderContainer
@@ -161,9 +172,13 @@ export default class TourDesignContainer extends React.Component {
       button_download_qr = (
         <QRModal qr_path={qr_link} button_text="Download QR Codes" button_type="full" />
       );
+      button_create_location = (
+        <Button role="button" class="btn-inverse btn-outlined btn-retainBg btn-brightblue" onClick={() => this.__onCreateLocation()}>
+          Create new Location
+        </Button>
+      );
     }
 
-    console.log("State", this.state);
     const tour_info = [
       {class: "trophy", text: "Rank 1"},
       {class: "users", text: pluralize("Follower", 0, true)},
@@ -205,6 +220,7 @@ export default class TourDesignContainer extends React.Component {
                 <span>{button_text}</span>
               </Button>
               {button_download_qr}
+              {button_create_location}
             </div>
           </Col>
           <Col md={3} mdPull={6} id="tourcover_left">

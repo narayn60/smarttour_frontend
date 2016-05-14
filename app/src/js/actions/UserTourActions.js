@@ -9,7 +9,7 @@ class UserTourActions {
     this.sources = {
       UserTourSource: new UserTourSource()
     };
-    this.generateActions('updateTours', 'updateTour', 'successfulDeleteTour');
+    this.generateActions('updateTours', 'updateTour', 'successfulDeleteTour', 'successfulCreateLocation');
   }
 
   fetchTours() {
@@ -57,6 +57,19 @@ class UserTourActions {
       this.sources.UserTourSource.delete_tour(tour_id)
         .then((response) => {
           this.successfulDeleteTour(tour_id);
+        })
+        .catch((errorMessage) => {
+          this.toursFailed(errorMessage);
+        });
+    };
+  }
+
+  createLocation(tour_id) {
+    return (dispatch) => {
+      dispatch();
+      this.sources.UserTourSource.create_location(tour_id)
+        .then((response) => {
+          this.successfulCreateLocation(tour_id);
         })
         .catch((errorMessage) => {
           this.toursFailed(errorMessage);

@@ -81,7 +81,6 @@ export default class EditLocationOrderContainer extends React.Component {
       return (
         <div class="container">
           No Locations Created for tour
-          <a href={qr_grid}>Re-Download QR codes for tour</a>
         </div>
       );
     }
