@@ -27,10 +27,10 @@ export default class Guide extends React.Component {
           </div>
           <div class="box-footer no-padding">
             <ul class="nav nav-stacked">
-              <li><a href="#">Tours <span class="pull-right badge bg-blue">Needs replacing</span></a></li>
+              <li><a href="#">Tours <span class="pull-right badge bg-blue">3</span></a></li>
               <li><a href="#">Followers<span class="pull-right badge bg-aqua">{no_followers}</span></a></li>
               <li><a href="#">Following <span class="pull-right badge bg-red">{no_following}</span></a></li>
-              <li><a href="#">Average Rating <span class="pull-right badge bg-green">12</span></a></li>
+              <li><a href="#">Average Rating <span class="pull-right badge bg-green">3</span></a></li>
             </ul>
           </div>
         </div>

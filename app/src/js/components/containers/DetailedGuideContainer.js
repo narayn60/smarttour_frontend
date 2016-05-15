@@ -18,7 +18,7 @@ export default class DetailedGuideContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = PersonalTourStore.getState();
+    /*this.state = PersonalTourStore.getState();*/
     this.guide_id = props.guide_id;
     this.state = {
       chosenSection: null
@@ -46,6 +46,10 @@ export default class DetailedGuideContainer extends React.Component {
   componentWillUnmount() {
     PersonalTourStore.unlisten(this.onChange.bind(this));
     GuideStore.unlisten(this.onChange.bind(this));
+  }
+
+  componentWillReceiveProps(state) {
+    console.log("Component Recevied Props");
   }
 
   onChange(state) {

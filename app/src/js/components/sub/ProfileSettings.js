@@ -58,7 +58,7 @@ export default class ProfileSettings extends React.Component {
     const glyph_classes = 'fa pull-right ';
     //TODO: Hook up the settings
     const accountOptions = [
-      {text: 'Account Settings', glyph: glyph_classes + 'fa-cog', href: '#'},
+      // {text: 'Account Settings', glyph: glyph_classes + 'fa-cog', href: '#'},
       {text: 'My Tours', glyph: glyph_classes + 'fa-map', href: '/profile'},
       {text: 'Logout', glyph: glyph_classes + 'fa-sign-out', href: '/logout'}
     ].map((links, i) =>

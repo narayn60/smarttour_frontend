@@ -1,11 +1,19 @@
 import React from 'react';
 import { Row, Col, Button, Image } from "react-bootstrap";
 import { browserHistory } from "react-router";
+import PersonalTourActions from 'PersonalTourActions';
+import GuideActions from 'GuideActions';
 
 export default class Follower extends React.Component {
 
   constructor(props) {
     super(props);
+  }
+
+  __followerClicked(follower_id) {
+    browserHistory.push('/guides/' + follower_id + '/')
+    PersonalTourActions.fetchTours(follower_id);
+    GuideActions.fetchGuide(follower_id);
   }
 
   render() {
@@ -18,7 +26,7 @@ export default class Follower extends React.Component {
 
 
     return (
-      <Col md={6} onClick={() => browserHistory.push('/guides/' + follower.id + '/')}>
+      <Col md={6} onClick={() => this.__followerClicked(follower.id)}>
         <div class="box box-widget widget-user">
           <div class="widget-user-header bg-yellow" style={{background: 'url(' + follower.cover_url + ') center center;'}}>
             <h3 class="widget-user-username">{follower.full_name}</h3>

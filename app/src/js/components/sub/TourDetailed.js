@@ -15,6 +15,7 @@ import TourStore from 'TourStore';
 import ImageLoad from './ImageLoad';
 import TourMap from '../../components/gmaps/TourMap';
 import ReviewList from './ReviewList';
+import FollowerList from './FollowerList';
 
 
 
@@ -125,7 +126,7 @@ export default class TourDetailed extends React.Component {
       </div>
     );
 
-    const sections = [location_table, "Followers", <ReviewList reviews={this.state.tour.reviews} tour_id={this.props.tour_id} personal={false} guide={this.state.tour.guide.email}/>];
+    const sections = [location_table, <FollowerList />, <ReviewList reviews={this.state.tour.reviews} tour_id={this.props.tour_id} personal={false} guide={this.state.tour.guide.email}/>];
 
     return (
       <Grid>

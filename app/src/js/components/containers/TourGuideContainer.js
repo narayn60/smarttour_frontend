@@ -40,7 +40,6 @@ export default class TourGuideContainer extends React.Component {
   }
 
   filterByName(guide) {
-    console.log(guide)
     if (guide.full_name != null) {
       if (guide.full_name.toLowerCase().match(this.state.searchString.toLowerCase())) {
         return true;
@@ -49,7 +48,7 @@ export default class TourGuideContainer extends React.Component {
     else {
       return false;
     }
-  }
+  };
 
   handleSearchChange(e) {
     this.setState({searchString: e.target.value});
