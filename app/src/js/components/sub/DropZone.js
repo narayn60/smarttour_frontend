@@ -25,6 +25,20 @@ export default class DropZone extends React.Component {
     }
   }
 
+  componentWillReceiveProps() {
+    this.upload_type = this.props.upload_type;
+    if (this.upload_type === 'Picture') {
+      this.acceptedFiles = '.jpg, .png';
+      this.iconFiletypes = ['.jpg', '.png'];
+    } else if (this.upload_type === 'Audio') {
+      this.acceptedFiles = '.mp3, .ogg';
+      this.iconFiletypes = ['.mp3', '.ogg'];
+    } else if (this.upload_type === 'Video') {
+      this.acceptedFiles = '.mp4';
+      this.iconFiletypes = ['.mp4'];
+    }
+  }
+
   render() {
 
     if (!this.acceptedFiles) {

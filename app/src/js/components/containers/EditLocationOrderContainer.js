@@ -151,6 +151,8 @@ export default class EditLocationOrderContainer extends React.Component {
 
     }
 
+    console.log("Selected, ", this.state.subselected);
+
     return (
       <div>
         <Row>
